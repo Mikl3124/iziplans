@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\model\Category;
+use App\model\Competence;
 use Illuminate\Database\Eloquent\Model;
 
 class Projet extends Model
@@ -15,7 +16,11 @@ class Projet extends Model
     }
 
     public function categories()
-        {
+    {
         return $this->belongsToMany(Category::class);
-        }
+    }
+    public function competences()
+    {
+        return $this->belongsToMany(Competence::class);
+    }
 }

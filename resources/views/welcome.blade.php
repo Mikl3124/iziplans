@@ -90,11 +90,15 @@
                     <hr>
 
                     <p class="card-text">{{$projet->description}}</p>
-                    <p class="card-text">{{$projet->competences}}</p>
+                    
                     
                     <div><a href="#" class="btn btn-primary">Voir le projet</a> </div>
                     @foreach($projet->categories as $category)
                         <span class="categories">{{ $category->name }} </span>
+                    @endforeach
+                    <hr>
+                    @foreach($projet->competences as $competence)
+                        <span class="categories">{{ $competence->name }} </span>
                     @endforeach
                     
                         
