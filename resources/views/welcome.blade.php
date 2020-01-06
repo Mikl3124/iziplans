@@ -68,12 +68,12 @@
     {{-- ----------- Dernières Missions Proposées ---------- --}}
    
     <div class="text-center">
-        <h1 class="text-center mt-5 mb-5">Les dernères missions proposées</h1>
+        <h1 class="text-center mt-5 mb-5">Les dernières missions proposées</h1>
     </div>
     <ul>
-         @foreach ($projets as $projet)
+        @foreach ($projets as $projet)
         <li>
-            <div class="card mb-3">
+            <div class="card card-project-home mb-3">
                 
                 <div class="card-body ">
                     <div class="d-flex">
@@ -102,11 +102,11 @@
                     @endforeach
                     
                         
-                    @endforeach
+        @endforeach
                     
                 </div>
             </div>
-        <li>
+        <li>    
     </ul>
     <div class="row d-flex justify-content-center">
     </div>
