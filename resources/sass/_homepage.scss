@@ -3,6 +3,10 @@ h1{
     line-height: 1.5em !important;
 }
 
+.list-project-title{
+  color:#0072ff;
+}
+
 li{
   list-style: none;
 }
@@ -55,13 +59,20 @@ li{
   padding: .4em .7em;
   margin: 5px 5px 0 0;
   border-radius: 5px;
-  color: #2169ec;
+  color:#0072ff;
+  font-size: 12px;
 }
 
 .list-project-time{
-  font-size: 11px;
+  font-size: 12px;
   color: #7b868d;
   margin-left: 10px;
   }
-    
+
+  .card-project-home{
+    border-bottom: 0px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    margin-bottom: 16px;
+  }
 
