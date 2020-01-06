@@ -24,7 +24,7 @@
         <label for="competences-projet">Selectionnez les compétences recherchez</label>
         <select class="form-control js-select @error('competences') is-invalid @enderror" id="competences-projet" multiple="multiple" value="{{ old('competences') }}" multiple="multiple" name="competences[]">
           @foreach ($competences as $competence)
-              <option>{{$competence}}</option>
+              <option value="{{ $competence->id }}" {{ in_array($competence->id, old('competences') ?: []) ? 'selected' : '' }}>{{ $competence->name }}</option>
           @endforeach
         
           </select>

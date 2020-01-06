@@ -22,7 +22,6 @@ class CreateProjetsTable extends Migration
             $table->string('budget');
             $table->string('file_projet')->nullable();
             $table->string('localisation');
-            $table->json('competences');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\User;
 use App\Model\Projet;
 use App\model\Category;
+use App\model\Competence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -20,14 +21,9 @@ class ProjetController extends Controller
     public function create()
     {   
         $categories = Category::all();
-        
-        $competences = [ "Actualiser des plans",
-                        "Appel d'offres",
-                        "Architecture",
-                        "BIM",
-                        "BTP",
-                    ];
-        
+               
+        $competences = Competence::all();
+
         $departements = ["01"=>"01 - Ain",
                         "02"=>"02 - Aisne",
                         "03"=>"03 - Allier",
@@ -163,7 +159,6 @@ class ProjetController extends Controller
                     $projet = new Projet;
                     $projet->user_id = $user;
                     $projet->title = $request->title;
-                    $projet->competences = json_encode($request->competences);
                     $projet->description = $request->description;
 
                     if ($files = $request->file('file_projet')) {
@@ -173,9 +168,13 @@ class ProjetController extends Controller
 
                     $projet->budget = $request->budget;
                     $projet->localisation = $request->localisation;
+                    
                     if ($projet->save()){
                         $projet->categories()->attach($request->categories);
+                        $projet->competences()->attach($request->competences);
                     };
+
+                    
 
                 return redirect()->route('home')->with('success', 'Votre mission a étée postée');
 
