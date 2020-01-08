@@ -13,15 +13,25 @@ use Illuminate\Support\Facades\Validator;
 
 class ProjetController extends Controller
 {
-    public function __construct()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $this->middleware('auth');
+        //
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
-    {   
+    {
         $categories = Category::all();
-               
+
         $competences = Competence::all();
 
         $departements = ["01"=>"01 - Ain",
@@ -140,9 +150,17 @@ class ProjetController extends Controller
 
     }
 
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
-    {   
-        
+    {
+
         if(Auth::check()){
             $this->validate($request, [
                 'categories' => 'bail|required',
@@ -152,7 +170,7 @@ class ProjetController extends Controller
                 'description' => 'bail|required',
                 'budget' => 'bail|required',
                 'localisation' => 'bail|required'
-                
+
                 ]);
 
                     $user = Auth::user()->id;
@@ -162,24 +180,68 @@ class ProjetController extends Controller
                     $projet->description = $request->description;
 
                     if ($files = $request->file('file_projet')) {
-                        Storage::disk('local')->put($files); 
+                        Storage::disk('local')->put($files);
                         $projet->file_projet = time().$files->getClientOriginalName();
                     }
 
                     $projet->budget = $request->budget;
                     $projet->localisation = $request->localisation;
-                    
+
                     if ($projet->save()){
                         $projet->categories()->attach($request->categories);
                         $projet->competences()->attach($request->competences);
                     };
 
-                    
+
 
                 return redirect()->route('home')->with('success', 'Votre mission a étée postée');
 
 
             }
     }
-        
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 }
