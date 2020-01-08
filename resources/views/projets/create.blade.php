@@ -22,7 +22,7 @@
     <div class="col md-6 sm-12">
        <div class="form-group">
         <label for="competences-projet">Selectionnez les compétences recherchez</label>
-        <select class="form-control js-select @error('competences') is-invalid @enderror" id="competences-projet" multiple="multiple" value="{{ old('competences') }}" multiple="multiple" name="competences[]">
+        <select class="form-control js-select @error('competences') is-invalid @enderror" id="competences-projet" multiple="multiple" value="{{ json_encode(old('competences')) }}" name="competences[]">
           @foreach ($competences as $competence)
               <option value="{{ $competence->id }}" {{ in_array($competence->id, old('competences') ?: []) ? 'selected' : '' }}>{{ $competence->name }}</option>
           @endforeach
@@ -36,7 +36,7 @@
     <div class="col md-6 sm-12">
         <div class="form-group">
           <label for="categories-projet">Selectionnez vos catégories</label>
-          <select class="form-control js-select @error('categories') is-invalid @enderror" id="categories-projet" multiple="multiple" name="categories[]">
+          <select class="form-control js-select @error('categories') is-invalid @enderror" id="categories-projet" value="{{ json_encode(old('categories')) }}" multiple="multiple" name="categories[]">
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}" {{ in_array($category->id, old('categories') ?: []) ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
@@ -52,7 +52,7 @@
 
   <div class="form-group">
     <label for="description-projet">Décrivez les tâches que vous souhaitez confier :</label>
-    <textarea class="form-control @error('description') is-invalid @enderror" id="description-projet" rows="5" value="{{ old('description') }}" name="description"></textarea>
+    <textarea class="form-control @error('description') is-invalid @enderror" id="description-projet" rows="5"  name="description">{{ old('description') }}</textarea>
     @error('description')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror

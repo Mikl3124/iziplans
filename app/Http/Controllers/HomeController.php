@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-
     /**
      * Show the application dashboard.
      *
@@ -19,11 +18,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
      public function list()
     {
         $projets = Projet::with('categories')->orderBy('created_at', 'desc')->paginate(5);
-
         return view('welcome', compact('projets'));
     }
 }
