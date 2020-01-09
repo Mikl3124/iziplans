@@ -12,7 +12,13 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class ProjetController extends Controller
+
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,6 +36,8 @@ class ProjetController extends Controller
      */
     public function create()
     {
+
+
         $categories = Category::all();
 
         $competences = Competence::all();
@@ -160,6 +168,7 @@ class ProjetController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
 
         if(Auth::check()){
             $this->validate($request, [
@@ -170,12 +179,11 @@ class ProjetController extends Controller
                 'description' => 'bail|required',
                 'budget' => 'bail|required',
                 'localisation' => 'bail|required'
-
                 ]);
 
-                    $user = Auth::user()->id;
                     $projet = new Projet;
-                    $projet->user_id = $user;
+
+                    $projet->user_id = $user->id;
                     $projet->title = $request->title;
                     $projet->description = $request->description;
 
