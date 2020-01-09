@@ -8,7 +8,7 @@
     <div class="display-2 text-center text-white">VOS PLANS FACILEMENT</div>
     <blockquote class="blockquote text-center">
   <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-  
+
 </blockquote>
     <div class="text-center mt-5 row d-flex justify-content-center">
         <div class="col-sm-2 mb-2"></div>
@@ -20,7 +20,7 @@
         </div>
         <div class="col-sm-2 mb-2"></div>
     </div>
-    
+
 
 </div>
 {{-- ----------- Banner ---------- --}}
@@ -66,7 +66,7 @@
     {{-- ----------- Comment ça marche ? ---------- --}}
 
     {{-- ----------- Dernières Missions Proposées ---------- --}}
-   
+
     <div class="text-center">
         <h1 class="text-center mt-5 mb-5">Les dernières missions proposées</h1>
     </div>
@@ -74,25 +74,25 @@
         @foreach ($projets as $projet)
         <li>
             <div class="card card-project-home mb-3">
-                
+
                 <div class="card-body ">
                     <div class="d-flex">
                         <h2 class="list-project-title">{{$projet->title}} <em class="list-project-time">Posté {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</em></h2>
-                        
+
                     </div>
                     <div class="d-flex justify-content-around">
-                        
+
                         <small>Pays de la Loire</small>
                         <small>Budget :  801€ à 2500€ </small>
-                            
+
                         <small>4 Offres </small>
                     </div>
                     <hr>
 
                     <p class="card-text">{{$projet->description}}</p>
-                    
-                    
-                    <div><a href="#" class="btn btn-primary">Voir le projet</a> </div>
+
+
+                    <div><a href="/projets/{{ $projet->id }}" class="btn btn-primary">Voir le projet</a> </div>
                     @foreach($projet->categories as $category)
                         <span class="categories">{{ $category->name }} </span>
                     @endforeach
@@ -100,13 +100,13 @@
                     @foreach($projet->competences as $competence)
                         <span class="categories">{{ $competence->name }} </span>
                     @endforeach
-                    
-                        
+
+
         @endforeach
-                    
+
                 </div>
             </div>
-        <li>    
+        <li>
     </ul>
     <div class="row d-flex justify-content-center">
     </div>
