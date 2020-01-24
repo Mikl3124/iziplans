@@ -26,7 +26,7 @@
           @foreach ($competences as $competence)
               <option value="{{ $competence->id }}" {{ in_array($competence->id, old('competences') ?: []) ? 'selected' : '' }}>{{ $competence->name }}</option>
           @endforeach
-        
+
           </select>
         @error('competences')
           <div class="invalid-feedback">{{ $message }}</div>
@@ -40,7 +40,7 @@
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}" {{ in_array($category->id, old('categories') ?: []) ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
-          </select>  
+          </select>
           @error('categories')
             <div class="invalid-feedback">{{ $message }}</div>
           @enderror
@@ -64,7 +64,7 @@
       @foreach ($budgets as $value=>$budget)
           <option value = {{$value}}>{{$budget}}</option>
       @endforeach
-        
+
       </select>
     @error('budget')
       <div class="invalid-feedback">{{ $message }}</div>
@@ -75,7 +75,7 @@
     <label for="lieu-projet">Selectionnez le departement</label>
     <select class="form-control js-select @error('localisation') is-invalid @enderror" id="lieu-projet" value="{{ old('localisation') }}" name="localisation">
       @foreach ($departements as $departement)
-        <option>{{$departement}}</option>
+        <option>{{$departement->name}}</option>
       @endforeach
     </select>
     @error('localisation')
@@ -93,7 +93,7 @@
 
 
 
-  
+
   <button type="submit" class="btn btn-primary">Envoyer</button>
 </form>
 
