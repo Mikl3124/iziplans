@@ -9,7 +9,7 @@
 
  <form id="regForm" action="{{ route('projets.store') }}" method="POST" >
     @csrf
-
+<!-- ---------------- Titre de la mission ------------------ -->
   <div class="form-group">
     <label for="title-projet">Titre de votre mission </label>
   <input type="text" id="title-projet"class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" name="title">
@@ -17,7 +17,7 @@
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
   </div>
-
+<!-- ---------------- Compétences ------------------ -->
   <div class="row">
     <div class="col md-6 sm-12">
        <div class="form-group">
@@ -26,13 +26,13 @@
           @foreach ($competences as $competence)
               <option value="{{ $competence->id }}" {{ in_array($competence->id, old('competences') ?: []) ? 'selected' : '' }}>{{ $competence->name }}</option>
           @endforeach
-
           </select>
         @error('competences')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
       </div>
     </div>
+<!-- ---------------- Catégories ------------------ -->
     <div class="col md-6 sm-12">
         <div class="form-group">
           <label for="categories-projet">Selectionnez vos catégories</label>
@@ -48,8 +48,7 @@
     </div>
 
   </div>
-
-
+<!-- ---------------- Description ------------------ -->
   <div class="form-group">
     <label for="description-projet">Décrivez les tâches que vous souhaitez confier :</label>
     <textarea class="form-control @error('description') is-invalid @enderror" id="description-projet" rows="5"  name="description">{{ old('description') }}</textarea>
@@ -57,20 +56,19 @@
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
   </div>
-
+<!-- ---------------- Budget ------------------ -->
   <div class="form-group">
     <label for="budget-projet">Selectionnez votre budget</label>
     <select class="form-control @error('budget') is-invalid @enderror" id="budget-projet" value="{{ old('budget') }}" name="budget">
       @foreach ($budgets as $value=>$budget)
           <option value = {{$value}}>{{$budget}}</option>
       @endforeach
-
       </select>
     @error('budget')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
   </div>
-
+<!-- ---------------- Département ------------------ -->
   <div class="form-group">
     <label for="lieu-projet">Selectionnez le departement</label>
     <select class="form-control js-select @error('localisation') is-invalid @enderror" id="lieu-projet" value="{{ old('localisation') }}" name="localisation">
@@ -82,7 +80,7 @@
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
   </div>
-
+<!-- ---------------- Upload ------------------ -->
   <div class="form-group">
     <label for="file-projet">Joindre un fichier (optionnel)</label>
     <input type="file" class="form-control-file @error('file_projet') is-invalid @enderror" id="file-projet" value="{{ old('file-projet') }}" name="file_projet">
@@ -90,10 +88,7 @@
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
   </div>
-
-
-
-
+<!-- ---------------- Submit ------------------ -->
   <button type="submit" class="btn btn-primary">Envoyer</button>
 </form>
 
@@ -103,8 +98,6 @@ $(document).ready(function() {
     $('.js-select').select2();
 });
 </script>
-
-
 
 @endsection
 

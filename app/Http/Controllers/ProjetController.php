@@ -37,8 +37,6 @@ class ProjetController extends Controller
      */
     public function create()
     {
-
-
         $categories = Category::all();
         $competences = Competence::all();
         $departements= Departement::all();
@@ -54,8 +52,6 @@ class ProjetController extends Controller
         return view('projets.create', compact('categories' , 'competences', 'departements', 'budgets'));
 
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -96,8 +92,6 @@ class ProjetController extends Controller
                         $projet->categories()->attach($request->categories);
                         $projet->competences()->attach($request->competences);
                     };
-
-
 
                 return redirect()->route('home')->with('success', 'Votre mission a étée postée');
 
