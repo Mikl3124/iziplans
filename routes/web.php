@@ -22,8 +22,4 @@ Route::get('subscribe', 'SubscribeController@payment')->name('subscribe');
 Route::post('/unsubscribe','SubscribeController@destroy');
 Route::post('/cancel','SubscribeController@cancel');
 
-//Projets
-// Route::get('/projets/create', 'ProjetController@create')->name('projets.create');
-// Route::post('/projets', 'ProjetController@store')->name('projets.store');
-
 Route::resource('projets', 'ProjetController');
