@@ -4,18 +4,26 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        <div class="text-center">
+                            <p><em>Selectionnez votre type de compte</em></p>
+                        </div>
+                        <div class="d-flex justify-content-around mb-4">
+                            <label>
+                                <input type="radio" name="role" value="client" checked>
+                                <i class="choice-icon fas fa-user-alt"></i>
+                            </label>
+                            <label>
+                                <input type="radio" name="role" value="freelance" checked>
+                                <i class="choice-icon fas fa-pencil-ruler"></i>
+                            </label>
+                            
+                        </div>
 
-                        <div class="form-group row">
-                            <label for="firstname" class="col-md-4 col-form-label text-md-right">Prénom</label>
-
-                            <div class="col-md-6">
-                                <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                          <div class="form-row">
+                            <div class="col-md-6 col-sm-12 mb-4">
+                            <input id="firstname" placeholder="Prénom" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
 
                                 @error('firstname')
                                     <span class="invalid-feedback" role="alert">
@@ -23,13 +31,8 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="lastname" class="col-md-4 col-form-label text-md-right">Nom</label>
-
-                            <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                            <div class="col-md-6 col-sm-12 mb-4">
+                            <input id="lastname" placeholder="Nom" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
 
                                 @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -39,12 +42,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
+                        <div class="form-row">
+                            <div class="col mb-4">
+                                <input id="email" placeholder="E-mail" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -53,11 +53,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <div class="form-row">
+                            <div class="col-md-6 col-sm-12 mb-4">
+                                <input id="password" placeholder="Mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -65,27 +63,30 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="col-md-6 col-sm-12 mb-4">
+                                <input id="password-confirm" placeholder="Confirmer le mot de passe" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <div class="form-group">
+                            <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" id="gridCheck" @error('cgv') is-invalid @enderror" name="cgv" value="{{ old('cgv') }}" required autocomplete="cgv">
+                            @error('cgv')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            <label class="form-check-label" for="gridCheck">
+                                Je déclare avoir pris connaissance des <a href="http://">conditions générales de vente</a>
+                            </label>
                             </div>
                         </div>
 
-
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
+                        <div class="form-group mb-4 text-center">
+                            <button type="submit" class="btn btn-primary">
+                                S'enregister
+                            </button>
                         </div>
                     </form>
-                </div>
             </div>
         </div>
     </div>

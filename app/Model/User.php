@@ -2,10 +2,11 @@
 
 namespace App\Model;
 
+use App\Model\Projet;
+use Laravel\Cashier\Billable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
@@ -18,7 +19,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'id', 'role'
+        'name',
+        'email',
+        'password',
+        'id',
+        'role',
+        'lastname',
+        'firstname',
+        'cgv', 
+        'last_login_at',
+        'last_login_ip',
     ];
 
     /**
@@ -41,7 +51,8 @@ class User extends Authenticatable
 
         public function posts()
     {
-        return $this->hasMany('App\Projet')->orderBy('created_at', 'DESC');
+        return $this->hasMany(Projet::class)->orderBy('created_at', 'DESC');
+
     }
 
 }

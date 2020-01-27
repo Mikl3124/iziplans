@@ -49,13 +49,14 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
-
+    {   
         return Validator::make($data, [
             'lastname' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'role' =>  ["required" , "max:255", "regex:(client|freelance)"],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'cgv' => ['required'],
         ]);
     }
 
@@ -71,7 +72,9 @@ class RegisterController extends Controller
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
+            'role' => $data['role'],
             'password' => Hash::make($data['password']),
+            'cgv' => true,
         ]);
     }
 }

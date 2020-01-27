@@ -9,6 +9,7 @@ use App\model\Competence;
 use App\Model\Departement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -64,6 +65,7 @@ class ProjetController extends Controller
         $user = Auth::user();
 
         if(Auth::check()){
+
             $this->validate($request, [
                 'categories' => 'bail|required',
                 'title' => 'bail|required|string|max:255',
@@ -79,10 +81,26 @@ class ProjetController extends Controller
                     $projet->user_id = $user->id;
                     $projet->title = $request->title;
                     $projet->description = $request->description;
+                    $projet->status = 'pending';
 
                     if ($files = $request->file('file_projet')) {
-                        Storage::disk('local')->put($files);
-                        $projet->file_projet = time().$files->getClientOriginalName();
+                        $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
+                
+                        //get filename without extension
+                        $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+                
+                        //get file extension
+                        $extension = $request->file('file_projet')->getClientOriginalExtension();
+                
+                        //filename to store
+                        $path = 'documents/' . $user->lastname. '_' . $user->firstname;
+                        $filenametostore = $path.'/'.$filename.'_'.time().'.'.$extension;
+                
+                        //Upload File to s3
+                        Storage::disk('s3')->put($filenametostore, fopen($request->file('file_projet'), 'r+'), 'public');
+                
+                        //Store $filenametostore in the database
+                        $projet->file_projet = $filenametostore;
                     }
 
                     $projet->budget = $request->budget;
@@ -107,7 +125,9 @@ class ProjetController extends Controller
      */
     public function show(Projet $projet)
     {
-        return view('projets.show', compact('projet'));
+        $contents = Storage::disk('s3')->url($projet->file_projet);
+
+        return view('projets.show', compact('projet', 'contents'));
     }
 
     /**

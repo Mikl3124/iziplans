@@ -7,10 +7,10 @@
   </div>
 <div class="container">
 
- <form id="regForm" action="{{ route('projets.store') }}" method="POST" >
+ <form id="regForm" action="{{ route('projets.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 <!-- ---------------- Titre de la mission ------------------ -->
-  <div class="form-group">
+  <div class="form-group select2-selection">
     <label for="title-projet">Titre de votre mission </label>
   <input type="text" id="title-projet"class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" name="title">
     @error('title')

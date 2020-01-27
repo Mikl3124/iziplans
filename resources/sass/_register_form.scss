@@ -1,0 +1,31 @@
+.icon-register{
+  font-size: 10em;
+  color: rgba($blue, 0.5);
+}
+
+.icon-register:hover{
+  color: $blue
+}
+
+.choice-icon{
+  font-size: 5em;
+}
+
+/* HIDE RADIO */
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + i {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + i {
+  color: $blue;
+}
+

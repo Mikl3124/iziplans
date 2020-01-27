@@ -15,6 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/places.js@1.17.1"></script>
+
     
 
 
@@ -22,6 +23,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -75,6 +77,13 @@
                             </li>
                         @endguest
                     </ul>
+                    @auth
+                        @if (Auth::user()->role=='admin')
+                            <div>
+                                <a href="/dashboard" type="submit" class="btn btn-secondary">Tableau de Bord</a>
+                            </div>
+                        @endif
+                    @endauth
                 </div>
             </div>
         </nav>

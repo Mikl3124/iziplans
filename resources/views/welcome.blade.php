@@ -2,24 +2,25 @@
 
 @section('content')
 
-
    {{-- ----------- Banner ---------- --}}
-<div class="banner" style="background-image:url({{asset('storage/iziplans-banner.jpg')}})">
-    <div class="display-2 text-center text-white">VOS PLANS FACILEMENT</div>
-    <blockquote class="blockquote text-center">
-  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-
-</blockquote>
-    <div class="text-center mt-5 row d-flex justify-content-center">
-        <div class="col-sm-2 mb-2"></div>
-        <div class="col-sm-2 mt-2">
-            <a class="btn btn-primary  mx-5 btn-lg" href="{{route('projets.create')}}">Déposer un projet</a>
+<div class="banner" style="background-image:url({{$banner_img}})">
+    <div class="container">
+        <div class="display-2 text-center text-white">VOS PLANS FACILEMENT</div>
+        <blockquote class="blockquote text-center">
+            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        </blockquote>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 mt-5 text-center">
+                <a class="btn btn-primary btn-lg text-center" href="#">Devenir Freelance</a>
+            </div>
+            <div class="col-md-6 col-sm-12 mt-5 text-center">
+                <a class="btn btn-primary btn-lg " href="{{route('projets.create')}}">Déposer un projet</a>
+            </div>
         </div>
-        <div class="col-sm-2 mt-2">
-            <a class="btn btn-primary mx-5 btn-lg" href="#">Devenir Freelance</a>
-        </div>
-        <div class="col-sm-2 mb-2"></div>
     </div>
+
+</div>
+
 
 
 </div>
@@ -31,7 +32,7 @@
         <div class="row d-flex justify-content-around">
             <div class="col-lg-3 col-sm-6">
                 <div >
-                    <img src="{{asset('storage/paper-plane-1.png')}}" class="card-img-iziplans" alt="demande de mission">
+                    <img src="{{$choice_img}}" class="card-img-iziplans" alt="demande de mission">
                     <div class="card-body">
                         <p class="card-text">Postez votre demande de mission gratuitement, pour obtenir vos offres</p>
                     </div>
@@ -39,7 +40,7 @@
             </div>
             <div class="col-lg-3 col-sm-6">
                 <div >
-                    <img src="{{asset('storage/team-1.png')}}" class="card-img-iziplans" alt="propositions de devis">
+                    <img src="{{$discuss_img}}" class="card-img-iziplans" alt="propositions de devis">
                     <div class="card-body">
                         <p class="card-text">Recevez en moins de 24h, des propositions de prestataires qualifiés</p>
                     </div>
@@ -47,7 +48,7 @@
             </div>
             <div class="col-lg-3 col-sm-6">
                 <div >
-                    <img src="{{asset('storage/choice-1.png')}}" class="card-img-iziplans" alt="consultez les profils">
+                    <img src="{{$plane_img}}" class="card-img-iziplans" alt="consultez les profils">
                     <div class="card-body">
                         <p class="card-text">Consultez librement les profils des prestataires et les avis pour faire votre choix</p>
                     </div>
@@ -55,7 +56,7 @@
             </div>
             <div class="col-lg-3 col-sm-6">
                 <div >
-                    <img src="{{asset('storage/discuss-issue-1.png')}}" class="card-img-iziplans" alt="echangez discutez">
+                    <img src="{{$team_img}}" class="card-img-iziplans" alt="echangez discutez">
                     <div class="card-body">
                         <p class="card-text">Echangez, discutez et négociez sans intermédiaire, avec les prestataires de votre choix</p>
                     </div>
@@ -70,9 +71,8 @@
     <div class="text-center">
         <h1 class="text-center mt-5 mb-5">Les dernières missions proposées</h1>
     </div>
-    <ul>
         @foreach ($projets as $projet)
-        <li>
+        <a href="/projets/{{ $projet->id }}"">
             <div class="card card-project-home mb-3">
 
                 <div class="card-body ">
@@ -92,7 +92,7 @@
                     <p class="card-text">{{$projet->description}}</p>
 
 
-                    <div><a href="/projets/{{ $projet->id }}" class="btn btn-primary">Voir le projet</a> </div>
+                    <div><a " class="btn btn-primary">Voir le projet</a> </div>
                     @foreach($projet->categories as $category)
                         <span class="categories">{{ $category->name }} </span>
                     @endforeach
@@ -101,12 +101,10 @@
                         <span class="categories">{{ $competence->name }} </span>
                     @endforeach
 
-
-        @endforeach
-
                 </div>
             </div>
-        <li>
+        </a>
+        @endforeach
     </ul>
     <div class="row d-flex justify-content-center">
     </div>

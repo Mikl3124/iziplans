@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\User;
 use App\model\Category;
 use App\model\Competence;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ class Projet extends Model
     
     public function user()
     {
-        return $this->belongsTo('App\Model\User');
+        return $this->belongsTo(User::class);
     }
 
     public function categories()

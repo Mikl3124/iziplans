@@ -17,9 +17,10 @@ class CreateProjetsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
-            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('user_id')->index()->references('id')->on('users')->onDelete('cascade');
             $table->integer('offres')->default('0');;
             $table->string('budget');
+            $table->string('status');
             $table->string('file_projet')->nullable();
             $table->string('localisation');
             $table->timestamps();

@@ -9,10 +9,6 @@ h1 {
   color: #0072ff;
 }
 
-li {
-  list-style: none;
-}
-
 #logo-iziplans {
   height: 50px;
 }
@@ -38,20 +34,6 @@ li {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.btn-flat {
-  color: white;
-  padding: 8px 24px;
-  border-radius: 4px;
-  background: #1EDD88;
-  -webkit-transition: background 0.3s ease;
-  transition: background 0.3s ease;
-}
-
-.btn-flat:hover {
-  background: #1BCB7F;
-  color: white;
-}
-
 .card-img-iziplans {
   height: 120px;
 }
@@ -75,8 +57,52 @@ li {
 .card-project-home {
   border-bottom: 0px;
   border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  -webkit-transition: box-shadow 250ms;
+  transition: box-shadow 250ms;
+}
+
+.card-project-home:hover {
+  box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.4);
+}
+
+.icon-register {
+  font-size: 10em;
+  color: rgba(52, 144, 220, 0.5);
+}
+
+.icon-register:hover {
+  color: #3490dc;
+}
+
+.choice-icon {
+  font-size: 5em;
+}
+
+/* HIDE RADIO */
+
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+
+[type=radio] + i {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+
+[type=radio]:checked + i {
+  color: #3490dc;
+}
+
+.icon-admin {
+  font-size: 2em;
 }
 
 /*!
@@ -11433,5 +11459,17 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+* {
+  color: #4a4a4a;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+li {
+  list-style: none;
 }
 

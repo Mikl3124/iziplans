@@ -4,6 +4,20 @@
 // Variables
 @import 'variables';
 @import 'homepage';
+@import 'register_form';
+@import 'admin';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+* {
+    color: #4a4a4a;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+li{
+  list-style: none;
+}

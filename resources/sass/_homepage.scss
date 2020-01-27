@@ -7,9 +7,7 @@ h1{
   color:#0072ff;
 }
 
-li{
-  list-style: none;
-}
+
 
 #logo-iziplans{
     height: 50px;
@@ -35,20 +33,6 @@ li{
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
-
-.btn-flat {
-  color: white;
-  padding: 8px 24px;
-  border-radius: 4px;
-  background: #1EDD88;
-  transition: background 0.3s ease;
-}
-
-.btn-flat:hover {
-  background: #1BCB7F;
-  color: white;
-}
-
 .card-img-iziplans{
     height:120px;
 }
@@ -69,10 +53,15 @@ li{
   margin-left: 10px;
   }
 
-  .card-project-home{
-    border-bottom: 0px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    margin-bottom: 16px;
-  }
+.card-project-home{
+  border-bottom: 0px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 250ms;
+}
 
+.card-project-home:hover{
+  box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.4);
+
+}

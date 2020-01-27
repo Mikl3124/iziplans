@@ -17,8 +17,6 @@ class CreateOffersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('projet_id');    
             $table->unsignedInteger('user_id');
-/*             $table->foreign('projet_id')->references('id')->on('projets')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); */
             $table->integer('offre');
             $table->text('commentaire');
             $table->integer('duree');
