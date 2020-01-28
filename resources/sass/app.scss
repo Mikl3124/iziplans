@@ -6,6 +6,7 @@
 @import 'homepage';
 @import 'register_form';
 @import 'admin';
+@import 'project_show';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -20,4 +21,12 @@ a{
 
 li{
   list-style: none;
+}
+
+h1 {
+  font-size:3em;
+}
+
+p{
+  font-size: 1.2em;
 }

@@ -105,6 +105,34 @@ h1 {
   font-size: 2em;
 }
 
+.card-show {
+  border: 0px !important;
+  padding: 1.25rem;
+}
+
+.project-state {
+  background-color: #00CF67;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background-clip: padding-box;
+}
+
+.subtitle-project {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+}
+
+.td-show {
+  width: 8em !important;
+}
+
+.show-description {
+  font-size: 1.5em;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -11471,5 +11499,13 @@ a {
 
 li {
   list-style: none;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+p {
+  font-size: 1.2em;
 }
 

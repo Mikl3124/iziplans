@@ -84,7 +84,6 @@
 
                         <small>Pays de la Loire</small>
                         <small>Budget :  801€ à 2500€ </small>
-
                         <small>4 Offres </small>
                     </div>
                     <hr>
