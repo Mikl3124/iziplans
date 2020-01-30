@@ -24,6 +24,7 @@ Route::post('/cancel','SubscribeController@cancel');
 
 Route::resource('projets', 'ProjetController');
 
+
 // Administrateur
 Route::group(['middleware' => ['auth','admin']], function () {
     Route::get('/dashboard', 'Admin\DashboardController@data');
@@ -37,3 +38,6 @@ Route::group(['middleware' => ['auth','admin']], function () {
     Route::delete('/projet-delete/{id}', 'Admin\DashboardController@projetdelete');
     Route::get('/projet-by-user/{id}', 'Admin\DashboardController@projetbyuser');
 });
+
+//Offers
+Route::get('/offer/{id}', 'OfferController@create')->name('offers.create');

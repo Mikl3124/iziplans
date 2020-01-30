@@ -72,7 +72,7 @@
         <h1 class="text-center mt-5 mb-5">Les dernières missions proposées</h1>
     </div>
         @foreach ($projets as $projet)
-        <a href="/projets/{{ $projet->id }}"">
+        <a href="/projets/{{ $projet->id }}">
             <div class="card card-project-home mb-3">
 
                 <div class="card-body ">

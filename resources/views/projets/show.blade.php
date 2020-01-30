@@ -43,6 +43,9 @@
                     @guest
                         <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Faire une offre</button>
                     @endguest
+                    @auth
+                        <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
+                    @endauth
                 </div>
                 <div class="card">
                 <div>
