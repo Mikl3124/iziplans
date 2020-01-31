@@ -1,5 +1,33 @@
 # Changelog
 
+## 7.21.1 - 2020-01-29
+* [#840](https://github.com/stripe/stripe-php/pull/840) Update phpdocs across multiple resources.
+
+## 7.21.0 - 2020-01-28
+* [#839](https://github.com/stripe/stripe-php/pull/839) Add support for `TYPE_ES_CIF` on `TaxId`
+
+## 7.20.0 - 2020-01-23
+* [#836](https://github.com/stripe/stripe-php/pull/836) Add new type values for `TaxId`
+
+## 7.19.1 - 2020-01-14
+* [#831](https://github.com/stripe/stripe-php/pull/831) Fix incorrect `UnexpectedValueException` instantiation
+
+## 7.19.0 - 2020-01-14
+* [#830](https://github.com/stripe/stripe-php/pull/830) Add support for `CreditNoteLineItem`
+
+## 7.18.0 - 2020-01-13
+* [#829](https://github.com/stripe/stripe-php/pull/829) Don't call php_uname function if disabled by php.ini
+
+## 7.17.0 - 2020-01-08
+* [#821](https://github.com/stripe/stripe-php/pull/821) Improve PHPDoc types for `ApiErrorException.get/setJsonBody()` methods
+
+## 7.16.0 - 2020-01-06
+* [#826](https://github.com/stripe/stripe-php/pull/826) Rename remaining `$options` to `$opts`
+* [#825](https://github.com/stripe/stripe-php/pull/825) Update PHPDoc
+
+## 7.15.0 - 2020-01-06
+* [#824](https://github.com/stripe/stripe-php/pull/824) Add constant `TYPE_SG_UEN` to `TaxId`
+
 ## 7.14.2 - 2019-12-04
 * [#816](https://github.com/stripe/stripe-php/pull/816) Disable autoloader when checking for `Throwable`
 

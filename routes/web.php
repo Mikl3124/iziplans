@@ -41,3 +41,4 @@ Route::group(['middleware' => ['auth','admin']], function () {
 
 //Offers
 Route::get('/offer/{id}', 'OfferController@create')->name('offers.create');
+Route::post('/offer/', 'OfferController@store')->name('offers.store');

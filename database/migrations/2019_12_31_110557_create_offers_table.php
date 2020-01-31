@@ -17,13 +17,13 @@ class CreateOffersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('projet_id');    
             $table->unsignedInteger('user_id');
-            $table->integer('offre');
-            $table->text('commentaire');
-            $table->integer('duree');
-            $table->string('unite_duree');
+            $table->integer('offer_price');
+            $table->text('offer_message');
+            $table->integer('offer_days');
+            $table->string('filename');
             $table->timestamps();
 
-             $table->index(['user_id', 'projet_id']);
+            $table->index(['user_id', 'projet_id']);
         });
 
     }

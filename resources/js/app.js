@@ -27,6 +27,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+window.Popper = require('popper.js').default;
+window.$ = window.jQuery = require('jquery');
+window.Dropzone = require('dropzone');
+require('bootstrap');

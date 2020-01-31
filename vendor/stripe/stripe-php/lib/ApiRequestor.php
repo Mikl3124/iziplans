@@ -260,7 +260,8 @@ class ApiRequestor
         $uaString = 'Stripe/v1 PhpBindings/' . Stripe::VERSION;
 
         $langVersion = phpversion();
-        $uname = php_uname();
+        $uname_disabled = in_array('php_uname', explode(',', ini_get('disable_functions')));
+        $uname = $uname_disabled ? '(disabled)' : php_uname();
 
         $appInfo = Stripe::getAppInfo();
         $ua = [
@@ -421,7 +422,7 @@ class ApiRequestor
         if ($resp === null && $jsonError !== JSON_ERROR_NONE) {
             $msg = "Invalid response body from API: $rbody "
               . "(HTTP response code was $rcode, json_last_error() was $jsonError)";
-            throw new Exception\UnexpectedValueException($msg, $rcode, $rbody);
+            throw new Exception\UnexpectedValueException($msg, $rcode);
         }
 
         if ($rcode < 200 || $rcode >= 300) {

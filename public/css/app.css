@@ -144,64 +144,6 @@ h1 {
   padding-right: 0px !important;
 }
 
-/**
- * Multiple upload
- */
-
-.file-choose {
-  cursor: pointer;
-  font-size: 16px;
-  height: 100%;
-  padding: 10px 14px;
-  background-color: #00999a;
-  color: #fff;
-}
-
-.noneI,
-.input-default {
-  display: none;
-}
-
-.input-default {
-  padding-left: 14px;
-  -webkit-box-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
-  border: 1px solid black;
-  display: -webkit-box;
-  display: flex;
-}
-
-.cont {
-  margin: 40px 40px;
-}
-
-.list {
-  background-color: bisque;
-  padding: 7px 14px;
-  margin-bottom: 10px;
-  width: 100%;
-  -webkit-animation: boxes 0.6s;
-          animation: boxes 0.6s;
-}
-
-@-webkit-keyframes boxes {
-  0% {
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes boxes {
-  0% {
-    -webkit-transform: scaleX(0);
-            transform: scaleX(0);
-    opacity: 1;
-  }
-}
-
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
