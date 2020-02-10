@@ -15,15 +15,13 @@ class CreateOffersTable extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('projet_id');    
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('projet_id')->index()->references('id')->on('projets')->onDelete('cascade');
+            $table->unsignedInteger('user_id')->index()->references('id')->on('users')->onDelete('cascade');
             $table->integer('offer_price');
             $table->text('offer_message');
             $table->integer('offer_days');
-            $table->string('filename');
+            $table->string('filename')->nullable();;
             $table->timestamps();
-
-            $table->index(['user_id', 'projet_id']);
         });
 
     }

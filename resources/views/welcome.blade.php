@@ -84,14 +84,12 @@
 
                         <small>Pays de la Loire</small>
                         <small>Budget :  801€ à 2500€ </small>
-                        <small>4 Offres </small>
+                        <small>{{ $projet->offers->count()}} Offres </small>
                     </div>
                     <hr>
 
                     <p class="card-text">{{$projet->description}}</p>
 
-
-                    <div><a " class="btn btn-primary">Voir le projet</a> </div>
                     @foreach($projet->categories as $category)
                         <span class="categories">{{ $category->name }} </span>
                     @endforeach

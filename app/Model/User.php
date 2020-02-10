@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\Offer;
 use App\Model\Projet;
 use Laravel\Cashier\Billable;
 use Illuminate\Notifications\Notifiable;
@@ -52,6 +53,12 @@ class User extends Authenticatable
         public function posts()
     {
         return $this->hasMany(Projet::class)->orderBy('created_at', 'DESC');
+
+    }
+
+        public function offers()
+    {
+        return $this->hasMany(Offer::class);
 
     }
 

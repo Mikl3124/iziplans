@@ -8,6 +8,7 @@ use App\Model\Projet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
 class OfferController extends Controller
@@ -77,7 +78,7 @@ class OfferController extends Controller
                     $offer->user_id = $user->id;
                     $offer->offer_price = $request->offer_price;
                     $offer->offer_days = $request->offer_days;
-                    $offer->message = $request->offer_message;
+                    $offer->offer_message = $request->offer_message;
 
         if ($files = $request->file('filename')) {
             $filenamewithextension = $request->file('filename')->getClientOriginalName();
@@ -98,7 +99,7 @@ class OfferController extends Controller
             //Store $filenametostore in the database
             $offer->filename = $filenametostore;
         }
-        $projet->save();
+        $offer->save();
 
     return redirect()->route('home')->with('success', 'Votre offre a bien été postée');
 

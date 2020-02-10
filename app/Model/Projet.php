@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Model\User;
+use App\Model\Offer;
 use App\model\Category;
 use App\model\Competence;
 use Illuminate\Database\Eloquent\Model;
@@ -23,5 +24,9 @@ class Projet extends Model
     public function competences()
     {
         return $this->belongsToMany(Competence::class);
+    }
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
     }
 }

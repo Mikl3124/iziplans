@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Model\User;
+use App\Model\Offer;
 use App\Model\Projet;
 use App\model\Category;
 use App\model\Competence;
 use App\Model\Departement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
@@ -125,9 +127,11 @@ class ProjetController extends Controller
      */
     public function show(Projet $projet)
     {
-        $contents = Storage::disk('s3')->url($projet->file_projet);
 
-        return view('projets.show', compact('projet', 'contents'));
+        $contents = Storage::disk('s3')->url($projet->file_projet);
+        $offers = Offer::all();
+
+        return view('projets.show', compact('projet', 'contents', 'offers'));
     }
 
     /**
