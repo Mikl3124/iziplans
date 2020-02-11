@@ -42,3 +42,8 @@ Route::group(['middleware' => ['auth','admin']], function () {
 //Offers
 Route::get('/offer/{id}', 'OfferController@create')->name('offers.create');
 Route::post('/offer/', 'OfferController@store')->name('offers.store');
+
+//Profil
+Route::get('/profil/{id}', 'UserController@show')->name('profil');
+Route::get('/profil/edit/{id}', 'UserController@edit')->name('profil-edit');
+Route::post('/profil/edit/{id}', 'UserController@update')->name('profil-update');

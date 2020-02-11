@@ -70,48 +70,52 @@ fclose($compteur_f);
                         <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
                     @endauth
                 </div>
-                <div class="card">
-                <div>
-                    <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
+                <div class="card card-show mb-3">
                     <button class="btn btn-primary">Contacter le client</button>
                 </div>
                 
             </div>
         </div>    
-    </div>
+    
 {{-- ------------------------------------------------ Offres ----------------------------------------------- --}}
-    @foreach ($offers as $offer)
-        <div class="card mb-3">
-            
-            <div class="card-body">
-                <em class="list-project-time ">Offre réalisée le {{Carbon\Carbon::parse($offer->created_at)->diffForHumans()}}</em>
-                <div class="row align-items-center mt-2">
-                    <div class= "col-md-8 ">
-                        <div class="d-flex justify-content-start">
-                            <img class="mr-3 rounded image-avatar" src="https://www.codeur.com/system/user_profiles/avatars/000/274/613/medium/avatar.jpg?1555654629">
-                            <div>
-                                <p>{{$offer->offer_message}}</p>
-                                {{$offer->user->firstname}}
+        @foreach ($offers as $offer)
+            <div class="card mb-3">
+                
+                <div class="card-body">
+                    <em class="list-project-time ">Offre réalisée le {{Carbon\Carbon::parse($offer->created_at)->diffForHumans()}}</em>
+                    <div class="row align-items-center mt-2">
+                        <div class= "col-md-8 ">
+                            <div class="d-flex justify-content-start">
+                                <img class="mr-3 rounded image-avatar" src="{{ Storage::disk('s3')->url(Auth::user()->avatar) }}">
+                                <div>
+                                    <p>{{$offer->user->lastname}}</p>
+                                    {{$offer->user->firstname}}
+                                </div>
+                                
                             </div>
                             
                         </div>
-                        
-                    </div>
-                    @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id || !empty(Auth::user()) && Auth::user()->id === $offer->user->id)
-                        <div class= "col-md-4 ">
-                            <div class= "d-flex">
-                                <p class= "mr-4">{{$offer->offer_price}} € TTC</p>
-                                <p>{{$offer->offer_days}} jours</p>
+                        @if (!empty(Auth::user()) && Auth::user()->id === $offer->user->id)
+                            <div class= "col-md-4 ">
+                                <div class= "d-flex">
+                                    <p class= "mr-4">{{$offer->offer_price}} € TTC</p>
+                                    <p>{{$offer->offer_days}} jours</p>
+                                </div>
+                                <a class="btn btn-primary" href="http://">Modifier mon offre</a>
+                                
                             </div>
-                        </div>
-                    @else
-                    <p><i class="fas fa-lock"></i> <em>Seul le client peut voir cette offre</em></p>
+                        @elseif ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
+                            <p class= "mr-4">{{$offer->offer_price}} € TTC</p>
+                            <p>{{$offer->offer_days}} jours</p>
+                        @else
+                        <p><i class="fas fa-lock"></i> <em>Seul le client peut voir cette offre</em></p>
 
-                    @endif
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    </div>
 
 {{-- ------------------------------------------------ Modal ----------------------------------------------- --}}
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

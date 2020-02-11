@@ -3,7 +3,7 @@
 @section('content')
 
    {{-- ----------- Banner ---------- --}}
-<div class="banner" style="background-image:url({{$banner_img}})">
+<div class="banner" style="background-image:url(https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-banner.jpg)">
     <div class="container">
         <div class="display-2 text-center text-white">VOS PLANS FACILEMENT</div>
         <blockquote class="blockquote text-center">
@@ -32,7 +32,7 @@
         <div class="row d-flex justify-content-around">
             <div class="col-lg-3 col-sm-6">
                 <div >
-                    <img src="{{$choice_img}}" class="card-img-iziplans" alt="demande de mission">
+                    <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/paper-plane-1.png" class="card-img-iziplans" alt="demande de mission">
                     <div class="card-body">
                         <p class="card-text">Postez votre demande de mission gratuitement, pour obtenir vos offres</p>
                     </div>
@@ -40,7 +40,7 @@
             </div>
             <div class="col-lg-3 col-sm-6">
                 <div >
-                    <img src="{{$discuss_img}}" class="card-img-iziplans" alt="propositions de devis">
+                    <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/discuss-issue-1.png" class="card-img-iziplans" alt="propositions de devis">
                     <div class="card-body">
                         <p class="card-text">Recevez en moins de 24h, des propositions de prestataires qualifiés</p>
                     </div>
@@ -48,7 +48,7 @@
             </div>
             <div class="col-lg-3 col-sm-6">
                 <div >
-                    <img src="{{$plane_img}}" class="card-img-iziplans" alt="consultez les profils">
+                    <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/choice-1.png" class="card-img-iziplans" alt="consultez les profils">
                     <div class="card-body">
                         <p class="card-text">Consultez librement les profils des prestataires et les avis pour faire votre choix</p>
                     </div>
@@ -56,7 +56,7 @@
             </div>
             <div class="col-lg-3 col-sm-6">
                 <div >
-                    <img src="{{$team_img}}" class="card-img-iziplans" alt="echangez discutez">
+                    <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/team-1.png" class="card-img-iziplans" alt="echangez discutez">
                     <div class="card-body">
                         <p class="card-text">Echangez, discutez et négociez sans intermédiaire, avec les prestataires de votre choix</p>
                     </div>

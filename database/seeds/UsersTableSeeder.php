@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'mickael.delpech@gmail.com',
                 'password' => bcrypt('password'),
                 'email_verified_at' => '2020-01-17 10:21:11',
+                'avatar' =>'images/avatar.jpg',
                 'role' =>'admin',
                 'cgv' => 1,
             ],
@@ -27,6 +28,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'client@gmail.com',
                 'password' => bcrypt('password'),
                 'email_verified_at' => '2020-01-17 10:21:11',
+                'avatar' =>'images/avatar.jpg',
                 'role' =>'client',
                 'cgv' => 1,
             ],
@@ -36,6 +38,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'freelance@gmail.com',
                 'password' => bcrypt('password'),
                 'email_verified_at' => '2020-01-17 10:21:11',
+                'avatar' =>'images/avatar.jpg',
                 'role' =>'freelance',
                 'cgv' => 1,
             ]

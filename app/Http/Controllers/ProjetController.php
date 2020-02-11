@@ -129,7 +129,7 @@ class ProjetController extends Controller
     {
 
         $contents = Storage::disk('s3')->url($projet->file_projet);
-        $offers = Offer::all();
+        $offers = Offer::where('projet_id', $projet->id)->get();
 
         return view('projets.show', compact('projet', 'contents', 'offers'));
     }

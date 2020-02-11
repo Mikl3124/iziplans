@@ -59,6 +59,13 @@ class User extends Authenticatable
         public function offers()
     {
         return $this->hasMany(Offer::class);
+    }
+
+    public function getAvatar()
+    {
+
+        $avatarPath = $this->avatar ?? 'https://static.vecteezy.com/system/resources/previews/000/512/576/non_2x/vector-profile-glyph-black-icon.jpg';
+        return $avatarPath;
 
     }
 

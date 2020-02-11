@@ -20,7 +20,7 @@ class CreateOffersTable extends Migration
             $table->integer('offer_price');
             $table->text('offer_message');
             $table->integer('offer_days');
-            $table->string('filename')->nullable();;
+            $table->string('filename')->nullable();
             $table->timestamps();
         });
 
