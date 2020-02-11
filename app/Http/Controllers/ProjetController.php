@@ -47,11 +47,11 @@ class ProjetController extends Controller
         $budgets = ["1" => "Moins de 500€",
                  "2" => "500€ à 1000€",
                  "3" => "1000€ à 2000€",
-                 "4" => "2000€ de 3000€",
+                 "4" => "2000€ à 3000€",
                  "5" => "Plus de 3000€",
             ];
 
-
+            
         return view('projets.create', compact('categories' , 'competences', 'departements', 'budgets'));
 
     }
@@ -83,7 +83,7 @@ class ProjetController extends Controller
                     $projet->user_id = $user->id;
                     $projet->title = $request->title;
                     $projet->description = $request->description;
-                    $projet->status = 'pending';
+                    $projet->status = 'publish';
 
                     if ($files = $request->file('file_projet')) {
                         $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
@@ -127,10 +127,11 @@ class ProjetController extends Controller
      */
     public function show(Projet $projet)
     {
-
+        
+        //$download = Storage::disk('s3')->download($projet->file_projet);
         $contents = Storage::disk('s3')->url($projet->file_projet);
         $offers = Offer::where('projet_id', $projet->id)->get();
-
+        
         return view('projets.show', compact('projet', 'contents', 'offers'));
     }
 
@@ -167,4 +168,14 @@ class ProjetController extends Controller
     {
         //
     }
+
+    public function download($id) 
+    {
+
+        $dl = Projet::find($id);
+        return Storage::disk('s3')->download($dl->file_projet);
+
+    }
+
+
 }

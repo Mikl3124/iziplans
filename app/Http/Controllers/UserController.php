@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    public function show()
+    public function show($id)
     {
-        $user = Auth::user();
+        $user = User::find($id);
         return view('users.show', compact('user'));
     }
 
@@ -27,27 +28,27 @@ class UserController extends Controller
         $user = Auth::user();
         
         if ($files = $request->file('avatar')) {
-            $filenamewithextension = $request->file('avatar')->getClientOriginalName();
-    
-            //get filename without extension
-            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-    
-            //get file extension
+                
+            $avatar = $request->file('avatar');
             $extension = $request->file('avatar')->getClientOriginalExtension();
-    
-            //filename to store
-            $path = 'documents/' . $user->lastname. '_' . $user->firstname;
-            $filenametostore = $path.'/'.$filename.'_'.time().'.'.$extension;
-    
-            //Upload File to s3
-            Storage::disk('s3')->put($filenametostore, fopen($request->file('avatar'), 'r+'), 'public');
-            //Store $filenametostore in the database
-            $user->avatar = $filenametostore;
+
+            $filename = md5(time()).'_'.$avatar->getClientOriginalName();
+
+            $normal = Image::make($avatar)->resize(160, 160)->encode($extension);
+            $medium = Image::make($avatar)->resize(80, 80)->encode($extension);
+            $small = Image::make($avatar)->resize(40, 40)->encode($extension);
+
+            Storage::disk('s3')->put('/users/'. $user->firstname . '_' . $user->lastname . '/normal/'.$filename, (string)$normal, 'public');
+
+            Storage::disk('s3')->put('/users/'. $user->firstname . '_' . $user->lastname . '/medium/'.$filename, (string)$medium, 'public');
+
+            Storage::disk('s3')->put('/users/'. $user->firstname . '_' . $user->lastname . '/small/'.$filename, (string)$small, 'public');
+
+            $user->avatar = $filename;
             $user->save();
+
             return redirect()->back();
         }
-        
     }
-
-
+        
 }

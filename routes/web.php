@@ -47,3 +47,5 @@ Route::post('/offer/', 'OfferController@store')->name('offers.store');
 Route::get('/profil/{id}', 'UserController@show')->name('profil');
 Route::get('/profil/edit/{id}', 'UserController@edit')->name('profil-edit');
 Route::post('/profil/edit/{id}', 'UserController@update')->name('profil-update');
+
+Route::get('/projet/download/{id}', 'ProjetController@download')->name('downloadfile');

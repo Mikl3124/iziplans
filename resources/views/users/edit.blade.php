@@ -7,13 +7,18 @@
         {{ csrf_field() }}
         <div class="card">
             <div class="card-body">
-                <input type='file' name="avatar" onchange="readURL(this);" />
-            <img id="blah" src="{{ Storage::disk('s3')->url(Auth::user()->avatar) }}" alt="avatar-{{Auth::user()->firstname}}" />
+                @if (Auth::user()->avatar === NULL)
+                    <img id="blah" class="mr-3 rounded profil-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
+                @else
+                    <img id="blah" class="mr-3 rounded profil-avatar" src="{{ Storage::disk('s3')->url('/users/'. $user->firstname . '_' . $user->lastname . '/normal/'. $user->avatar) }}">
+                @endif
+            <input type='file' name="avatar" onchange="readURL(this);" />
             </div>
+            
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-success">Enregistrer la modification</button>
-        </div>
+
+            <button type="submit" class="btn btn-success mt-3">Enregistrer la modification</button>
+
     </form>
     
 </div>

@@ -2,36 +2,12 @@
 
 @section('content')
 
-{{-- ------------------------------------------------ Compteur de visites ----------------------------------------------- --}}
-<?php
-session_start();
-if(file_exists('compteur_visites.txt'))
-{
-        $compteur_f = fopen('compteur_visites.txt', 'r+');
-        $compte = fgets($compteur_f);
-}
-else
-{
-        $compteur_f = fopen('compteur_visites.txt', 'a+');
-        $compte = 0;
-}
-if(!isset($_SESSION['compteur_de_visite']))
-{
-        $_SESSION['compteur_de_visite'] = 'visite';
-        $compte++;
-        fseek($compteur_f, 0);
-        fputs($compteur_f, $compte);
-}
-fclose($compteur_f);
-?>
-
 <div class="container-fluid bg-primary">
     <div class="container py-4">
         <h1 class="text-left pt-5 text-white">{{ucfirst($projet->title)}}</h1>
         <div class="d-flex justify-content-start mb-5 ">
             <p class= "subtitle-project"><span class="mr-1 published project-state"></span> Ouvert</p>
-            <p class="subtitle-project mx-3"><span><i class="subtitle-project far fa-eye"></i></span> {{$compte}} Vue(s)</p>
-            <p class="subtitle-project"><span><i class="subtitle-project fas fa-gavel"></i></span> {{$offers->count()}} Offre(s)</p>
+            <p class="subtitle-project mx-3"><span><i class="subtitle-project fas fa-gavel"></i></span> {{$offers->count()}} Offre(s)</p>
             
         </div>
     </div>
@@ -40,6 +16,13 @@ fclose($compteur_f);
         <div class="row d-flex justify-content-between">
             <div class="card card-show mb-5 col-md-7 col-sm-12 mt-n5">
                 <p class="show-description">{{ucfirst($projet->description)}}</p>
+                <div class="mb-4">
+                    @isset($projet->file_projet)
+                        <a href="{{ route('downloadfile', $projet) }}">
+                            <i class="fas fa-download"></i> Télécharger le fichier
+                        </a>
+                    @endisset
+                </div>
                 <div>
                     <table class="table table-bordered mb-3">
                         <tbody>
@@ -61,19 +44,31 @@ fclose($compteur_f);
             </div >
 {{-- ------------------------------------------------ Right part ----------------------------------------------- --}}
             <div class="col-md-4 my-2 col-sm-12 mt-n5">
-                <div class="card card-show bg-dark mb-3">
-                    <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
+                
+                @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
+                    <div class="card card-show mb-3">
+                        <button class="btn btn-primary">Modifier mon projet</button>
+                    </div> 
+                @else
                     @guest
-                        <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Faire une offre</button>
+                        <div class="card card-show bg-dark mb-3">
+                            <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Faire une offre</button>
+                        </div>
+                        <div class="card card-show mb-3">
+                            <button class="btn btn-primary">Contacter le client</button>
+                        </div>
                     @endguest
                     @auth
-                        <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
+                        <div class="card card-show bg-dark mb-3">
+                            <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
+                            <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
+                        </div>
+                        <div class="card card-show mb-3">
+                            <button class="btn btn-primary">Contacter le client</button>
+                        </div>
                     @endauth
-                </div>
-                <div class="card card-show mb-3">
-                    <button class="btn btn-primary">Contacter le client</button>
-                </div>
-                
+                @endif
             </div>
         </div>    
     
@@ -86,7 +81,11 @@ fclose($compteur_f);
                     <div class="row align-items-center mt-2">
                         <div class= "col-md-8 ">
                             <div class="d-flex justify-content-start">
-                                <img class="mr-3 rounded image-avatar" src="{{ Storage::disk('s3')->url(Auth::user()->avatar) }}">
+                                @if (Auth::user()->avatar === NULL)
+                                    <img id="blah" class="mr-3 rounded card-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
+                                @else
+                                    <img id="blah" class="mr-3 rounded card-avatar" src="{{ Storage::disk('s3')->url('/users/'. $offer->user->firstname . '_' . $offer->user->lastname . '/medium/'. $offer->user->avatar) }}">
+                                @endif
                                 <div>
                                     <p>{{$offer->user->lastname}}</p>
                                     {{$offer->user->firstname}}

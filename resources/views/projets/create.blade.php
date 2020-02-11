@@ -60,8 +60,8 @@
   <div class="form-group">
     <label for="budget-projet">Selectionnez votre budget</label>
     <select class="form-control @error('budget') is-invalid @enderror" id="budget-projet" value="{{ old('budget') }}" name="budget">
-      @foreach ($budgets as $value=>$budget)
-          <option value = {{$value}}>{{$budget}}</option>
+      @foreach ($budgets as $budget)
+          <option value = {{$budget}}>{{$budget}}</option>
       @endforeach
       </select>
     @error('budget')

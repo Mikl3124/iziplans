@@ -31,7 +31,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'iziplans') }}
+                <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" id="logo-iziplans" alt="logo-iziplans">
             </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -59,7 +59,11 @@
                             <li class="nav-item dropdown">
                                
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img class="mr-3 rounded navbar-avatar" src="{{ Storage::disk('s3')->url(Auth::user()->avatar) }}"><span class="caret">{{ Auth::user()->firstname }}</span>
+                                    @if (Auth::user()->avatar === NULL)
+                                    <img class="mr-3 rounded navbar-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png"><span class="caret">{{ Auth::user()->firstname }}</span>
+                                    @else
+                                        <img class="mr-3 rounded navbar-avatar" src="{{ Storage::disk('s3')->url('/users/'. Auth::user()->firstname . '_' . Auth::user()->lastname . '/small/'. Auth::user()->avatar) }}"><span class="caret">{{ Auth::user()->firstname }}</span>
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

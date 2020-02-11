@@ -66,19 +66,8 @@
     {{-- ------------------------------------------------ Right part ----------------------------------------------- --}}
                 <div class="col-md-4 my-2 col-sm-12 mt-n5">
                     <div class="card card-show bg-dark mb-3">
-                        <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
-                        @guest
-                            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Faire une offre</button>
-                        @endguest
-                        @auth
-                            <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
-                        @endauth
-                    </div>
-                    <div class="card">
-                        <div>
-                            <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
-                            <button class="btn btn-primary">Contacter le client</button>
-                        </div>
+                        <p class="text-white">N'hésitez pas à demander des informations complémentaires !</p>
+                        <button class="btn btn-primary"><i class="fas fa-pen text-white"></i>  Contacter le client</button>
                     </div>
                 </div>
         </div>
