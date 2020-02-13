@@ -1,7 +1,17 @@
+language: php
+​
+sudo: false
+​
+php:
+  - 7.3
+​
+install:
+  - composer install
+
 deploy:
   provider: elasticbeanstalk
-  access_key_id: AKIAZGDBBHRTADRRHKOF
-  secret_access_key: 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
+  access_key_id: ${AWS_ACCESS_KEY_ID}
+  secret_access_key: ${AWS_SECRET_ACCESS_KEY}
   region: eu-west-3
   app: iziplans
   env: preprod
