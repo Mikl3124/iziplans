@@ -10,9 +10,9 @@
                 @if (Auth::user()->avatar === NULL)
                     <img id="blah" class="mr-3 rounded profil-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
                 @else
-                    <img id="blah" class="mr-3 rounded profil-avatar" src="{{ Storage::disk('s3')->url('/users/'. $user->firstname . '_' . $user->lastname . '/normal/'. $user->avatar) }}">
+                    <img id="blah" class="mr-3 rounded profil-avatar" src={{ $avatar }}>
                 @endif
-            <input type='file' name="avatar" onchange="readURL(this);" />
+                <input type='file' id= "upload" name="avatar" onchange="readURL(this);" />
             </div>
             
         </div>
@@ -24,18 +24,18 @@
 </div>
 
 <script>
-     function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#blah')
-                        .attr('src', e.target.result);
-                };
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+            };
 
-                reader.readAsDataURL(input.files[0]);
-            }
+            reader.readAsDataURL(input.files[0]);
         }
+    }
 </script>
 
 @endsection

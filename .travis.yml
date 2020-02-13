@@ -1,0 +1,10 @@
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAZGDBBHRTADRRHKOF
+  secret_access_key: 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
+  region: eu-west-3
+  app: iziplans
+  env: preprod
+  bucket: elasticbeanstalk-eu-west-3-631563697254
+  wait_until_deployed: true
+  edge: true # opt in to dpl v2

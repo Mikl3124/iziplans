@@ -95,7 +95,7 @@ class ProjetController extends Controller
                         $extension = $request->file('file_projet')->getClientOriginalExtension();
                 
                         //filename to store
-                        $path = 'documents/' . $user->lastname. '_' . $user->firstname;
+                        $path = 'documents/';
                         $filenametostore = $path.'/'.$filename.'_'.time().'.'.$extension;
                 
                         //Upload File to s3
@@ -129,7 +129,12 @@ class ProjetController extends Controller
     {
         
         //$download = Storage::disk('s3')->download($projet->file_projet);
-        $contents = Storage::disk('s3')->url($projet->file_projet);
+        if ($projet->file_projet) {
+            $contents = Storage::disk('s3')->url($projet->file_projet);
+        } else {
+            $contents = NULL;
+        }
+
         $offers = Offer::where('projet_id', $projet->id)->get();
         
         return view('projets.show', compact('projet', 'contents', 'offers'));

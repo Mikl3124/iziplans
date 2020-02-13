@@ -7,9 +7,9 @@
             @if (Auth::user()->avatar === NULL)
                 <img class="mr-3 mt-4 rounded profil-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
             @else
-                <img class="mr-3 mt-4 rounded profil-avatar" src="{{ Storage::disk('s3')->url('/users/'. $user->firstname . '_' . $user->lastname . '/normal/'. $user->avatar) }}">
+                <img class="mr-3 mt-4 rounded profil-avatar" src={{$avatar}}>
             @endif
-            <h1 class="my-auto">{{ $user->firstname }} {{ $user->firstname }}</h1>
+            <h1 class="my-auto">{{ $user->firstname }} {{ $user->lastname }}</h1>
         </div>
         <div class="col-md-3 my-auto">
             @if ( !empty(Auth::user()) && Auth::user()->id === $user->id)

@@ -63,7 +63,7 @@ class OfferController extends Controller
             'offer_days.required' => 'Le nombre de jours est obligatoire',
             'offer_days.integer' => 'La durée doit être un nombre',
             'offer_message.required' => 'Un petit mot est obligatoire',
-            'file.mime' => 'Seul les fichiers suivants sont admis: pdf,xlx,csv,jpeg,png,jpg,docdocx',
+            'file.mime' => 'Seul les fichiers suivants sont admis: pdf,xlx,csv,jpeg,png,jpg,doc,docx',
             'file.max' => 'La taille du fichier doit être de 4Mo maximum'
             
           ]);

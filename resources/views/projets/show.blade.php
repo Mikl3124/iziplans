@@ -84,7 +84,7 @@
                                 @if (Auth::user()->avatar === NULL)
                                     <img id="blah" class="mr-3 rounded card-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
                                 @else
-                                    <img id="blah" class="mr-3 rounded card-avatar" src="{{ Storage::disk('s3')->url('/users/'. $offer->user->firstname . '_' . $offer->user->lastname . '/medium/'. $offer->user->avatar) }}">
+                                    <img id="blah" class="mr-3 rounded card-avatar" src="{{ Storage::disk('s3')->url('/users/medium/'. $offer->user->avatar) }}">
                                 @endif
                                 <div>
                                     <p>{{$offer->user->lastname}}</p>

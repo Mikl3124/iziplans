@@ -48,11 +48,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">Connexion</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Inscription</a>
                                 </li>
                             @endif
                         @else
@@ -62,7 +62,7 @@
                                     @if (Auth::user()->avatar === NULL)
                                     <img class="mr-3 rounded navbar-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png"><span class="caret">{{ Auth::user()->firstname }}</span>
                                     @else
-                                        <img class="mr-3 rounded navbar-avatar" src="{{ Storage::disk('s3')->url('/users/'. Auth::user()->firstname . '_' . Auth::user()->lastname . '/small/'. Auth::user()->avatar) }}"><span class="caret">{{ Auth::user()->firstname }}</span>
+                                        <img class="mr-3 rounded navbar-avatar" src="{{ Storage::disk('s3')->url('users/small/'. Auth::user()->avatar) }}"><span class="caret">{{ Auth::user()->firstname }}</span>
                                     @endif
                                 </a>
 
