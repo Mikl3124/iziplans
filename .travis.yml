@@ -12,9 +12,9 @@ deploy:
   provider: elasticbeanstalk
   access_key_id: ${AWS_ACCESS_KEY_ID}
   secret_access_key: ${AWS_SECRET_ACCESS_KEY}
-  region: eu-west-3
-  app: iziplans
-  env: preprod
-  bucket: elasticbeanstalk-eu-west-3-631563697254
+  region: ${AWS_REGION}
+  app: ${BEANSTALK_APP}
+  env: ${BEANSTALK_ENV}
+  bucket: ${BEANSTALK_BUCKET}
   wait_until_deployed: true
   edge: true # opt in to dpl v2
