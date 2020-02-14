@@ -50,6 +50,9 @@ Route::post('/profil/edit/{id}', 'UserController@update')->name('profil-update')
 
 Route::get('/projet/download/{id}', 'ProjetController@download')->name('downloadfile');
 
+//Upload avatar
+Route::post('image-upload', 'UserController@imageUpload')->name('image.upload');
+
 //Sentry
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
