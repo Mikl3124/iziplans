@@ -49,3 +49,8 @@ Route::get('/profil/edit/{id}', 'UserController@edit')->name('profil-edit');
 Route::post('/profil/edit/{id}', 'UserController@update')->name('profil-update');
 
 Route::get('/projet/download/{id}', 'ProjetController@download')->name('downloadfile');
+
+//Sentry
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
