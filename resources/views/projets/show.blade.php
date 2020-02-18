@@ -81,11 +81,13 @@
                     <div class="row align-items-center mt-2">
                         <div class= "col-md-8 ">
                             <div class="d-flex justify-content-start">
+                            @auth
                                 @if (Auth::user()->avatar === NULL)
                                     <img id="blah" class="mr-3 rounded card-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
                                 @else
                                     <img id="blah" class="mr-3 rounded card-avatar" src="{{ Storage::disk('s3')->url('/users/medium/'. $offer->user->avatar) }}">
                                 @endif
+                            @endauth
                                 <div>
                                     <p>{{$offer->user->lastname}}</p>
                                     {{$offer->user->firstname}}

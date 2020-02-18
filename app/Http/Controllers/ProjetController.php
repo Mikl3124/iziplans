@@ -87,18 +87,20 @@ class ProjetController extends Controller
 
                     if ($files = $request->file('file_projet')) {
                         $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
-                
-                        //get filename without extension
-                        $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-                
-                        //get file extension
-                        $extension = $request->file('file_projet')->getClientOriginalExtension();
-                
-                        //filename to store
-                        $path = 'documents/';
-                        $filenametostore = $path.'/'.$filename.'_'.time().'.'.$extension;
+    
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+    
+            //get file extension
+            $extension = $request->file('file_projet')->getClientOriginalExtension();
+    
+            //filename to store
+            $path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
+
+            $filenametostore = $path.'/'.$filename.'_'.time().'.'.$extension;
                 
                         //Upload File to s3
+
                         Storage::disk('s3')->put($filenametostore, fopen($request->file('file_projet'), 'r+'), 'public');
                 
                         //Store $filenametostore in the database
