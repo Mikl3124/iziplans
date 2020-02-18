@@ -90,10 +90,11 @@ class OfferController extends Controller
             $extension = $request->file('filename')->getClientOriginalExtension();
     
             //filename to store
-            $path = 'documents/' . $user->lastname. '_' . $user->firstname;
+            $path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
             $filenametostore = $path.'/'.$filename.'_'.time().'.'.$extension;
     
             //Upload File to s3
+            
             Storage::disk('s3')->put($filenametostore, fopen($request->file('filename'), 'r+'), 'public');
     
             //Store $filenametostore in the database
