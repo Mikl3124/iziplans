@@ -117,12 +117,17 @@ class ProjetController extends Controller
                         $projet->categories()->attach($request->categories);
                         $projet->competences()->attach($request->competences);
                     };
+                $results = $request->competences;
+                $freelances = [];
+                    $freelances= User::where('competence_id')->find($results);
 
+                dd($results, $freelances);
 
-                Mail::to('admin@gmail.com')->queue(new Newprojet($projet));
+                foreach($freelances as $freelance){
+                    Mail::to($freelances->email)->queue(new Newprojet($projet));
+                }
 
                 return redirect()->route('home')->with('success', 'Votre mission a étée postée');
-
 
             }
     }

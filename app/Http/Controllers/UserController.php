@@ -26,9 +26,11 @@ class UserController extends Controller
     {
         $competences = Competence::all();
         $user = User::find($id);
+        $user_competences = $user->competences;
+
         $avatar = Storage::disk('s3')->url('users/normal/'. $user->avatar);
         $user = Auth::user();
-        return view('users.edit', compact('user', 'avatar', 'competences'));
+        return view('users.edit', compact('user', 'avatar', 'competences', 'user_competences'));
     }
 
     public function imageUpload(Request $request)

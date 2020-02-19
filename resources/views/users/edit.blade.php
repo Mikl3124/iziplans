@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Modifier mon profil</h1>
+    <h1 class="text-center my-3">Modifier mon profil</h1>
         <div class="card ">
             <div class="card-body row">
                 <div class="col-md-2 text-center">
@@ -19,17 +19,29 @@
                 <div class="col-md-10">
                   <form action="{{ route('profil-update', Auth::user()) }}" method="POST">
                     @csrf
+                    <div class="row">
+                        <!-- ---------------- Prénom ------------------ -->
+                        <div class="form-group col-md-6 col-sm-12 ">
+                            <label for="firstname">Prénom</label>
+                            <input type="text" class="form-control" name="fristname" value="{{old('firstname', $user->firstname)}}">
+                        </div>
+                        <!-- ---------------- Nom------------------ -->
+                        <div class="form-group col-md-6 col-sm-12">
+                            <label for="lastname">Nom</label>
+                            <input type="text" class="form-control" name="lastname" value="{{old('lastname', $user->lastname)}}">
+                        </div>
+                    </div>
                     <!-- ---------------- Compétences ------------------ -->
                     <div class="form-group">
-                      <label for="competences-projet">Selectionnez vos compétences</label>
-                      <select class="form-control js-select @error('competences') is-invalid @enderror" id="competences-projet" multiple="multiple" name="competences[]">
-                        @foreach ($competences as $competence)
-                            <option value="{{ $competence->id }}">{{ $competence->name }}</option>
-                        @endforeach
-                      </select>
-                      @error('competences')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                      @enderror
+                    <label for="competences">Sélectionnez vos compétences</label>
+                        <select class="form-control js-select" name="competences[]" multiple="multiple">
+                            @foreach($competences as $competence)
+                                <option value="{{ $competence->id }}" @foreach ($user_competences as $user_competence)@if (old('competences', $competence->id ) == $user_competence->id) {{ 'selected' }} @endif @endforeach>{{ $competence->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('competences')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-success mt-3">Sauvegarder</button>
@@ -89,6 +101,11 @@
         $("#upload:hidden").trigger('click');
     });
 });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.js-select').select2();
+    });
 </script>
 
 
