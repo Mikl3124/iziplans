@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Model\User;
+use App\model\Competence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
-use Validator;
 
 class UserController extends Controller
 {
@@ -22,10 +24,11 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        $competences = Competence::all();
         $user = User::find($id);
         $avatar = Storage::disk('s3')->url('users/normal/'. $user->avatar);
         $user = Auth::user();
-        return view('users.edit', compact('user', 'avatar'));
+        return view('users.edit', compact('user', 'avatar', 'competences'));
     }
 
     public function imageUpload(Request $request)
@@ -54,21 +57,14 @@ class UserController extends Controller
 
         return redirect()->back();
 
-        return back()
-
-            ->with('success','You have successfully upload image.')
-
-            ->with('image',$imageName);
-
     }
 
     public function update(Request $request)
     {
         $user = Auth::user();
-        
-             
-
-
+        DB::table('competence_user')->where('user_id', $user->id)->delete();
+        $user->competences()->attach($request->competences);
+        return redirect()->back();
     }
-        
+
 }

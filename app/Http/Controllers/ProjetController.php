@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Model\User;
 use App\Model\Offer;
 use App\Model\Projet;
+use App\Mail\Newprojet;
 use App\model\Category;
 use App\model\Competence;
 use App\Model\Departement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -51,7 +53,7 @@ class ProjetController extends Controller
                  "5" => "Plus de 3000€",
             ];
 
-            
+
         return view('projets.create', compact('categories' , 'competences', 'departements', 'budgets'));
 
     }
@@ -87,23 +89,23 @@ class ProjetController extends Controller
 
                     if ($files = $request->file('file_projet')) {
                         $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
-    
+
             //get filename without extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-    
+
             //get file extension
             $extension = $request->file('file_projet')->getClientOriginalExtension();
-    
+
             //filename to store
             $path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
 
             $filenametostore = $path.'/'.$filename.'_'.time().'.'.$extension;
-                
+
                         //Upload File to s3
 
                         //Storage::disk('s3')->put($filenametostore, fopen($request->file('file_projet'), 'r+'), 'public');
                         Storage::disk('s3')->put($filenametostore, $request->file('file_projet'), 'public');
-                
+
                         //Store $filenametostore in the database
                         $projet->file_projet = $filenametostore;
                     }
@@ -115,6 +117,9 @@ class ProjetController extends Controller
                         $projet->categories()->attach($request->categories);
                         $projet->competences()->attach($request->competences);
                     };
+
+
+                Mail::to('admin@gmail.com')->queue(new Newprojet($projet));
 
                 return redirect()->route('home')->with('success', 'Votre mission a étée postée');
 
@@ -130,7 +135,7 @@ class ProjetController extends Controller
      */
     public function show(Projet $projet)
     {
-        
+
         //$download = Storage::disk('s3')->download($projet->file_projet);
         if ($projet->file_projet) {
             $contents = Storage::disk('s3')->url($projet->file_projet);
@@ -139,7 +144,7 @@ class ProjetController extends Controller
         }
 
         $offers = Offer::where('projet_id', $projet->id)->get();
-        
+
         return view('projets.show', compact('projet', 'contents', 'offers'));
     }
 
@@ -177,7 +182,7 @@ class ProjetController extends Controller
         //
     }
 
-    public function download($id) 
+    public function download($id)
     {
 
         $dl = Projet::find($id);

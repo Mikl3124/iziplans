@@ -3,8 +3,6 @@
 @section('content')
 <div class="container">
     <h1>Modifier mon profil</h1>
-    <form action="{{ route('profil-update', Auth::user()) }}" method="POST" enctype="multipart/form-data">
-        {{ csrf_field() }}
         <div class="card ">
             <div class="card-body row">
                 <div class="col-md-2 text-center">
@@ -19,39 +17,26 @@
                         </button>
                 </div>
                 <div class="col-md-10">
+                  <form action="{{ route('profil-update', Auth::user()) }}" method="POST">
+                    @csrf
+                    <!-- ---------------- Compétences ------------------ -->
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                      <label for="competences-projet">Selectionnez vos compétences</label>
+                      <select class="form-control js-select @error('competences') is-invalid @enderror" id="competences-projet" multiple="multiple" name="competences[]">
+                        @foreach ($competences as $competence)
+                            <option value="{{ $competence->id }}">{{ $competence->name }}</option>
+                        @endforeach
+                      </select>
+                      @error('competences')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Example select</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect2">Example multiple select</label>
-                        <select multiple class="form-control" id="exampleFormControlSelect2">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Example textarea</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                        <button type="submit" class="btn btn-success mt-3">Sauvegarder</button>
+
+                    <button type="submit" class="btn btn-success mt-3">Sauvegarder</button>
+                  </form>
                 </div>
             </div>
-        </div>            
-    </form>
+        </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -105,6 +90,7 @@
     });
 });
 </script>
+
 
 
 
