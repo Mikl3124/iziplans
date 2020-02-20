@@ -21,7 +21,7 @@ class CreateProjetsTable extends Migration
             $table->string('budget');
             $table->string('status');
             $table->string('file_projet')->nullable();
-            $table->string('localisation');
+            $table->string('departement');
             $table->timestamps();
         });
     }

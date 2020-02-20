@@ -54,6 +54,6 @@ Route::get('/projet/download/{id}', 'ProjetController@download')->name('download
 Route::post('image-upload', 'UserController@imageUpload')->name('image.upload');
 
 //Sentry
-Route::get('/debug-sentry', function () {
-    throw new Exception('My first Sentry error!');
-});
+// Route::get('/debug-sentry', function () {
+//     throw new Exception('My first Sentry error!');
+// });

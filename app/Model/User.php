@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Model;
 
 use App\Model\Offer;
 use App\Model\Projet;
 use App\model\Competence;
+use App\Model\Departement;
 use Laravel\Cashier\Billable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -71,6 +71,11 @@ class User extends Authenticatable
     public function competences()
     {
         return $this->belongsToMany(Competence::class);
+    }
+
+    public function departements()
+    {
+        return $this->belongsToMany(Departement::class);
     }
 
 }

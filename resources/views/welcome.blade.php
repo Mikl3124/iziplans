@@ -82,7 +82,7 @@
                     </div>
                     <div class="d-flex justify-content-around">
 
-                        <small>Pays de la Loire</small>
+                        <small>{{$projet->departement}}</small>
                         <small>Budget :  801€ à 2500€ </small>
                         <small>{{ $projet->offers->count()}} Offres </small>
                     </div>

@@ -23,13 +23,31 @@
                         <!-- ---------------- Prénom ------------------ -->
                         <div class="form-group col-md-6 col-sm-12 ">
                             <label for="firstname">Prénom</label>
-                            <input type="text" class="form-control" name="fristname" value="{{old('firstname', $user->firstname)}}">
+                            <input type="text" class="form-control" name="firstname" value="{{old('firstname', $user->firstname)}}">
                         </div>
                         <!-- ---------------- Nom------------------ -->
                         <div class="form-group col-md-6 col-sm-12">
                             <label for="lastname">Nom</label>
                             <input type="text" class="form-control" name="lastname" value="{{old('lastname', $user->lastname)}}">
                         </div>
+                    </div>
+                     <!-- ---------------- Departements ------------------ -->
+                     <div class="form-group">
+                        <label for="departements">Sélectionnez le(s) departement(s)</label>
+                            <select class="form-control js-select" name="departements[]" multiple="multiple">
+                                @foreach($departements as $departement)
+                                <option value="{{ $departement->id }}" @foreach ($user_departements as $user_departement)@if (old('departements', $departement->id ) == $user_departement->id) {{ 'selected' }} @endif @endforeach>{{ $departement->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('departements')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    <!-- ---------------- Case à cocher Alert Email Departements------------------ -->
+                    <div class="form-check">
+                        <input type="hidden" value="0" name="alert_departements">
+                        <input type="checkbox" class="form-check-input" value="1" name="alert_departements" @if(old('alert_departements',$user->alert_departements)=="1") checked @endif >
+                        <label class="form-check-label" for="alert-departements">Me prévenir par e-mail, lorsque une mission correspond à mes lieux</label>
                     </div>
                     <!-- ---------------- Compétences ------------------ -->
                     <div class="form-group">
@@ -42,6 +60,13 @@
                         @error('competences')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+                    </div>
+                    
+                    <!-- ---------------- Case à cocher Alert Email Competences------------------ -->
+                    <div class="form-check">
+                        <input type="hidden" value="0" name="alert_competences">
+                        <input type="checkbox" class="form-check-input" value="1" name="alert_competences" @if(old('alert_competences',$user->alert_competences)=="1") checked @endif >
+                        <label class="form-check-label" for="alert-competences">Me prévenir par e-mail, lorsque une mission correspond à mes compétences</label>
                     </div>
 
                     <button type="submit" class="btn btn-success mt-3">Sauvegarder</button>

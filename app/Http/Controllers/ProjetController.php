@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
 
 class ProjetController extends Controller
@@ -77,7 +78,7 @@ class ProjetController extends Controller
                 'competences' => 'bail|required',
                 'description' => 'bail|required',
                 'budget' => 'bail|required',
-                'localisation' => 'bail|required'
+                'departement' => 'bail|required'
                 ]);
 
                     $projet = new Projet;
@@ -111,23 +112,44 @@ class ProjetController extends Controller
                     }
 
                     $projet->budget = $request->budget;
-                    $projet->localisation = $request->localisation;
+                    $projet->departement = $request->departement;
 
                     if ($projet->save()){
                         $projet->categories()->attach($request->categories);
                         $projet->competences()->attach($request->competences);
                     };
-                $results = $request->competences;
-                $freelances = [];
-                    $freelances= User::where('competence_id')->find($results);
+                $competences = $request->competences;
+                $departement_name = $request->departement;
 
-                dd($results, $freelances);
+                $departement = Departement::find($departement_name);
 
-                foreach($freelances as $freelance){
-                    Mail::to($freelances->email)->queue(new Newprojet($projet));
+
+                // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
+                $freelances_competences = User::where('alert_competences', 1)
+                                                ->where('role', 'freelance')
+                                                ->whereHas('competences', function ($query) use ($competences) {
+                                                    $query->whereIn('competence_id', $competences);
+                                                })->get();
+
+                // On envois un email aux freelancer concernés par les compétences
+                foreach($freelances_competences as $freelance_competence){
+                    Mail::to($freelance_competence->email)->queue(new Newprojet($projet));
                 }
 
-                return redirect()->route('home')->with('success', 'Votre mission a étée postée');
+                // On sélectionne les users concernés par au moins un des départements et qui ont choisis d'être informés
+                $freelances_departements = User::where('role', 'freelance')
+                                                ->where('alert_departements', 1)
+                                                ->whereHas('departements',function($query) use ($departement) {
+                                                    $query->where('departement_id', $departement);
+                                                   })->get();
+                
+
+                // On envois un email aux freelancer concernés par le lieux
+                // foreach($freelances_departements as $freelance_departement){
+                //     Mail::to($freelance_departement->email)->queue(new Newprojet($projet));
+                // }
+
+                return redirect()->route('home')->with('success', 'Votre mission a été postée');
 
             }
     }

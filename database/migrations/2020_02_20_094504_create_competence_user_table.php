@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MakeCompetencesUserTable extends Migration
+class CreateCompetenceUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -30,6 +30,6 @@ class MakeCompetencesUserTable extends Migration
      */
     public function down()
     {
-          Schema::dropIfExists('competence_user');
+        Schema::dropIfExists('competence_user');
     }
 }

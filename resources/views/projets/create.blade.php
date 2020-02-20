@@ -70,13 +70,13 @@
   </div>
 <!-- ---------------- Département ------------------ -->
   <div class="form-group">
-    <label for="lieu-projet">Selectionnez le departement</label>
-    <select class="form-control js-select @error('localisation') is-invalid @enderror" id="lieu-projet" value="{{ old('localisation') }}" name="localisation">
+    <label for="departement">Selectionnez le departement</label>
+    <select class="form-control @error('departement') is-invalid @enderror" id="departement-projet" value="{{ old('departement')}}" name="departement">
       @foreach ($departements as $departement)
         <option>{{$departement->name}}</option>
       @endforeach
     </select>
-    @error('localisation')
+    @error('departements')
       <div class="invalid-feedback">{{ $message }}</div>
     @enderror
   </div>
