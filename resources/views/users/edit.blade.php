@@ -11,7 +11,7 @@
                         @else
                             <img id="blah_" class="mb-2 profil-avatar" src={{ $avatar }}>
                         @endif
-                        <!-- Button trigger modal -->
+                        <!-- Bouton modal -->
                         <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
                             Modifier
                         </button>
@@ -22,19 +22,24 @@
                     <div class="form-row">
                         <!-- ---------------- Prénom ------------------ -->
                         <div class="form-group col-md-6 col-sm-12 ">
-                            <label for="firstname">Prénom</label>
+                            <label for="firstname" class="label-form ">Prénom</label>
                             <input type="text" class="form-control" name="firstname" value="{{old('firstname', $user->firstname)}}">
                         </div>
                         <!-- ---------------- Nom------------------ -->
                         <div class="form-group col-md-6 col-sm-12">
-                            <label for="lastname">Nom</label>
+                            <label for="lastname" class="label-form">Nom</label>
                             <input type="text" class="form-control" name="lastname" value="{{old('lastname', $user->lastname)}}">
                         </div>
+                    </div>
+                    <!-- ---------------- Titre professionnel ------------------ -->
+                    <div class="form-group">
+                        <label for="titre" class="label-form">Titre professionnel</label>
+                        <input type="text" class="form-control" name="titre" value="{{old('titre', $user->titre)}}">
                     </div>
 
                      <!-- ---------------- Departements ------------------ -->
                      <div class="form-group ">
-                        <label for="departements">Sélectionnez le(s) departement(s)</label>
+                        <label for="departements" class="label-form">Vos lieux</label>
                             <select class="form-control js-select" class="form-control"  name="departements[]" multiple="multiple">
                                 @foreach($departements as $departement)
                                 <option value="{{ $departement->id }}" @foreach ($user_departements as $user_departement)@if (old('departements', $departement->id ) == $user_departement->id) {{ 'selected' }} @endif @endforeach>{{ $departement->name }}</option>
@@ -44,7 +49,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                    <!-- ---------------- Case à cocher Alert Email Departements------------------ -->
+                    <!-- ---------------- Checkbox Alert Email Departements------------------ -->
                     <div class="form-check mt-n3 mb-2">
                         <input type="hidden" value="0" name="alert_departements">
                         <input type="checkbox" class="form-check-input" value="1" name="alert_departements" @if(old('alert_departements',$user->alert_departements)=="1") checked @endif >
@@ -52,7 +57,7 @@
                     </div>
                     <!-- ---------------- Compétences ------------------ -->
                     <div class="form-group ">
-                    <label for="competences">Sélectionnez vos compétences</label>
+                    <label for="competences" class="label-form">Vos compétences</label>
                         <select class="form-control js-select" name="competences[]" multiple="multiple">
                             @foreach($competences as $competence)
                                 <option value="{{ $competence->id }}" @foreach ($user_competences as $user_competence)@if (old('competences', $competence->id ) == $user_competence->id) {{ 'selected' }} @endif @endforeach>{{ $competence->name }}</option>
@@ -62,15 +67,22 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    
-                    <!-- ---------------- Case à cocher Alert Email Competences------------------ -->
+                    <!-- ---------------- Checkbox Alert Email Competences------------------ -->
                     <div class="form-check mt-n3 mb-2">
                         <input type="hidden" value="0" name="alert_competences">
                         <input type="checkbox" class="form-check-input" value="1" name="alert_competences" @if(old('alert_competences',$user->alert_competences)=="1") checked @endif >
                         <label class="form-check-label" for="alert-competences"><em>Me prévenir par e-mail, lorsque une mission correspond à mes compétences</em></label>
                     </div>
-
-                    <button type="submit" class="btn btn-success mt-3">Sauvegarder</button>
+                     <!-- ---------------- Présentation ------------------ -->
+                    <div class="form-group">
+                        <label class="label-form" for="presentation">Votre présentation</label>
+                        <textarea class="form-control" id="presentation" name="presentation" rows="8">{{old('presentation', $user->description)}}</textarea>
+                    </div>
+                    <div class="text-right">
+                        <a href="{{ route('profil', Auth::user()) }}" class="btn btn-outline-secondary mt-3"><i class="fas fa-times text-secondary"></i> Annuler</a>
+                        <button type="submit" class="btn btn-outline-primary mt-3"><i class="far fa-paper-plane text-primary"></i>  Envoyer</button>
+                    </div>
+                   
                   </form>
                 </div>
             </div>
@@ -96,8 +108,8 @@
                     {{ csrf_field() }}
                     <input type="file" id= "upload" name="avatar" onchange="readURL(this);" />
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-success">Sauvegarder</button>
+                        <button type="button" class="btn btn-outline-secondary"><i class="fas fa-times text-secondary"></i> Annuler</button>
+                        <button type="submit" class="btn btn-outline-primary"><i class="far fa-paper-plane text-primary"></i>  Envoyer</button>
                     </div>
                 </form>
             </div>

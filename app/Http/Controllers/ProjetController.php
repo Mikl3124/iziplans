@@ -105,7 +105,6 @@ class ProjetController extends Controller
 
                         //Upload File to s3
 
-                        //Storage::disk('s3')->put($filenametostore, fopen($request->file('file_projet'), 'r+'), 'public');
                         Storage::disk('s3')->put($filenametostore, $request->file('file_projet'), 'public');
 
                         //Store $filenametostore in the database

@@ -8,8 +8,10 @@
     border-radius: 50%;
 }
 
-.select2-container--default .select2-selection--multiple  {
+.select2{
     width: 100%!important;
+}
+.select2-container--default .select2-selection--multiple  {
     border: 1px solid #ced4da !important;
 }
 
@@ -21,4 +23,10 @@
 
 .select2-selection__choice__remove{
     color: white !important;
+}
+
+.label-form{
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+    margin-top: 16px;
 }
