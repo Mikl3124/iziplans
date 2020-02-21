@@ -87,6 +87,7 @@ class ProjetController extends Controller
                     $projet->title = $request->title;
                     $projet->description = $request->description;
                     $projet->status = 'publish';
+                    $projet->departement_id = $request->departement;
 
                     if ($files = $request->file('file_projet')) {
                         $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
@@ -112,17 +113,17 @@ class ProjetController extends Controller
                     }
 
                     $projet->budget = $request->budget;
-                    $projet->departement = $request->departement;
+                    
 
                     if ($projet->save()){
                         $projet->categories()->attach($request->categories);
                         $projet->competences()->attach($request->competences);
                     };
+
                 $competences = $request->competences;
-                $departement_name = $request->departement;
+                $departement_id = $request->departement;
 
-                $departement = Departement::find($departement_name);
-
+                $departement = Departement::find($departement_id);
 
                 // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
                 $freelances_competences = User::where('alert_competences', 1)
@@ -140,14 +141,15 @@ class ProjetController extends Controller
                 $freelances_departements = User::where('role', 'freelance')
                                                 ->where('alert_departements', 1)
                                                 ->whereHas('departements',function($query) use ($departement) {
-                                                    $query->where('departement_id', $departement);
+                                                    $query->where('departement_id', $departement->id);
                                                    })->get();
                 
 
+
                 // On envois un email aux freelancer concernés par le lieux
-                // foreach($freelances_departements as $freelance_departement){
-                //     Mail::to($freelance_departement->email)->queue(new Newprojet($projet));
-                // }
+                foreach($freelances_departements as $freelance_departement){
+                    Mail::to($freelance_departement->email)->queue(new Newprojet($projet));
+                }
 
                 return redirect()->route('home')->with('success', 'Votre mission a été postée');
 
@@ -170,9 +172,10 @@ class ProjetController extends Controller
             $contents = NULL;
         }
 
+        $departement = Departement::find($projet->departement_id);
         $offers = Offer::where('projet_id', $projet->id)->get();
 
-        return view('projets.show', compact('projet', 'contents', 'offers'));
+        return view('projets.show', compact('projet', 'contents', 'offers', 'departement'));
     }
 
     /**

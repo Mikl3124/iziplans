@@ -32,7 +32,7 @@
                             </tr>
                             <tr>
                                 <td scope="row"  class="td-show">Localisation</td>
-                                <th scope="col">{{$projet->departement}}</td>
+                                <th scope="col">{{$departement->name}}</td>
                             </tr>
                             <tr>
                                 <td scope="row" class="td-show">Budget</td>

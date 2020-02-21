@@ -7,3 +7,18 @@
     width: 200px;
     border-radius: 50%;
 }
+
+.select2-container--default .select2-selection--multiple  {
+    width: 100%!important;
+    border: 1px solid #ced4da !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #0072FF;
+    border: 1px solid #0072FF;
+    color: white;
+}
+
+.select2-selection__choice__remove{
+    color: white !important;
+}

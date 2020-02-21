@@ -21,7 +21,7 @@ class CreateProjetsTable extends Migration
             $table->string('budget');
             $table->string('status');
             $table->string('file_projet')->nullable();
-            $table->string('departement');
+            $table->unsignedBigInteger('departement_id')->index()->references('id')->on('departements')->onDelete('cascade');
             $table->timestamps();
         });
     }

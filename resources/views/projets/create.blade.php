@@ -70,10 +70,10 @@
   </div>
 <!-- ---------------- Département ------------------ -->
   <div class="form-group">
-    <label for="departement">Selectionnez le departement</label>
+    <label for="departements">Selectionnez le departement</label>
     <select class="form-control @error('departement') is-invalid @enderror" id="departement-projet" value="{{ old('departement')}}" name="departement">
       @foreach ($departements as $departement)
-        <option>{{$departement->name}}</option>
+        <option value="{{ $departement->id }} {{ in_array($departement->id, old('departements') ?: []) ? 'selected' : '' }}">{{ $departement->name }}</option>
       @endforeach
     </select>
     @error('departements')

@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\Model\User;
 use App\Model\Offer;
+use App\Model\Projet;
 use App\model\Category;
 use App\model\Competence;
 use App\Model\Departement;
@@ -26,9 +27,9 @@ class Projet extends Model
     {
         return $this->belongsToMany(Competence::class);
     }
-    public function departements()
+    public function departement()
     {
-        return $this->belongsToMany(Departement::class);
+        return $this->belongsTo(Departement::class);
     }
     public function offers()
     {

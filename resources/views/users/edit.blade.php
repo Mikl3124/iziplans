@@ -19,7 +19,7 @@
                 <div class="col-md-10">
                   <form action="{{ route('profil-update', Auth::user()) }}" method="POST">
                     @csrf
-                    <div class="row">
+                    <div class="form-row">
                         <!-- ---------------- Prénom ------------------ -->
                         <div class="form-group col-md-6 col-sm-12 ">
                             <label for="firstname">Prénom</label>
@@ -31,10 +31,11 @@
                             <input type="text" class="form-control" name="lastname" value="{{old('lastname', $user->lastname)}}">
                         </div>
                     </div>
+
                      <!-- ---------------- Departements ------------------ -->
-                     <div class="form-group">
+                     <div class="form-group ">
                         <label for="departements">Sélectionnez le(s) departement(s)</label>
-                            <select class="form-control js-select" name="departements[]" multiple="multiple">
+                            <select class="form-control js-select" class="form-control"  name="departements[]" multiple="multiple">
                                 @foreach($departements as $departement)
                                 <option value="{{ $departement->id }}" @foreach ($user_departements as $user_departement)@if (old('departements', $departement->id ) == $user_departement->id) {{ 'selected' }} @endif @endforeach>{{ $departement->name }}</option>
                                 @endforeach
@@ -44,13 +45,13 @@
                             @enderror
                         </div>
                     <!-- ---------------- Case à cocher Alert Email Departements------------------ -->
-                    <div class="form-check">
+                    <div class="form-check mt-n3 mb-2">
                         <input type="hidden" value="0" name="alert_departements">
                         <input type="checkbox" class="form-check-input" value="1" name="alert_departements" @if(old('alert_departements',$user->alert_departements)=="1") checked @endif >
-                        <label class="form-check-label" for="alert-departements">Me prévenir par e-mail, lorsque une mission correspond à mes lieux</label>
+                        <label class="form-check-label" for="alert-departements"><em>Me prévenir par e-mail, lorsque une mission correspond à mes lieux</em></label>
                     </div>
                     <!-- ---------------- Compétences ------------------ -->
-                    <div class="form-group">
+                    <div class="form-group ">
                     <label for="competences">Sélectionnez vos compétences</label>
                         <select class="form-control js-select" name="competences[]" multiple="multiple">
                             @foreach($competences as $competence)
@@ -63,10 +64,10 @@
                     </div>
                     
                     <!-- ---------------- Case à cocher Alert Email Competences------------------ -->
-                    <div class="form-check">
+                    <div class="form-check mt-n3 mb-2">
                         <input type="hidden" value="0" name="alert_competences">
                         <input type="checkbox" class="form-check-input" value="1" name="alert_competences" @if(old('alert_competences',$user->alert_competences)=="1") checked @endif >
-                        <label class="form-check-label" for="alert-competences">Me prévenir par e-mail, lorsque une mission correspond à mes compétences</label>
+                        <label class="form-check-label" for="alert-competences"><em>Me prévenir par e-mail, lorsque une mission correspond à mes compétences</em></label>
                     </div>
 
                     <button type="submit" class="btn btn-success mt-3">Sauvegarder</button>
