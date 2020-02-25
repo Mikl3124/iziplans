@@ -5,10 +5,18 @@
    {{-- ----------- Banner ---------- --}}
 <div class="banner" style="background-image:url(https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-banner.jpg)">
     <div class="container">
-        <div class="display-2 text-center text-white">VOS PLANS FACILEMENT</div>
+        <div class="display-4 text-center text-white">VOS PLANS FACILEMENT</div>
         <blockquote class="blockquote text-center">
-            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
         </blockquote>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search this blog">
+            <div class="input-group-append">
+              <button class="btn btn-secondary" type="button">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
         <div class="row">
             <div class="col-md-6 col-sm-12 mt-5 text-center">
                 <a class="btn btn-primary btn-lg text-center" href="#">Devenir Freelance</a>

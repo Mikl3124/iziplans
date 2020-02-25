@@ -14,15 +14,17 @@ class CreateMessagesTable extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('from_id');
-            $table->unsignedInteger('to_id');
-            $table->text('content');
-            $table->timestamp('created_at')->useCurrent();
-            $table->date('read_at')->nullable();
-            //clé étrangères
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('from_id')->index();
             $table->foreign('from_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('to_id')->references('id')->on('users')->onDelete('cascade'); //onDelete .. pour supprimer le messages si l'utilisateur n'existe pas
+            $table->unsignedBigInteger('to_id')->index();
+            $table->foreign('to_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('projet_id')->nullable();
+            $table->foreign('projet_id')->references('id')->on('projets')->onDelete('cascade');
+            $table->text('content');
+            $table->string('thread');
+            $table->timestamps();
+            $table->dateTime('read_at')->nullable();
         });
     }
 

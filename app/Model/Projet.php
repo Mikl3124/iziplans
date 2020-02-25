@@ -5,6 +5,7 @@ namespace App\Model;
 use App\Model\User;
 use App\Model\Offer;
 use App\Model\Projet;
+use App\Model\Message;
 use App\model\Category;
 use App\model\Competence;
 use App\Model\Departement;
@@ -34,6 +35,11 @@ class Projet extends Model
     public function offers()
     {
         return $this->hasMany(Offer::class);
+    }
+
+    public function messages()
+    {
+        return $this->belongsToMany(Message::class);
     }
    
 }

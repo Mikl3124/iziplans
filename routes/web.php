@@ -57,3 +57,7 @@ Route::post('image-upload', 'UserController@imageUpload')->name('image.upload');
 // Route::get('/debug-sentry', function () {
 //     throw new Exception('My first Sentry error!');
 // });
+
+Route::get('/messagerie/{user}', 'ConversationController@show')->name('messagerie.show');
+Route::get('/messagerie-index/{projet}', 'ConversationController@index')->name('messagerie.index');
+Route::post('/messagerie/{user}', 'ConversationController@store');

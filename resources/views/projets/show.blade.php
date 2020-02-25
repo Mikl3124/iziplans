@@ -53,7 +53,7 @@
                     @guest
                         <div class="card card-show bg-dark mb-3">
                             <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
-                            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Faire une offre</button>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
                         </div>
                         <div class="card card-show mb-3">
                             <button class="btn btn-primary">Contacter le client</button>
@@ -65,7 +65,7 @@
                             <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
                         </div>
                         <div class="card card-show mb-3">
-                            <button class="btn btn-primary">Contacter le client</button>
+                            <a href="{{route('messagerie.show', $projet)}}" class="btn btn-primary">Contacter le client</a>
                         </div>
                     @endauth
                 @endif
@@ -119,7 +119,7 @@
     </div>
 
 {{-- ------------------------------------------------ Modal ----------------------------------------------- --}}
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
