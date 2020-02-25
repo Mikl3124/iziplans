@@ -10,7 +10,7 @@
             <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
         </blockquote>
         <div class="input-group">
-            <input type="text" class="form-control" placeholder=" Votre recherche...">
+            <input type="text" class="form-control" placeholder="Ecrivez votre recherche ici...">
             <div class="input-group-append">
               <button class="btn btn-secondary" type="button">
                 <i class="fa fa-search"></i>
