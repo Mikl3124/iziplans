@@ -2,7 +2,6 @@
 
 
 @section('content')
-          
     <div class="container">
         <div class="mt-4">
             <div class="card" >
@@ -23,6 +22,7 @@
                 <div class="mt-3">
                     <form action=""{{ route('messagerie.show', $projet->id)}}"" method="post">
                         @csrf
+                        <input type="hidden" value=""name="to_id">
                         <div class="form-group">
                             <textarea class="form-control @error('content') is-invalid @enderror" placeholder="Votre message privé..." name="content" rows="3"></textarea>
                             @error('content')

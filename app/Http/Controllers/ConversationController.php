@@ -16,11 +16,11 @@ class ConversationController extends Controller
 {
     public function index(){
         
-        //$users = User::select('firstname', 'id')->where('id', '!=', Auth::user()->id)->get();
+        $users = User::select('firstname', 'id')->where('id', '!=', Auth::user()->id)->get();
 
-        $projets = Projet::whereHas('messages')->get();
+        //$projets = Projet::whereHas('messages')->get();
 
-        return view('messagerie.index', compact('messages'));
+        return view('messagerie.index', compact('users'));
     }
 
     public function show($projet){
@@ -28,18 +28,16 @@ class ConversationController extends Controller
         $projet = Projet::find($projet);
         $users = User::select('firstname', 'id')->where('id', '!=', Auth::user()->id)->get();
 
-        $messages = Message::where('from_id', Auth::user()->id)
-                            ->where('to_id', $projet->user->id)
-                            ->orwhere('to_id', Auth::user()->id)
-                            ->where('from_id', $projet->user->id)
-                            ->where('projet_id', $projet->id)
+        $messages = Message::where('from_id', $user->id)
+                            ->orwhere('to_id', $user->id)
                             ->get();
         return view('messagerie.show', compact('users','messages', 'projet', 'user'));
     }
 
-    public function store(Request $request, $id){
+    public function store(Request $request, $projet){
+
+        $projet = Projet::find($projet);
         $values = $request->all();
-        $projet = Projet::find($id);
         $thread = $projet->id . $projet->user->id . Auth::user()->id;
 
         $rules = [
@@ -60,7 +58,7 @@ class ConversationController extends Controller
         $message = new Message;
                     $message->content = $request->content;
                     $message->from_id = Auth::user()->id;
-                    $message->to_id = $projet->user->id;
+                    $message->to_id = $request->to_id;
                     $message->projet_id = $projet->id;
                     $message->thread = $thread;
         
