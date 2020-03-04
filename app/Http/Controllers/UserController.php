@@ -18,7 +18,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $avatar = Storage::disk('s3')->url('users/normal/'. $user->avatar);
+        $avatar = Storage::disk('local')->url('users/normal/'. $user->avatar);
 
         return view('users.show', compact('user', 'avatar'));
     }
@@ -30,9 +30,8 @@ class UserController extends Controller
         $user = User::find($id);
         $user_competences = $user->competences;
         $user_departements = $user->departements;
-        
 
-        $avatar = Storage::disk('s3')->url('users/normal/'. $user->avatar);
+        $avatar = Storage::url('users/normal/'. $user->avatar);
         $user = Auth::user();
         return view('users.edit', compact('user', 'avatar', 'competences', 'user_competences', 'departements', 'user_departements'));
     }
@@ -52,11 +51,11 @@ class UserController extends Controller
         $medium = Image::make($avatar)->resize(80, 80)->encode('png', 75);
         $small = Image::make($avatar)->resize(40, 40)->encode('png', 75);
 
-        Storage::disk('s3')->put('/users/normal/'.$filename, (string)$normal, 'public');
+        Storage::put('/users/normal/'.$filename, (string)$normal, 'public');
 
-        Storage::disk('s3')->put('/users/medium/'.$filename, (string)$medium, 'public');
+        Storage::put('/users/medium/'.$filename, (string)$medium, 'public');
 
-        Storage::disk('s3')->put('/users/small/'.$filename, (string)$small, 'public');
+        Storage::put('/users/small/'.$filename, (string)$small, 'public');
 
         $user->avatar = $filename;
         $user->save();
@@ -80,7 +79,7 @@ class UserController extends Controller
         $user->description = $request['presentation'];
         $user->titre = $request['titre'];
 
-            $user->update();  
+            $user->update();
 
         return redirect()->back();
     }

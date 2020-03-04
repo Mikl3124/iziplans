@@ -21,7 +21,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -57,12 +57,12 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                               
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if (Auth::user()->avatar === NULL)
                                     <img class="mr-3 rounded-circle navbar-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png"><span class="caret">{{ Auth::user()->firstname }}</span>
                                     @else
-                                        <img class="mr-3 rounded-circle navbar-avatar" src="{{ Storage::disk('s3')->url('users/small/'. Auth::user()->avatar) }}"><span class="caret">{{ Auth::user()->firstname }}</span>
+                                        <img class="mr-3 rounded-circle navbar-avatar" src="{{ Storage::url('users/small/'. Auth::user()->avatar) }}"><span class="caret">{{ Auth::user()->firstname }}</span>
                                     @endif
                                 </a>
 
@@ -92,12 +92,12 @@
                 </div>
             </div>
         </nav>
-    
+
         <main>
             @yield('content')
         </main>
         @yield('js-exemple')
     </div>
-    
+
 </body>
 </html>

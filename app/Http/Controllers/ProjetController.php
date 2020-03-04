@@ -99,20 +99,20 @@ class ProjetController extends Controller
             $extension = $request->file('file_projet')->getClientOriginalExtension();
 
             //filename to store
-            $path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
+            //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
 
-            $filenametostore = $path.'/'.$filename.'_'.time().'.'.$extension;
+            $filenametostore = $filename.'_'.time().'.'.$extension;
 
-                        //Upload File to s3
+                        //Upload File
 
-                        Storage::disk('s3')->put($filenametostore, $request->file('file_projet'), 'public');
+                        Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore, );
 
                         //Store $filenametostore in the database
                         $projet->file_projet = $filenametostore;
                     }
 
                     $projet->budget = $request->budget;
-                    
+
 
                     if ($projet->save()){
                         $projet->categories()->attach($request->categories);
@@ -142,7 +142,7 @@ class ProjetController extends Controller
                                                 ->whereHas('departements',function($query) use ($departement) {
                                                     $query->where('departement_id', $departement->id);
                                                    })->get();
-                
+
 
 
                 // On envois un email aux freelancer concernés par le lieux
@@ -164,9 +164,9 @@ class ProjetController extends Controller
     public function show(Projet $projet)
     {
 
-        //$download = Storage::disk('s3')->download($projet->file_projet);
+        //$download = Storage::download($projet->file_projet);
         if ($projet->file_projet) {
-            $contents = Storage::disk('s3')->url($projet->file_projet);
+            $contents = Storage::url($projet->file_projet);
         } else {
             $contents = NULL;
         }
@@ -215,7 +215,7 @@ class ProjetController extends Controller
     {
 
         $dl = Projet::find($id);
-        return Storage::disk('s3')->download($dl->file_projet);
+        return Storage::download('documents/' . $dl->file_projet);
 
     }
 
