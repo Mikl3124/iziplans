@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMessagesTable extends Migration
+class CreateTopicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,16 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
             $table->unsignedBigInteger('from_id')->index();
             $table->foreign('from_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('to_id')->index();
             $table->foreign('to_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('projet_id')->nullable();
+            $table->unsignedBigInteger('projet_id')->index();
             $table->foreign('projet_id')->references('id')->on('projets')->onDelete('cascade');
-            $table->unsignedBigInteger('topic_id');
-            $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
-            $table->text('content');
-            $table->string('thread');
             $table->timestamps();
-            $table->dateTime('read_at')->nullable();
         });
     }
 
@@ -37,6 +33,6 @@ class CreateMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('topics');
     }
 }
