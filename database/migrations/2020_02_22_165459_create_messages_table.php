@@ -24,7 +24,6 @@ class CreateMessagesTable extends Migration
             $table->unsignedBigInteger('topic_id');
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
             $table->text('content');
-            $table->string('thread');
             $table->timestamps();
             $table->dateTime('read_at')->nullable();
         });

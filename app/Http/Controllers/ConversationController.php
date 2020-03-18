@@ -18,31 +18,49 @@ class ConversationController extends Controller
     public function index(){
 
         $users = User::select('firstname', 'id')->where('id', '!=', Auth::user()->id)->get();
-        $topics= Topic::select('title', 'id')->where('to_id', Auth::user()->id)->get();
+        // $message = Message::where('to_id', Auth::user()->id)
+        //                     ->orwhere('from_id', Auth::user()->id)
+        //                     ->latest('created_at')
+        //                     ->first();
+
+        $topics = Topic::where('to_id', Auth::user()->id)
+                            ->orwhere('from_id', Auth::user()->id)
+                            ->get();
         //$projets = Projet::whereHas('messages')->get();
 
-        return view('messagerie.index', compact('users', 'topics'));
+        return view('messagerie.index', compact('users','topics'));
     }
 
-    public function show($projet){
-        $user = Auth::user();
+    public function show($topic, $projet){
+
+        $topic = Topic::find($topic);
         $projet = Projet::find($projet);
+        if($topic){
+            $user = Auth::user();
+            $users = User::select('firstname', 'id')->where('id', '!=', Auth::user()->id)->get();
+            
+            $messages = Message::where('topic_id', $topic->id)
+                                ->where(function($query) use ($topic) {
+                                    $query  ->where('to_id', Auth::user()->id)
+                                            ->orwhere('from_id', Auth::user()->id);
+                                })
+            ->get();
+
+            return view('messagerie.show', compact('users','projet', 'messages', 'user', 'topic'));
+        }
+
+        $user = Auth::user();
         $users = User::select('firstname', 'id')->where('id', '!=', Auth::user()->id)->get();
-        $topic = Topic::where('projet_id', $projet->id)
-                        ->where('from_id', $user->id)
-                        ->orwhere('to_id', $user->id)
-                        ->get();
-        $messages = Message::where('from_id', $user->id)
-                            ->orwhere('to_id', $user->id)
-                            ->get();
-        return view('messagerie.show', compact('users','messages', 'projet', 'user', 'topic'));
+
+            return view('messagerie.show', compact('users','projet', 'user'));
+
     }
 
     public function store(Request $request, $projet){
 
         $projet = Projet::find($projet);
         $values = $request->all();
-        $thread = $projet->id . $projet->user->id . Auth::user()->id;
+        $topic = Topic::find($request->topic_id);
 
         $rules = [
             'content' => 'required',
@@ -56,28 +74,32 @@ class ConversationController extends Controller
         return Redirect::back()
             ->withErrors($validator)
             ->withInput();
-
         }
 
-        $topic = new Topic;
-                    $topic->title = $projet->title;
-                    $topic->from_id = Auth::user()->id;
-                    $topic->to_id = $request->to_id;
-                    $topic->projet_id = $projet->id;
+        if ($topic === null) {
 
-        $topic->save();
+            $topic = new Topic;
+                        $topic->title = $projet->title;
+                        $topic->from_id = Auth::user()->id;
+                        $topic->to_id = $request->to_id;
+                        $topic->projet_id = $projet->id;
 
+            $topic->save();
+        } 
+        
         $message = new Message;
                     $message->content = $request->content;
                     $message->from_id = Auth::user()->id;
                     $message->to_id = $request->to_id;
                     $message->projet_id = $projet->id;
-                    $message->thread = $thread;
                     $message->topic_id = $topic->id;
 
-        $message->save();
+        if(($topic->from_id === Auth::user()->id) || ($topic->to_id === Auth::user()->id)){
+            $message->save();
+        }
+        
 
-        return redirect()->back()->with(compact('projet'));
+        return redirect()->route('messagerie.show', ['projet' => $projet, 'topic' =>$topic]);
     }
 
     public function unreadCount($userId){

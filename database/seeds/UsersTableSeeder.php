@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
                 'cgv' => 1,
             ],
             [
-                'firstname' => 'Pablo',
+                'firstname' => 'Client ID_2',
                 'lastname'  => 'Le Client',
                 'email' => 'client@gmail.com',
                 'password' => bcrypt('password'),
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
                 'cgv' => 1,
             ],
             [
-                'firstname' => 'Romuald',
+                'firstname' => 'Freelance ID_3',
                 'lastname'  => 'Freelanceur',
                 'email' => 'freelance@gmail.com',
                 'password' => bcrypt('password'),

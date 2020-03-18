@@ -65,7 +65,7 @@
                             <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
                         </div>
                         <div class="card card-show mb-3">
-                            <a href="{{route('messagerie.show', $projet)}}" class="btn btn-primary">Contacter le client</a>
+                            <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary">Contacter le client</a>
                         </div>
                     @endauth
                 @endif

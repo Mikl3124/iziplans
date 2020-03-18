@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\User;
 use App\Model\Offer;
+use App\Model\Topic;
 use App\Model\Projet;
 use App\Mail\Newprojet;
 use App\model\Category;
@@ -170,11 +171,19 @@ class ProjetController extends Controller
         } else {
             $contents = NULL;
         }
+        
+        $topic = Topic::where('projet_id', $projet->id)
+                        ->where('from_id', Auth::user()->id)
+                        ->first();
 
+        if($topic === null){
+            $topic = 0;
+        }
+        
         $departement = Departement::find($projet->departement_id);
         $offers = Offer::where('projet_id', $projet->id)->get();
 
-        return view('projets.show', compact('projet', 'contents', 'offers', 'departement'));
+        return view('projets.show', compact('projet', 'topic', 'contents', 'offers', 'departement'));
     }
 
     /**
