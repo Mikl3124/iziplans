@@ -234,6 +234,28 @@ h1 {
   padding-right: 10px;
 }
 
+.message_preview_index {
+  width: 250px;
+  font-size: 13px;
+  color: #bdc4c7 !important;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.message_title_index {
+  margin-bottom: 0;
+}
+
+.message_from_index {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+
+.message_index :hover {
+  background-color: #ECEEEF;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -5386,12 +5408,10 @@ input[type=button].btn-block {
 
 @media (min-width: 576px) {
   .card-columns {
-    -webkit-column-count: 3;
-       -moz-column-count: 3;
-            column-count: 3;
-    -webkit-column-gap: 1.25rem;
-       -moz-column-gap: 1.25rem;
-            column-gap: 1.25rem;
+    -moz-column-count: 3;
+         column-count: 3;
+    -moz-column-gap: 1.25rem;
+         column-gap: 1.25rem;
     orphans: 1;
     widows: 1;
   }

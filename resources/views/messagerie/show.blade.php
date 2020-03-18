@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="card-body scroll" id="messagesBox">
-                    @isset($messages)
+                    @if (isset($messages))
                         @foreach ($messages as $message)
                             <div class="row">
                                 <div class="col-md-10 {{ $message->from->id === $user->id ? 'offset-md-2 text-right' : ''}}">
@@ -25,7 +25,13 @@
                                 </div>
                             </div>
                         @endforeach
-                    @endisset
+                    @else
+                        <div class="text-center">
+                            <em>Aucun message à afficher</em>
+                        </div>
+                        
+                        
+                    @endif
                 </div>
             </div>
                 <div class="mt-3">

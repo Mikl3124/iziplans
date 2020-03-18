@@ -44,7 +44,7 @@ class ConversationController extends Controller
                                     $query  ->where('to_id', Auth::user()->id)
                                             ->orwhere('from_id', Auth::user()->id);
                                 })
-            ->get();
+                                ->get();
 
             return view('messagerie.show', compact('users','projet', 'messages', 'user', 'topic'));
         }

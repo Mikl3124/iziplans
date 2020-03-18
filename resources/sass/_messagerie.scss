@@ -19,3 +19,25 @@
     padding-right: 10px;
     
 }
+
+.message_preview_index{
+        width: 250px;
+        font-size: 13px;
+        color: #bdc4c7 !important;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+.message_title_index{
+    margin-bottom: 0;
+}
+
+.message_from_index{
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 0;
+}
+
+.message_index :hover{
+    background-color: #ECEEEF;
+}
