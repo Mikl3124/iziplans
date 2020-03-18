@@ -60,6 +60,8 @@ Route::post('image-upload', 'UserController@imageUpload')->name('image.upload');
 
 Route::get('/messagerie/{topic}/{projet}', 'ConversationController@show')->name('messagerie.show');
 Route::get('/messagerie-index/{projet}', 'ConversationController@index')->name('messagerie.index');
-Route::post('/messagerie/{topic}', 'ConversationController@store')->name('messagerie.store');;
+Route::get('/messagerie-download/{message}', 'ConversationController@download')->name('messagerie.download');
+Route::post('/messagerie/{topic}', 'ConversationController@store')->name('messagerie.store');
+
 
 

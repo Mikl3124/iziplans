@@ -224,6 +224,7 @@ h1 {
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  margin-bottom: 0px !important;
 }
 
 .his_message {
@@ -232,6 +233,7 @@ h1 {
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  margin-bottom: 0px !important;
 }
 
 .message_preview_index {
@@ -254,6 +256,13 @@ h1 {
 
 .message_index :hover {
   background-color: #ECEEEF;
+}
+
+.message_date {
+  color: #636c72;
+  font-size: 75%;
+  font-style: italic;
+  margin-bottom: 10px;
 }
 
 /*!

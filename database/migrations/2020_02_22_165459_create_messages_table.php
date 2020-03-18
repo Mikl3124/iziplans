@@ -25,6 +25,7 @@ class CreateMessagesTable extends Migration
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
             $table->text('content');
             $table->timestamps();
+            $table->string('file_message')->nullable();
             $table->dateTime('read_at')->nullable();
         });
     }

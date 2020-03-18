@@ -11,6 +11,7 @@ use App\Model\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
 class ConversationController extends Controller
@@ -61,13 +62,13 @@ class ConversationController extends Controller
         $projet = Projet::find($projet);
         $values = $request->all();
         $topic = Topic::find($request->topic_id);
-
         $rules = [
             'content' => 'required',
         ];
 
         $validator = Validator::make($values, $rules,[
             'content.required' => 'Veuillez écrire votre message',
+            'file-message' => 'sometimes|max:5000',
           ]);
         if($validator->fails()){
 
@@ -95,11 +96,46 @@ class ConversationController extends Controller
                     $message->topic_id = $topic->id;
 
         if(($topic->from_id === Auth::user()->id) || ($topic->to_id === Auth::user()->id)){
-            $message->save();
+
         }
+
+        if ($files = $request->file('file_message')) {
+
+                    $filenamewithextension = $request->file('file_message')->getClientOriginalName();
+
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+            //get file extension
+            $extension = $request->file('file_message')->getClientOriginalExtension();
+
+            //filename to store
+            //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
+
+            $filenametostore = $filename.'_'.time().'.'.$extension;
+
+
+                        //Upload File
+
+                        Storage::putFileAs('documents', $request->file('file_message'), $filenametostore, );
+
+                        //Store $filenametostore in the database
+                        
+                        $message->file_message = $filenametostore;
+
+            }
+        $message->save();
         
 
         return redirect()->route('messagerie.show', ['projet' => $projet, 'topic' =>$topic]);
+    }
+
+    public function download($message)
+    {
+
+        $dl = Message::find($message);
+        return Storage::download('documents/' . $dl->file_message);
+
     }
 
     public function unreadCount($userId){
