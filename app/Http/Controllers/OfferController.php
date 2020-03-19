@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Model\Offer;
+use App\Model\Topic;
 use App\Model\Projet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -36,7 +38,15 @@ class OfferController extends Controller
     public function create($id)
     {
         $projet = Projet::find($id);
-        return view('offers.create', compact('projet'));
+        $topic = Topic::where('projet_id', $projet->id)
+                        ->where('from_id', Auth::user()->id)
+                        ->first();
+
+        if($topic === null){
+            $topic = 0;
+        }
+
+        return view('offers.create', compact('projet', 'topic'));
     }
 
     /**
@@ -125,7 +135,15 @@ class OfferController extends Controller
      */
     public function edit($id)
     {
-        //
+        $offer = Offer::find($id);
+        if($offer->user_id === Auth::user()->id){
+            $projet = Projet::find($offer->projet_id);
+
+            return view('offers.edit',compact('offer', 'projet'));
+        }
+
+
+        
     }
 
     /**
@@ -137,7 +155,7 @@ class OfferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd('coco');
     }
 
     /**
@@ -148,6 +166,11 @@ class OfferController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $offer = Offer::find($id);
+        if(Auth::user()->id === $offer->user_id){
+            $offer->delete();
+            return redirect()->route('home')->with('danger', 'Votre offre a bien été supprimée');
+        }
+        return redirect()->back();
     }
 }

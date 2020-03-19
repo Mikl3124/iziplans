@@ -87,7 +87,7 @@ class ProjetController extends Controller
                     $projet->user_id = $user->id;
                     $projet->title = $request->title;
                     $projet->description = $request->description;
-                    $projet->status = 'publish';
+                    $projet->status = 'open';
                     $projet->departement_id = $request->departement;
 
                     if ($files = $request->file('file_projet')) {
@@ -164,27 +164,38 @@ class ProjetController extends Controller
      */
     public function show(Projet $projet)
     {
+        $departement = Departement::find($projet->departement_id);
+        $offers = Offer::where('projet_id', $projet->id)->get();
+        $has_make_an_offer = false;
+        $topic = null;
+        $freelance_offer = null;
 
-        //$download = Storage::download($projet->file_projet);
         if ($projet->file_projet) {
             $contents = Storage::url($projet->file_projet);
         } else {
             $contents = NULL;
         }
         
-        $topic = Topic::where('projet_id', $projet->id)
+        if (isset(Auth::user()->id)){
+            $topic = Topic::where('projet_id', $projet->id)
                         ->where('from_id', Auth::user()->id)
                         ->first();
-
-        if($topic === null){
-            $topic = 0;
+            if($topic === null){
+                $topic = 0;
+            }
+            foreach ($offers as $offer) {
+                if ($offer->user_id == Auth::user()->id) {
+                    $has_make_an_offer = true;
+                    $freelance_offer = Offer::where('user_id', Auth::user()->id)
+                                                ->where('projet_id', $projet->id)
+                                                ->first();
+                }
+            }
         }
-        
-        $departement = Departement::find($projet->departement_id);
-        $offers = Offer::where('projet_id', $projet->id)->get();
 
-        return view('projets.show', compact('projet', 'topic', 'contents', 'offers', 'departement'));
+        return view('projets.show', compact('projet', 'topic', 'contents', 'offers', 'departement', 'has_make_an_offer', 'freelance_offer'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -194,7 +205,7 @@ class ProjetController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -222,11 +233,30 @@ class ProjetController extends Controller
 
     public function download($id)
     {
-
         $dl = Projet::find($id);
         return Storage::download('documents/' . $dl->file_projet);
-
     }
 
+    public function close(Request $request)
+    {
+        $projet= Projet::find($request->projet_id);
+        if(Auth::user()->id === $projet->user_id){
+            $projet->status = "closed";
+            $projet->save();
+            return redirect()->back()->with('danger', 'Votre offre a bien été fermé');
+        }
+        return redirect()->back();
+    }
+
+    public function open($id)
+    {
+        $projet= Projet::find($id);
+        if(Auth::user()->id === $projet->user_id){
+            $projet->status = "open";
+            $projet->save();
+            return redirect()->route('home')->with('success', 'Votre offre a bien été publié');
+        }
+        return redirect()->back();
+    }
 
 }

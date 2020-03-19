@@ -11,6 +11,7 @@ h1{
   background-size: cover;
   background-position: center;
   padding: 150px 0;
+  margin-bottom: -100px;
 }
 
 .banner h1 {
@@ -27,6 +28,7 @@ h1{
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
+
 .card-img-iziplans{
     height:120px;
 }
@@ -84,3 +86,26 @@ h1{
   pointer-events: none;
   color: #aaa;
 }
+
+.btn-menu{
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  font-size: 18px !important;
+}
+
+.dropdown-menu{
+  min-width: 15rem !important;
+  border: none !important;
+}
+
+.dropdown-item{
+  font-size: 1rem;
+}
+
+.last_missions{
+  background-color: #F8FAFC;
+  z-index: 98;
+  border-radius: 0.25rem;
+}
+

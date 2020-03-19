@@ -13,6 +13,7 @@ h1 {
   background-size: cover;
   background-position: center;
   padding: 150px 0;
+  margin-bottom: -100px;
 }
 
 .banner h1 {
@@ -87,6 +88,28 @@ h1 {
   color: #aaa;
 }
 
+.btn-menu {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  font-size: 18px !important;
+}
+
+.dropdown-menu {
+  min-width: 15rem !important;
+  border: none !important;
+}
+
+.dropdown-item {
+  font-size: 1rem;
+}
+
+.last_missions {
+  background-color: #F8FAFC;
+  z-index: 98;
+  border-radius: 0.25rem;
+}
+
 .icon-register {
   font-size: 10em;
   color: rgba(52, 144, 220, 0.5);
@@ -128,16 +151,6 @@ h1 {
 .card-show {
   border: 0px !important;
   padding: 1.25rem;
-}
-
-.project-state {
-  background-color: #00CF67;
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  background-clip: padding-box;
 }
 
 .subtitle-project {
@@ -237,8 +250,8 @@ h1 {
 }
 
 .message_preview_index {
-  width: 250px;
   font-size: 13px;
+  font-style: italic;
   color: #bdc4c7 !important;
   margin-top: 0;
   margin-bottom: 0;
@@ -254,8 +267,23 @@ h1 {
   margin-bottom: 0;
 }
 
-.message_index :hover {
+.card_message :hover {
   background-color: #ECEEEF;
+}
+
+.card_message {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.avatar_message {
+  width: 40px;
+  height: 40px;
+  margin-right: 4px;
+  margin-top: 4px;
+  margin-left: 4px;
+  border-radius: 2px;
+  line-height: 30px;
 }
 
 .message_date {
@@ -11161,6 +11189,10 @@ li {
 
 h1 {
   font-size: 3em;
+}
+
+h6 {
+  font-size: 1.2rem;
 }
 
 p {

@@ -6,7 +6,11 @@
     <div class="container py-4">
         <h1 class="text-left pt-5 text-white">{{ucfirst($projet->title)}}</h1>
         <div class="d-flex justify-content-start mb-5 ">
-            <p class= "subtitle-project"><span class="mr-1 published project-state"></span> Ouvert</p>
+            @if($projet->status === 'open')
+                <p class= "subtitle-project"><span class="fas fa-circle text-success"></span> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</p>
+            @elseif($projet->status === 'closed')
+                <p class= "subtitle-project"><span class="fas fa-circle text-secondary"></span> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</p>
+            @endif
             <p class="subtitle-project mx-3"><span><i class="subtitle-project fas fa-gavel"></i></span> {{$offers->count()}} Offre(s)</p>
             
         </div>
@@ -44,12 +48,20 @@
             </div >
 {{-- ------------------------------------------------ Right part ----------------------------------------------- --}}
             <div class="col-md-4 my-2 col-sm-12 mt-n5">
-                
+                {{-- --------------- Si l'utilisateur est l'auteur du projet --------------- --}}
                 @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
                     <div class="card card-show mb-3">
-                        <button class="btn btn-primary">Modifier mon projet</button>
+                        <button class="btn btn-primary mb-4"><i class="fas fa-pencil-alt text-white"></i> Modifier mon projet</button>
+                        {{-- --------------- Si le projet est publié --------------- --}}
+                        @if ($projet->status === 'open')
+                            <a data-toggle="modal" data-target="#closeModal" class="btn btn-danger text-white"><i class="fas fa-exclamation-triangle text-white"></i> Fermer mon projet </a>
+                        {{-- --------------- Si le projet est fermé --------------- --}}
+                        @elseif ($projet->status === 'closed')
+                            <a href={{ route('projet.open', $projet) }}" class="btn btn-success text-white"><i class="fas fa-lock-open text-white"></i> Publier à nouveau le projet</a>
+                        @endif                         
                     </div> 
                 @else
+                {{-- --------------- Si l'utilisateur n'est pas connecté --------------- --}}
                     @guest
                         <div class="card card-show bg-dark mb-3">
                             <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
@@ -59,14 +71,34 @@
                             <button class="btn btn-primary">Contacter le client</button>
                         </div>
                     @endguest
+                {{-- --------------- Si l'utilisateur est connecté --------------- --}}
                     @auth
-                        <div class="card card-show bg-dark mb-3">
-                            <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
-                            <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
-                        </div>
-                        <div class="card card-show mb-3">
-                            <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary">Contacter le client</a>
-                        </div>
+                    {{-- --------------- Si c'est un freelance --------------- --}}
+                        @if (!empty(Auth::user()) && Auth::user()->role === 'freelance')
+                            <div class="card card-show bg-dark mb-3">
+                                <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
+                                {{-- --------------- Si le freelance n'a pas encore fait d'offre --------------- --}}
+                                @if ($has_make_an_offer === false)
+                                    <a href="{{route('offers.create', $projet)}}" class="btn btn-success"><i class="fas fa-gavel text-white"></i> Faire une offre</a>
+                                {{-- --------------- Si le freelance a fait une offre --------------- --}}
+                                @elseif ($has_make_an_offer === true)
+                                    <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success">Modifier mon offre</a>                                
+                                @endif
+                            </div>
+                            <div class="card card-show mb-3">
+                                <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary"><i class="fas fa-pen text-white"></i> Contacter le client</a>
+                            </div>
+                    {{-- --------------- Si c'est un client --------------- --}}
+                        @elseif (!empty(Auth::user()) && Auth::user()->role === 'client')
+                            <div class="card card-show bg-dark mb-3">
+                                <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
+                                <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
+                            </div>
+                            <div class="card card-show mb-3">
+                                <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary">Contacter le client</a>
+                            </div>
+                        @endif
+                        
                     @endauth
                 @endif
             </div>
@@ -118,7 +150,7 @@
         @endforeach
     </div>
 
-{{-- ------------------------------------------------ Modal ----------------------------------------------- --}}
+{{-- ------------------------------------------------ Modal Delete ----------------------------------------------- --}}
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -138,5 +170,30 @@
     </div>
   </div>
 </div>
+
+{{-- ------------------------------------------------ Modal Close ----------------------------------------------- --}}
+<div class="modal fade" id="closeModal" tabindex="-1" role="dialog" aria-labelledby="closeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="closeModalLabel">ATTENTION !</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Etes-vous sûr de vouloir fermer votre projet?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <form action="{{route('projet.close')}}" method="post">
+                @csrf
+            <input type="hidden" name="projet_id" value="{{ $projet->id }}">
+                <button type="submit" class="btn btn-danger">Fermer le Projet</button>     
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection

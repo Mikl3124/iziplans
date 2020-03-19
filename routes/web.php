@@ -25,6 +25,8 @@ Route::post('/cancel','SubscribeController@cancel');
 //Projet
 Route::resource('projets', 'ProjetController');
 Route::get('/projet/download/{id}', 'ProjetController@download')->name('downloadfile');
+Route::post('/projet-close/', 'ProjetController@close')->name('projet.close');
+Route::get('/projet-open/{id}', 'ProjetController@open')->name('projet.open');
 
 
 // Administrateur
@@ -43,7 +45,10 @@ Route::group(['middleware' => ['auth','admin']], function () {
 
 //Offers
 Route::get('/offer/{id}', 'OfferController@create')->name('offers.create');
+Route::get('/offer/edit/{id}', 'OfferController@edit')->name('offers.edit');
+Route::post('/offer/{id}', 'OfferController@update')->name('offers.update');
 Route::post('/offer/', 'OfferController@store')->name('offers.store');
+Route::delete('/offer/{id}', 'OfferController@destroy')->name('offers.delete');
 
 //Profil
 Route::get('/profil/{id}', 'UserController@show')->name('profil');

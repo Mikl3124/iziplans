@@ -6,17 +6,23 @@
         <div class="col-md-8">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        <div class="text-center">
+                        <div class="text-center mt-3">
                             <p><em>Selectionnez votre type de compte</em></p>
                         </div>
                         <div class="d-flex justify-content-around mb-4">
-                            <label>
+                            <label class="text-center">
+                                <p class="mb-0">CLIENT</p>
+                                <p>(j'ai un projet à faire réaliser)</p> 
                                 <input type="radio" name="role" value="client" checked>
                                 <i class="choice-icon fas fa-user-alt"></i>
+                                
                             </label>
-                            <label>
+                            <label class="text-center">
+                                <p class="mb-0">FREELANCE</p>
+                                <p>(je cherche des missions)</p>
                                 <input type="radio" name="role" value="freelance" checked>
                                 <i class="choice-icon fas fa-pencil-ruler"></i>
+                                
                             </label>
                             
                         </div>

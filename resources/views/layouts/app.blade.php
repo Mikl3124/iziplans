@@ -67,12 +67,24 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('messagerie.index', Auth::user()) }}">MESSAGERIE</a>
-                                    <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}">PROFIL</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    @if(Auth::user()->role === 'client')
+                                        <div class="text-center">
+                                            <a class="btn btn-success btn-lg btn-menu" href="{{route('projets.create')}}"><i class="far fa-plus-square text-white"></i> Déposer un projet</a>
+                                        </div>
+                                        <h6 class=text-center>MON COMPTE</h6>
+                                        <a class="dropdown-item" href="{{ route('messagerie.index', Auth::user()) }}"><i class="far fa-envelope"></i> Messagerie</a>
+                                        <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-phone-alt"></i> Mes coordonnées</a>
+                                    <hr>
+                                        <h6 class=text-center>PROJETS</h6>
+                                        <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>           
+                                    @elseif(Auth::user()->role === 'freelance')
+                                        <a class="dropdown-item" href="{{ route('messagerie.index', Auth::user()) }}">Messagerie</a>
+                                        <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}">Mon profil</a>
+                                    @endif
+                                    <hr>
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        DECONNEXION
+                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt text-danger"></i> Se déconnecter
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

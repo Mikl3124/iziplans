@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
 {
-        protected $guarded =[];
+  protected $guarded =[];
 
-        public function user()
-        {
-          return $this->belongsTo(User::class);
-        }
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
 
-        public function projet()
-        {
-          return $this->belongsTo(Projet::class);
-        }
+  public function projet()
+  {
+    return $this->belongsTo(Projet::class);
+  }
+  
 }
