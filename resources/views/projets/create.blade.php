@@ -19,7 +19,7 @@
       </div>
     <!-- ---------------- Compétences ------------------ -->
       <div class="row">
-        <div class="col md-6 sm-12">
+        <div class="col-md-6 col-sm-12">
           <div class="form-group">
             <label for="competences-projet">Selectionnez les compétences recherchez</label>
             <select class="form-control js-select @error('competences') is-invalid @enderror" id="competences-projet" multiple="multiple" value="{{ json_encode(old('competences')) }}" name="competences[]">
@@ -33,7 +33,7 @@
           </div>
         </div>
     <!-- ---------------- Catégories ------------------ -->
-        <div class="col md-6 sm-12">
+        <div class="col-md-6 col-sm-12">
             <div class="form-group">
               <label for="categories-projet">Selectionnez vos catégories</label>
               <select class="form-control js-select @error('categories') is-invalid @enderror" id="categories-projet" value="{{ json_encode(old('categories')) }}" multiple="multiple" name="categories[]">

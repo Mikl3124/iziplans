@@ -75,18 +75,34 @@
                     @auth
                     {{-- --------------- Si c'est un freelance --------------- --}}
                         @if (!empty(Auth::user()) && Auth::user()->role === 'freelance')
-                            <div class="card card-show bg-dark mb-3">
-                                <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
-                                {{-- --------------- Si le freelance n'a pas encore fait d'offre --------------- --}}
-                                @if ($has_make_an_offer === false)
-                                    <a href="{{route('offers.create', $projet)}}" class="btn btn-success"><i class="fas fa-gavel text-white"></i> Faire une offre</a>
-                                {{-- --------------- Si le freelance a fait une offre --------------- --}}
-                                @elseif ($has_make_an_offer === true)
-                                    <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success">Modifier mon offre</a>                                
-                                @endif
+                            {{-- --------------- Si le projet est ouvert --------------- --}}
+                            @if ($projet->status === 'open')
+                                <div class="card card-show bg-dark mb-3">
+                                    <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
+                                    {{-- --------------- Si le freelance n'a pas encore fait d'offre --------------- --}}
+                                    @if ($has_make_an_offer === false)
+                                        <a href="{{route('offers.create', $projet)}}" class="btn btn-success"><i class="fas fa-gavel text-white"></i> Faire une offre</a>
+                                    {{-- --------------- Si le freelance a fait une offre --------------- --}}
+                                    @elseif ($has_make_an_offer === true)
+                                        <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success">Modifier mon offre</a>                                
+                                    @endif
+                            {{-- --------------- Si le projet est fermé --------------- --}}
+                            @elseif ($projet->status === 'closed')
+                                <div class="card card-show bg-dark mb-3">
+                                    <p class="text-white text-center">Ce projet est fermé .</p>
+                                    <p class="text-white text-center">Il n'est plus possible de faire d'offre .</p>
+                                    <a href="" class="btn btn-success"><i class="fas fa-list text-white"></i> Consulter la liste des projets</a>
+                                </div>
+                            @endif
                             </div>
                             <div class="card card-show mb-3">
-                                <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary"><i class="fas fa-pen text-white"></i> Contacter le client</a>
+                                {{-- --------------- Si le projet est ouvert --------------- --}}
+                                @if ($projet->status === 'open')
+                                    <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary"><i class="fas fa-pen text-white"></i> Contacter le client</a>
+                                {{-- --------------- Si le projet est fermé --------------- --}}
+                                @elseif ($projet->status === 'closed') 
+                                    <a href="" class="btn btn-success"><i class="fas fa-list text-white"></i> Consulter la liste des projets</a>
+                                @endif
                             </div>
                     {{-- --------------- Si c'est un client --------------- --}}
                         @elseif (!empty(Auth::user()) && Auth::user()->role === 'client')

@@ -59,19 +59,16 @@
             <div class="card card-project-home mb-3">
 
                 <div class="card-body ">
-                    <div class="d-flex">
-                        <h2 class="list-project-title">{{$projet->title}}</h2>
-
-                    </div>
-                    <div class="d-flex justify-content-start">
+                    <h2 class="list-project-title">{{$projet->title}}</h2>
+                    <div class="row">
                         @if ($projet->status === "open")
-                            <span><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
                         @elseif ($projet->status === "closed")
-                            <span><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</span>
+                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</span>
                         @endif
-                        <span class="ml-5"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}}</span>
-                        <span class="ml-5"><i class="fas fa-euro-sign"></i> Budget :  801€ à 2500€ </span>
-                        <span class="ml-5"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} Offres </span>
+                        <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}}</span>
+                        <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-euro-sign"></i> Budget :  801€ à 2500€ </span>
+                    <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() <= 1 ? 'Offre' : 'Offres'}} </span>
                         
                     </div>
                     <hr>
