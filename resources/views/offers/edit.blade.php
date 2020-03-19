@@ -71,7 +71,7 @@
                 <div class="col-md-4 my-2 col-sm-12 mt-n5">
                     <div class="card card-show bg-dark mb-3">
                         <p class="text-white">N'hésitez pas à demander des informations complémentaires !</p>
-                       
+                        <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary"><i class="fas fa-pen text-white"></i> Contacter le client</a>  
                     </div>
                 </div>
         </div>

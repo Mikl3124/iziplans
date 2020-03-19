@@ -11,7 +11,7 @@
             @elseif($projet->status === 'closed')
                 <p class= "subtitle-project"><span class="fas fa-circle text-secondary"></span> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</p>
             @endif
-            <p class="subtitle-project mx-3"><span><i class="subtitle-project fas fa-gavel"></i></span> {{$offers->count()}} Offre(s)</p>
+            <p class="subtitle-project mx-3"><span><i class="subtitle-project fas fa-gavel"></i></span> {{$offers->count()}} {{ $projet->offers->count() <= 1 ? 'Offre' : 'Offres'}}</p>
             
         </div>
     </div>
@@ -150,7 +150,7 @@
                                     <p class= "mr-4">{{$offer->offer_price}} € TTC</p>
                                     <p>{{$offer->offer_days}} jours</p>
                                 </div>
-                                <a class="btn btn-primary" href="http://">Modifier mon offre</a>
+                                <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success">Modifier mon offre</a>       
                                 
                             </div>
                         @elseif ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)

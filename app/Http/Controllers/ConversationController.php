@@ -62,9 +62,14 @@ class ConversationController extends Controller
         $projet = Projet::find($projet);
         $values = $request->all();
         $topic = Topic::find($request->topic_id);
-        $rules = [
-            'content' => 'required',
-        ];
+        if ($files = $request->file('file_message')) {
+            $rules = [
+            ];
+        }else{
+            $rules = [
+                'content' => 'required',
+            ];
+        }
 
         $validator = Validator::make($values, $rules,[
             'content.required' => 'Veuillez écrire votre message',

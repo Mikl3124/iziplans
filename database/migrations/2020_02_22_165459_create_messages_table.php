@@ -23,7 +23,7 @@ class CreateMessagesTable extends Migration
             $table->foreign('projet_id')->references('id')->on('projets')->onDelete('cascade');
             $table->unsignedBigInteger('topic_id');
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
-            $table->text('content');
+            $table->text('content')->nullable();;
             $table->timestamps();
             $table->string('file_message')->nullable();
             $table->dateTime('read_at')->nullable();

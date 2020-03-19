@@ -20,13 +20,29 @@
                         @foreach ($messages as $message)
                             <div class="row">
                                 <div class="col-md-10 {{ $message->from->id === $user->id ? 'offset-md-2 text-right' : ''}}">
-                                    <p class="mb-0"><strong>{{ $message->from->id === $user->id ? 'Moi' : $message->from->firstname}}</strong> <br></p>
-                                    <p class="{{ $message->from->id === $user->id ? 'my_message' : 'his_message'}}">{!! nl2br(e($message->content)) !!}</p>
-                                    @isset($message->file_message)
-                                            <a href="{{ route('messagerie.download', $message)}}">
-                                                <i class="fas fa-download"></i> Télécharger le fichier
-                                            </a>
-                                    @endisset
+                                    {{-- ------------- Si le contenu du message est vide (fichier à télécharger seulement) ---------------- --}}
+                                    @if ($message->content === null)
+                                        @isset($message->file_message)
+                                            <p class="mb-0"><strong>{{ $message->from->id === $user->id ? 'Moi' : $message->from->firstname}}</strong> <br></p>
+                                            <p class="{{ $message->from->id === $user->id ? 'my_message' : 'his_message'}}">
+                                                <a href="{{ route('messagerie.download', $message)}}"><i class="fas fa-download"></i> {{ $message->file_message }}</a>
+                                            </p>
+                                        @endisset
+                                    {{-- ------------- Si le contenu du message n'est pas vide ---------------- --}}
+                                    @else
+                                        <p class="mb-0"><strong>{{ $message->from->id === $user->id ? 'Moi' : $message->from->firstname}}</strong> <br></p>
+                                        <p class="{{ $message->from->id === $user->id ? 'my_message' : 'his_message'}}">{!! nl2br(e($message->content)) !!}</p>
+                                        @isset($message->file_message)
+                                            @if ($message->content === null)
+                                            @else
+                                                <p class="{{ $message->from->id === $user->id ? 'my_message' : 'his_message'}}">
+                                                    <a href="{{ route('messagerie.download', $message)}}"><i class="fas fa-download"></i> {{ $message->file_message }}</a>
+                                                </p>
+                                            @endif
+                                    @endisset    
+                                    @endif
+                                    {{-- ------------- Si le message contient une pièce jointe ---------------- --}}
+                                    
                                 </div>
                             </div>
                             <div class="message_date {{ $message->from->id === $user->id ? 'offset-md-2 text-right' : ''}}">{{ Carbon\Carbon::parse($message->created_at)->isoFormat('Do MMMM YYYY à h:mm') }}</div>

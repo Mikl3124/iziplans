@@ -136,10 +136,17 @@ class OfferController extends Controller
     public function edit($id)
     {
         $offer = Offer::find($id);
+        
         if($offer->user_id === Auth::user()->id){
             $projet = Projet::find($offer->projet_id);
+            $topic = Topic::where('projet_id', $projet->id)
+                        ->where('from_id', Auth::user()->id)
+                        ->first();
+            if($topic === null){
+                $topic = 0;
+            }
 
-            return view('offers.edit',compact('offer', 'projet'));
+            return view('offers.edit',compact('offer', 'projet', 'topic'));
         }
 
 
