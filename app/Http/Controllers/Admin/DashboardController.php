@@ -7,6 +7,7 @@ use App\Model\Projet;
 use App\model\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -118,4 +119,15 @@ class DashboardController extends Controller
                 ->with('lastuser', $lastuser)
                 ->with('lastprojet', $lastprojet);
     }
+
+    public function connect_as($user)
+    {
+        if(Auth::user()->role === 'admin'){
+            Auth::loginUsingId($user, true);
+            return redirect()->back();
+        }
+        return redirect()->back();
+
+    }
+        
 }

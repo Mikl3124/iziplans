@@ -14,6 +14,7 @@ Edition des utilisateurs
                     <h3 class ="text-center">Edition de l'utilisateur</h3>
                 </div>
                 <div class="card-body">
+                    <a class="btn btn-primary mb-2" href="{{ route('connect_as', $users)}}">Se connecter en tant que...</a>
                     <div class="row">
                         <div class="col-md-6">
                             <form action="/user-register-update/{{$users->id }}" method="POST">

@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+    public function register_choice()
+    {
+        return view('users.register_choice');
+    }
+
     public function show($id)
     {
         $user = User::find($id);

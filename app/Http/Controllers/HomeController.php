@@ -24,8 +24,9 @@ class HomeController extends Controller
      public function list()
     {
             
-        $projets = Projet::with('categories')->orderBy('created_at', 'desc')->paginate(5);
+        $projets_first = Projet::orderBy('created_at', 'desc')->take(3)->get();
+        $projets_seconds = Projet::orderBy('created_at', 'desc')->skip(3)->take(3)->get();
 
-        return view('welcome', compact('projets',));
+        return view('welcome', compact('projets_first', 'projets_seconds'));
     }
 }

@@ -4,29 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register', $role) }}">
                         @csrf
-                        <div class="text-center mt-3">
-                            <p><em>Selectionnez votre type de compte</em></p>
+                        <input type="hidden" name="role" value="{{ $role }}">
+                        <div class="text-center my-5">
+                            <h3>Informations de connexion</h3>
                         </div>
-                        <div class="d-flex justify-content-around mb-4">
-                            <label class="text-center">
-                                <p class="mb-0">CLIENT</p>
-                                <p>(j'ai un projet à faire réaliser)</p> 
-                                <input type="radio" name="role" value="client" checked>
-                                <i class="choice-icon fas fa-user-alt"></i>
-                                
-                            </label>
-                            <label class="text-center">
-                                <p class="mb-0">FREELANCE</p>
-                                <p>(je cherche des missions)</p>
-                                <input type="radio" name="role" value="freelance" checked>
-                                <i class="choice-icon fas fa-pencil-ruler"></i>
-                                
-                            </label>
-                            
-                        </div>
-
                           <div class="form-row">
                             <div class="col-md-6 col-sm-12 mb-4">
                             <input id="firstname" placeholder="Prénom" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
@@ -61,16 +44,26 @@
 
                         <div class="form-row">
                             <div class="col-md-6 col-sm-12 mb-4">
-                                <input id="password" placeholder="Mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <div class="input-group" id="show_hide_password_1">
+                                    <input id="password" placeholder="Mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                                    </div>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>   
                             </div>
+
                             <div class="col-md-6 col-sm-12 mb-4">
-                                <input id="password-confirm" placeholder="Confirmer le mot de passe" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <div class="input-group" id="show_hide_password_2">
+                                    <input id="password-confirm" placeholder="Confirmer le mot de passe" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -97,4 +90,35 @@
         </div>
     </div>
 </div>
+
+<script>
+
+$(document).ready(function() {
+    $("#show_hide_password_1 a").on('click', function(event) {
+        event.preventDefault();
+        if($('#show_hide_password_1 input').attr("type") == "text"){
+            $('#show_hide_password_1 input').attr('type', 'password');
+            $('#show_hide_password_1 i').addClass( "fa-eye-slash" );
+            $('#show_hide_password_1 i').removeClass( "fa-eye" );
+        }else if($('#show_hide_password_1 input').attr("type") == "password"){
+            $('#show_hide_password_1 input').attr('type', 'text');
+            $('#show_hide_password_1 i').removeClass( "fa-eye-slash" );
+            $('#show_hide_password_1 i').addClass( "fa-eye" );
+        }
+    });
+    $("#show_hide_password_2 a").on('click', function(event) {
+        event.preventDefault();
+        if($('#show_hide_password_2 input').attr("type") == "text"){
+            $('#show_hide_password_2 input').attr('type', 'password');
+            $('#show_hide_password_2 i').addClass( "fa-eye-slash" );
+            $('#show_hide_password_2 i').removeClass( "fa-eye" );
+        }else if($('#show_hide_password_2 input').attr("type") == "password"){
+            $('#show_hide_password_2 input').attr('type', 'text');
+            $('#show_hide_password_2 i').removeClass( "fa-eye-slash" );
+            $('#show_hide_password_2 i').addClass( "fa-eye" );
+        }
+    });
+});
+
+</script>
 @endsection

@@ -56,8 +56,7 @@
                       <th>Nombre d'annonces</th>
                       <th>Editer</th>
                       <th>Supprimer</th>
-
-
+                      <th>Se connecter</th>
                     </thead>
                     <tbody>                        
                               
@@ -67,39 +66,21 @@
                         <td> {{ $user->lastname }}</td>
                         <td> {{ $user->firstname }}</td>
                         <td> {{ $user->email }}</td>
-
-                        <td>                 
-                        <?php switch ($user->role) {
-                                case 'customer':
-                                  echo'Client';
-                                  break;
-                                case 'admin':
-                                  echo"Administrateur";
-                                  break;
-                                case 'client':
-                                  echo "Client";
-                                  break;
-                                case 'freelance':
-                                  echo "Freelance";
-                                  break;                    
-                                default:
-                                  echo"aucun";
-                                    break;
-                          } ?>
-                          </td>
-                          <td class="text-center">
-                              <a class="nav-link" href="/projet-by-user/{{ $user->id }}">Voir</a>
-                          </td>                                               
-                          <td>
-                              <a href="/user-edit/{{ $user->id }}" class="btn btn-success">Editer</a>
-                          <td>
-                              <form action="/user-delete/{{ $user->id }}" method="post">
-                                  {{ csrf_field() }}
-                                  {{ method_field('DELETE') }}
-                              <input type="hidden" name="id" value=" {{ $user->id }}">
-                              <button type="submit" class="btn btn-danger">Supprimer</button>     
-                              </form>
-                          </td>
+                        <td> {{ $user->role }}                  </td>
+                        <td class="text-center">
+                          <a class="nav-link" href="/projet-by-user/{{ $user->id }}">Voir</a>
+                        </td>                                               
+                        <td>
+                          <a href="/user-edit/{{ $user->id }}" class="btn btn-success">Editer</a>
+                        <td>
+                          <form action="/user-delete/{{ $user->id }}" method="post">
+                              {{ csrf_field() }}
+                              {{ method_field('DELETE') }}
+                            <input type="hidden" name="id" value=" {{ $user->id }}">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>     
+                          </form>
+                        </td>
+                        <td><a class="btn btn-primary mb-2" href="{{ route('connect_as', $user)}}">Se connecter</a></t>
                       </tr>
                         @endforeach               
                                              

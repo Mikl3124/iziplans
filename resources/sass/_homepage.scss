@@ -54,7 +54,15 @@ h1{
   border-radius: 8px;
   margin-bottom: 16px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  transition: box-shadow 250ms;
+
+}
+
+.card-pub-home{
+  border-bottom: 0px;
+  border-radius: 8px;
+  border: 2px dashed #38c172 !important;
+  margin-bottom: 16px;
+  text-align: center;
 }
 
 .card-project-home:hover{
@@ -107,5 +115,16 @@ h1{
   background-color: #F8FAFC;
   z-index: 98;
   border-radius: 0.25rem;
+}
+
+.title-call-to-action {
+  text-align: center;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.text-call-to-action {
+  font-size: 16px;
+  line-height: 1.2em;
 }
 

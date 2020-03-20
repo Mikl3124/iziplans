@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\User;
 use App\Model\Offer;
 use App\Model\Topic;
+use App\Model\Budget;
 use App\Model\Projet;
 use App\Mail\Newprojet;
 use App\model\Category;
@@ -34,7 +35,9 @@ class ProjetController extends Controller
      */
     public function index()
     {
-        //
+         $projets = Projet::where('user_id', Auth::user()->id)->get();
+         
+         return view('projets.index', compact('projets'));
     }
 
     /**
@@ -46,15 +49,9 @@ class ProjetController extends Controller
     {
         $categories = Category::all();
         $competences = Competence::all();
-        $departements= Departement::all();
-
-        $budgets = ["1" => "Moins de 500€",
-                 "2" => "500€ à 1000€",
-                 "3" => "1000€ à 2000€",
-                 "4" => "2000€ à 3000€",
-                 "5" => "Plus de 3000€",
-            ];
-
+        $departements = Departement::all();
+        $budgets = Budget::all();
+        
 
         return view('projets.create', compact('categories' , 'competences', 'departements', 'budgets'));
 
@@ -69,7 +66,6 @@ class ProjetController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-
         if(Auth::check()){
 
             $this->validate($request, [
@@ -112,7 +108,7 @@ class ProjetController extends Controller
                         $projet->file_projet = $filenametostore;
                     }
 
-                    $projet->budget = $request->budget;
+                    $projet->budget_id = $request->budget;
 
 
                     if ($projet->save()){
@@ -205,7 +201,15 @@ class ProjetController extends Controller
      */
     public function edit($id)
     {
-
+        $projet = Projet::find($id);
+        $competences = Competence::all();
+        $categories = Category::all();
+        $budgets = Budget::all();
+        $departements = Departement::all();
+        if(Auth::user()->id === $projet->user_id){
+            return view('projets.edit', compact('projet', 'competences', 'categories', 'budgets', 'departements'));
+        }
+        return redirect()->back();
     }
 
     /**
@@ -216,9 +220,67 @@ class ProjetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $projet = Projet::find($id);
+
+        $user = Auth::user();
+        if($user->id === $projet->user_id){
+            if(Auth::check()){
+
+                $this->validate($request, [
+                    'categories' => 'bail|required',
+                    'title' => 'bail|required|string|max:255',
+                    'file-projet' => 'sometimes|max:5000',
+                    'competences' => 'bail|required',
+                    'description' => 'bail|required',
+                    'budget' => 'bail|required',
+                    'departement' => 'bail|required'
+                    ]);
+       
+                        $projet->user_id = $user->id;
+                        $projet->title = $request->title;
+                        $projet->description = $request->description;
+                        $projet->status = 'open';
+                        $projet->departement_id = $request->departement;
+
+    
+                        if ($files = $request->file('file_projet')) {
+                            $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
+    
+                //get filename without extension
+                $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+    
+                //get file extension
+                $extension = $request->file('file_projet')->getClientOriginalExtension();
+    
+                //filename to store
+                //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
+    
+                $filenametostore = $filename.'_'.time().'.'.$extension;
+    
+                            //Upload File
+    
+                            Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore, );
+    
+                            //Store $filenametostore in the database
+                            $projet->file_projet = $filenametostore;
+                        }
+    
+                        $projet->budget_id = $request->budget;
+    
+    
+                        if ($projet->save()){
+                            DB::table('category_projet')->where('projet_id', $projet->id)->delete();
+                            DB::table('competence_projet')->where('projet_id', $projet->id)->delete();
+                            $projet->categories()->attach($request->categories);
+                            $projet->competences()->attach($request->competences);
+                        };
+            }
+            return redirect()->route('projet.show', $projet)->with('success', 'Votre offre a bien été publié');
+        }
+        return redirect()->back();
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -52,7 +52,7 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Inscription</a>
+                                    <a class="nav-link" href="{{ route('register_choice') }}">Inscription</a>
                                 </li>
                             @endif
                         @else
@@ -67,19 +67,26 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    {{-- ------------------------ Si l'utilisateur est un client ----------------------- --}}
                                     @if(Auth::user()->role === 'client')
                                         <div class="text-center">
-                                            <a class="btn btn-success btn-lg btn-menu" href="{{route('projets.create')}}"><i class="far fa-plus-square text-white"></i> Déposer un projet</a>
+                                            <a class="btn btn-success btn-lg btn-menu" href="{{route('projet.create')}}"><i class="far fa-plus-square text-white"></i> Déposer un projet</a>
                                         </div>
                                         <h6 class=text-center>MON COMPTE</h6>
                                         <a class="dropdown-item" href="{{ route('messagerie.index', Auth::user()) }}"><i class="far fa-envelope"></i> Messagerie</a>
                                         <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-phone-alt"></i> Mes coordonnées</a>
                                     <hr>
                                         <h6 class=text-center>PROJETS</h6>
-                                        <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>           
+                                        <a class="dropdown-item" href="{{ route('projet.index') }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>           
+                                    {{-- ------------------------ Si l'utilisateur est un freelance ----------------------- --}}
                                     @elseif(Auth::user()->role === 'freelance')
                                         <a class="dropdown-item" href="{{ route('messagerie.index', Auth::user()) }}">Messagerie</a>
                                         <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}">Mon profil</a>
+                                    {{-- ------------------------ Si l'utilisateur est un admin ----------------------- --}}            
+                                    @elseif(Auth::user()->role === 'admin')
+                                        <a class="dropdown-item" href="{{ route('admin_dashboard') }}">Dashboard</a>
+                                        <a class="dropdown-item" href="{{ route('admin_users') }}">Utilisateurs</a>
+                                        <a class="dropdown-item" href="{{ route('admin_projets') }}">Projets</a>
                                     @endif
                                     <hr>
                                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"
@@ -94,13 +101,6 @@
                             </li>
                         @endguest
                     </ul>
-                    @auth
-                        @if (Auth::user()->role=='admin')
-                            <div>
-                                <a href="/dashboard" type="submit" class="btn btn-secondary">Tableau de Bord</a>
-                            </div>
-                        @endif
-                    @endauth
                 </div>
             </div>
         </nav>

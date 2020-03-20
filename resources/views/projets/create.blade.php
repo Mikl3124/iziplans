@@ -7,7 +7,7 @@
   </div>
 
   <div class="container">
-    <form id="regForm" action="{{ route('projets.store') }}" method="POST" enctype="multipart/form-data">
+    <form id="regForm" action="{{ route('projet.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
     <!-- ---------------- Titre de la mission ------------------ -->
       <div class="form-group select2-selection">
@@ -59,9 +59,9 @@
     <!-- ---------------- Budget ------------------ -->
       <div class="form-group">
         <label for="budget-projet">Selectionnez votre budget</label>
-        <select class="form-control @error('budget') is-invalid @enderror" id="budget-projet" value="{{ old('budget') }}" name="budget">
+        <select class="form-control @error('budget') is-invalid @enderror" id="budget-projet" value="1" name="budget">
           @foreach ($budgets as $budget)
-              <option value = {{$budget}}>{{$budget}}</option>
+          <option value="{{ $budget->id}}" {{ ( old("budget") == $budget->id ? "selected":"") }}>{{ $budget->name }}</option>
           @endforeach
           </select>
         @error('budget')
@@ -73,7 +73,7 @@
         <label for="departements">Selectionnez le departement</label>
         <select class="form-control @error('departement') is-invalid @enderror" id="departement-projet" value="{{ old('departement')}}" name="departement">
           @foreach ($departements as $departement)
-            <option value="{{ $departement->id }} {{ in_array($departement->id, old('departements') ?: []) ? 'selected' : '' }}">{{ $departement->name }}</option>
+            <option value="{{ $departement->id}}" {{ ( old("departement") == $departement->id ? "selected":"") }}>{{ $departement->name }}</option>
           @endforeach
         </select>
         @error('departements')

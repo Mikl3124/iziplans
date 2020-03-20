@@ -23,7 +23,7 @@
                     <a class="btn btn-primary btn-lg text-center" href="#">Devenir Freelance</a>
                 </div>
                 <div class="col-md-6 col-sm-12 mt-5 text-center">
-                    <a class="btn btn-primary btn-lg " href="{{route('projets.create')}}">Déposer un projet</a>
+                    <a class="btn btn-primary btn-lg " href="{{route('projet.create')}}">Déposer un projet</a>
                 </div>
             </div>
         @endguest
@@ -31,10 +31,10 @@
             @if(Auth::user()->role === 'client')
                 <div class="row">
                     <div class="col-md-6 col-sm-12 mt-5 text-center">
-                        <a class="btn btn-primary btn-lg text-center" href="#"><i class="fas fa-suitcase text-white"></i> Gérer mes projets</a>
+                        <a class="btn btn-primary btn-lg text-center" href="{{route('projet.index')}}"></i> Gérer mes projets</a>
                     </div>
                     <div class="col-md-6 col-sm-12 mt-5 text-center">
-                        <a class="btn btn-success btn-lg " href="{{route('projets.create')}}"> <i class="far fa-plus-square text-white"></i> Publier un projet</a>
+                        <a class="btn btn-success btn-lg " href="{{route('projet.create')}}"></i> Publier un projet</a>
                     </div>
                 </div>
             @endif
@@ -54,8 +54,9 @@
     <div class="text-center last_missions">
         <h1 class="text-center mt-5 mb-5 last_missions">Les dernières missions proposées</h1>
     </div>
-        @foreach ($projets as $projet)
-        <a href="/projets/{{ $projet->id }}">
+    {{-- ----------- 3 Derniers Projets ---------- --}}
+        @foreach ($projets_first as $projet)
+        <a href="{{ route('projet.show', $projet) }}">
             <div class="card card-project-home mb-3">
 
                 <div class="card-body ">
@@ -67,7 +68,46 @@
                             <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</span>
                         @endif
                         <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}}</span>
-                        <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-euro-sign"></i> Budget :  801€ à 2500€ </span>
+                        <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} </span>
+                    <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() <= 1 ? 'Offre' : 'Offres'}} </span>
+                        
+                    </div>
+                    <hr>
+
+                    <p class="card-text">{{ Str::words($projet->description, 45, '...') }}</p>
+
+                    @foreach($projet->categories as $category)
+                        <span class="categories">{{ $category->name }} </span>
+                    @endforeach
+
+                </div>
+            </div>
+        </a>
+        @endforeach
+    {{-- ----------- Call to action ---------- --}}
+        <div class="card card-pub-home mb-3">
+            <div class="card-body ">
+                <p class= "title-call-to-action">Besoins de plans ? Déposez une annonce gratuitement</p>
+                <p class= "text-call-to-action">Recevez vos premiers devis rapidement</p>
+                <a class="btn btn-success btn-lg" href="{{route('projet.create')}}">Recevoir des devis</a>
+            </div>
+        </div>
+
+    {{-- ----------- 3 Projets Suivants ---------- --}}
+        @foreach ($projets_seconds as $projet)
+        <a href="{{ route('projet.show', $projet) }}">
+            <div class="card card-project-home mb-3">
+
+                <div class="card-body ">
+                    <h2 class="list-project-title">{{$projet->title}}</h2>
+                    <div class="row">
+                        @if ($projet->status === "open")
+                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                        @elseif ($projet->status === "closed")
+                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</span>
+                        @endif
+                        <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}}</span>
+                        <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} </span>
                     <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() <= 1 ? 'Offre' : 'Offres'}} </span>
                         
                     </div>

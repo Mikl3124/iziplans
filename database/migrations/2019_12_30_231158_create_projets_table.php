@@ -18,7 +18,7 @@ class CreateProjetsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->unsignedBigInteger('user_id')->index()->references('id')->on('users')->onDelete('cascade');
-            $table->string('budget');
+            $table->unsignedBigInteger('budget_id')->index()->references('id')->on('budgets')->onDelete('cascade');
             $table->string('status');
             $table->string('file_projet')->nullable();
             $table->unsignedBigInteger('departement_id')->index()->references('id')->on('departements')->onDelete('cascade');

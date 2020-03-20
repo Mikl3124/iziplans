@@ -40,7 +40,7 @@
                             </tr>
                             <tr>
                                 <td scope="row" class="td-show">Budget</td>
-                                <th scope="col">{{$projet->budget}}</td>
+                                <th scope="col">{{$projet->budget->name}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -51,13 +51,13 @@
                 {{-- --------------- Si l'utilisateur est l'auteur du projet --------------- --}}
                 @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
                     <div class="card card-show mb-3">
-                        <button class="btn btn-primary mb-4"><i class="fas fa-pencil-alt text-white"></i> Modifier mon projet</button>
                         {{-- --------------- Si le projet est publié --------------- --}}
                         @if ($projet->status === 'open')
+                            <a href="{{ route('projet.edit', $projet) }}" class="btn btn-primary text-white mb-3"><i class="fas fa-pencil-alt text-white"></i> Modifier mon projet </a>
                             <a data-toggle="modal" data-target="#closeModal" class="btn btn-danger text-white"><i class="fas fa-exclamation-triangle text-white"></i> Fermer mon projet </a>
                         {{-- --------------- Si le projet est fermé --------------- --}}
                         @elseif ($projet->status === 'closed')
-                            <a href={{ route('projet.open', $projet) }}" class="btn btn-success text-white"><i class="fas fa-lock-open text-white"></i> Publier à nouveau le projet</a>
+                            <a href="{{ route('projet.open', $projet) }}" class="btn btn-success text-white"><i class="fas fa-lock-open text-white"></i> Publier à nouveau le projet</a>
                         @endif                         
                     </div> 
                 @else
@@ -179,7 +179,7 @@
       <div class="modal-body">
             <div class="d-flex flex-column bd-highligh mb-3">
                 <p>Pour effectuer cette action vous devez avoir un compte (gratuit) et être identifié sur le site.</p>
-                <a class="btn btn-primary my-2" href="{{ route('register') }}">M'inscrire gratuitement</a>
+                <a class="btn btn-primary my-2" href="{{ route('register_choice') }}">M'inscrire gratuitement</a>
                 <a class="btn btn-secondary my-2" href="{{ route('login') }}">Me connecter</a>
             </div>
       </div>

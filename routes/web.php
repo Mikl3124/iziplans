@@ -13,27 +13,32 @@
 
 Route::get('/', 'HomeController@list')->name('home');
 
+//Register
 Auth::routes();
-
-Route::post('/subscribe', 'SubscribeController@subscribe');
+Route::get('/profil_choice', 'UserController@register_choice')->name('register_choice');
+Route::get('register/{role}', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register/{role}', 'Auth\RegisterController@register');
+Route::get('login/twitter', 'Auth\LoginController@redirectToProvider')->name('login_twitter');
+Route::get('login/twitter/callback', 'Auth\LoginController@handleProviderCallback');
 
 //Stripe
+Route::post('/subscribe', 'SubscribeController@subscribe');
 Route::get('subscribe', 'SubscribeController@payment')->name('subscribe');
 Route::post('/unsubscribe','SubscribeController@destroy');
 Route::post('/cancel','SubscribeController@cancel');
 
 //Projet
-Route::resource('projets', 'ProjetController');
+Route::resource('projet', 'ProjetController');
 Route::get('/projet/download/{id}', 'ProjetController@download')->name('downloadfile');
-Route::post('/projet-close/', 'ProjetController@close')->name('projet.close');
 Route::get('/projet-open/{id}', 'ProjetController@open')->name('projet.open');
+Route::post('/projet-close/', 'ProjetController@close')->name('projet.close');
 
 
 // Administrateur
 Route::group(['middleware' => ['auth','admin']], function () {
-    Route::get('/dashboard', 'Admin\DashboardController@data');
-    Route::get('/user-register', 'Admin\DashboardController@registered');
-    Route::get('/projet-register', 'Admin\DashboardController@posted');
+    Route::get('/dashboard', 'Admin\DashboardController@data')->name('admin_dashboard');;
+    Route::get('/user-register', 'Admin\DashboardController@registered')->name('admin_users');;
+    Route::get('/projet-register', 'Admin\DashboardController@posted')->name('admin_projets');
     Route::get('/user-edit/{id}', 'Admin\DashboardController@registeredit');
     Route::put('/user-register-update/{id}', 'Admin\DashboardController@registerupdate');
     Route::get('/projet-edit/{id}', 'Admin\DashboardController@projetedit');
@@ -41,6 +46,7 @@ Route::group(['middleware' => ['auth','admin']], function () {
     Route::delete('/user-delete/{id}', 'Admin\DashboardController@registerdelete' );
     Route::delete('/projet-delete/{id}', 'Admin\DashboardController@projetdelete');
     Route::get('/projet-by-user/{id}', 'Admin\DashboardController@projetbyuser');
+    Route::get('/connect-as/{id}', 'Admin\DashboardController@connect_as')->name('connect_as');
 });
 
 //Offers

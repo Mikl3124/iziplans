@@ -7,7 +7,7 @@
         <div class="row d-flex justify-content-between">
             <div class="card card-show mb-5 col-md-7 col-sm-12 mt-n5">
                 <form action="{{ route('offers.update', $offer->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf 
+                    @csrf                  
                 <input type="hidden" name="projet_id" value="{{$projet->id}}">
                     <div class="form-group">
                         <div class="form-row align-items-center">

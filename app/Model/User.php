@@ -29,6 +29,7 @@ class User extends Authenticatable
         'role',
         'lastname',
         'firstname',
+        'secret',
         'cgv',
         'last_login_at',
         'last_login_ip',
