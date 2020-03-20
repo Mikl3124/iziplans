@@ -12,8 +12,14 @@ class Departement extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
     public function projets()
     {
         return $this->hasMany(Projet::class, 'departement_id');
     }
+
+    public function standbyprojects()
+        {
+        return $this->hasMany(Standbyproject::class, 'departement_id');
+        }
 }

@@ -9,14 +9,6 @@
         <blockquote class="blockquote text-center">
             <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
         </blockquote>
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Ecrivez votre recherche ici...">
-            <div class="input-group-append">
-              <button class="btn btn-secondary" type="button">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-          </div>
         @guest
             <div class="row">
                 <div class="col-md-6 col-sm-12 mt-5 text-center">
@@ -51,7 +43,7 @@
 
     {{-- ----------- Dernières Missions Proposées ---------- --}}
 
-    <div class="text-center last_missions">
+    <div class="text-center">
         <h1 class="text-center mt-5 mb-5 last_missions">Les dernières missions proposées</h1>
     </div>
     {{-- ----------- 3 Derniers Projets ---------- --}}

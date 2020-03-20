@@ -13,7 +13,6 @@ h1 {
   background-size: cover;
   background-position: center;
   padding: 150px 0;
-  margin-bottom: -100px;
 }
 
 .banner h1 {
@@ -109,12 +108,6 @@ h1 {
 
 .dropdown-item {
   font-size: 1rem;
-}
-
-.last_missions {
-  background-color: #F8FAFC;
-  z-index: 98;
-  border-radius: 0.25rem;
 }
 
 .title-call-to-action {

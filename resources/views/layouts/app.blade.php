@@ -55,6 +55,9 @@
                                     <a class="nav-link" href="{{ route('register_choice') }}">Inscription</a>
                                 </li>
                             @endif
+                            <li>
+                                <a class="btn btn-success"href="{{route('projet.create')}}">Besoin de plans?</a>  
+                            </li>
                         @else
                             <li class="nav-item dropdown">
 
@@ -70,7 +73,7 @@
                                     {{-- ------------------------ Si l'utilisateur est un client ----------------------- --}}
                                     @if(Auth::user()->role === 'client')
                                         <div class="text-center">
-                                            <a class="btn btn-success btn-lg btn-menu" href="{{route('projet.create')}}"><i class="far fa-plus-square text-white"></i> Déposer un projet</a>
+                                            <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.create')}}">Déposer un projet</a>
                                         </div>
                                         <h6 class=text-center>MON COMPTE</h6>
                                         <a class="dropdown-item" href="{{ route('messagerie.index', Auth::user()) }}"><i class="far fa-envelope"></i> Messagerie</a>
