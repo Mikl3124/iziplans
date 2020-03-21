@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Model\User;
 use App\Model\Offer;
 use App\Model\Topic;
@@ -24,10 +25,10 @@ use Illuminate\Support\Facades\Validator;
 class ProjetController extends Controller
 
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth')->only(['store']);
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['store', 'create']);
+    }
 
     /**
      * Display a listing of the resource.
@@ -36,7 +37,8 @@ class ProjetController extends Controller
      */
 
     public function index()
-    {
+    {   
+
          $projets = Projet::where('user_id', Auth::user()->id)->get();
          
          return view('projets.index', compact('projets'));
@@ -67,7 +69,20 @@ class ProjetController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $input = $request->all();
+        //On vérifie si l'utilisateur est connecté, si c'est le cas on joint l'user id.
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+
+            $input['user_id'] = $user_id;
+
+        }else{
+        // Si l'utilisateur n'est pas connecté, on se dirige à la page register client.
+
+            Session::put('filled_form', $input);
+            return redirect()->route('register', 'client');  
+        }
+
             $this->validate($request, [
                 'categories' => 'bail|required',
                 'title' => 'bail|required|string|max:255',
@@ -80,9 +95,7 @@ class ProjetController extends Controller
 
                     $user = Auth::user();
                     $projet = new Projet;
-                    if(Auth::check()){
-                        $projet->user_id = $user->id;
-                    }
+                    $projet->user_id = $user->id;
                     $projet->title = $request->title;
                     $projet->description = $request->description;
                     $projet->status = 'open';
@@ -145,16 +158,15 @@ class ProjetController extends Controller
                                 // On envoie un email aux freelancer concernés par le lieux
                                 foreach($freelances_departements as $freelance_departement){
                                 Mail::to($freelance_departement->email)->queue(new Newprojet($projet));
+                                // On vide la session
+                                Session::forget('filled_form');
                             }
         
                         return redirect()->route('home')->with('success', 'Votre mission a été postée');       
                     }
 
-                    $role = 'client';
                     return view('auth.register', compact('role', 'projet'));   
     }
-
-
 
     /**
      * Display the specified resource.

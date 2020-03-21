@@ -20,8 +20,11 @@
                         <div class=text-center>
                             <p>Ou connectez-vous avec un mot de passe :</p>
                         </div>
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login') }}">        
                             @csrf
+                        @if(isset($projet))
+                            <input type="hidden" name="projet" value="{{ $projet }}">
+                        @endif
                             <div class="form-group">
                                 <input placeholder="Adresse e-mail" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 @error('email')
@@ -59,14 +62,14 @@
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block">
                                         Se connecter
-                                    </button>   
+                                    </button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="text-center mt-3">
-                    <p>Pas encore membre ?  <a href="{{route('register_choice')}}">Cliquez-ici</a> pour vous inscrire</p>
+                        <p>Pas encore membre ?  <a href="{{route('register_choice')}}">Cliquez-ici</a> pour vous inscrire</p>
                     <div>
                         @if (Route::has('password.request'))
                             <p class="text-center"><a href="{{ route('password.request') }}">J'ai perdu mon mot de passe </a></p>

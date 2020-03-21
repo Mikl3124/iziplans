@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Session;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
@@ -61,6 +63,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
 
 }

@@ -16,19 +16,16 @@
         <form method="POST" action="{{ route('register', $role) }}">
             @csrf
             <input type="hidden" name="role" value="{{ $role }}">
-            @if (isset($projet))
-                <input type="hidden" name="projet" value="{{ $projet->id }}">                 
-            @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card mt-5">
                         <div class="card-body">
                             <div class=text-center>
-                                <p>Créez un compte avec votre adresse email : :</p>
+                                <p>Créez un compte avec votre adresse email :</p>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 col-sm-12 mb-4">
-                                <input id="firstname" placeholder="Prénom" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                    <input id="firstname" placeholder="Prénom" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
 
                                     @error('firstname')
                                         <span class="invalid-feedback" role="alert">
@@ -37,7 +34,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-4">
-                                <input id="lastname" placeholder="Nom" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                    <input id="lastname" placeholder="Nom" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
 
                                     @error('lastname')
                                         <span class="invalid-feedback" role="alert">
@@ -70,7 +67,6 @@
                                         @enderror
                                     </div>   
                                 </div>
-
                                 <div class="col-md-6 col-sm-12 mb-4">
                                     <div class="input-group" id="show_hide_password_2">
                                         <input id="password-confirm" placeholder="Confirmer le mot de passe" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -82,28 +78,21 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="true" id="gridCheck" @error('cgv') is-invalid @enderror" name="cgv" value="{{ old('cgv') }}" required autocomplete="cgv">
-                                @error('cgv')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                <label class="form-check-label" for="gridCheck">
-                                    Je déclare avoir pris connaissance des <a href="http://">conditions générales de vente</a>
-                                </label>
+                                    <input class="form-check-input" type="checkbox" value="true" id="gridCheck" @error('cgv') is-invalid @enderror" name="cgv" value="{{ old('cgv') }}" required autocomplete="cgv">
+                                    @error('cgv')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    <label class="form-check-label" for="gridCheck">
+                                        Je déclare avoir pris connaissance des <a href="http://">conditions générales de vente</a>
+                                    </label>
                                 </div>
                             </div>
                             <div class="form-group mb-4 text-center">
-                                @if (isset($projet))
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                        Publier le projet
-                                    </button>
-                                @else
                                     <button type="submit" class="btn btn-primary btn-lg btn-block">
                                         S'enregister
                                     </button>
-                                @endif
-
                             </div>
                         </div>
                     </div>
