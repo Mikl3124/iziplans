@@ -75,18 +75,19 @@ class LoginController extends Controller
                 auth()->login($existingUser);
                 return redirect($this->redirectPath());
             }
-            $newUser = User::create([
-                'firstname' => $user->getNickname(),
-                'lastname' => $user->getName(),
-                'email' => $user->getEmail(),
-                'avatar' => $user->getAvatar(),
-                'role' => $role,
-                'email_verified_at' => now(),
-                'password' => Hash::make('5yr20mffdsPa$$wOrd'),
-                'cgv' => true,
-            ]);
-            auth()->login($newUser);
-            return redirect($this->redirectPath());
+
+        $newUser = User::create([
+            'firstname' => $user->getNickname(),
+            'lastname' => $user->getName(),
+            'email' => $user->getEmail(),
+            'avatar' => $user->getAvatar(),
+            'role' => $role,
+            'email_verified_at' => now(),
+            'password' => Hash::make('5yr20mffdsPa$$wOrd'),
+            'cgv' => true,
+        ]);
+        auth()->login($newUser);
+        return redirect($this->redirectPath());
 
         // $user->token;
     }
