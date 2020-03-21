@@ -10,7 +10,7 @@
         <div class="text-center">
             <p>Créez un compte rapidement :</p>
             <div class="row justify-content-md-center">
-                {{-- ---------------- Connection avec Twitter ---------------- --}}
+                {{-- ---------------- Social connection ---------------- --}}
                 <a href="{{route('social-login.redirect', 'twitter', $role)}}" class="btn btn-secondary ml-2">Login with Twitter</a>
                 <a href="{{route('social-login.redirect', 'github', $role)}}" class="btn btn-secondary ml-2">Login with Github</a>
                 <a href="{{route('social-login.redirect', 'facebook', $role)}}" class="btn btn-secondary ml-2">Login with Facebook</a>

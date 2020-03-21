@@ -81,6 +81,7 @@ class LoginController extends Controller
                 'email' => $user->getEmail(),
                 'avatar' => $user->getAvatar(),
                 'role' => $role,
+                'email_verified_at' => now(),
                 'password' => Hash::make('5yr20mffdsPa$$wOrd'),
                 'cgv' => true,
             ]);
