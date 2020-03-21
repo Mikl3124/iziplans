@@ -10,11 +10,11 @@
             <p>Connectez-vous avec un compte :</p>
             <div class="row justify-content-md-center">
                 {{-- ---------------- Social connection ---------------- --}}
-                <a href="{{route('social-login.redirect', 'twitter', $role)}}" class="btn btn-secondary ml-2">Login with Twitter</a>
-                <a href="{{route('social-login.redirect', 'github', $role)}}" class="btn btn-secondary ml-2">Login with Github</a>
-                <a href="{{route('social-login.redirect', 'facebook', $role)}}" class="btn btn-secondary ml-2">Login with Facebook</a>
-                <a href="{{route('social-login.redirect', 'google', $role)}}" class="btn btn-secondary ml-2">Login with Google</a>
-                <a href="{{route('social-login.redirect', 'linkedin', $role)}}" class="btn btn-secondary ml-2">Login with Linkedin</a>
+                <a href="{{route('social-login.redirect', 'twitter')}}" class="btn btn-secondary ml-2">Login with Twitter</a>
+                <a href="{{route('social-login.redirect', 'github')}}" class="btn btn-secondary ml-2">Login with Github</a>
+                <a href="{{route('social-login.redirect', 'facebook')}}" class="btn btn-secondary ml-2">Login with Facebook</a>
+                <a href="{{route('social-login.redirect', 'google')}}" class="btn btn-secondary ml-2">Login with Google</a>
+                <a href="{{route('social-login.redirect', 'linkedin')}}" class="btn btn-secondary ml-2">Login with Linkedin</a>
             </div>
         </div>
         <div class="row justify-content-center">
