@@ -117,7 +117,7 @@ class ProjetController extends Controller
 
                         //Upload File
 
-                        Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore, );
+                        Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore );
 
                         //Store $filenametostore in the database
                         $projet->file_projet = $filenametostore;
@@ -263,20 +263,16 @@ class ProjetController extends Controller
                         if ($files = $request->file('file_projet')) {
                             $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
     
-                //get filename without extension
-                $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-    
-                //get file extension
-                $extension = $request->file('file_projet')->getClientOriginalExtension();
-    
-                //filename to store
-                //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
-    
-                $filenametostore = $filename.'_'.time().'.'.$extension;
+                            //get filename without extension
+                            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+                
+                            //get file extension
+                            $extension = $request->file('file_projet')->getClientOriginalExtension();
+                
+                            $filenametostore = $filename.'_'.time().'.'.$extension;
     
                             //Upload File
-    
-                            Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore, );
+                            Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore);
     
                             //Store $filenametostore in the database
                             $projet->file_projet = $filenametostore;

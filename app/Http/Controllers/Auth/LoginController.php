@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use Session;
+use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -25,29 +27,6 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Redirect the user to the Twitter authentication page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function redirectToProvider()
-    {
-        return Socialite::driver('twitter')->redirect();
-    }
-
-    /**
-     * Obtain the user information from Twitter.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function handleProviderCallback()
-    {
-        $user = Socialite::driver('twitter')->user();
-        
-
-        // $user->token;
-    }
-
-    /**
      * Where to redirect users after login.
      *
      * @var string
@@ -62,6 +41,53 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Redirect the user to the Twitter authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+
+
+    /**
+     * Obtain the user information from Twitter.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback($provider)
+    {
+         if ( Session::get('filled_form') ){
+            $role = Session::get('filled_form');
+            Session::forget('filled_form');
+         }
+
+        $user = Socialite::driver($provider)->stateless()->user();
+        
+        $existingUser = User::whereEmail($user->getEmail())->first();
+
+        if($existingUser) {
+                auth()->login($existingUser);
+                return redirect($this->redirectPath());
+            }
+            $newUser = User::create([
+                'firstname' => $user->getNickname(),
+                'lastname' => $user->getName(),
+                'email' => $user->getEmail(),
+                'avatar' => $user->getAvatar(),
+                'role' => $role,
+                'password' => Hash::make('5yr20mffdsPa$$wOrd'),
+                'cgv' => true,
+            ]);
+            auth()->login($newUser);
+            return redirect($this->redirectPath());
+
+        // $user->token;
     }
 
 }

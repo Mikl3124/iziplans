@@ -10,7 +10,11 @@
             <p>Créez un compte rapidement :</p>
             <div class="row justify-content-md-center">
                 {{-- ---------------- Connection avec Twitter ---------------- --}}
-                <a href="{{ route('login_twitter') }}"><img class="logo-connect"src="https://iziplans.s3.eu-west-3.amazonaws.com/images/logo_twitter.png" alt="logo-twitter"></a>
+                <a href="{{route('social-login.redirect', 'twitter', $role)}}" class="btn btn-secondary ml-2">Login with Twitter</a>
+                <a href="{{route('social-login.redirect', 'github', $role)}}" class="btn btn-secondary ml-2">Login with Github</a>
+                <a href="{{route('social-login.redirect', 'facebook', $role)}}" class="btn btn-secondary ml-2">Login with Facebook</a>
+                <a href="{{route('social-login.redirect', 'google', $role)}}" class="btn btn-secondary ml-2">Login with Google</a>
+                <a href="{{route('social-login.redirect', 'linkedin', $role)}}" class="btn btn-secondary ml-2">Login with Linkedin</a>
             </div>
         </div>
         <form method="POST" action="{{ route('register', $role) }}">

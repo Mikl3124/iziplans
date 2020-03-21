@@ -11,7 +11,15 @@
             <div class="row justify-content-md-center">
                 {{-- Connection réseaux sociaux --}}
                 {{-- ---------------- Connection avec Twitter ---------------- --}}
-                <a href="{{ route('login_twitter') }}"><img class="logo-connect"src="https://iziplans.s3.eu-west-3.amazonaws.com/images/logo_twitter.png" alt="logo-twitter"></a>
+            <a href="{{route('social-login.redirect', 'twitter')}}"><img class="logo-connect"src="https://iziplans.s3.eu-west-3.amazonaws.com/images/logo_twitter.png" alt="logo-twitter"></a>
+                {{-- ---------------- Connection avec Github ---------------- --}}
+            <a href="{{route('social-login.redirect', 'github')}}" class="btn btn-secondary ml-2">Login with Github</a>
+                {{-- ---------------- Connection avec Facebook ---------------- --}}
+            <a href="{{route('social-login.redirect', 'facebook')}}" class="btn btn-secondary ml-2">Login with Facebook</a>
+            {{-- ---------------- Connection avec Google ---------------- --}}
+            <a href="{{route('social-login.redirect', 'google')}}" class="btn btn-secondary ml-2">Login with Google</a>
+            {{-- ---------------- Connection avec Linkedin ---------------- --}}
+            <a href="{{route('social-login.redirect', 'linkedin')}}" class="btn btn-secondary ml-2">Login with Linkedin</a>
             </div>
         </div>
         <div class="row justify-content-center">

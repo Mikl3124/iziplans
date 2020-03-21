@@ -16,10 +16,12 @@ Route::get('/', 'HomeController@list')->name('home');
 //Register
 Auth::routes();
 Route::get('/profil_choice', 'UserController@register_choice')->name('register_choice');
-Route::get('register/{role}', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register/{role}', 'Auth\RegisterController@register');
-Route::get('login/twitter', 'Auth\LoginController@redirectToProvider')->name('login_twitter');
-Route::get('login/twitter/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('/register/{role}', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register/{role}', 'Auth\RegisterController@register');
+
+//Social Register
+Route::get('social-login/{provider}', 'Auth\LoginController@redirectToProvider')->name('social-login.redirect');
+Route::get('social-login/{provider}/callback/', 'Auth\LoginController@handleProviderCallback')->name('social-login.callback');
 
 //Stripe
 Route::post('/subscribe', 'SubscribeController@subscribe');
@@ -69,6 +71,7 @@ Route::post('image-upload', 'UserController@imageUpload')->name('image.upload');
 //     throw new Exception('My first Sentry error!');
 // });
 
+//Messagerie
 Route::get('/messagerie/{topic}/{projet}', 'ConversationController@show')->name('messagerie.show');
 Route::get('/messagerie-index/{projet}', 'ConversationController@index')->name('messagerie.index');
 Route::get('/messagerie-download/{message}', 'ConversationController@download')->name('messagerie.download');
