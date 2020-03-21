@@ -67,8 +67,8 @@ class LoginController extends Controller
             Session::forget('filled_form');
          }
 
-        $user = Socialite::driver($provider)->stateless()->user();
-        
+        $user = Socialite::driver($provider)->user();
+
         $existingUser = User::whereEmail($user->getEmail())->first();
 
         if($existingUser) {

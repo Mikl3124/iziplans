@@ -37,10 +37,10 @@ class ProjetController extends Controller
      */
 
     public function index()
-    {   
+    {
 
          $projets = Projet::where('user_id', Auth::user()->id)->get();
-         
+
          return view('projets.index', compact('projets'));
     }
 
@@ -55,7 +55,7 @@ class ProjetController extends Controller
         $competences = Competence::all();
         $departements = Departement::all();
         $budgets = Budget::all();
-        
+
 
         return view('projets.create', compact('categories' , 'competences', 'departements', 'budgets'));
 
@@ -80,7 +80,7 @@ class ProjetController extends Controller
         // Si l'utilisateur n'est pas connecté, on se dirige à la page register client.
 
             Session::put('filled_form', $input);
-            return redirect()->route('register', 'client');  
+            return redirect()->route('register', 'client');
         }
 
             $this->validate($request, [
@@ -131,41 +131,41 @@ class ProjetController extends Controller
                     if(Auth::check()){
                                 $competences = $request->competences;
                                 $departement_id = $request->departement;
-                
+
                                 $departement = Departement::find($departement_id);
-                
+
                                 // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
                                 $freelances_competences = User::where('alert_competences', 1)
                                                                 ->where('role', 'freelance')
                                                                 ->whereHas('competences', function ($query) use ($competences) {
                                                                     $query->whereIn('competence_id', $competences);
                                                                 })->get();
-                
+
                                 // On envoie un email aux freelancer concernés par les compétences
                                 foreach($freelances_competences as $freelance_competence){
                                     Mail::to($freelance_competence->email)->queue(new Newprojet($projet));
                                 }
-                
+
                                 // On sélectionne les users concernés par au moins un des départements et qui ont choisis d'être informés
                                 $freelances_departements = User::where('role', 'freelance')
                                                                 ->where('alert_departements', 1)
                                                                 ->whereHas('departements',function($query) use ($departement) {
                                                                     $query->where('departement_id', $departement->id);
                                                                 })->get();
-                
-                
-                
+
+
+
                                 // On envoie un email aux freelancer concernés par le lieux
                                 foreach($freelances_departements as $freelance_departement){
                                 Mail::to($freelance_departement->email)->queue(new Newprojet($projet));
                                 // On vide la session
                                 Session::forget('filled_form');
                             }
-        
-                        return redirect()->route('home')->with('success', 'Votre mission a été postée');       
+
+                        return redirect()->route('home')->with('success', 'Votre mission a été postée');
                     }
 
-                    return view('auth.register', compact('role', 'projet'));   
+                    return view('auth.register', compact('role', 'projet'));
     }
 
     /**
@@ -187,7 +187,7 @@ class ProjetController extends Controller
         } else {
             $contents = NULL;
         }
-        
+
         if (isset(Auth::user()->id)){
             $topic = Topic::where('projet_id', $projet->id)
                         ->where('from_id', Auth::user()->id)
@@ -207,7 +207,7 @@ class ProjetController extends Controller
 
         return view('projets.show', compact('projet', 'topic', 'contents', 'offers', 'departement', 'has_make_an_offer', 'freelance_offer'));
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -236,7 +236,7 @@ class ProjetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
         $projet = Projet::find($id);
 
         $user = Auth::user();
@@ -252,35 +252,35 @@ class ProjetController extends Controller
                     'budget' => 'bail|required',
                     'departement' => 'bail|required'
                     ]);
-       
+
                         $projet->user_id = $user->id;
                         $projet->title = $request->title;
                         $projet->description = $request->description;
                         $projet->status = 'open';
                         $projet->departement_id = $request->departement;
 
-    
+
                         if ($files = $request->file('file_projet')) {
                             $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
-    
+
                             //get filename without extension
                             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-                
+
                             //get file extension
                             $extension = $request->file('file_projet')->getClientOriginalExtension();
-                
+
                             $filenametostore = $filename.'_'.time().'.'.$extension;
-    
+
                             //Upload File
                             Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore);
-    
+
                             //Store $filenametostore in the database
                             $projet->file_projet = $filenametostore;
                         }
-    
+
                         $projet->budget_id = $request->budget;
-    
-    
+
+
                         if ($projet->save()){
                             DB::table('category_projet')->where('projet_id', $projet->id)->delete();
                             DB::table('competence_projet')->where('projet_id', $projet->id)->delete();

@@ -10,11 +10,11 @@
             <p>Créez un compte rapidement :</p>
             <div class="row justify-content-md-center">
                 {{-- ---------------- Social connection ---------------- --}}
-                <a href="{{route('social-login.redirect', 'twitter', $role)}}" class="btn btn-secondary ml-2">Login with Twitter</a>
-                <a href="{{route('social-login.redirect', 'github', $role)}}" class="btn btn-secondary ml-2">Login with Github</a>
-                <a href="{{route('social-login.redirect', 'facebook', $role)}}" class="btn btn-secondary ml-2">Login with Facebook</a>
-                <a href="{{route('social-login.redirect', 'google', $role)}}" class="btn btn-secondary ml-2">Login with Google</a>
-                <a href="{{route('social-login.redirect', 'linkedin', $role)}}" class="btn btn-secondary ml-2">Login with Linkedin</a>
+                <a href="{{route('social-login.redirect', 'twitter')}}" class="btn btn-secondary ml-2">Login with Twitter</a>
+                <a href="{{route('social-login.redirect', 'github')}}" class="btn btn-secondary ml-2">Login with Github</a>
+                <a href="{{route('social-login.redirect', 'facebook')}}" class="btn btn-secondary ml-2">Login with Facebook</a>
+                <a href="{{route('social-login.redirect', 'google')}}" class="btn btn-secondary ml-2">Login with Google</a>
+                <a href="{{route('social-login.redirect', 'linkedin')}}" class="btn btn-secondary ml-2">Login with Linkedin</a>
             </div>
         </div>
         <form method="POST" action="{{ route('register', $role) }}">
@@ -69,7 +69,7 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                    </div>   
+                                    </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 mb-4">
                                     <div class="input-group" id="show_hide_password_2">
