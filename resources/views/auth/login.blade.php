@@ -9,6 +9,7 @@
         <div class="text-center">
             <p>Connectez-vous avec un compte :</p>
             <div class="row justify-content-md-center">
+                {{-- Connection réseaux sociaux --}}
                 {{-- ---------------- Connection avec Twitter ---------------- --}}
                 <a href="{{ route('login_twitter') }}"><img class="logo-connect"src="https://iziplans.s3.eu-west-3.amazonaws.com/images/logo_twitter.png" alt="logo-twitter"></a>
             </div>
@@ -80,7 +81,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     $(document).ready(function() {
