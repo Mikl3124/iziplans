@@ -75,12 +75,10 @@ class LoginController extends Controller
         if ( Session::get('role') ) {
             $role = Session::get('role');
         }
-        // Enregistrement des variables pour créer l'user
-        if($user->nickname = null){
-            $firstname = $user->name;
-        }else{
-            $firstname = $user->nickname;
-        }
+        // On découpe le nom de l'user pour récupérer firstname / lastname
+        $name = trim($user->name);
+        $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
+        $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
 
         if($user->email = null){
             $email = $user->id. '@xxx.fr';
@@ -89,8 +87,8 @@ class LoginController extends Controller
         }
 
         $newUser = User::create([
-            'firstname' => $firstname,
-            'lastname' => $user->getName(),
+            'firstname' => $first_name,
+            'lastname' => $last_name,
             'email' => $email,
             'avatar' => $user->getAvatar(),
             'role' => $role,
