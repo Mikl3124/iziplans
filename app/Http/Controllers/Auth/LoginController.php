@@ -75,12 +75,23 @@ class LoginController extends Controller
         if ( Session::get('role') ) {
             $role = Session::get('role');
         }
+        // Enregistrement des variables pour créer l'user
+        if($user->nickname = null){
+            $firstname = $user->name;
+        }else{
+            $firstname = $user->nickname;
+        }
 
-        dd($user);
+        if($user->email = null){
+            $email = $user->id. '@xxx.fr';
+        }else{
+            $email = $user->email;
+        }
+
         $newUser = User::create([
-            'firstname' => $user->getNickname(),
+            'firstname' => $firstname,
             'lastname' => $user->getName(),
-            'email' => $user->getEmail(),
+            'email' => $email,
             'avatar' => $user->getAvatar(),
             'role' => $role,
             'email_verified_at' => now(),
