@@ -82,11 +82,11 @@ class LoginController extends Controller
 
 
         if($user->email === null){
-            $email = $user->id. '@xxx.fr';
+            $email = $user->id. '@email.fr';
         }else{
             $email = $user->email;
         }
-        dd($user, $email);
+
         $newUser = User::create([
             'firstname' => $first_name,
             'lastname' => $last_name,
