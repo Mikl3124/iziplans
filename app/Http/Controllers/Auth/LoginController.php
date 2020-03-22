@@ -85,7 +85,7 @@ class LoginController extends Controller
         }else{
             $email = $user->email;
         }
-
+        dd($user, $email);
         $newUser = User::create([
             'firstname' => $first_name,
             'lastname' => $last_name,
