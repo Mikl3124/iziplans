@@ -76,6 +76,7 @@ class LoginController extends Controller
             $role = Session::get('role');
         }
 
+        dd($user);
         $newUser = User::create([
             'firstname' => $user->getNickname(),
             'lastname' => $user->getName(),
