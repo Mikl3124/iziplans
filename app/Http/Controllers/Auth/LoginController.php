@@ -62,10 +62,6 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($provider)
     {
-         if ( Session::get('filled_form') ){
-            $role = Session::get('filled_form');
-            Session::forget('filled_form');
-         }
 
         $user = Socialite::driver($provider)->user();
 
@@ -75,6 +71,10 @@ class LoginController extends Controller
                 auth()->login($existingUser);
                 return redirect($this->redirectPath());
             }
+
+        if ( Session::get('role') ) {
+            $role = Session::get('role');
+        }
 
         $newUser = User::create([
             'firstname' => $user->getNickname(),

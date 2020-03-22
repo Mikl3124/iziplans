@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
+use Session;
 use App\Model\User;
 use App\model\Competence;
 use App\Model\Departement;
@@ -23,12 +23,14 @@ class UserController extends Controller
     public function register_client()
     {
         $role = 'client';
+        Session::put('role', $role);
         return view('auth.register', compact('role'));
     }
 
     public function register_freelance()
     {
         $role = 'freelance';
+        Session::put('role', $role);
         return view('auth.register', compact('role'));
     }
 
