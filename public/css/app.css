@@ -155,24 +155,14 @@ h1 {
   color: #3490dc;
 }
 
-.logo-connect {
-  font-size: 65px;
-  height: 65px;
-  width: 65px;
-}
-
 .facebook {
   width: 313px;
   height: 46px;
-  position: relative;
   display: inline-block;
   color: #fff;
   font-family: ubuntu, arial, sans-serif;
   font-weight: 600;
-  border-radius: 2px;
-  border: 0;
-  border-width: 1px;
-  border-style: solid;
+  border-radius: 4px;
   background-color: #266abd;
   border-color: #266abd;
   padding: 12px 24px;
@@ -180,12 +170,31 @@ h1 {
   line-height: 22px;
   color: #fff;
   border-color: transparent;
-  border-radius: 4px;
   padding: 11px 50px 8px 50px;
+  margin: 12px 0px;
+  position: relative;
 }
 
 .facebook:hover {
-  color: #7a7d85;
+  color: white;
+  box-shadow: 0px 0px 5px 1px #999999;
+}
+
+.fa-facebook-f {
+  color: white;
+  position: absolute;
+  left: 20px;
+  top: 12px;
+  font-size: 20px;
+}
+
+.img_google {
+  position: absolute;
+  left: 20px;
+  top: 12px;
+  height: 20px;
+  width: 20px;
+  margin-bottom: 4px;
 }
 
 .google {
@@ -197,8 +206,8 @@ h1 {
   font-family: ubuntu, arial, sans-serif;
   font-weight: 600;
   color: #7a7d85;
-  border-radius: 2px;
-  border: 1px solid #ced4da;
+  border-radius: 4px;
+  border: 1px solid #7a7d85;
   padding: 12px 24px;
   font-size: 16px;
   line-height: 22px;
@@ -207,13 +216,8 @@ h1 {
 }
 
 .google:hover {
-  color: #4c8bf5;
-}
-
-.img_google {
-  height: 17px;
-  width: 18px;
-  margin-bottom: 4px;
+  color: #7a7d85;
+  box-shadow: 0px 0px 5px 1px #999999;
 }
 
 .icon-admin {
