@@ -20,6 +20,19 @@ class UserController extends Controller
         return view('users.register_choice');
     }
 
+    public function register_client()
+    {
+        $role = 'client';
+        return view('auth.register', compact('role'));
+    }
+
+    public function register_freelance()
+    {
+        $role = 'freelance';
+        return view('auth.register', compact('role'));
+    }
+
+
     public function show($id)
     {
         $user = User::find($id);

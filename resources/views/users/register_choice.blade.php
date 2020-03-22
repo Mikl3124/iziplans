@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-6 text-center">
                     <div class="mb-3" >
-                        <a href="{{ route('register', 'client') }}"><i class="icon-register fas fa-user"></i></a>
+                        <a href="{{ route('register_client') }}"><i class="icon-register fas fa-user"></i></a>
                     </div>
                     <p class="mb-0">CLIENT</p>
                     <p>(j'ai un projet à faire réaliser)</p>
@@ -18,7 +18,7 @@
                 <div class="col-md-6 text-center">
                     <div>
                         <div class="mb-3">
-                            <a href="{{ route('register', 'freelance') }}"><i class="icon-register fas fa-pencil-ruler"></i></a>
+                            <a href="{{ route('register_freelance') }}"><i class="icon-register fas fa-pencil-ruler"></i></a>
                         </div>
                         <p class="mb-0">FREELANCE</p>
                         <p>(je cherche des missions)</p>
@@ -28,5 +28,5 @@
         </div>
     </div>
 </div>
-    
+
 @endsection

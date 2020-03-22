@@ -16,8 +16,10 @@ Route::get('/', 'HomeController@list')->name('home');
 //Register
 Auth::routes();
 Route::get('/profil_choice', 'UserController@register_choice')->name('register_choice');
-Route::get('/register/{role}', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('/register/{role}', 'Auth\RegisterController@register');
+Route::get('/register_client', 'UserController@register_client')->name('register_client');
+Route::get('/register_freelance', 'UserController@register_freelance')->name('register_freelance');
+Route::get('/register/', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register/', 'Auth\RegisterController@register');
 
 //Social Register
 Route::get('social-login/{provider}', 'Auth\LoginController@redirectToProvider')->name('social-login.redirect');
