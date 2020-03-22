@@ -10,10 +10,15 @@
             <p>Créez un compte rapidement :</p>
             <div class="row justify-content-md-center">
                 {{-- ---------------- Social connection ---------------- --}}
-                <a href="{{route('social-login.redirect', 'twitter')}}" class=""><i class="fab fa-twitter-square"></i></a>
-                <a href="{{route('social-login.redirect', 'facebook')}}" class=""><i class="fab fa-facebook-square"></i></a>
-                <a href="{{route('social-login.redirect', 'google')}}" class=""><i class="fab fa-google-plus-square"></i></a>
-                <a href="{{route('social-login.redirect', 'linkedin')}}" class=""><i class="fab fa-linkedin"></i></a>
+                <div class="col-6 my-1">
+                    <a href="{{route('social-login.redirect', 'facebook')}}" class="signing-button facebook"><i class="fab fa-facebook-square"></i> Continuer avec Facebook</a>
+                </div>
+                <div class="col-6 my-1">
+                    <a href="{{route('social-login.redirect', 'google')}}" class="signing-button google"><img class="img_google" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/google.svg" alt=""> Continuer avec Google</a>
+                </div>
+                <div class="col-12 my-1">
+                    <a href="{{route('social-login.redirect', 'linkedin')}}" class="linkedin"><i class="fab fa-linkedin"></i>Continuer avec Linkedin</a>
+                </div>
             </div>
         </div>
         <form method="POST" action="{{ route('register', $role) }}">

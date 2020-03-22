@@ -72,12 +72,14 @@ class LoginController extends Controller
                 return redirect($this->redirectPath());
             }
 
+        $role = 'client';
+
         if ( Session::get('role') ) {
             $role = Session::get('role');
             // Destroy role session here
             Session::forget('role');
-
         }
+
         // On découpe le nom de l'user pour récupérer firstname / lastname
         $name = trim($user->name);
         $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
