@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Validator;
+use App\Model\User;
 use App\Model\Offer;
 use App\Model\Topic;
 use App\Model\Projet;
+use App\Model\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -19,7 +21,7 @@ class OfferController extends Controller
     {
         $this->middleware('auth')->only(['create', 'store']);
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -57,6 +59,8 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
+        $projet = Projet::find($request->projet_id);
+
         $values = $request->all();
         $user = Auth::user();
 
@@ -75,14 +79,30 @@ class OfferController extends Controller
             'offer_message.required' => 'Un petit mot est obligatoire',
             'file.mime' => 'Seul les fichiers suivants sont admis: pdf,xlx,csv,jpeg,png,jpg,doc,docx',
             'file.max' => 'La taille du fichier doit être de 4Mo maximum'
-            
+
           ]);
         if($validator->fails()){
         return Redirect::back()
             ->withErrors($validator)
             ->withInput();
         }
-        
+
+        $topic = new Topic;
+                        $topic->title = $projet->title;
+                        $topic->from_id = Auth::user()->id;
+                        $topic->to_id = $projet->user_id;
+                        $topic->projet_id = $projet->id;
+
+            $topic->save();
+
+        $message = new Message;
+            $message->from_id = $user->id;
+            $message->to_id = $projet->user_id;
+            $message->content = $request->offer_message;
+            $message->projet_id = $projet->id;
+            $message->topic_id = $topic->id;
+
+
         $offer = new Offer;
                     $offer->projet_id = $request->projet_id;
                     $offer->user_id = $user->id;
@@ -92,25 +112,27 @@ class OfferController extends Controller
 
         if ($files = $request->file('filename')) {
             $filenamewithextension = $request->file('filename')->getClientOriginalName();
-    
+
             //get filename without extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-    
+
             //get file extension
             $extension = $request->file('filename')->getClientOriginalExtension();
-    
+
             //filename to store
             $path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
             $filenametostore = $path.'/'.$filename.'_'.time().'.'.$extension;
-    
+
             //Upload File to s3
-            
+
             Storage::put($filenametostore, $request->file('filename'), 'public');
-    
+
             //Store $filenametostore in the database
             $offer->filename = $filenametostore;
+            $message->file_message = $filenametostore;
         }
         $offer->save();
+        $message->save();
 
     return redirect()->route('home')->with('success', 'Votre offre a bien été postée');
 
@@ -124,7 +146,11 @@ class OfferController extends Controller
      */
     public function show($id)
     {
-        //
+        $offer = Offer::find($id);
+        if(Auth::user()->id === $offer->user_id || Auth::user()->id === $offer->projet->user_id ) {
+              return view('offers.show',compact('offer'));
+        }
+        return redirect()->back();
     }
 
     /**
@@ -136,7 +162,7 @@ class OfferController extends Controller
     public function edit($id)
     {
         $offer = Offer::find($id);
-        
+
         if($offer->user_id === Auth::user()->id){
             $projet = Projet::find($offer->projet_id);
             $topic = Topic::where('projet_id', $projet->id)
@@ -150,7 +176,7 @@ class OfferController extends Controller
         }
 
 
-        
+
     }
 
     /**
@@ -180,4 +206,6 @@ class OfferController extends Controller
         }
         return redirect()->back();
     }
+
+
 }

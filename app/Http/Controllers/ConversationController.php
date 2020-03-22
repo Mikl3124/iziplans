@@ -39,7 +39,7 @@ class ConversationController extends Controller
         if($topic){
             $user = Auth::user();
             $users = User::select('firstname', 'id')->where('id', '!=', Auth::user()->id)->get();
-            
+
             $messages = Message::where('topic_id', $topic->id)
                                 ->where(function($query) use ($topic) {
                                     $query  ->where('to_id', Auth::user()->id)
@@ -91,8 +91,8 @@ class ConversationController extends Controller
                         $topic->projet_id = $projet->id;
 
             $topic->save();
-        } 
-        
+        }
+
         $message = new Message;
                     $message->content = $request->content;
                     $message->from_id = Auth::user()->id;
@@ -125,12 +125,12 @@ class ConversationController extends Controller
                         Storage::putFileAs('documents', $request->file('file_message'), $filenametostore, );
 
                         //Store $filenametostore in the database
-                        
+
                         $message->file_message = $filenametostore;
 
             }
         $message->save();
-        
+
 
         return redirect()->route('messagerie.show', ['projet' => $projet, 'topic' =>$topic]);
     }

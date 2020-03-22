@@ -56,7 +56,7 @@
                                 </li>
                             @endif
                             <li>
-                                <a class="btn btn-success"href="{{route('projet.create')}}">Besoin de plans?</a>  
+                                <a class="btn btn-success"href="{{route('projet.create')}}">Besoin de plans?</a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
@@ -72,30 +72,45 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     {{-- ------------------------ Si l'utilisateur est un client ----------------------- --}}
                                     @if(Auth::user()->role === 'client')
+                                    <div class="text-center">
+                                        <p class="mb-0">Vous êtes Client</p>
+                                        <a href=""><small>(Activer mon profil FREELANCE)</small></a>
+                                    </div>
                                         <div class="text-center">
                                             <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.create')}}">Déposer un projet</a>
                                         </div>
-                                        <h6 class=text-center>MON COMPTE</h6>
+                                        <h6 class="text-center bg-secondary text-white p-2">MON COMPTE</h6>
                                         <a class="dropdown-item" href="{{ route('messagerie.index', Auth::user()) }}"><i class="far fa-envelope"></i> Messagerie</a>
                                         <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-phone-alt"></i> Mes coordonnées</a>
-                                    <hr>
-                                        <h6 class=text-center>PROJETS</h6>
-                                        <a class="dropdown-item" href="{{ route('projet.index') }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>           
+                                        <h6 class="text-center bg-secondary text-white p-2">PROJETS</h6>
+                                        <a class="dropdown-item" href="{{ route('projet.index') }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>
                                     {{-- ------------------------ Si l'utilisateur est un freelance ----------------------- --}}
                                     @elseif(Auth::user()->role === 'freelance')
-                                        <a class="dropdown-item" href="{{ route('messagerie.index', Auth::user()) }}">Messagerie</a>
-                                        <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}">Mon profil</a>
-                                    {{-- ------------------------ Si l'utilisateur est un admin ----------------------- --}}            
+                                        <div class="text-center">
+                                            <p class="mb-0">Vous êtes Freelance</p>
+                                            <a href=""><small>(Activer mon profil CLIENT)</small></a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.create')}}">Voir les missions</a>
+                                        </div>
+                                            <h6 class="text-center bg-secondary text-white p-2">MON COMPTE</h6>
+                                        <a class="dropdown-item" href="{{ route('messagerie.index', Auth::user()) }}"><i class="far fa-envelope"></i> Messagerie</a>
+                                        <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-phone-alt"></i> Mes coordonnées</a>
+                                {{-- ------------------------ Si l'utilisateur est un admin ----------------------- --}}
                                     @elseif(Auth::user()->role === 'admin')
+                                        <div class="text-center">
+                                            <p class="mb-0">Vous êtes Admin</p>
+                                        </div>
+                                        <hr>
                                         <a class="dropdown-item" href="{{ route('admin_dashboard') }}">Dashboard</a>
                                         <a class="dropdown-item" href="{{ route('admin_users') }}">Utilisateurs</a>
                                         <a class="dropdown-item" href="{{ route('admin_projets') }}">Projets</a>
                                     @endif
                                     <hr>
-                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt text-danger"></i> Se déconnecter
-                                    </a>
+                                        <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt text-danger"></i> Se déconnecter
+                                        </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

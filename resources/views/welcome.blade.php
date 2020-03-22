@@ -12,7 +12,7 @@
         @guest
             <div class="row">
                 <div class="col-md-6 col-sm-12 mt-5 text-center">
-                    <a class="btn btn-primary btn-lg text-center" href="#">Devenir Freelance</a>
+                    <a class="btn btn-primary btn-lg text-center" href="{{ route('register_freelance') }}">Devenir Freelance</a>
                 </div>
                 <div class="col-md-6 col-sm-12 mt-5 text-center">
                     <a class="btn btn-primary btn-lg " href="{{route('projet.create')}}">Déposer un projet</a>
@@ -62,7 +62,7 @@
                         <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}}</span>
                         <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} </span>
                     <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() <= 1 ? 'Offre' : 'Offres'}} </span>
-                        
+
                     </div>
                     <hr>
 
@@ -101,7 +101,7 @@
                         <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}}</span>
                         <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} </span>
                     <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() <= 1 ? 'Offre' : 'Offres'}} </span>
-                        
+
                     </div>
                     <hr>
 
