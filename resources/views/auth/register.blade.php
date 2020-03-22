@@ -10,11 +10,10 @@
             <p>Créez un compte rapidement :</p>
             <div class="row justify-content-md-center">
                 {{-- ---------------- Social connection ---------------- --}}
-                <a href="{{route('social-login.redirect', 'twitter')}}" class="btn btn-secondary ml-2">Login with Twitter</a>
-                <a href="{{route('social-login.redirect', 'github')}}" class="btn btn-secondary ml-2">Login with Github</a>
-                <a href="{{route('social-login.redirect', 'facebook')}}" class="btn btn-secondary ml-2">Login with Facebook</a>
-                <a href="{{route('social-login.redirect', 'google')}}" class="btn btn-secondary ml-2">Login with Google</a>
-                <a href="{{route('social-login.redirect', 'linkedin')}}" class="btn btn-secondary ml-2">Login with Linkedin</a>
+                <a href="{{route('social-login.redirect', 'twitter')}}" class=""><i class="fab fa-twitter-square"></i></a>
+                <a href="{{route('social-login.redirect', 'facebook')}}" class=""><i class="fab fa-facebook-square"></i></a>
+                <a href="{{route('social-login.redirect', 'google')}}" class=""><i class="fab fa-google-plus-square"></i></a>
+                <a href="{{route('social-login.redirect', 'linkedin')}}" class=""><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
         <form method="POST" action="{{ route('register', $role) }}">

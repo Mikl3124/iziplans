@@ -74,6 +74,9 @@ class LoginController extends Controller
 
         if ( Session::get('role') ) {
             $role = Session::get('role');
+            // Destroy role session here
+            Session::forget('role');
+
         }
         // On découpe le nom de l'user pour récupérer firstname / lastname
         $name = trim($user->name);
@@ -93,7 +96,7 @@ class LoginController extends Controller
             'email' => $email,
             'avatar' => $user->getAvatar(),
             'role' => $role,
-            'email_verified_at' => now(),
+            'email_verified_at' => date('Y-m-d H:i:s'),
             'password' => Hash::make('5yr20mffdsPa$$wOrd'),
             'cgv' => true,
         ]);
