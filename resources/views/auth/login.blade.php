@@ -7,24 +7,30 @@
     </div>
     <div class="card-block">
         <div class="text-center">
-            <p>Connectez-vous avec un compte :</p>
-            <div class="row justify-content-md-center">
+            <p class="mb-0">Connectez-vous rapidement :</p>
+            <div class="row justify-content-center">
                 {{-- ---------------- Social connection ---------------- --}}
-                <a href="{{route('social-login.redirect', 'twitter')}}" class="btn btn-secondary ml-2">Login with Twitter</a>
-                <a href="{{route('social-login.redirect', 'github')}}" class="btn btn-secondary ml-2">Login with Github</a>
-                <a href="{{route('social-login.redirect', 'facebook')}}" class="btn btn-secondary ml-2">Login with Facebook</a>
-                <a href="{{route('social-login.redirect', 'google')}}" class="btn btn-secondary ml-2">Login with Google</a>
-                <a href="{{route('social-login.redirect', 'linkedin')}}" class="btn btn-secondary ml-2">Login with Linkedin</a>
+                <div class="col-md-4 col-sm-12 my-1">
+                    <a href="{{route('social-login.redirect', 'google')}}" class="signing-button google"><img class="img_google" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/google.svg" alt=""> Continuer avec Google</a>
+                </div>
+                <div class="col-md-4 col-sm-12 my-1">
+                    <a href="{{route('social-login.redirect', 'facebook')}}" class="signing-button facebook"><i class="fab fa-facebook-f"></i> Continuer avec Facebook</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    OU
+                </div>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card mt-5">
+                <div class="card mt-2">
                     <div class="card-body">
                         <div class=text-center>
-                            <p>Ou connectez-vous avec un mot de passe :</p>
+                            <p>Connectez-vous avec un mot de passe :</p>
                         </div>
-                        <form method="POST" action="{{ route('login') }}">        
+                        <form method="POST" action="{{ route('login') }}">
                             @csrf
                         @if(isset($projet))
                             <input type="hidden" name="projet" value="{{ $projet }}">
@@ -49,7 +55,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>   
+                                </div>
                             </div>
 
                             <div class="form-group">
