@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('avatar')->default('https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('password');
             $table->string('provider')->nullable();
             $table->string('role');

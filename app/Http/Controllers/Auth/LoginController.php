@@ -6,6 +6,7 @@ use Session;
 use Carbon\Carbon;
 use App\Model\User;
 use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
@@ -95,18 +96,23 @@ class LoginController extends Controller
             $email = $user->email;
         }
 
-        $newUser = User::create([
-            'firstname' => $first_name,
-            'lastname' => $last_name,
-            'email' => $email,
-            'email_verified_at' => Carbon::now(),
-            'avatar' => $avatar,
-            'role' => $role,
-            'provider' => $provider,
-            'password' => Hash::make('5yr20mffdsPa$$wOrd'),
-            'cgv' => true,
-        ]);
+        $newUser = new User;
+
+            $newUser->firstname = $first_name;
+            $newUser->lastname = $last_name;
+            $newUser->email = $email;
+            $newUser->email_verified_at = Carbon::now();
+            $newUser->avatar = $avatar;
+            $newUser->role = $role;
+            $newUser->provider = $provider;
+            $newUser->password = Hash::make('5yr20mffdsPa$$wOrd');
+            $newUser->cgv = true;
+
+            $newUser->save();
+
         auth()->login($newUser);
+
+        Flashy::success('Bienvenue '. $newUser->firstname);
         return redirect($this->redirectPath());
 
         // $user->token;
