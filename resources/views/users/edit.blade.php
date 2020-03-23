@@ -42,7 +42,7 @@
                                 <div class="form-group">
                                     <label for="titre">Titre professionnel</label>
                                     <input type="text" class="form-control" name="titre" value="{{old('titre', $user->titre)}}">
-                                </div>           
+                                </div>
                                 <!-- ---------------- Departements ------------------ -->
                                 <div class="form-group ">
                                     <label for="departements">Vos lieux</label>
@@ -54,7 +54,7 @@
                                         @error('departements')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                                </div>           
+                                </div>
                                 <!-- ---------------- Checkbox Alert Email Departements------------------ -->
                                 <div class="form-check mt-n3 mb-2">
                                     <input type="hidden" value="0" name="alert_departements">
@@ -72,7 +72,7 @@
                                     @error('competences')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
-                                </div>                  
+                                </div>
                                 <!-- ---------------- Checkbox Alert Email Competences------------------ -->
                                 <div class="form-check mt-n3 mb-2">
                                     <input type="hidden" value="0" name="alert_competences">
@@ -83,7 +83,7 @@
                                 <div class="form-group">
                                     <label for="presentation">Votre présentation</label>
                                     <textarea class="form-control" id="presentation" name="presentation" rows="8">{{old('presentation', $user->description)}}</textarea>
-                                </div>       
+                                </div>
                             @endif
                     <!-- ---------------- Si l'utilsateur est Client ------------------ -->
                             <div class="form-group">
@@ -94,7 +94,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="row"> 
+                            <div class="row">
                                 <div class="form-group col-sm-12 col-md-4">
                                     <label for="form-city">Ville</label>
                                     <input type="text" name="town" class="form-control @error('town') is-invalid @enderror" id="form-city">
@@ -152,7 +152,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <label for="show_hide_password_2">Confirmer le nouveau mot de passe</label>
-                            <div class="input-group" id="show_hide_password_2">                        
+                            <div class="input-group" id="show_hide_password_2">
                                 <input class="form-control" type="password">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
@@ -160,18 +160,18 @@
                         </div>
 
                         </div>
-                        
+
                     </div>
-    
+
                     <div class="text-right">
                         <button type="submit" class="btn btn-success mt-3"></i>Modifier</button>
                     </div>
-                    
-                    
+
+
                 </form>
 
             </div>
-            
+
         </div>
 </div>
 <!-- Modal -->
@@ -180,11 +180,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="text-center">
-                    @if (Auth::user()->avatar === NULL)
-                        <img id="blah" class="mb-3 avatar-modal" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
-                    @else
-                        <img id="blah" class="mb-3 avatar-modal" src={{ $avatar }}>
-                    @endif
+                    <img id="blah" class="mb-3 avatar-modal" src={{ Auth::user()->avatar }}>
                     <!-- Button trigger modal -->
                 </div>
                 <div class="text-center mb-3">
