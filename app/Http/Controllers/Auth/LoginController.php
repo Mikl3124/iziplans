@@ -80,6 +80,8 @@ class LoginController extends Controller
             // Destroy role session here
             Session::forget('role');
         }
+        $avatar =  $user->getAvatar();
+        dd($avatar);
 
         // On découpe le nom de l'user pour récupérer firstname / lastname
         $name = trim($user->name);
@@ -98,6 +100,7 @@ class LoginController extends Controller
             'email' => $email,
             'avatar' => 'https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png',
             'role' => $role,
+            'provider' => $provider,
             'email_verified_at' => date('Y-m-d H:i:s'),
             'password' => Hash::make('5yr20mffdsPa$$wOrd'),
             'cgv' => true,
