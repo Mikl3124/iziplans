@@ -83,7 +83,7 @@ class UserController extends Controller
 
         Storage::put('', $avatar);
 
-        $url = Storage::url($filename);
+        $url = Storage::url($avatar);
 
         $user->avatar = $url;
         $user->save();
