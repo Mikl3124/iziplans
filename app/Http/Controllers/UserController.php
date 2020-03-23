@@ -65,7 +65,7 @@ class UserController extends Controller
         ]);
         $avatar = $request->file('avatar');
 
-        // $filename = md5(time()).'_'.$avatar->getClientOriginalName();
+        $filename = md5(time()).'_'.$avatar->getClientOriginalName();
         // $normal = Image::make($avatar)->save();
         // $medium = Image::make($avatar)->fit(80, 80)->save();
         // $small = Image::make($avatar)->fit(40, 40)->save();
@@ -81,9 +81,10 @@ class UserController extends Controller
         // $user->avatar = $filename;
 
 
-        Storage::put('', $avatar, 'public');
+        Storage::put('', $avatar);
 
-        $url = Storage::url($user->avatar);
+        $url = Storage::url($filename);
+
         $user->avatar = $url;
         $user->save();
 
