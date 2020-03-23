@@ -78,12 +78,11 @@ class UserController extends Controller
         // Storage::put('/users/medium/'.$filename, (string)$medium, 'public');
 
         // Storage::put('/users/small/'.$filename, (string)$small, 'public');
-        // $user->avatar = $filename;
+        $user->avatar = $filename;
 
 
-        Storage::put($filename, $avatar);
-
-
+        Storage::put('avatar', $avatar);
+        $user->avatar = $filename;
         $user->save();
 
         return redirect()->back();
