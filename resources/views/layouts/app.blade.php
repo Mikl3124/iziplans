@@ -80,13 +80,9 @@
                             <li class="nav-item dropdown">
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if (Auth::user()->avatar === NULL)
-                                        <img class="mr-3 rounded-circle navbar-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
-                                        <span class="caret"> {{ Auth::user()->firstname }}</span>
-                                    @else
-                                        <img class="mr-3 rounded-circle navbar-avatar" src="{{ Storage::url('users/small/'. Auth::user()->avatar) }}">
+                                        <img class="mr-3 rounded-circle navbar-avatar" src="{{ Auth::user()->avatar) }}">
                                         <span class="caret">{{ Auth::user()->firstname }}</span>
-                                    @endif
+
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
