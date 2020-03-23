@@ -96,7 +96,7 @@ class LoginController extends Controller
             'firstname' => $first_name,
             'lastname' => $last_name,
             'email' => $email,
-            'avatar' => $user->avatar,
+            'avatar' => $user->getAvatar(),
             'role' => $role,
             'email_verified_at' => date('Y-m-d H:i:s'),
             'password' => Hash::make('5yr20mffdsPa$$wOrd'),
