@@ -61,7 +61,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         request()->validate([
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
         ]);
         $avatar = $request->file('avatar');
 

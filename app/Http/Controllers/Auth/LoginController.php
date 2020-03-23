@@ -86,6 +86,13 @@ class LoginController extends Controller
         $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
 
 
+        $fileContents = file_get_contents($user->getAvatar());
+        $filename = md5(time()).'_'.$fileContents->getClientOriginalName();
+        Storage::put('/users/normal/'.$filename, (string)$normal, 'public');
+        $normal = Image::make($fileContents)->save();
+
+
+
         if($user->email === null){
             $email = $user->id. '@email.fr';
         }else{
@@ -96,7 +103,7 @@ class LoginController extends Controller
             'firstname' => $first_name,
             'lastname' => $last_name,
             'email' => $email,
-            'avatar' => $user->getAvatar(),
+            'avatar' => $filename,
             'role' => $role,
             'email_verified_at' => date('Y-m-d H:i:s'),
             'password' => Hash::make('5yr20mffdsPa$$wOrd'),
