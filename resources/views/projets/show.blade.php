@@ -132,10 +132,9 @@
         {{-- --------------- Si il y a des offres pour ce projet --------------- --}}
             @elseif($offers->count() === 1)
                 @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
-                    <h3>Il y n'y a qu'une offre pour votre projet</h3>
+                    <h3>Seulement une seule offre pour votre projet</h3>
                 @else
-                    <h3>Il n'y a qu'une offre pour ce projet, profitez-en !</h3>
-                    <a href="{{route('offers.create', $projet)}}" class="btn btn-success mb-2">Faire une offre</a>
+                    <h3>Il n'y a qu'une seule offre pour ce projet</h3>
                 @endif
             @elseif($offers->count() > 1)
                 @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)

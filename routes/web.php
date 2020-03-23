@@ -80,6 +80,7 @@ Route::get('/messagerie/{topic}/{projet}', 'ConversationController@show')->name(
 Route::get('/messagerie-index/{projet}', 'ConversationController@index')->name('messagerie.index');
 Route::get('/messagerie-download/{message}', 'ConversationController@download')->name('messagerie.download');
 Route::post('/messagerie/{topic}', 'ConversationController@store')->name('messagerie.store');
+Route::get('showFromNotifications/{topic}/{notification}', 'ConversationController@showFromNotifications')->name('topics.showFromNotifications');
 
 
 

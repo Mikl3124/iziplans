@@ -53,9 +53,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-        public function posts()
+        public function projets()
     {
-        return $this->hasMany(Projet::class)->orderBy('created_at', 'DESC');
+        return $this->hasMany(Projet::class);
 
     }
 

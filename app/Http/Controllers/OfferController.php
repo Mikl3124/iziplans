@@ -9,9 +9,11 @@ use App\Model\Topic;
 use App\Model\Projet;
 use App\Model\Message;
 use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\NewMessagePosted;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
@@ -39,6 +41,7 @@ class OfferController extends Controller
      */
     public function create($id)
     {
+
         $projet = Projet::find($id);
         $topic = Topic::where('projet_id', $projet->id)
                         ->where('from_id', Auth::user()->id)
@@ -60,6 +63,13 @@ class OfferController extends Controller
     public function store(Request $request)
     {
         $projet = Projet::find($request->projet_id);
+        $offers = Offer::where('projet_id', $projet->id)
+                        ->where('user_id', Auth::user()->id)
+                        ->first();
+        if($offers){
+            Flashy::error('Vous avez déjà fait une offre pour ce projet...');
+            return redirect()->back();
+        }
 
         $values = $request->all();
         $user = Auth::user();
@@ -134,7 +144,12 @@ class OfferController extends Controller
         $offer->save();
         $message->save();
 
-    return redirect()->route('home')->with('success', 'Votre offre a bien été postée');
+        // Notification
+        $message_to = User::find($projet->user_id);
+        $message_to->notify(new NewMessagePosted($topic, auth()->user()));
+
+    Flashy::success('Votre offre a bien été enregistrée');
+    return redirect()->route('home');
 
     }
 
@@ -202,7 +217,8 @@ class OfferController extends Controller
         $offer = Offer::find($id);
         if(Auth::user()->id === $offer->user_id){
             $offer->delete();
-            return redirect()->route('home')->with('danger', 'Votre offre a bien été supprimée');
+            Flashy::error('Votre offre a bien été supprimée');
+            return redirect()->route('home');
         }
         return redirect()->back();
     }

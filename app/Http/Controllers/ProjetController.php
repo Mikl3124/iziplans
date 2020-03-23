@@ -14,6 +14,7 @@ use App\model\Competence;
 use App\Model\Departement;
 use Illuminate\Http\Request;
 use App\Model\Standbyproject;
+use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -162,7 +163,8 @@ class ProjetController extends Controller
                                 Session::forget('filled_form');
                             }
 
-                        return redirect()->route('home')->with('success', 'Votre mission a été postée');
+                        Flashy::success('Votre mission a été postée avec succès !');
+                        return redirect()->route('home');
                     }
 
                     return view('auth.register', compact('role', 'projet'));
@@ -288,8 +290,10 @@ class ProjetController extends Controller
                             $projet->competences()->attach($request->competences);
                         };
             }
-            return redirect()->route('projet.show', $projet)->with('success', 'Votre offre a bien été publié');
+            Flashy::success('Votre projet a été modifié avec succès !');
+            return redirect()->route('projet.show', $projet);
         }
+
         return redirect()->back();
     }
 
@@ -317,7 +321,8 @@ class ProjetController extends Controller
         if(Auth::user()->id === $projet->user_id){
             $projet->status = "closed";
             $projet->save();
-            return redirect()->back()->with('danger', 'Votre offre a bien été fermé');
+            Flashy::error('Votre projet a été fermé');
+            return redirect()->back();
         }
         return redirect()->back();
     }
@@ -328,7 +333,8 @@ class ProjetController extends Controller
         if(Auth::user()->id === $projet->user_id){
             $projet->status = "open";
             $projet->save();
-            return redirect()->route('home')->with('success', 'Votre offre a bien été publié');
+            Flashy::success('Votre projet a été publié avec succès !');
+            return redirect()->route('home');
         }
         return redirect()->back();
     }

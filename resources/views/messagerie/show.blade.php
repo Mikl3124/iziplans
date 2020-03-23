@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-
 @section('content')
-
     <div class="container">
         <div class="mt-4">
             <div class="card" >
@@ -39,10 +37,10 @@
                                                     <a href="{{ route('messagerie.download', $message)}}"><i class="fas fa-download"></i> {{ $message->file_message }}</a>
                                                 </p>
                                             @endif
-                                    @endisset    
+                                    @endisset
                                     @endif
                                     {{-- ------------- Si le message contient une pièce jointe ---------------- --}}
-                                    
+
                                 </div>
                             </div>
                             <div class="message_date {{ $message->from->id === $user->id ? 'offset-md-2 text-right' : ''}}">{{ Carbon\Carbon::parse($message->created_at)->isoFormat('Do MMMM YYYY à h:mm') }}</div>
@@ -51,8 +49,8 @@
                         <div class="text-center">
                             <em>Aucun message à afficher</em>
                         </div>
-                        
-                        
+
+
                     @endif
                 </div>
             </div>
@@ -64,7 +62,7 @@
                         @else
                             <input type="hidden" value="{{ $projet->user->id }}" name="to_id">
                         @endif
-                        
+
                         <input type="hidden" value="{{ $topic->id ?? 0 }}" name="topic_id">
                         <div class="form-group">
                             <textarea class="form-control @error('content') is-invalid @enderror" placeholder="Votre message privé..." name="content" rows="3"></textarea>

@@ -11,6 +11,8 @@ use App\Model\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\NewMessagePosted;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 
@@ -34,8 +36,10 @@ class ConversationController extends Controller
 
     public function show($topic, $projet){
 
+
         $topic = Topic::find($topic);
         $projet = Projet::find($projet);
+
         if($topic){
             $user = Auth::user();
             $users = User::select('firstname', 'id')->where('id', '!=', Auth::user()->id)->get();
@@ -53,13 +57,33 @@ class ConversationController extends Controller
         $user = Auth::user();
         $users = User::select('firstname', 'id')->where('id', '!=', Auth::user()->id)->get();
 
+
+
             return view('messagerie.show', compact('users','projet', 'user'));
 
     }
 
+    public function showFromNotifications(Topic $topic, DatabaseNotification $notification){
+
+        $projet = Projet::where('id', $topic->projet_id)->first();
+        $notification->markAsRead();
+        $user = Auth::user();
+        $users = User::select('firstname', 'id')->where('id', '!=', Auth::user()->id)->get();
+
+        $messages = Message::where('topic_id', $topic->id)
+                            ->where(function($query) use ($topic) {
+                                $query  ->where('to_id', Auth::user()->id)
+                                        ->orwhere('from_id', Auth::user()->id);
+                            })
+                            ->get();
+        return view('messagerie.show', compact('users','projet', 'messages', 'user', 'topic'));
+
+    }
+
+
     public function store(Request $request, $projet){
 
-        $projet = Projet::find($projet);
+        $projet = Projet::find($projet)->first();
         $values = $request->all();
         $topic = Topic::find($request->topic_id);
         if ($files = $request->file('file_message')) {
@@ -129,8 +153,14 @@ class ConversationController extends Controller
                         $message->file_message = $filenametostore;
 
             }
+
         $message->save();
 
+
+
+        // Notification
+        $message_to = User::find($request->to_id);
+        $message_to->notify(new NewMessagePosted($topic, auth()->user()));
 
         return redirect()->route('messagerie.show', ['projet' => $projet, 'topic' =>$topic]);
     }
@@ -143,12 +173,4 @@ class ConversationController extends Controller
 
     }
 
-    public function unreadCount($userId){
-        $unread = Message::where('to_id', $userId)
-                    ->groupBy('from_id')
-                    ->selectRaw('from_id, COUNT(id) as count')
-                    ->whereRaw('read_at IS NULL')
-                    ->get()
-                    ->pluck('count', 'from_id');
-    }
 }
