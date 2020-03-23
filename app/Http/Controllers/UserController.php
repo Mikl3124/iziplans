@@ -81,13 +81,11 @@ class UserController extends Controller
         $user->avatar = $filename;
 
 
-        Storage::put('avatar', $avatar);
-        $user->avatar = $filename;
+        Storage::put('avatars', $avatar);
+
+        $url = 'avatars/' . Storage::url($user->avatar);
+        $user->avatar = $url;
         $user->save();
-
-        $url = Storage::url($user->avatar);
-
-        dd($url);
 
         return redirect()->back();
 
