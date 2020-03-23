@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Session;
+use Carbon\Carbon;
 use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -81,12 +82,13 @@ class LoginController extends Controller
             Session::forget('role');
         }
         $avatar =  $user->getAvatar();
-        dd($avatar);
+
 
         // On découpe le nom de l'user pour récupérer firstname / lastname
         $name = trim($user->name);
         $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
         $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
+        dd($name);
 
         if($user->email === null){
             $email = $user->id. '@email.fr';
@@ -101,7 +103,7 @@ class LoginController extends Controller
             'avatar' => 'https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png',
             'role' => $role,
             'provider' => $provider,
-            'email_verified_at' => date('Y-m-d H:i:s'),
+            'email_verified_at' => Carbon::now(),
             'password' => Hash::make('5yr20mffdsPa$$wOrd'),
             'cgv' => true,
         ]);
