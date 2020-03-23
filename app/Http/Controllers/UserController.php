@@ -71,6 +71,7 @@ class UserController extends Controller
         $medium = Image::make($avatar)->resize(80, 80)->encode('png', 75);
         $small = Image::make($avatar)->resize(40, 40)->encode('png', 75);
 
+        Storage::put('/users/large/'.$filename, $avatar, 'public');
         Storage::put('/users/normal/'.$filename, (string)$normal, 'public');
 
         Storage::put('/users/medium/'.$filename, (string)$medium, 'public');
