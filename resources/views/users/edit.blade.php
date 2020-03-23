@@ -11,11 +11,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2 text-center">
-                            @if (Auth::user()->avatar === NULL)
-                                <img id="blah_" class="mb-2 profil-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
-                            @else
-                                <img id="blah_" class="mb-2 profil-avatar" src={{ $avatar }}>
-                            @endif
+                            <img id="blah_" class="mb-2 profil-avatar" src={{ Auth::user()->avatar }}>
                             <!-- Bouton modal -->
                             <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
                                 Modifier
