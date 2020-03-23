@@ -88,8 +88,9 @@ class LoginController extends Controller
 
         $fileContents = file_get_contents($user->getAvatar());
         $filename = md5(time()).'_'.$fileContents->getClientOriginalName();
-        Storage::put('/users/normal/'.$filename, (string)$normal, 'public');
+
         $normal = Image::make($fileContents)->save();
+        Storage::put('/users/normal/'.$filename, (string)$normal, 'public');
 
 
 
