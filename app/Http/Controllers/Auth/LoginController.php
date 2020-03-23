@@ -86,8 +86,6 @@ class LoginController extends Controller
         $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
         $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
 
-        dd($user);
-
         if($user->email === null){
             $email = $user->id. '@email.fr';
         }else{
