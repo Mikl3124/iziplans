@@ -64,7 +64,6 @@ class UserController extends Controller
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
         ]);
         $avatar = $request->file('avatar');
-        $extension = $request->file('avatar')->getClientOriginalExtension();
 
         $filename = md5(time()).'_'.$avatar->getClientOriginalName();
         $normal = Image::make($avatar)->save();
@@ -74,7 +73,7 @@ class UserController extends Controller
         // $medium = Image::make($avatar)->resize(80, 80)->encode('png', 75);
         // $small = Image::make($avatar)->resize(40, 40)->encode('png', 75);
 
-        Storage::put('/users/test/'.$filename, file_get_contents($normal));
+        Storage::put('/users/test/'.$filename, file_get_contents($request->file('avatar')));
 
         Storage::put('/users/normal/'.$filename, (string)$normal, 'public');
 
