@@ -16,6 +16,7 @@
                 <div class="col-md-4 col-sm-12 my-1">
                     <a href="{{route('social-login.redirect', 'facebook')}}" class="signing-button facebook"><i class="fab fa-facebook-f"></i> Continuer avec Facebook</a>
                 </div>
+                    <a href="{{route('social-login.redirect', 'github')}}">github</a>
             </div>
             <div class="row">
                 <div class="col-12">

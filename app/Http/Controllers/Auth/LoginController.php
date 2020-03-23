@@ -96,7 +96,7 @@ class LoginController extends Controller
             'firstname' => $first_name,
             'lastname' => $last_name,
             'email' => $email,
-            'avatar' => $user->getAvatar(),
+            'avatar' => 'https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png',
             'role' => $role,
             'email_verified_at' => date('Y-m-d H:i:s'),
             'password' => Hash::make('5yr20mffdsPa$$wOrd'),
