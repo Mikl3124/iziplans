@@ -38,8 +38,9 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $avatar = Storage::disk('local')->url('users/normal/'. $user->avatar);
 
-        return view('users.show', compact('user'));
+        return view('users.show', compact('user', 'avatar'));
     }
 
     public function edit($id)
@@ -50,8 +51,9 @@ class UserController extends Controller
         $user_competences = $user->competences;
         $user_departements = $user->departements;
 
+        $avatar = Storage::url('users/normal/'. $user->avatar);
         $user = Auth::user();
-        return view('users.edit', compact('user', 'competences', 'user_competences', 'departements', 'user_departements'));
+        return view('users.edit', compact('user', 'avatar', 'competences', 'user_competences', 'departements', 'user_departements'));
     }
 
     public function imageUpload(Request $request)
@@ -63,8 +65,8 @@ class UserController extends Controller
         ]);
         $avatar = $request->file('avatar');
 
-        $filename = md5(time()).'_'.$avatar->getClientOriginalName();
-        $avatarToStore = Image::make($avatar)->resize(400,400);
+        // $filename = md5(time()).'_'.$avatar->getClientOriginalName();
+        // $normal = Image::make($avatar)->save();
         // $medium = Image::make($avatar)->fit(80, 80)->save();
         // $small = Image::make($avatar)->fit(40, 40)->save();
         // $normal = Image::make($avatar)->resize(160, 160)->encode('png', 75);
@@ -76,10 +78,10 @@ class UserController extends Controller
         // Storage::put('/users/medium/'.$filename, (string)$medium, 'public');
 
         // Storage::put('/users/small/'.$filename, (string)$small, 'public');
-        $user->avatar = $filename;
+        // $user->avatar = $filename;
 
 
-        Storage::put('', $avatar->stream(), 'public');
+        Storage::put('', $avatar, 'public');
 
         $url = Storage::url($user->avatar);
         $user->avatar = $url;
