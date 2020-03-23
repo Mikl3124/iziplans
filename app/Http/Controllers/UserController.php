@@ -67,7 +67,7 @@ class UserController extends Controller
         $extension = $request->file('avatar')->getClientOriginalExtension();
 
         $filename = md5(time()).'_'.$avatar->getClientOriginalName();
-        $normal = Image::make($avatar)->fit(160, 160)->save();
+        $normal = Image::make($avatar)->save();
         $medium = Image::make($avatar)->fit(80, 80)->save();
         $small = Image::make($avatar)->fit(40, 40)->save();
         // $normal = Image::make($avatar)->resize(160, 160)->encode('png', 75);
