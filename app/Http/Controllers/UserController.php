@@ -81,7 +81,7 @@ class UserController extends Controller
         // $user->avatar = $filename;
 
 
-        Storage::put($filename, $avatar);
+        Storage::put('', $avatar);
 
         $url = Storage::url($filename);
 
