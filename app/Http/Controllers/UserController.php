@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Session;
+use Validator;
 use App\Model\User;
 use App\model\Competence;
 use App\Model\Departement;
 use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -60,9 +62,25 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        request()->validate([
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8192',
-        ]);
+        $value = $request->all();
+
+        $rules = [
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+        ];
+
+        $validator = Validator::make($value, $rules,[
+            'avatar.image' => 'Seul les fichiers suivants sont admis: jpeg,png,jpg,gif,svg',
+            'avatar.mimes' => 'Seul les fichiers suivants sont admis: jpeg,png,jpg,gif,svg',
+            'avatar.max' => 'La taille du fichier doit être de 5mo maximum'
+
+          ]);
+
+        if($validator->fails()){
+        return Redirect::back()
+            ->withErrors($validator)
+            ->withInput();
+        }
+
 
         // On récupère l'avatar de la requête
         $avatar = $request->file('avatar');

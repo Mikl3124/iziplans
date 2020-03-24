@@ -8,14 +8,22 @@
             <div class="card-body">
                 <div class="text-center">
                     <h3>MODIFICATION DU PROFIL</h3>
+                    @error('avatar')
+                    <div class="alert alert-danger alert-dismissible fade show text-center mb-2" role="alert">
+                        {{ $message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    @enderror
                 </div>
                 <div class="row">
                     <div class="col-md-2 text-center">
-                            <img id="blah_" class="mb-2 profil-avatar" src={{ Auth::user()->avatar }}>
-                            <!-- Bouton modal -->
-                            <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
-                                Modifier
-                            </button>
+                        <img id="blah_" class="mb-2 profil-avatar" src={{ Auth::user()->avatar }}>
+                        <!-- Bouton modal -->
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
+                            Modifier
+                        </button>
                     </div>
                     <div class="col-md-10">
                         <form action="{{ route('profil-update', Auth::user()) }}" method="POST">
@@ -184,7 +192,7 @@
                 </div>
                 <form action="{{ route('image.upload', Auth::user()) }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    <input type="file" id= "upload" name="avatar" onchange="readURL(this);" />
+                <input type="file" id= "upload" name="avatar" onchange="readURL(this);" />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary"><i class="fas fa-times text-secondary"></i> Annuler</button>
                         <button type="submit" class="btn btn-outline-primary"><i class="far fa-paper-plane text-primary"></i>  Envoyer</button>
