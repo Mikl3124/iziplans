@@ -71,13 +71,15 @@ class UserController extends Controller
 
         //Intervention image
 
-        $image = Image::make( $avatar )->widen( 1500, function( $constraint ) {
+        $image = Image::make( $avatar )->resize(null, 200, function ($constraint) {
+            $constraint->aspectRatio();
             $constraint->upsize();
         });
+
         // Récupération du nom
         $filename = basename(Storage::put('', $avatar));
 
-        Storage::put('/path/to/image.jpg', $image->stream());
+        Storage::put($filename, $image->stream());
 
 
         // On efface l'ancien avatar
