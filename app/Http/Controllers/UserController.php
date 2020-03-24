@@ -71,7 +71,7 @@ class UserController extends Controller
 
         //Intervention image
 
-        $image = Image::make( $avatar )->resize(null, 200, function ($constraint) {
+        $image = Image::make( $avatar )->resize(null, 500, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         });
