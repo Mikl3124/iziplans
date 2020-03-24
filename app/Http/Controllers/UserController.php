@@ -64,14 +64,28 @@ class UserController extends Controller
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8192',
         ]);
 
-        // On efface l'ancien avatar
-        Storage::delete($user->filename);
         // On récupère l'avatar de la requête
         $avatar = $request->file('avatar');
-        // On stock le nouvel avatar
-        Storage::put('', $avatar);
+        $extension = $request->file('avatar')->getClientOriginalExtension();
+
+
+        //Intervention image
+
+        $image = Image::make( $avatar )->widen( 1500, function( $constraint ) {
+            $constraint->upsize();
+        });
         // Récupération du nom
         $filename = basename(Storage::put('', $avatar));
+
+        Storage::put('/path/to/image.jpg', $image->stream());
+
+
+        // On efface l'ancien avatar
+        Storage::delete($user->filename);
+
+        // On stock le nouvel avatar
+        //Storage::put('', $image);
+
         // Assignation du nom à l'avatar en BDD
         $store_name = Storage::url($filename);
         //Sauvegarde l'adresse dans la BDD
