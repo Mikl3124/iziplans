@@ -65,8 +65,6 @@ class UserController extends Controller
         ]);
         $avatar = $request->file('avatar');
 
-        $filename = $avatar->getClientOriginalName();
-
         // $medium = Image::make($avatar)->fit(80, 80)->save();
         // $small = Image::make($avatar)->fit(40, 40)->save();
         // $normal = Image::make($avatar)->resize(160, 160)->encode('png', 75);
@@ -80,12 +78,14 @@ class UserController extends Controller
         // Storage::put('/users/small/'.$filename, (string)$small, 'public');
         // $user->avatar = $filename;
 
-
+        //Stockage de la photo
         Storage::put('', $avatar);
 
-        $url = Storage::url($filename);
-
-        $user->avatar = $url;
+        // Récupération du nom
+        $storageName = basename(Storage::put('', $avatar));
+        // Assignation du nom à l'avatar en BDD
+        $user->avatar = $storageName;
+        //Sauvegarde dans la BDD
         $user->save();
 
         return redirect()->back();
