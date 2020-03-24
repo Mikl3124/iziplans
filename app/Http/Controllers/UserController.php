@@ -63,8 +63,12 @@ class UserController extends Controller
         request()->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8192',
         ]);
+
+        // On efface l'ancien avatar
+        Storage::delete($user->avatar);
         $avatar = $request->file('avatar');
 
+        // On stock la nouvelle image
         Storage::put('', $avatar);
 
         // Récupération du nom
