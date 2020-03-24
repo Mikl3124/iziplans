@@ -65,18 +65,20 @@ class UserController extends Controller
         ]);
 
         // On efface l'ancien avatar
-        Storage::delete($user->avatar);
+        Storage::delete($user->filename);
+        // On récupère l'avatar de la requête
         $avatar = $request->file('avatar');
-
-        // On stock la nouvelle image
+        // On stock le nouvel avatar
         Storage::put('', $avatar);
-
         // Récupération du nom
         $filename = basename(Storage::put('', $avatar));
         // Assignation du nom à l'avatar en BDD
         $store_name = Storage::url($filename);
-        //Sauvegarde dans la BDD
+        //Sauvegarde l'adresse dans la BDD
         $user->avatar = $store_name;
+        //Sauvegarde du nom du fichier dans la BDD (pour effacements)
+        $user->filename = $filename;
+        // On sauvegarde User
         $user->save();
 
         return redirect()->back();
