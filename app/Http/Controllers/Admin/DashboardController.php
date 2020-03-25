@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\User;
 use App\Model\Projet;
-use App\model\Category;
+use App\Model\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +27,7 @@ class DashboardController extends Controller
 
     public function posted()
     {
- 
+
         $projets = Projet::all();
         return view('admin.projet-register')
                 ->with('projets', $projets);
@@ -37,7 +37,7 @@ class DashboardController extends Controller
     {
         $user_id = $id;
         $projets = Projet::where('user_id', $user_id)->get();
-        return view('admin.projet-register')                  
+        return view('admin.projet-register')
                     ->with('projets', $projets);
 
     }
@@ -129,5 +129,5 @@ class DashboardController extends Controller
         return redirect()->back();
 
     }
-        
+
 }

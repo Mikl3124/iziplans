@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use Validator;
 use App\Model\User;
-use App\model\Competence;
+use App\Model\Competence;
 use App\Model\Departement;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;

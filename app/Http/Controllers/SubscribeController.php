@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Mail\NewSubscription;
 use Illuminate\Validation\Rule;
 use App\Mail\CancelSubscription;
+use MercurySeries\Flashy\Flashy;
 use App\Mail\DestroySubscription;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +27,8 @@ class SubscribeController extends Controller
 
         return view('subscribe', [
             'intent' => $user->createSetupIntent()
-            
-        ]); 
+
+        ]);
     }
     public function subscribe(Request $request)
     {
@@ -44,7 +45,7 @@ class SubscribeController extends Controller
         ]);
         $plan = request()->plan;
         $user->createOrGetStripeCustomer();
-        $user->updateDefaultPaymentMethod($paymentMethod);            
+        $user->updateDefaultPaymentMethod($paymentMethod);
 
         $user->newSubscription('abonnement', $plan)->create(request()->stripeToken);
 
@@ -52,16 +53,16 @@ class SubscribeController extends Controller
         Mail::to(auth()->user())->send(new NewSubscription($user));
         Mail::to('mickael.delpech@gmail.com')->send(new NewSubscription($user));
 
-        return redirect('home')->with('subscription', 'Félicitations! Vous êtes maintenant abonné, vous pouvez répondre aux offres');
+        Flashy::success('Félicitations! Vous êtes maintenant abonné, vous pouvez répondre aux offres');
+        return redirect()->route('home');
+
     }
 
     public function cancel()
     {
-        $user = auth()->user();
+        $user = Auth::user();
         $user->subscription('abonnement')->cancel();
 
-        Mail::to(auth()->user())->send(new DestroySubscription($user));
-
-        return redirect('home')->with('cancel_subscription', 'Vous êtes désabonné avec succès');
+        return redirect()->route('home');
     }
 }

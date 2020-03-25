@@ -164,18 +164,21 @@
                         </div>
 
                         </div>
-
                     </div>
-
                     <div class="text-right">
                         <button type="submit" class="btn btn-success mt-3"></i>Modifier</button>
                     </div>
-
-
+                </form>
+            </div>
+        </div>
+        <div class="card my-3">
+            <div class="card-body text-center">
+                <form action="{{ route('cancel-subscription') }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-danger"></i>Se désabonner </button>
                 </form>
 
             </div>
-
         </div>
 </div>
 <!-- Modal -->

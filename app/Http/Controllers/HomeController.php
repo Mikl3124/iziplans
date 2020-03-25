@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Projet;
-use App\model\Category;
+use App\Model\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +23,7 @@ class HomeController extends Controller
 
      public function list()
     {
-            
+
         $projets_first = Projet::orderBy('created_at', 'desc')->take(3)->get();
         $projets_seconds = Projet::orderBy('created_at', 'desc')->skip(3)->take(3)->get();
 

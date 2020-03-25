@@ -29,7 +29,7 @@ Route::get('social-login/{provider}/callback/', 'Auth\LoginController@handleProv
 Route::post('/subscribe', 'SubscribeController@subscribe');
 Route::get('subscribe', 'SubscribeController@payment')->name('subscribe');
 Route::post('/unsubscribe','SubscribeController@destroy');
-Route::post('/cancel','SubscribeController@cancel');
+Route::post('/cancel','SubscribeController@cancel')->name('cancel-subscription');
 
 //Projet
 Route::resource('projet', 'ProjetController');
