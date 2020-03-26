@@ -61,7 +61,13 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+
                         <!-- Authentication Links -->
+                        @auth
+                            @if(Auth::user()->subscribed('abonnement'))
+                                <p>Abonné</p>
+                            @endif
+                        @endauth
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">Connexion</a>
@@ -72,7 +78,7 @@
                                 </li>
                             @endif
                             <li>
-                                <a class="btn btn-success"href="{{route('projet.create')}}">Besoin de plans?</a>
+                                <a class="btn btn-success"href="{{ route('register_client') }}">Besoin de plans ?</a>
                             </li>
                         @else
 
@@ -159,63 +165,6 @@
  <!--Footer-->
 
     <footer class="page-footer text-center text-md-left pt-4">
-
-        <!--Footer Links-->
-        <div class="container-fluid">
-        <div class="row">
-
-            <!--First column-->
-            <div class="col-md-3">
-            <h5 class="text-uppercase font-weight-bold mb-4">Footer Content</h5>
-            <p>Here you can use rows and columns here to organize your footer content.</p>
-            </div>
-            <!--/.First column-->
-
-            <hr class="w-100 clearfix d-md-none">
-
-            <!--Second column-->
-            <div class="col-md-2 mx-auto">
-            <h5 class="text-uppercase font-weight-bold mb-4">Links</h5>
-            <ul class="list-unstyled">
-                <li><a href="#!">Link 1</a></li>
-                <li><a href="#!">Link 2</a></li>
-                <li><a href="#!">Link 3</a></li>
-                <li><a href="#!">Link 4</a></li>
-            </ul>
-            </div>
-            <!--/.Second column-->
-
-            <hr class="w-100 clearfix d-md-none">
-
-            <!--Third column-->
-            <div class="col-md-2 mx-auto">
-            <h5 class="text-uppercase font-weight-bold mb-4">Links</h5>
-            <ul class="list-unstyled">
-                <li><a href="#!">Link 1</a></li>
-                <li><a href="#!">Link 2</a></li>
-                <li><a href="#!">Link 3</a></li>
-                <li><a href="#!">Link 4</a></li>
-            </ul>
-            </div>
-            <!--/.Third column-->
-
-            <hr class="w-100 clearfix d-md-none">
-
-            <!--Fourth column-->
-            <div class="col-md-2 mx-auto">
-            <h5 class="text-uppercase font-weight-bold mb-4">Links</h5>
-            <ul class="list-unstyled">
-                <li><a href="#!">Link 1</a></li>
-                <li><a href="#!">Link 2</a></li>
-                <li><a href="#!">Link 3</a></li>
-                <li><a href="#!">Link 4</a></li>
-            </ul>
-            </div>
-            <!--/.Fourth column-->
-
-        </div>
-        </div>
-        <!--/.Footer Links-->
 
         <hr>
 

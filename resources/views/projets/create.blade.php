@@ -19,21 +19,8 @@
       </div>
     <!-- ---------------- Compétences ------------------ -->
       <div class="row">
-        <div class="col-md-6 col-sm-12">
-          <div class="form-group">
-            <label for="competences-projet">Selectionnez les compétences recherchez</label>
-            <select class="form-control js-select @error('competences') is-invalid @enderror" id="competences-projet" multiple="multiple" value="{{ json_encode(old('competences')) }}" name="competences[]">
-              @foreach ($competences as $competence)
-                  <option value="{{ $competence->id }}" {{ in_array($competence->id, old('competences') ?: []) ? 'selected' : '' }}>{{ $competence->name }}</option>
-              @endforeach
-              </select>
-            @error('competences')
-              <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-          </div>
-        </div>
-    <!-- ---------------- Catégories ------------------ -->
-        <div class="col-md-6 col-sm-12">
+        <!-- ---------------- Catégories ------------------ -->
+        <div class="col-md-12 col-sm-12">
             <div class="form-group">
               <label for="categories-projet">Selectionnez vos catégories</label>
               <select class="form-control js-select @error('categories') is-invalid @enderror" id="categories-projet" value="{{ json_encode(old('categories')) }}" multiple="multiple" name="categories[]">

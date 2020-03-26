@@ -20,23 +20,8 @@
     </div>
   <!-- ---------------- Compétences ------------------ -->
     <div class="row">
-      <div class="col-md-6 col-sm-12">
-        <div class="form-group">
-          <label for="competences-projet">Selectionnez les compétences recherchez</label>
-          <select class="form-control js-select @error('competences') is-invalid @enderror" id="competences-projet" multiple="multiple" value="{{ json_encode(old('competences')) }}" name="competences[]">
-            @foreach ($competences as $competence)
-                <option value="{{ $competence->id }}"
-                      {{ in_array($competence->id, $projet->competences->pluck('id')->toArray()) ? 'selected' : '' }}>
-                  {{ $competence->name }}</option>
-              @endforeach 
-            </select>
-          @error('competences')
-            <div class="invalid-feedback">{{ $message }}</div>
-          @enderror
-        </div>
-      </div>
-  <!-- ---------------- Catégories ------------------ -->
-      <div class="col-md-6 col-sm-12">
+      <!-- ---------------- Catégories ------------------ -->
+      <div class="col-md-12 col-sm-12">
           <div class="form-group">
             <label for="categories-projet">Selectionnez vos catégories</label>
             <select class="form-control js-select @error('categories') is-invalid @enderror" id="categories-projet" value="{{ json_encode(old('categories')) }}" multiple="multiple" name="categories[]">
@@ -44,7 +29,7 @@
                 <option value="{{ $category->id }}"
                       {{ in_array($category->id, $projet->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
                   {{ $category->name }}</option>
-              @endforeach 
+              @endforeach
             </select>
             @error('categories')
               <div class="invalid-feedback">{{ $message }}</div>

@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\NewMessagePosted;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\Console\Input\Input;
 
 class OfferController extends Controller
 {
@@ -62,6 +64,7 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
+
         $projet = Projet::find($request->projet_id);
         $offers = Offer::where('projet_id', $projet->id)
                         ->where('user_id', Auth::user()->id)

@@ -67,21 +67,21 @@
                                 </div>
                                 <!-- ---------------- Compétences ------------------ -->
                                 <div class="form-group ">
-                                <label for="competences">Vos compétences</label>
-                                    <select class="form-control js-select" name="competences[]" multiple="multiple">
-                                        @foreach($competences as $competence)
-                                            <option value="{{ $competence->id }}" @foreach ($user_competences as $user_competence)@if (old('competences', $competence->id ) == $user_competence->id) {{ 'selected' }} @endif @endforeach>{{ $competence->name }}</option>
+                                <label for="categories">Vos domaines de compétences</label>
+                                    <select class="form-control js-select" name="categories[]" multiple="multiple">
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}" @foreach ($user_categories as $user_category)@if (old('categories', $category->id ) == $user_category->id) {{ 'selected' }} @endif @endforeach>{{ $category->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('competences')
+                                    @error('categories')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <!-- ---------------- Checkbox Alert Email Competences------------------ -->
+                                <!-- ---------------- Checkbox Alert Email categories------------------ -->
                                 <div class="form-check mt-n3 mb-2">
-                                    <input type="hidden" value="0" name="alert_competences">
-                                    <input type="checkbox" class="form-check-input" value="1" name="alert_competences" @if(old('alert_competences',$user->alert_competences)=="1") checked @endif >
-                                    <label class="form-check-label" for="alert-competences"><em>Me prévenir par e-mail, lorsque une mission correspond à mes compétences</em></label>
+                                    <input type="hidden" value="0" name="alert_categories">
+                                    <input type="checkbox" class="form-check-input" value="1" name="alert_categories" @if(old('alert_categories',$user->alert_categories)=="1") checked @endif >
+                                    <label class="form-check-label" for="alert-categories"><em>Me prévenir par e-mail, lorsque une mission correspond à mes compétences</em></label>
                                 </div>
                                 <!-- ---------------- Présentation ------------------ -->
                                 <div class="form-group">

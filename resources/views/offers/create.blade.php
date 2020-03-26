@@ -7,7 +7,7 @@
         <div class="row d-flex justify-content-between">
             <div class="card card-show mb-5 col-md-7 col-sm-12 mt-n5">
                 <form action="{{ route('offers.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf 
+                    @csrf
                 <input type="hidden" name="projet_id" value="{{$projet->id}}">
                     <div class="form-group">
                         <div class="form-row align-items-center">
@@ -15,7 +15,7 @@
                                 <label class="" for="offer_price">Mon offre</label>
                                 <div class="input-group">
                                     <input type="text" name="offer_price" class="form-control @error('offer_price') is-invalid @enderror" value="{{ old('offer_price') }}" id="offer_price">
-                                    
+
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">€</div>
                                     </div>
@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Envoyer</button>
                         </div>
-                        
+
                     </div>
                 </form>
             </div>

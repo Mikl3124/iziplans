@@ -13,6 +13,8 @@ use App\Mail\DestroySubscription;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class SubscribeController extends Controller
 {
@@ -24,7 +26,6 @@ class SubscribeController extends Controller
     public function payment()
     {
         $user = Auth::user();
-
         return view('subscribe', [
             'intent' => $user->createSetupIntent()
 
@@ -54,6 +55,7 @@ class SubscribeController extends Controller
         Mail::to('mickael.delpech@gmail.com')->send(new NewSubscription($user));
 
         Flashy::success('Félicitations! Vous êtes maintenant abonné, vous pouvez répondre aux offres');
+
         return redirect()->route('home');
 
     }

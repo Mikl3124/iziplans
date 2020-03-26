@@ -53,12 +53,11 @@ class ProjetController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $competences = Competence::all();
         $departements = Departement::all();
         $budgets = Budget::all();
 
 
-        return view('projets.create', compact('categories' , 'competences', 'departements', 'budgets'));
+        return view('projets.create', compact('categories', 'departements', 'budgets'));
 
     }
 
@@ -88,7 +87,6 @@ class ProjetController extends Controller
                 'categories' => 'bail|required',
                 'title' => 'bail|required|string|max:255',
                 'file-projet' => 'sometimes|max:5000',
-                'competences' => 'bail|required',
                 'description' => 'bail|required',
                 'budget' => 'bail|required',
                 'departement' => 'bail|required'
@@ -127,24 +125,23 @@ class ProjetController extends Controller
                     $projet->budget_id = $request->budget;
                     $projet->save();
                     $projet->categories()->attach($request->categories);
-                    $projet->competences()->attach($request->competences);
 
                     if(Auth::check()){
-                                $competences = $request->competences;
+                                $categories = $request->categories;
                                 $departement_id = $request->departement;
 
                                 $departement = Departement::find($departement_id);
 
                                 // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
-                                $freelances_competences = User::where('alert_competences', 1)
+                                $freelances_categories = User::where('alert_categories', 1)
                                                                 ->where('role', 'freelance')
-                                                                ->whereHas('competences', function ($query) use ($competences) {
-                                                                    $query->whereIn('competence_id', $competences);
+                                                                ->whereHas('categories', function ($query) use ($categories) {
+                                                                    $query->whereIn('category_id', $categories);
                                                                 })->get();
 
                                 // On envoie un email aux freelancer concernés par les compétences
-                                foreach($freelances_competences as $freelance_competence){
-                                    Mail::to($freelance_competence->email)->queue(new Newprojet($projet));
+                                foreach($freelances_categories as $freelance_category){
+                                    Mail::to($freelance_category->email)->queue(new Newprojet($projet));
                                 }
 
                                 // On sélectionne les users concernés par au moins un des départements et qui ont choisis d'être informés
@@ -220,12 +217,11 @@ class ProjetController extends Controller
     public function edit($id)
     {
         $projet = Projet::find($id);
-        $competences = Competence::all();
         $categories = Category::all();
         $budgets = Budget::all();
         $departements = Departement::all();
         if(Auth::user()->id === $projet->user_id){
-            return view('projets.edit', compact('projet', 'competences', 'categories', 'budgets', 'departements'));
+            return view('projets.edit', compact('projet', 'categories', 'budgets', 'departements'));
         }
         return redirect()->back();
     }
@@ -249,7 +245,6 @@ class ProjetController extends Controller
                     'categories' => 'bail|required',
                     'title' => 'bail|required|string|max:255',
                     'file-projet' => 'sometimes|max:5000',
-                    'competences' => 'bail|required',
                     'description' => 'bail|required',
                     'budget' => 'bail|required',
                     'departement' => 'bail|required'
@@ -285,9 +280,7 @@ class ProjetController extends Controller
 
                         if ($projet->save()){
                             DB::table('category_projet')->where('projet_id', $projet->id)->delete();
-                            DB::table('competence_projet')->where('projet_id', $projet->id)->delete();
                             $projet->categories()->attach($request->categories);
-                            $projet->competences()->attach($request->competences);
                         };
             }
             Flashy::success('Votre projet a été modifié avec succès !');

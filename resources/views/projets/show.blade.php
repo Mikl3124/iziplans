@@ -78,7 +78,13 @@
                                     <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
                                     {{-- --------------- Si le freelance n'a pas encore fait d'offre --------------- --}}
                                     @if ($has_make_an_offer === false)
-                                        <a href="{{route('offers.create', $projet)}}" class="btn btn-success"><i class="fas fa-gavel text-white"></i> Faire une offre</a>
+                                        {{-- --------------- Si il est abonné --------------- --}}
+                                        @if(Auth::user()->subscribed('abonnement'))
+                                            <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
+                                        @else
+                                            <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements </a>
+                                        @endif
+
                                     {{-- --------------- Si le freelance a fait une offre --------------- --}}
                                     @elseif ($has_make_an_offer === true)
                                         <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success">Modifier mon offre</a>
@@ -106,7 +112,7 @@
                         @elseif (!empty(Auth::user()) && Auth::user()->role === 'client')
                             <div class="card card-show bg-dark mb-3">
                                 <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
-                                <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
                             </div>
                             <div class="card card-show mb-3">
                                 <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary">Déposez un projet également</a>
@@ -127,7 +133,13 @@
                     <h3>Il n'y a pas encore d'offre pour votre projet</h3>
                 @else
                     <h3>Il n'y a pas encore d'offre pour ce projet, soyez le premier !</h3>
-                    <a href="{{route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
+                    {{-- --------- Si le Freelance est abonné ---------- --}}
+                    @if(Auth::user()->subscribed('abonnement'))
+                        <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
+                    @else
+                    {{-- --------- Si il n'est pas abonné ---------- --}}
+                        <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements </a>
+                    @endif
                 @endif
         {{-- --------------- Si il y a des offres pour ce projet --------------- --}}
             @elseif($offers->count() === 1)
@@ -209,7 +221,7 @@
       <div class="modal-body">
             <div class="d-flex flex-column bd-highligh mb-3">
                 <p>Pour effectuer cette action vous devez avoir un compte (gratuit) et être identifié sur le site.</p>
-                <a class="btn btn-primary my-2" href="{{ route('register_choice') }}">M'inscrire gratuitement</a>
+                <a class="btn btn-primary my-2" href="{{ route('register_freelance') }}">M'inscrire gratuitement</a>
                 <a class="btn btn-secondary my-2" href="{{ route('login') }}">Me connecter</a>
             </div>
       </div>

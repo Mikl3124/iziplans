@@ -4,6 +4,7 @@ namespace App\Model;
 use App\Model\Offer;
 use App\Model\Projet;
 use App\Model\Thread;
+use App\model\Category;
 use App\model\Competence;
 use App\Model\Departement;
 use Laravel\Cashier\Billable;
@@ -70,9 +71,9 @@ class User extends Authenticatable
         return $avatarPath;
     }
 
-    public function competences()
+    public function categories()
     {
-        return $this->belongsToMany(Competence::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function departements()

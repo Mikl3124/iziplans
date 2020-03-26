@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\CheckSubscribe;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +23,7 @@ Route::get('/register_freelance', 'UserController@register_freelance')->name('re
 Route::get('/register/', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('/register/', 'Auth\RegisterController@register');
 
+
 //Social Register
 Route::get('social-login/{provider}', 'Auth\LoginController@redirectToProvider')->name('social-login.redirect');
 Route::get('social-login/{provider}/callback/', 'Auth\LoginController@handleProviderCallback')->name('social-login.callback');
@@ -28,8 +31,9 @@ Route::get('social-login/{provider}/callback/', 'Auth\LoginController@handleProv
 //Stripe
 Route::post('/subscribe', 'SubscribeController@subscribe');
 Route::get('subscribe', 'SubscribeController@payment')->name('subscribe');
-Route::post('/unsubscribe','SubscribeController@destroy');
-Route::post('/cancel','SubscribeController@cancel')->name('cancel-subscription');
+Route::post('/unsubscribe', 'SubscribeController@destroy');
+Route::post('/cancel', 'SubscribeController@cancel')->name('cancel-subscription');
+Route::post('/stripe', 'StripeWebhooksController');
 
 //Projet
 Route::resource('projet', 'ProjetController');
@@ -55,7 +59,7 @@ Route::group(['middleware' => ['auth','admin']], function () {
 
 //Offers
 Route::get('/offers/{id}', 'OfferController@show')->name('offers.show');
-Route::get('/offers-create/{id}', 'OfferController@create')->name('offers.create');
+Route::get('/offers-create/{id}', 'OfferController@create')->name('offers.create')->middleware(CheckSubscribe::class);
 Route::get('/offers/edit/{id}', 'OfferController@edit')->name('offers.edit');
 Route::post('/offers/{id}', 'OfferController@update')->name('offers.update');
 Route::post('/offers/', 'OfferController@store')->name('offers.store');
@@ -76,10 +80,10 @@ Route::post('image-upload', 'UserController@imageUpload')->name('image.upload');
 // });
 
 //Messagerie
-Route::get('/messagerie/{topic}/{projet}', 'ConversationController@show')->name('messagerie.show');
+Route::get('/messagerie/{topic}/{projet}', 'ConversationController@show')->name('messagerie.show')->middleware(CheckSubscribe::class);
 Route::get('/messagerie-index/{projet}', 'ConversationController@index')->name('messagerie.index');
 Route::get('/messagerie-download/{message}', 'ConversationController@download')->name('messagerie.download');
-Route::post('/messagerie/{topic}', 'ConversationController@store')->name('messagerie.store');
+Route::post('/messagerie/{topic}', 'ConversationController@store')->name('messagerie.store')->middleware(CheckSubscribe::class);
 Route::get('showFromNotifications/{topic}/{notification}', 'ConversationController@showFromNotifications')->name('topics.showFromNotifications');
 
 

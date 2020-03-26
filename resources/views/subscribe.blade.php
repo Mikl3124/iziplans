@@ -9,7 +9,7 @@
                         <div class="col-md-12">
                             <!--PRICE HEADING START-->
                             <div class="price-heading clearfix">
-                                <h1>Bootstrap Pricing Table</h1>
+                                <h1 class="mt-3">ABONNEMENTS</h1>
                             </div>
                             <!--//PRICE HEADING END-->
                         </div>
@@ -33,7 +33,7 @@
                                         <!--HEAD START-->
                                         <div class="head_bg"></div>
                                         <div class="head">
-                                            <span>Basic</span>
+                                            <span>Mensuel</span>
                                         </div>
                                         <!--//HEAD END-->
 
@@ -42,12 +42,13 @@
 
                                     <!--PRICE START-->
                                     <div class="generic_price_tag clearfix">
-                                        <span class="price">
+                                        <span class="price mb-2">
                                             <span class="sign">€</span>
                                             <span class="currency">17</span>
                                             <span class="cent">.90</span>
                                             <span class="month">/Mois</span>
                                         </span>
+
                                     </div>
                                     <!--//PRICE END-->
 
@@ -57,24 +58,23 @@
                                 <!--FEATURE LIST START-->
                                 <div class="generic_feature_list">
                                     <ul>
-                                        <li><span>2GB</span> Bandwidth</li>
-                                        <li><span>150GB</span> Storage</li>
-                                        <li><span>12</span> Accounts</li>
-                                        <li><span>7</span> Host Domain</li>
-                                        <li><span>24/7</span> Support</li>
+                                        <li>Réponses illimitées aux projets</li>
+                                        <li>Alerte E-mail "Nouveaux projets"</li>
+                                        <li>Messagerie privée</li>
+                                        <li>Sans engagement</li>
+
                                     </ul>
                                 </div>
                                 <!--//FEATURE LIST END-->
 
                                 <!--BUTTON START-->
                                 <div class="generic_price_btn clearfix">
-                                    <a href="#exampleModalCenter" data-toggle="modal" data-target="#exampleModalCenter">CHOISIR</a>
+                                    <a href="#ModalMensuel" data-toggle="modal" data-target="#ModalMensuel">CHOISIR</a>
                                 </div>
                                 <!--//BUTTON END-->
 
                             </div>
                             <!--//PRICE CONTENT END-->
-
                         </div>
 
                         <div class="col-md-4">
@@ -91,8 +91,10 @@
                                         <!--HEAD START-->
                                         <div class="head_bg"></div>
                                         <div class="head">
-                                            <span>Standard</span>
+                                            <span>Trimestriel</span>
                                         </div>
+
+
                                         <!--//HEAD END-->
 
                                     </div>
@@ -100,11 +102,11 @@
 
                                     <!--PRICE START-->
                                     <div class="generic_price_tag clearfix">
-                                        <span class="price">
-                                            <span class="sign">$</span>
-                                            <span class="currency">199</span>
-                                            <span class="cent">.99</span>
-                                            <span class="month">/MON</span>
+                                        <span class="price mb-2">
+                                            <span class="sign">€</span>
+                                            <span class="currency">47</span>
+                                            <span class="cent">.90</span>
+                                            <span class="month">/Trimestre</span>
                                         </span>
                                     </div>
                                     <!--//PRICE END-->
@@ -115,18 +117,19 @@
                                 <!--FEATURE LIST START-->
                                 <div class="generic_feature_list">
                                     <ul>
-                                        <li><span>2GB</span> Bandwidth</li>
-                                        <li><span>150GB</span> Storage</li>
-                                        <li><span>12</span> Accounts</li>
-                                        <li><span>7</span> Host Domain</li>
-                                        <li><span>24/7</span> Support</li>
+                                        <li>Vous économisez 10%</li>
+                                        <li>Réponses illimitées aux projets</li>
+                                        <li>Alerte E-mail "Nouveaux projets"</li>
+                                        <li>Messagerie privée</li>
+                                        <li>Sans engagement</li>
+
                                     </ul>
                                 </div>
                                 <!--//FEATURE LIST END-->
 
                                 <!--BUTTON START-->
                                 <div class="generic_price_btn clearfix">
-                                    <a class="" href="">Sign up</a>
+                                    <a href="#ModalTrimestriel" data-toggle="modal" data-target="#ModalTrimestriel">CHOISIR</a>
                                 </div>
                                 <!--//BUTTON END-->
 
@@ -134,6 +137,7 @@
                             <!--//PRICE CONTENT END-->
 
                         </div>
+
                         <div class="col-md-4">
 
                             <!--PRICE CONTENT START-->
@@ -148,7 +152,7 @@
                                         <!--HEAD START-->
                                         <div class="head_bg"></div>
                                         <div class="head">
-                                            <span>Unlimited</span>
+                                            <span>Annuel</span>
                                         </div>
                                         <!--//HEAD END-->
 
@@ -157,11 +161,11 @@
 
                                     <!--PRICE START-->
                                     <div class="generic_price_tag clearfix">
-                                        <span class="price">
-                                            <span class="sign">$</span>
-                                            <span class="currency">299</span>
-                                            <span class="cent">.99</span>
-                                            <span class="month">/MON</span>
+                                        <span class="price mb-2">
+                                            <span class="sign">€</span>
+                                            <span class="currency">179</span>
+                                            <span class="cent">.90</span>
+                                            <span class="month">/an</span>
                                         </span>
                                     </div>
                                     <!--//PRICE END-->
@@ -172,18 +176,19 @@
                                 <!--FEATURE LIST START-->
                                 <div class="generic_feature_list">
                                     <ul>
-                                        <li><span>2GB</span> Bandwidth</li>
-                                        <li><span>150GB</span> Storage</li>
-                                        <li><span>12</span> Accounts</li>
-                                        <li><span>7</span> Host Domain</li>
-                                        <li><span>24/7</span> Support</li>
+                                        <li>2 Mois gratuits</li>
+                                        <li>Réponses illimitées aux projets</li>
+                                        <li>Alerte E-mail "Nouveaux projets"</li>
+                                        <li>Messagerie privée</li>
+                                        <li>Sans engagement</li>
+
                                     </ul>
                                 </div>
                                 <!--//FEATURE LIST END-->
 
                                 <!--BUTTON START-->
                                 <div class="generic_price_btn clearfix">
-                                    <a class="" href="">Sign up</a>
+                                    <a href="#ModalAnnuel" data-toggle="modal" data-target="#ModalAnnuel">CHOISIR</a>
                                 </div>
                                 <!--//BUTTON END-->
 
@@ -191,22 +196,38 @@
                             <!--//PRICE CONTENT END-->
 
                         </div>
+
+                        </div>
                     </div>
                     <!--//BLOCK ROW END-->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!--PRICE HEADING START-->
+                                <div class="price-heading clearfix">
+                                    <p class="mt-1 mb-5"><em>Vous pouvez vous désinscrire quand vous le souhaitez!</p></em>
+                                </div>
+                                <div class="text-center mb-5">
+                                    <a href="{{ route('home')}}" class="btn btn-outline-primary">Continuer Gratuitement</a>
+                                </div>
 
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </section>
-        	<div>
+        <div>
 
     </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- Modal Mensuel-->
+<div class="modal fade" id="ModalMensuel" tabindex="-1" role="dialog" aria-labelledby="ModalMensuel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title">MENSUEL à 17.90€ / mois</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -215,20 +236,41 @@
             <form action="/subscribe" method="POST" id="payment-form">
                 @csrf
                 <div>
-                        <select name="plan" class="form-control my-2" id="subscription-plan">
-                                <option value="iziplans_monthly">Mois 17€90</option>
-                                <option value="iziplans_trimester">Trimestre 49€90</option>
-                                <option value="iziplans_yearly">Année 179€90</option>
-                        </select>
-
-                        <input placeholder="Nom du titulaire de la carte" class="form-control mb-2" id="card-holder-name" type="text">
-
+                    <input type="hidden" name="plan" value="iziplans_monthly">
                         <!-- Stripe Elements Placeholder -->
                         <div id="card-element" class="form-control my-2"></div>
-                        <div id="card-errors"  class="" role="alert"></div>
+                        <div id="card-errors"  class="text-danger" role="alert"></div>
+                    </div>
+                        <button class="mt-3 btn btn-success btn-block" id="card-button" data-secret="{{ $intent->client_secret }}">
+                            S'abonner
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  <!-- Modal Trimestriel-->
+<div class="modal fade" id="ModalTrimestriel" tabindex="-1" role="dialog" aria-labelledby="ModalTrimestriel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">TRIMESTRIEL à 47.90€ / trimestre</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/subscribe" method="POST" id="payment-form-trimestre">
+                @csrf
+                <div>
+                    <input type="hidden" name="plan" value="iziplans_trimester">
+                        <!-- Stripe Elements Placeholder -->
+                        <div id="card-element-trimestre" class="form-control my-2"></div>
+                        <div id="card-errors-trimestre"  class="text-danger" role="alert"></div>
                     </div>
 
-                    <button class="mt-2 btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}">
+                    <button class="mt-3 btn btn-success btn-block" id="card-button-trimestre" data-secret="{{ $intent->client_secret }}">
                         S'abonner
                     </button>
 
@@ -238,6 +280,38 @@
         </div>
     </div>
   </div>
+
+    <!-- Modal Annuel-->
+<div class="modal fade" id="ModalAnnuel" tabindex="-1" role="dialog" aria-labelledby="ModalAnnuel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">ANNUEL à 179.90€ / an</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/subscribe" method="POST" id="payment-form-annuel">
+                @csrf
+                <div>
+                    <input type="hidden" name="plan" value="iziplans_yearly">
+                        <!-- Stripe Elements Placeholder -->
+                        <div id="card-element-annuel" class="form-control my-2"></div>
+                        <div id="card-errors-annuel"  class="text-danger" role="alert"></div>
+                    </div>
+
+                    <button class="mt-3 btn btn-success btn-block" id="card-button-annuel" data-secret="{{ $intent->client_secret }}">
+                        S'abonner
+                    </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
 {{-- ----------------------- Card ------------------------------ --}}
 
 
@@ -245,7 +319,8 @@
 <script src="https://js.stripe.com/v3/"></script>
 
 
-  <script>
+<script>
+    //Mensuel
     window.addEventListener('load', function(){
         const cardButton = document.getElementById('card-button');
         const stripe = Stripe('{{ env('STRIPE_KEY') }}');
@@ -306,6 +381,133 @@
     }
     });
 </script>
+
+<script>
+    // Trimestriel
+    window.addEventListener('load', function(){
+        const cardButton = document.getElementById('card-button-trimestre');
+        const stripe = Stripe('{{ env('STRIPE_KEY') }}');
+            const elements = stripe.elements();
+            const clientSecret = cardButton.dataset.secret;
+        const cardElement = elements.create('card',{
+                hidePostalCode: true,
+            style: {
+                base: {
+            },
+        }
+    });
+    cardElement.mount('#card-element-trimestre');
+    // Create a token or display an error when the form is submitted.
+    // Handle real-time validation errors from the card Element.
+        cardElement.addEventListener('change', function(event) {
+            var displayError = document.getElementById('card-errors-trimestre');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+        }
+    });
+    // Handle form submission.
+    var form = document.getElementById('payment-form-trimestre');
+        form.addEventListener('submit', function(event) {
+                event.preventDefault();
+            stripe
+                .handleCardSetup(clientSecret, cardElement, {
+                payment_method_data: {
+                //billing_details: { name: cardHolderName.value }
+            }
+            })
+                .then(function(result) {
+                console.log(result);
+                    if (result.error) {
+                        // Inform the user if there was an error.
+                        var errorElement = document.getElementById('card-errors-trimestre');
+            errorElement.textContent = result.error.message;
+                    } else {
+                console.log(result);
+            // Send the token to your server.
+            stripeTokenHandler(result.setupIntent.payment_method);
+        }
+    });
+    })
+    // Submit the form with the token ID.
+        function stripeTokenHandler(paymentMethod) {
+            // Insert the token ID into the form so it gets submitted to the server
+            var form = document.getElementById('payment-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'paymentMethod');
+            hiddenInput.setAttribute('value', paymentMethod);
+            form.appendChild(hiddenInput);
+    // Submit the form
+    form.submit();
+    }
+    });
+</script>
+
+<script>
+    // Trimestriel
+    window.addEventListener('load', function(){
+        const cardButton = document.getElementById('card-button-annuel');
+        const stripe = Stripe('{{ env('STRIPE_KEY') }}');
+            const elements = stripe.elements();
+            const clientSecret = cardButton.dataset.secret;
+        const cardElement = elements.create('card',{
+                hidePostalCode: true,
+            style: {
+                base: {
+            },
+        }
+    });
+    cardElement.mount('#card-element-annuel');
+    // Create a token or display an error when the form is submitted.
+    // Handle real-time validation errors from the card Element.
+        cardElement.addEventListener('change', function(event) {
+            var displayError = document.getElementById('card-errors-annuel');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+        }
+    });
+    // Handle form submission.
+    var form = document.getElementById('payment-form-annuel');
+        form.addEventListener('submit', function(event) {
+                event.preventDefault();
+            stripe
+                .handleCardSetup(clientSecret, cardElement, {
+                payment_method_data: {
+                //billing_details: { name: cardHolderName.value }
+            }
+            })
+                .then(function(result) {
+                console.log(result);
+                    if (result.error) {
+                        // Inform the user if there was an error.
+                        var errorElement = document.getElementById('card-errors-annuel');
+            errorElement.textContent = result.error.message;
+                    } else {
+                console.log(result);
+            // Send the token to your server.
+            stripeTokenHandler(result.setupIntent.payment_method);
+        }
+    });
+    })
+    // Submit the form with the token ID.
+        function stripeTokenHandler(paymentMethod) {
+            // Insert the token ID into the form so it gets submitted to the server
+            var form = document.getElementById('payment-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'paymentMethod');
+            hiddenInput.setAttribute('value', paymentMethod);
+            form.appendChild(hiddenInput);
+    // Submit the form
+    form.submit();
+    }
+    });
+</script>
+
 
 @endsection
 

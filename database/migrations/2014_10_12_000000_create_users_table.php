@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('provider')->nullable();
             $table->string('role');
-            $table->boolean('alert_competences')->default(1)->nullable();
+            $table->boolean('alert_categories')->default(1)->nullable();
             $table->boolean('alert_departements')->default(1)->nullable();
             $table->boolean('cgv');
             $table->rememberToken();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use Validator;
 use App\Model\User;
+use App\model\Category;
 use App\Model\Competence;
 use App\Model\Departement;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class UserController extends Controller
 {
     public function register_choice()
     {
-        return view('users.register_choice');
+        return view('auth.register_choice');
     }
 
     public function register_client()
@@ -47,15 +48,15 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $competences = Competence::all();
+        $categories = Category::all();
         $departements= Departement::all();
         $user = User::find($id);
-        $user_competences = $user->competences;
+        $user_categories = $user->categories;
         $user_departements = $user->departements;
 
         $avatar = Storage::url('users/normal/'. $user->avatar);
         $user = Auth::user();
-        return view('users.edit', compact('user', 'avatar', 'competences', 'user_competences', 'departements', 'user_departements'));
+        return view('users.edit', compact('user', 'avatar', 'categories', 'user_categories', 'departements', 'user_departements'));
     }
 
     public function imageUpload(Request $request)
@@ -121,14 +122,14 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-        DB::table('competence_user')->where('user_id', $user->id)->delete();
+        DB::table('category_user')->where('user_id', $user->id)->delete();
         DB::table('departement_user')->where('user_id', $user->id)->delete();
-        $user->competences()->attach($request->competences);
+        $user->categories()->attach($request->categories);
         $user->departements()->attach($request->departements);
 
         $user->firstname = $request['firstname'];
         $user->lastname = $request['lastname'];
-        $user->alert_competences = $request['alert_competences'];
+        $user->alert_categories = $request['alert_categories'];
         $user->alert_departements = $request['alert_departements'];
         $user->description = $request['presentation'];
         $user->titre = $request['titre'];

@@ -8,14 +8,14 @@
         <div class="text-center">
             <p>Choisissez votre type de compte :</p>
             <div class="row">
-                <div class="col-md-6 text-center">
+                <div class="col-md-6 mt-3 text-center">
                     <div class="mb-3" >
                         <a href="{{ route('register_client') }}"><i class="icon-register fas fa-user"></i></a>
                     </div>
                     <p class="mb-0">CLIENT</p>
                     <p>(j'ai un projet à faire réaliser)</p>
                 </div>
-                <div class="col-md-6 text-center">
+                <div class="col-md-6 mt-3 text-center">
                     <div>
                         <div class="mb-3">
                             <a href="{{ route('register_freelance') }}"><i class="icon-register fas fa-pencil-ruler"></i></a>
@@ -25,6 +25,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="text-center mt-5">
+            <p>Déjà inscrit sur iziplans ?<a href="{{ route('login') }}"> Connectez-vous</a></p>
         </div>
     </div>
 </div>

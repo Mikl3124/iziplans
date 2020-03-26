@@ -15,7 +15,7 @@
                     <a class="btn btn-primary btn-lg text-center" href="{{ route('register_freelance') }}">Devenir Freelance</a>
                 </div>
                 <div class="col-md-6 col-sm-12 mt-5 text-center">
-                    <a class="btn btn-primary btn-lg " href="{{route('projet.create')}}">Déposer un projet</a>
+                    <a class="btn btn-primary btn-lg " href="{{ route('register_client') }}">Déposer un projet</a>
                 </div>
             </div>
         @endguest
@@ -81,7 +81,7 @@
             <div class="card-body ">
                 <p class= "title-call-to-action">Besoins de plans ? Déposez une annonce gratuitement</p>
                 <p class= "text-call-to-action">Recevez vos premiers devis rapidement</p>
-                <a class="btn btn-success btn-lg" href="{{route('projet.create')}}">Recevoir des devis</a>
+                <a class="btn btn-success btn-lg" href="{{ route('register_client') }}">Recevoir des devis</a>
             </div>
         </div>
 
