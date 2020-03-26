@@ -71,7 +71,7 @@
                 {{-- --------------- Si l'utilisateur est connecté --------------- --}}
                     @auth
                     {{-- --------------- Si c'est un freelance --------------- --}}
-                        @if (!empty(Auth::user()) && Auth::user()->role === 'freelance')
+                        @if (null !== (Auth::user()) && Auth::user()->role === 'freelance')
                             {{-- --------------- Si le projet est ouvert --------------- --}}
                             @if ($projet->status === 'open')
                                 <div class="card card-show bg-dark mb-3">
@@ -79,7 +79,7 @@
                                     {{-- --------------- Si le freelance n'a pas encore fait d'offre --------------- --}}
                                     @if ($has_make_an_offer === false)
                                         {{-- --------------- Si il est abonné --------------- --}}
-                                        @if(Auth::user()->subscribed('abonnement'))
+                                        @if (null !== (Auth::user()) && Auth::user()->role === 'freelance')
                                             <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
                                         @else
                                             <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements </a>
@@ -134,7 +134,7 @@
                 @else
                     <h3>Il n'y a pas encore d'offre pour ce projet, soyez le premier !</h3>
                     {{-- --------- Si le Freelance est abonné ---------- --}}
-                    @if(Auth::user()->subscribed('abonnement'))
+                    @if (null !== (Auth::user()) && Auth::user()->role === 'freelance')
                         <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
                     @else
                     {{-- --------- Si il n'est pas abonné ---------- --}}
