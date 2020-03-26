@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row d-flex justify-content-between">
             <div class="card card-show mb-5 col-md-7 col-sm-12 mt-n5">
-                <p class="show-description">{{ucfirst($projet->description)}}</p>
+                <p class="show-description">{{ ucfirst($projet->description )}}</p>
                 <div class="mb-4">
                     @isset($projet->file_projet)
                         <a href="{{ route('downloadfile', $projet) }}">
@@ -79,10 +79,11 @@
                                     {{-- --------------- Si le freelance n'a pas encore fait d'offre --------------- --}}
                                     @if ($has_make_an_offer === false)
                                         {{-- --------------- Si il est abonné --------------- --}}
-                                        @if (null !== (Auth::user()) && Auth::user()->role === 'freelance')
-                                            <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
-                                        @else
+                                        @if (null !== (Auth::user()->subscribed('abonnement')) && Auth::user()->role === 'freelance')
                                             <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements </a>
+                                        @else
+                                        {{-- --------- Si il n'est pas abonné ---------- --}}
+                                        <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
                                         @endif
 
                                     {{-- --------------- Si le freelance a fait une offre --------------- --}}
@@ -134,11 +135,11 @@
                 @else
                     <h3>Il n'y a pas encore d'offre pour ce projet, soyez le premier !</h3>
                     {{-- --------- Si le Freelance est abonné ---------- --}}
-                    @if (null !== (Auth::user()) && Auth::user()->role === 'freelance')
-                        <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
+                    @if (null !== (Auth::user()->subscribed('abonnement')) && Auth::user()->role === 'freelance')
+                        <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements </a>
                     @else
                     {{-- --------- Si il n'est pas abonné ---------- --}}
-                        <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements </a>
+                    <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
                     @endif
                 @endif
         {{-- --------------- Si il y a des offres pour ce projet --------------- --}}
