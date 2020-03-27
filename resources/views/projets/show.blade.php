@@ -79,8 +79,10 @@
                                     {{-- --------------- Si le freelance n'a pas encore fait d'offre --------------- --}}
                                     @if ($has_make_an_offer === false)
                                         {{-- --------------- Si il est abonné --------------- --}}
-                                        @if (null !== (Auth::user()->subscribed('abonnement')) && Auth::user()->role === 'freelance')
-                                            <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements </a>
+                                        @if (null !== (Auth::user()) && Auth::user()->role === 'freelance')
+                                            @if (null !== (Auth::user()->subscribed('abonnement')))
+                                                <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements </a>
+                                            @endif
                                         @else
                                         {{-- --------- Si il n'est pas abonné ---------- --}}
                                         <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
@@ -135,8 +137,10 @@
                 @else
                     <h3>Il n'y a pas encore d'offre pour ce projet, soyez le premier !</h3>
                     {{-- --------- Si le Freelance est abonné ---------- --}}
-                    @if (null !== (Auth::user()->subscribed('abonnement')) && Auth::user()->role === 'freelance')
-                        <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements </a>
+                    @if(!empty(Auth::user()) && Auth::user()->role === 'freelance')
+                        @if(Auth::user()->subscribed('abonnement'))
+                            <a href="{{ route('subscribe') }}" class="btn btn-success"> Voir les abonnements </a>
+                        @endif
                     @else
                     {{-- --------- Si il n'est pas abonné ---------- --}}
                     <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
