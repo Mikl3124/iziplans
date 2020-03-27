@@ -78,7 +78,7 @@
             <div class="card-body ">
                 <p class= "title-call-to-action">Besoins de plans ? Déposez une annonce gratuitement</p>
                 <p class= "text-call-to-action">Recevez vos premiers devis rapidement</p>
-                <a class="btn btn-success btn-lg" href="{{ route('projets.create') }}">Recevoir des devis</a>
+                <a class="btn btn-success btn-lg" href="{{ route('register_client') }}">Recevoir des devis</a>
             </div>
         </div>
 
