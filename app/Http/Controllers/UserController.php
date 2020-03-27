@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use Validator;
+use Carbon\Carbon;
 use App\Model\User;
 use Stripe\Customer;
 use App\model\Category;
@@ -19,6 +20,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['edit', 'subscription', 'imageUpload']);
+    }
+
     public function register_choice()
     {
         return view('auth.register_choice');
@@ -45,14 +51,7 @@ class UserController extends Controller
         $avatar = $user->avatar;
         // Si l'utilisateur est Freelance
         if(Auth::user()){
-            if($user->id === Auth::user()->id && Auth::user()->role === 'freelance'){
-                if(Auth::user()->stripe_id){
-                    $invoices = $user->invoices();
-                    $subscription = Auth::user()->subscriptions->first();
-                    return view('users.freelance.show', compact('user', 'avatar', 'invoices', 'subscription'));
-                }
-                return view('users.show', compact('user', 'avatar'));
-            }
+
         }
         return view('users.show', compact('user', 'avatar'));
 
@@ -69,6 +68,29 @@ class UserController extends Controller
         $avatar = Storage::url('users/normal/'. $user->avatar);
         $user = Auth::user();
         return view('users.edit', compact('user', 'avatar', 'categories', 'user_categories', 'departements', 'user_departements'));
+    }
+
+    public function subscription($id)
+    {
+        $user = User::find($id);
+
+        if(Auth::user()->id === $user->id){
+            if($user->id === Auth::user()->id && Auth::user()->role === 'freelance'){
+                if(Auth::user()->stripe_id){
+                    $invoices = $user->invoices();
+                    $endOfPeriod = $user -> asStripeCustomer()["subscriptions"] -> data[0]["current_period_end"];
+                    $originalDateEnd = Auth::user()->subscription('abonnement')->ends_at;
+                    $date_end = Carbon::parse($originalDateEnd)->isoFormat('LL');
+                    $nextPayment = Carbon::parse($endOfPeriod)->isoFormat('LL');
+                    $subscription = Auth::user()->subscriptions()->first();
+                    return view('users.freelance.subscription', compact('user','invoices', 'subscription', 'date_end', 'nextPayment'));
+                }
+                return redirect()->route('subscribe');
+            }
+        }
+
+        return redirect()->route('subscribe');
+
     }
 
     public function imageUpload(Request $request)
@@ -138,7 +160,6 @@ class UserController extends Controller
         DB::table('departement_user')->where('user_id', $user->id)->delete();
         $user->categories()->attach($request->categories);
         $user->departements()->attach($request->departements);
-
         $user->firstname = $request['firstname'];
         $user->lastname = $request['lastname'];
         $user->alert_categories = $request['alert_categories'];
@@ -146,9 +167,38 @@ class UserController extends Controller
         $user->description = $request['presentation'];
         $user->titre = $request['titre'];
 
-            $user->update();
+        // Mise à jour de updated_profil
+        if($user->categories->count() >= 1 || $user->departements->count() >= 1){
+            $user->updated_profil = 1;
+        }
+        else{
+            $user->updated_profil = 0;
+        }
 
+        $user->update();
+
+        Flashy::success('Votre profil a été mis à jour avec succès !');
         return redirect()->back();
     }
+
+    public function changeRole()
+    {
+        $user = Auth::user();
+        if(Auth::user()->role === 'client'){
+            $user->role = 'freelance';
+                $user->save();
+                Flashy::success("Vous avez basculé sur l'interface FREELANCE");
+                return redirect()->back();
+        }
+
+        if(Auth::user()->role === 'freelance'){
+            $user->role = 'client';
+            $user->save();
+            Flashy::success("Vous avez basculé sur l'interface CLIENT");
+            return redirect()->back();
+        }
+
+    }
+
 
 }

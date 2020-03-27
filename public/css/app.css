@@ -284,6 +284,7 @@ h1 {
   background-color: #0072FF;
   border: 1px solid #0072FF;
   color: white;
+  margin-bottom: 5px;
 }
 
 .select2-selection__choice__remove {
@@ -456,6 +457,10 @@ h1 {
 
 .alert-dismissible {
   margin-bottom: 0px !important;
+}
+
+.updateProfilAlertLink {
+  font-weight: 900;
 }
 
 /* ======================== */

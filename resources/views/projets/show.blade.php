@@ -7,9 +7,9 @@
         <h1 class="text-left pt-5 text-white">{{ucfirst($projet->title)}}</h1>
         <div class="d-flex justify-content-start mb-5 ">
             @if($projet->status === 'open')
-                <p class= "subtitle-project"><span class="fas fa-circle text-success"></span> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</p>
+                <p class= "subtitle-project"><span class="fas fa-circle text-success"></span> Ouvert {{ Carbon\Carbon::parse($projet->created_at)->diffForHumans() }}</p>
             @elseif($projet->status === 'closed')
-                <p class= "subtitle-project"><span class="fas fa-circle text-secondary"></span> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</p>
+                <p class= "subtitle-project"><span class="fas fa-circle text-secondary"></span> Fermé le {{ Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL') }}</p>
             @endif
             <p class="subtitle-project mx-3"><span><i class="subtitle-project fas fa-gavel"></i></span> {{$offers->count()}} {{ $projet->offers->count() <= 1 ? 'Offre' : 'Offres'}}</p>
 
@@ -81,11 +81,11 @@
                                         {{-- --------------- Si il est abonné --------------- --}}
                                         @if (null !== (Auth::user()) && Auth::user()->role === 'freelance')
                                             @if (null !== (Auth::user()->subscribed('abonnement')))
-                                                <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements </a>
+                                                <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements</a>
                                             @endif
                                         @else
                                         {{-- --------- Si il n'est pas abonné ---------- --}}
-                                        <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
+                                            <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
                                         @endif
 
                                     {{-- --------------- Si le freelance a fait une offre --------------- --}}
@@ -113,12 +113,8 @@
                             </div>
                     {{-- --------------- Si c'est un client --------------- --}}
                         @elseif (!empty(Auth::user()) && Auth::user()->role === 'client')
-                            <div class="card card-show bg-dark mb-3">
-                                <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
-                                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
-                            </div>
                             <div class="card card-show mb-3">
-                                <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary">Déposez un projet également</a>
+                                <a href="{{ route('projet.create') }}" class="btn btn-success">Déposez un Projet Gratuitement</a>
                             </div>
                         @endif
 
@@ -135,16 +131,23 @@
                 @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
                     <h3>Il n'y a pas encore d'offre pour votre projet</h3>
                 @else
-                    <h3>Il n'y a pas encore d'offre pour ce projet, soyez le premier !</h3>
+                <h3>Il n'y a pas encore d'offre pour ce projet, soyez le premier !</h3>
+                    @if(!empty(Auth::user()) &&  Auth::user()->role === 'freelance')
+                        <a href="{{ route('subscribe') }}" class="btn btn-success"> Voir les abonnements </a>
+                    @endif
                     {{-- --------- Si le Freelance est abonné ---------- --}}
                     @if(!empty(Auth::user()) && Auth::user()->role === 'freelance')
                         @if(Auth::user()->subscribed('abonnement'))
                             <a href="{{ route('subscribe') }}" class="btn btn-success"> Voir les abonnements </a>
                         @endif
-                    @else
-                    {{-- --------- Si il n'est pas abonné ---------- --}}
-                    <a href="{{ route('offers.create', $projet)}}" class="btn btn-success">Faire une offre</a>
                     @endif
+                    @if(!empty(Auth::user()) &&  Auth::user()->role === 'client')
+                        <a href="{{ route('projet.create') }}" class="btn btn-success">Déposez un Projet Gratuitement</a>
+                    @endif
+                    @if(!empty(Auth::user()) &&  Auth::user()->role !== 'client' &&  Auth::user()->role !== 'freelance')
+                        <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
+                    @endif
+
                 @endif
         {{-- --------------- Si il y a des offres pour ce projet --------------- --}}
             @elseif($offers->count() === 1)
@@ -160,6 +163,9 @@
                     <h3>Il y {{ $offers->count() }} offres pour ce projet</h3>
                 @endif
             @endif
+            @guest
+                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
+            @endguest
 
         </div>
 

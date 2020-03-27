@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->boolean('alert_categories')->default(1)->nullable();
             $table->boolean('alert_departements')->default(1)->nullable();
             $table->boolean('cgv');
+            $table->boolean('updated_profil')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

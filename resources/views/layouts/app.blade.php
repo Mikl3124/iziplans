@@ -36,6 +36,15 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+        {{-- ---------- Notification Profil à compléter -------------- --}}
+                @auth
+                    @if(Auth::user()->role === "freelance" && Auth::user()->updated_profil === 0)
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    N'oubliez pas de <a href="{{ route('profil-edit', Auth::user()) }}" class="updateProfilAlertLink"><u>compléter votre profil</u></a> pour recevoir les nouvelles offres par email !
+                      </div>
+                    @endif
+
+                @endauth
         {{-- ---------- Si il y a des notifications -------------- --}}
                 @auth
                     @unless (auth()->user()->unreadNotifications->isEmpty())
@@ -94,7 +103,7 @@
                                     @if(Auth::user()->role === 'client')
                                     <div class="text-center">
                                         <p class="mb-0">Vous êtes Client</p>
-                                        <a href=""><small>(Activer mon profil FREELANCE)</small></a>
+                                        <a href="{{ route('changeRole') }}"><small>(Basculer vers l'interface FREELANCE)</small></a>
                                     </div>
                                         <div class="text-center">
                                             <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.create')}}">Déposer un projet</a>
@@ -113,7 +122,7 @@
                                     @elseif(Auth::user()->role === 'freelance')
                                         <div class="text-center">
                                             <p class="mb-0">Vous êtes Freelance</p>
-                                            <a href=""><small>(Activer mon profil CLIENT)</small></a>
+                                        <a href="{{ route('changeRole') }}"><small>(Basculer vers l'interface CLIENT)</small></a>
                                         </div>
                                         <div class="text-center">
                                             <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.index')}}">Voir les missions</a>
@@ -127,6 +136,7 @@
 
                                         </a>
                                         <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-user"></i> Mon compte</a>
+                                        <a class="dropdown-item" href="{{ route('subscription', Auth::user()) }}"><i class="fas fa-shopping-cart"></i></i> Mon abonnement</a>
                                 {{-- ------------------------ Si l'utilisateur est un admin ----------------------- --}}
                                     @elseif(Auth::user()->role === 'admin')
                                         <div class="text-center">

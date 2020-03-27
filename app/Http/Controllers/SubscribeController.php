@@ -25,11 +25,14 @@ class SubscribeController extends Controller
 
     public function payment()
     {
-        $user = Auth::user();
-        return view('subscribe', [
-            'intent' => $user->createSetupIntent()
+        if (Auth::user()->role === 'freelance'){
+            $user = Auth::user();
+            return view('subscribe', [
+                'intent' => $user->createSetupIntent()
+            ]);
+        }
 
-        ]);
+        return redirect()->route('home');
     }
     public function subscribe(Request $request)
     {
@@ -63,8 +66,21 @@ class SubscribeController extends Controller
     public function cancel()
     {
         $user = Auth::user();
-        $user->subscription('abonnement')->cancel();
+        $subscription = $user->subscription('abonnement')->orderBy('created_at', 'desc')->first();
+        $subscription->cancel();
 
+
+        Flashy::error('Votre abonnement a été suspendu avec succès');
+        return redirect()->back();
+    }
+
+    public function resume()
+    {
+        $user = Auth::user();
+        $subscription = $user->subscription('abonnement')->orderBy('created_at', 'desc')->first();
+        $subscription->resume();
+
+        Flashy::success('Félicitations! Votre abonnement est à nouveau actif !');
         return redirect()->back();
     }
 }

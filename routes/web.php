@@ -33,6 +33,7 @@ Route::get('social-login/{provider}/callback/', 'Auth\LoginController@handleProv
 Route::post('/subscribe', 'SubscribeController@subscribe');
 Route::get('subscribe', 'SubscribeController@payment')->name('subscribe');
 Route::post('/unsubscribe', 'SubscribeController@destroy');
+Route::post('/resume', 'SubscribeController@resume')->name('resume-subscription');
 Route::post('/cancel', 'SubscribeController@cancel')->name('cancel-subscription');
 Route::post('/stripe', 'StripeWebhooksController');
 Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
@@ -77,8 +78,10 @@ Route::delete('/offers/{id}', 'OfferController@destroy')->name('offers.delete');
 
 //Profil
 Route::get('/profil/{id}', 'UserController@show')->name('profil');
+Route::get('/abonnement/{id}', 'UserController@subscription')->name('subscription');
 Route::get('/profil/edit/{id}', 'UserController@edit')->name('profil-edit');
 Route::post('/profil/edit/{id}', 'UserController@update')->name('profil-update');
+Route::get('change-profil', 'UserController@changeRole')->name('changeRole');
 
 //Upload avatar
 Route::post('image-upload', 'UserController@imageUpload')->name('image.upload');
