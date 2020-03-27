@@ -7,9 +7,23 @@
     <div class="container">
         <div class="display-4 text-center text-white">VOS PLANS FACILEMENT</div>
         <blockquote class="blockquote text-center">
-            <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
+            {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
+            @guest
+                <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
+            @endguest
+            @auth
+            {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
+                @if (Auth::user()->role === 'client')
+                {{-- ----------- L'utilisateur est client ---------- --}}
+                    <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
+                @elseif (Auth::user()->role === 'freelance')
+                    <p class="mb-0">Trouvez la mission qui vous correspond</p>
+                @endif
+
+            @endauth
         </blockquote>
         @guest
+        {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
             <div class="row">
                 <div class="col-md-6 col-sm-12 mt-5 text-center">
                     <a class="btn btn-primary btn-lg text-center" href="{{ route('register_freelance') }}">Devenir Freelance</a>
@@ -20,16 +34,27 @@
             </div>
         @endguest
         @auth
+            <div class="row">
+        {{-- ----------- L'utilisateur est enregistré ---------- --}}
             @if(Auth::user()->role === 'client')
-                <div class="row">
+            {{-- ----------- L'utilisateur est client ---------- --}}
                     <div class="col-md-6 col-sm-12 mt-5 text-center">
-                        <a class="btn btn-primary btn-lg text-center" href="{{route('projet.index')}}"></i> Gérer mes projets</a>
+                        <a class="btn btn-primary btn-lg text-center" href="{{route('projet.list')}}"></i> Gérer mes projets</a>
                     </div>
                     <div class="col-md-6 col-sm-12 mt-5 text-center">
                         <a class="btn btn-success btn-lg " href="{{route('projet.create')}}"></i> Publier un projet</a>
                     </div>
-                </div>
+
+            @elseif(Auth::user()->role === 'freelance')
+            {{-- ----------- L'utilisateur est freelance ---------- --}}
+                    <div class="col-md-6 col-sm-12 mt-5 text-center">
+                        <a class="btn btn-primary btn-lg text-center" href="{{route('projet.list')}}"></i> Gérer mes missions</a>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mt-5 text-center">
+                        <a class="btn btn-success btn-lg " href="{{route('projet.index')}}"></i> Voir toutes les missions</a>
+                    </div>
             @endif
+            </div>
         @endauth
     </div>
 </div>
@@ -76,9 +101,27 @@
     {{-- ----------- Call to action ---------- --}}
         <div class="card card-pub-home mb-3">
             <div class="card-body ">
-                <p class= "title-call-to-action">Besoins de plans ? Déposez une annonce gratuitement</p>
-                <p class= "text-call-to-action">Recevez vos premiers devis rapidement</p>
-                <a class="btn btn-success btn-lg" href="{{ route('register_client') }}">Recevoir des devis</a>
+               {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
+                @guest
+                    <p class= "title-call-to-action">Besoins de plans ? Déposez une annonce gratuitement</p>
+                    <p class= "text-call-to-action">Recevez vos premiers devis rapidement</p>
+                    <a class="btn btn-success btn-lg" href="{{ route('register_client') }}">Recevoir des devis</a>
+                @endguest
+                {{-- ----------- L'utilisateur est pas enregistré ---------- --}}
+                @auth
+                    {{-- ----------- Si c'est un client ---------- --}}
+                    @if (Auth::user()->role === 'client')
+                        <p class= "title-call-to-action">Besoins de plans ? Déposez une annonce gratuitement</p>
+                        <p class= "text-call-to-action">Recevez vos premiers devis rapidement</p>
+                        <a class="btn btn-success btn-lg" href="{{ route('register_client') }}">Recevoir des devis</a>
+                    {{-- ----------- Si c'est un freelance ---------- --}}
+                    @elseif (Auth::user()->role === 'freelance')
+                        <p class= "title-call-to-action">Vous recherchez une mission ?</p>
+                        <p class= "text-call-to-action">Consultez l'ensemble des offres disponibles</p>
+                        <a class="btn btn-success btn-lg" href="{{ route('projet.index') }}">Voir les missions</a>
+                    @endif
+
+                @endauth
             </div>
         </div>
 

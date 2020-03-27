@@ -3,7 +3,13 @@
 @section('content')
 
   <div class="text-center bg-primary py-4 mb-5">
-    <h1 class="text-white">TOUTES LES MISSIONS</h1>
+    @if(Auth::user()->role === 'client')
+    {{-- -------------- Si l'utilisateur est client --------------- --}}
+        <h1 class="text-white">MES PROJETS</h1>
+    @elseif(Auth::user()->role === 'freelance')
+    {{-- -------------- Si l'utilisateur est freelance --------------- --}}
+     <h1 class="text-white">MES MISSIONS</h1>
+    @endif
   </div>
   <div class="container">
     @foreach ($projets as $projet)

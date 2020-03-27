@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-3">
-                        <p>Déjà inscrit sur iziplans ?<a href="{{ route('login') }}">Connectez-vous</a></p>
+                        <p>Déjà inscrit sur iziplans ? <a href="{{ route('login') }}">Connectez-vous</a></p>
                     </div>
                 </div>
             </div>

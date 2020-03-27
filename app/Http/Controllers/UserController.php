@@ -42,8 +42,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $avatar = Storage::disk('local')->url('users/normal/'. $user->avatar);
+        $invoices = $user->invoices();
+        $subscription = Auth::user()->subscriptions->first();
 
-        return view('users.show', compact('user', 'avatar'));
+        return view('users.show', compact('user', 'avatar', 'invoices', 'subscription'));
     }
 
     public function edit($id)

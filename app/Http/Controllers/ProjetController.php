@@ -40,10 +40,20 @@ class ProjetController extends Controller
     public function index()
     {
 
-         $projets = Projet::where('user_id', Auth::user()->id)->get();
+         $projets = Projet::all();
 
          return view('projets.index', compact('projets'));
     }
+
+    public function list()
+    {
+
+        $projets = Projet::where('user_id', Auth::user()->id)->get();
+
+         return view('projets.list', compact('projets'));
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

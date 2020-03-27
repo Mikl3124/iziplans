@@ -65,6 +65,6 @@ class SubscribeController extends Controller
         $user = Auth::user();
         $user->subscription('abonnement')->cancel();
 
-        return redirect()->route('home');
+        return redirect()->back();
     }
 }

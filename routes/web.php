@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\CheckSubscribe;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,12 +35,20 @@ Route::get('subscribe', 'SubscribeController@payment')->name('subscribe');
 Route::post('/unsubscribe', 'SubscribeController@destroy');
 Route::post('/cancel', 'SubscribeController@cancel')->name('cancel-subscription');
 Route::post('/stripe', 'StripeWebhooksController');
+Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
+    return $request->user()->downloadInvoice($invoiceId, [
+        'vendor' => 'Your Company',
+        'product' => 'Your Product',
+    ]);
+});
 
 //Projet
 Route::resource('projet', 'ProjetController');
 Route::get('/projet/download/{id}', 'ProjetController@download')->name('downloadfile');
 Route::get('/projet-open/{id}', 'ProjetController@open')->name('projet.open');
 Route::post('/projet-close/', 'ProjetController@close')->name('projet.close');
+Route::get('/projet-list/', 'ProjetController@list')->name('projet.list');
+
 
 
 // Administrateur

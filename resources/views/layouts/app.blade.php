@@ -82,7 +82,6 @@
                             </li>
                         @else
 
-                        <!--------- Affichage des notifications ----------->
                             <li class="nav-item dropdown">
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -107,7 +106,7 @@
                                                 <span class="text-primary"> ({{ auth()->user()->unreadNotifications->count()}})</span>
                                             @endunless
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-phone-alt"></i> Mes coordonnées</a>
+                                        <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-user"></i> Mon compte</a>
                                         <h6 class="text-center bg-secondary text-white p-2">PROJETS</h6>
                                         <a class="dropdown-item" href="{{ route('projet.index') }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>
                                     {{-- ------------------------ Si l'utilisateur est un freelance ----------------------- --}}
@@ -117,7 +116,7 @@
                                             <a href=""><small>(Activer mon profil CLIENT)</small></a>
                                         </div>
                                         <div class="text-center">
-                                            <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.create')}}">Voir les missions</a>
+                                            <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.index')}}">Voir les missions</a>
                                         </div>
                                             <h6 class="text-center bg-secondary text-white p-2">MON COMPTE</h6>
                                         <a class="dropdown-item" href="{{ route('messagerie.index', Auth::user()) }}"><i class="far fa-envelope"></i> Messagerie
@@ -127,7 +126,7 @@
                                         </a>
 
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-phone-alt"></i> Mes coordonnées</a>
+                                        <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-user"></i> Mon compte</a>
                                 {{-- ------------------------ Si l'utilisateur est un admin ----------------------- --}}
                                     @elseif(Auth::user()->role === 'admin')
                                         <div class="text-center">
