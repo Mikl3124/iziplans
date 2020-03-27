@@ -204,5 +204,6 @@
 
     </footer>
     <!--/.Footer-->
-
+    {{-- Tidio --}}
+    <script src="//code.tidio.co/2mpdnkepz7xduaizuowdgkxas7xk44br.js" async></script>
 </body>
