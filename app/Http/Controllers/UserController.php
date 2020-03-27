@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use Validator;
 use App\Model\User;
+use Stripe\Customer;
 use App\model\Category;
 use App\Model\Competence;
 use App\Model\Departement;
@@ -41,11 +42,20 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $avatar = Storage::disk('local')->url('users/normal/'. $user->avatar);
-        $invoices = $user->invoices();
-        $subscription = Auth::user()->subscriptions->first();
+        $avatar = $user->avatar;
+        // Si l'utilisateur est Freelance
+        if(Auth::user()){
+            if($user->id === Auth::user()->id && Auth::user()->role === 'freelance'){
+                if(Auth::user()->stripe_id){
+                    $invoices = $user->invoices();
+                    $subscription = Auth::user()->subscriptions->first();
+                    return view('users.freelance.show', compact('user', 'avatar', 'invoices', 'subscription'));
+                }
+                return view('users.show', compact('user', 'avatar'));
+            }
+        }
+        return view('users.show', compact('user', 'avatar'));
 
-        return view('users.show', compact('user', 'avatar', 'invoices', 'subscription'));
     }
 
     public function edit($id)
