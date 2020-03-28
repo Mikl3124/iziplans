@@ -46,7 +46,7 @@
                                             <span class="sign">€</span>
                                             <span class="currency">17</span>
                                             <span class="cent">.90</span>
-                                            <span class="month">/Mois</span>
+                                            <span class="month">/mois</span>
                                         </span>
 
                                     </div>
@@ -106,7 +106,7 @@
                                             <span class="sign">€</span>
                                             <span class="currency">47</span>
                                             <span class="cent">.90</span>
-                                            <span class="month">/Trimestre</span>
+                                            <span class="month">/trimestre</span>
                                         </span>
                                     </div>
                                     <!--//PRICE END-->
@@ -227,11 +227,12 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">MENSUEL à 17.90€ / mois</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title">MENSUEL à 17.90€ / mois</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+
         <div class="modal-body">
             <form action="/subscribe" method="POST" id="payment-form">
                 @csrf
@@ -240,6 +241,9 @@
                         <!-- Stripe Elements Placeholder -->
                         <div id="card-element" class="form-control my-2"></div>
                         <div id="card-errors"  class="text-danger" role="alert"></div>
+                    </div>
+                    <div class=text-center>
+                        <img class="secure-payment" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/icon-paiement.png" alt="iziplans paiement sécurisé">
                     </div>
                         <button class="mt-3 btn btn-success btn-block" id="card-button" data-secret="{{ $intent->client_secret }}">
                             S'abonner
@@ -269,7 +273,9 @@
                         <div id="card-element-trimestre" class="form-control my-2"></div>
                         <div id="card-errors-trimestre"  class="text-danger" role="alert"></div>
                     </div>
-
+                    <div class=text-center>
+                        <img class="secure-payment" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/icon-paiement.png" alt="iziplans paiement sécurisé">
+                    </div>
                     <button class="mt-3 btn btn-success btn-block" id="card-button-trimestre" data-secret="{{ $intent->client_secret }}">
                         S'abonner
                     </button>
@@ -300,7 +306,9 @@
                         <div id="card-element-annuel" class="form-control my-2"></div>
                         <div id="card-errors-annuel"  class="text-danger" role="alert"></div>
                     </div>
-
+                    <div class=text-center>
+                        <img class="secure-payment" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/icon-paiement.png" alt="iziplans paiement sécurisé">
+                    </div>
                     <button class="mt-3 btn btn-success btn-block" id="card-button-annuel" data-secret="{{ $intent->client_secret }}">
                         S'abonner
                     </button>
