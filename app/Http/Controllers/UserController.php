@@ -50,10 +50,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $avatar = $user->avatar;
-        // Si l'utilisateur est Freelance
-        if(Auth::user()){
 
-        }
         return view('users.show', compact('user', 'avatar'));
 
     }

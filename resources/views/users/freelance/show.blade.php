@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <div class="card mt-5">
+    <div class="card">
         <div class="card-body row">
             <div class="col-md-2 col-sm-12 text-center">
                 <img class="mr-3 mt-4 rounded profil-avatar" src={{ Auth::user()->avatar }}>

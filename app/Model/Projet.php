@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 class Projet extends Model
 {
         protected $guarded =[];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -24,11 +24,6 @@ class Projet extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
-    }
-
-    public function competences()
-    {
-        return $this->belongsToMany(Competence::class);
     }
 
     public function departement()
@@ -50,5 +45,5 @@ class Projet extends Model
     {
         return $this->belongsToMany(Message::class);
     }
-   
+
 }

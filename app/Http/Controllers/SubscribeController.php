@@ -59,7 +59,12 @@ class SubscribeController extends Controller
 
         Flashy::success('Félicitations! Vous êtes maintenant abonné, vous pouvez répondre aux offres');
 
-        return redirect()->route('home');
+        if (Session::has('backUrl')) {
+            Session::keep('backUrl');
+        }
+        return ($url = Session::get('backUrl'))
+        ? Redirect::to($url)
+        : Redirect::route('home');
 
     }
 

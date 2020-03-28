@@ -40,3 +40,7 @@ h6{
 p{
   font-size: 1.2em;
 }
+
+main{
+    min-height: calc(100vh - 174px);
+}

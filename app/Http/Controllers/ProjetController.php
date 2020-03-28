@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Session;
 use App\Model\User;
 use App\Model\Offer;
 use App\Model\Topic;
@@ -18,6 +17,7 @@ use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
@@ -190,6 +190,7 @@ class ProjetController extends Controller
         $has_make_an_offer = false;
         $topic = null;
         $freelance_offer = null;
+        $already_make_a_bid = null;
 
         if ($projet->file_projet) {
             $contents = Storage::url($projet->file_projet);
@@ -212,9 +213,15 @@ class ProjetController extends Controller
                                                 ->first();
                 }
             }
+            $already_make_a_bid = Offer::where('projet_id', $projet->id)
+                                    ->where('user_id', Auth::user()->id)
+                                    ->first();
         }
 
-        return view('projets.show', compact('projet', 'topic', 'contents', 'offers', 'departement', 'has_make_an_offer', 'freelance_offer'));
+
+
+
+        return view('projets.show', compact('projet', 'topic', 'contents', 'offers', 'departement', 'has_make_an_offer', 'freelance_offer', 'already_make_a_bid'));
     }
 
 

@@ -59,7 +59,6 @@
     </div>
 </div>
 
-</div>
 {{-- ----------- Banner ---------- --}}
 <div class="container">
 
@@ -74,7 +73,7 @@
             <div class="card card-project-home mb-3">
 
                 <div class="card-body ">
-                    <h2 class="list-project-title">{{$projet->title}}</h2>
+                    <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
                     <div class="row">
                         @if ($projet->status === "open")
                             <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
@@ -88,7 +87,7 @@
                     </div>
                     <hr>
 
-                    <p class="card-text">{{ Str::words($projet->description, 45, '...') }}</p>
+                    <p class="card-text">{{ ucfirst(Str::words($projet->description, 45, '...')) }}</p>
 
                     @foreach($projet->categories as $category)
                         <span class="categories">{{ $category->name }} </span>
@@ -113,7 +112,7 @@
                     @if (Auth::user()->role === 'client')
                         <p class= "title-call-to-action">Besoins de plans ? Déposez une annonce gratuitement</p>
                         <p class= "text-call-to-action">Recevez vos premiers devis rapidement</p>
-                        <a class="btn btn-success btn-lg" href="{{ route('register_client') }}">Recevoir des devis</a>
+                        <a class="btn btn-success btn-lg" href="{{ route('projet.create') }}">Recevoir des devis</a>
                     {{-- ----------- Si c'est un freelance ---------- --}}
                     @elseif (Auth::user()->role === 'freelance')
                         <p class= "title-call-to-action">Vous recherchez une mission ?</p>

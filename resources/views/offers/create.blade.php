@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>{{$projet->title}}</h1>
+    <h1>{{ ucfirst($projet->title) }}</h1>
     <h5>Mon offre pour ce projet</h5>
         <div class="row d-flex justify-content-between">
             <div class="card card-show mb-5 col-md-7 col-sm-12 mt-n5">
                 <form action="{{ route('offers.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                <input type="hidden" name="projet_id" value="{{$projet->id}}">
+                <input type="hidden" name="projet_id" value="{{ $projet->id }}">
                     <div class="form-group">
                         <div class="form-row align-items-center">
                             <div class="col-md-6 col-sm-6 my-1">
