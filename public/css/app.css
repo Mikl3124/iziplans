@@ -247,6 +247,10 @@ h1 {
   height: 80px;
 }
 
+.card-offer {
+  padding: 0.75rem !important;
+}
+
 .input-group-text {
   border-top-right-radius: 0.25rem !important;
   border-bottom-right-radius: 0.25rem !important;
@@ -295,6 +299,29 @@ h1 {
   font-size: 1.5rem;
   margin-bottom: 0px;
   margin-top: 16px;
+}
+
+.banner-profil-background {
+  padding: 15px;
+  height: 160px;
+  background: linear-gradient(90deg, #020024 0%, #090979 35%, #0094dd 100%);
+  z-index: 1;
+  -webkit-filter: brightness(0.66);
+          filter: brightness(0.66);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.avatar-banner {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 3px solid white;
+  background: white;
+  border-radius: 30px;
+  height: 130px;
+  width: 130px;
+  margin-top: -97px;
+  overflow: hidden;
+  z-index: 99;
 }
 
 .profil-avatar {
@@ -11799,5 +11826,9 @@ h6 {
 
 p {
   font-size: 1.2em;
+}
+
+main {
+  min-height: calc(100vh - 174px);
 }
 

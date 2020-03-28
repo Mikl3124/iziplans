@@ -68,12 +68,13 @@ Route::group(['middleware' => ['auth','admin']], function () {
 });
 
 //Offers
+
 Route::get('/offers/{id}', 'OfferController@show')->name('offers.show');
 Route::get('/offers-create/{id}', 'OfferController@create')->name('offers.create')->middleware(CheckSubscribe::class);
-Route::get('/offers/edit/{id}', 'OfferController@edit')->name('offers.edit');
-Route::post('/offers/{id}', 'OfferController@update')->name('offers.update');
-Route::post('/offers/', 'OfferController@store')->name('offers.store');
-Route::delete('/offers/{id}', 'OfferController@destroy')->name('offers.delete');
+Route::get('/offers/edit/{id}', 'OfferController@edit')->name('offers.edit')->middleware(CheckSubscribe::class);
+Route::post('/offers/{id}', 'OfferController@update')->name('offers.update')->middleware(CheckSubscribe::class);
+Route::post('/offers/', 'OfferController@store')->name('offers.store')->middleware(CheckSubscribe::class);
+Route::delete('/offers/{id}', 'OfferController@destroy')->name('offers.delete')->middleware(CheckSubscribe::class);
 
 
 //Profil

@@ -10,10 +10,10 @@
             <p class="mb-0">Connectez-vous rapidement :</p>
             <div class="row justify-content-center">
                 {{-- ---------------- Social connection ---------------- --}}
-                <div class="col-md-4 col-sm-12 my-1">
+                <div class="col-md-12 col-sm-12 col-lg-4 my-1">
                     <a href="{{route('social-login.redirect', 'google')}}" class="signing-button google"><img class="img_google" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/google.svg" alt=""> Continuer avec Google</a>
                 </div>
-                <div class="col-md-4 col-sm-12 my-1">
+                <div class="col-md-12 col-sm-12 col-lg-4 my-1">
                     <a href="{{route('social-login.redirect', 'facebook')}}" class="signing-button facebook"><i class="fab fa-facebook-f"></i> Continuer avec Facebook</a>
                 </div>
             </div>

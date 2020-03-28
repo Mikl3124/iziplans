@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container-fluid bg-primary">
     <div class="container py-4">
         <h1 class="text-left pt-5 text-white">{{ucfirst($projet->title)}}</h1>
@@ -46,135 +45,248 @@
                     </table>
                 </div>
             </div >
+
+
 {{-- ------------------------------------------------ Right part ----------------------------------------------- --}}
-            <div class="col-md-4 my-2 col-sm-12 mt-n5">
-                {{-- --------------- Si l'utilisateur est l'auteur du projet --------------- --}}
+
+{{-- -------------------------------------------------------------------------------------------------------------------------- --}}
+{{-- ------------------------------------------------ AUTH ------------------------------------------------------------- --}}
+{{-- -------------------------------------------------------------------------------------------------------------------------- --}}
+            @auth
+            {{-- -------------- Si Auth est le PROPRIETAIRE de l'offre ------------ --}}
                 @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
-                    <div class="card card-show mb-3">
-                        {{-- --------------- Si le projet est publié --------------- --}}
-                        @if ($projet->status === 'open')
-                            <a href="{{ route('projet.edit', $projet) }}" class="btn btn-primary text-white mb-3"><i class="fas fa-pencil-alt text-white"></i> Modifier mon projet </a>
-                            <a data-toggle="modal" data-target="#closeModal" class="btn btn-danger text-white"><i class="fas fa-exclamation-triangle text-white"></i> Fermer mon projet </a>
-                        {{-- --------------- Si le projet est fermé --------------- --}}
-                        @elseif ($projet->status === 'closed')
-                            <a href="{{ route('projet.open', $projet) }}" class="btn btn-success text-white"><i class="fas fa-lock-open text-white"></i> Publier à nouveau le projet</a>
-                        @endif
+                    <div class="col-md-4 my-2 col-sm-12 mt-n5">
+                        <div class="card card-show mb-3">
+                            <div class="card card-show bg-dark mb-3">
+                                <p class="text-white text-center">Vous êtes le propriétaire de ce projet</p>
+                                {{-- --------------- Si le projet est OUVERT --------------- --}}
+                                @if ($projet->status === 'open')
+                                    <a href="{{ route('projet.edit', $projet) }}" class="btn btn-primary text-white mb-3"><i class="fas fa-pencil-alt text-white"></i> Modifier mon projet </a>
+                                    <a data-toggle="modal" data-target="#closeModal" class="btn btn-danger text-white"><i class="fas fa-exclamation-triangle text-white"></i> Fermer mon projet </a>
+                                {{-- --------------- Si le projet est FERME --------------- --}}
+                                @elseif ($projet->status === 'closed')
+                                    <a href="{{ route('projet.open', $projet) }}" class="btn btn-success text-white"><i class="fas fa-lock-open text-white"></i> Publier à nouveau le projet</a>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 @else
-                {{-- --------------- Si l'utilisateur n'est pas connecté --------------- --}}
-                    @guest
+                    {{-- --------------- Si le projet est OUVERT --------------- --}}
+                    @if ($projet->status === 'open')
+                        {{-- ----- Si c'est un FREELANCE ---- --}}
+                            {{-- ---------------- A déjà fait une offre --------------- --}}
+                        @if($already_make_a_bid)
+                            <div class="col-md-4 my-2 col-sm-12 mt-n5">
+                                <div class="card card-show mb-3">
+                                    <div class="card card-show bg-dark mb-3">
+                                        <p class="text-white">Vous avez déjà fait une offre pour ce projet</p>
+                                        {{-- ----- Si le freelance est abonné ---- --}}
+                                        @if(Auth::user()->subscribed('abonnement'))
+                                            <a href="{{route('offers.edit', $already_make_a_bid->id)}}" class="btn btn-success"> Modifier mon offre </a>
+                                        {{-- ----- Si le freelance n'est pas abonné ---- --}}
+                                        @else
+                                            <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Voir les abonnements </a>
+                                        @endif
+                                    </div>
+                                    <div class="card card-show mb-3">
+                                        <a href="{{ route('messagerie.show', ['projet' => $projet->id, 'topic' =>$topic]) }}" class="btn btn-primary">Contacter le client</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- ---------------- N'a pas fait une offre --------------- --}}
+                        @else
+                            @if(Auth::user()->role === 'freelance')
+                                    <div class="col-md-4 my-2 col-sm-12 mt-n5">
+                                        <div class="card card-show mb-3">
+                                            <div class="card card-show bg-dark mb-3">
+                                                <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
+                                                {{-- ----- Si le freelance est abonné ---- --}}
+                                                @if(Auth::user()->subscribed('abonnement'))
+                                                    <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Faire une offre </a>
+                                                {{-- ----- Si le freelance n'est pas abonné ---- --}}
+                                                @else
+                                                    <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Voir les abonnements </a>
+                                                @endif
+                                            </div>
+
+                                            <div class="card card-show mb-3">
+                                                <a href="{{ route('messagerie.show', ['projet' => $projet->id, 'topic' =>$topic]) }}" class="btn btn-primary">Contacter le client</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{-- ----- Si c'est un CLIENT ---- --}}
+                                @elseif(Auth::user()->role === 'client')
+                                    <div class="col-md-4 my-2 col-sm-12 mt-n5">
+                                        <div class="card card-show mb-3">
+                                            <div class="card card-show bg-dark mb-3 text-center">
+                                                <p class="text-white">Publiez le votre projet, et recevez des offres GRATUITEMENT</p>
+                                                <a href="{{ route('projet.create') }}" class="btn btn-success"> Publier mon projet </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                        @endif
+                    {{-- --------------- Si le projet est FERME --------------- --}}
+                    @elseif ($projet->status === 'closed')
+                        @if(Auth::user()->role === 'freelance')
+                            <div class="col-md-4 my-2 col-sm-12 mt-n5">
+                                <div class="card card-show mb-3 text-center">
+                                    <div class="card card-show bg-dark mb-3">
+                                        <p class="text-white">Ce projet est fermé.</p>
+                                        <p class="text-white">Consultez toutes les offres</p>
+                                        <a href="{{ route('projet.index') }}" class="btn btn-success"> Voir la liste </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif(Auth::user()->role === 'client')
+                            <div class="col-md-4 my-2 col-sm-12 mt-n5">
+                                <div class="card card-show mb-3">
+                                    <div class="card card-show bg-dark mb-3 text-center">
+                                        <p class="text-white">Ce projet est fermé.</p>
+                                        <p class="text-white">Publiez le votre projet, et recevez des offres GRATUITEMENT</p>
+                                        <a href="{{ route('projet.create') }}" class="btn btn-success"> Déposer un projet </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endif
+
+                @endif
+            @endauth
+
+{{-- -------------------------------------------------------------------------------------------------------------------------- --}}
+{{-- ------------------------------------------------ GUEST ------------------------------------------------------------- --}}
+{{-- -------------------------------------------------------------------------------------------------------------------------- --}}
+            @guest
+                <div class="col-md-4 my-2 col-sm-12 mt-n5">
+                    <div class="card card-show mb-3">
                         <div class="card card-show bg-dark mb-3">
                             <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
                             <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
                         </div>
-                    @endguest
-                {{-- --------------- Si l'utilisateur est connecté --------------- --}}
-                    @auth
-                    {{-- --------------- Si c'est un freelance --------------- --}}
-                        @if (null !== (Auth::user()) && Auth::user()->role === 'freelance')
-                            {{-- --------------- Si le projet est ouvert --------------- --}}
-                            @if ($projet->status === 'open')
-                                <div class="card card-show bg-dark mb-3">
-                                    <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
-                                    {{-- --------------- Si le freelance n'a pas encore fait d'offre --------------- --}}
-                                    @if ($has_make_an_offer === false)
-                                        {{-- --------------- Si il est abonné --------------- --}}
-                                        @if (null !== (Auth::user()) && Auth::user()->role === 'freelance')
-                                            @if (null !== (Auth::user()->subscribed('abonnement')))
-                                                <a href="{{route('subscribe')}}" class="btn btn-success"> Voir les abonnements</a>
-                                            @endif
-                                        @else
-                                        {{-- --------- Si il n'est pas abonné ---------- --}}
-                                            <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
-                                        @endif
-
-                                    {{-- --------------- Si le freelance a fait une offre --------------- --}}
-                                    @elseif ($has_make_an_offer === true)
-                                        <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success">Modifier mon offre</a>
-                                    @endif
-                            {{-- --------------- Si le projet est fermé --------------- --}}
-                            @elseif ($projet->status === 'closed')
-                                <div class="card card-show bg-dark mb-3">
-                                    <p class="text-white text-center">Ce projet est fermé .</p>
-                                    <p class="text-white text-center">Il n'est plus possible de faire d'offre .</p>
-                                    <a href="" class="btn btn-success"><i class="fas fa-list text-white"></i> Consulter la liste des projets</a>
-                                </div>
-                            @endif
-                            </div>
-                            <div class="card card-show mb-3">
-                                {{-- --------------- Si le projet est ouvert --------------- --}}
-                                @if ($projet->status === 'open')
-
-                                    <a href="{{ route('messagerie.show', ['projet' => $projet->id, 'topic' =>$topic]) }}" class="btn btn-primary"><i class="fas fa-pen text-white"></i> Contacter le client</a>
-                                {{-- --------------- Si le projet est fermé --------------- --}}
-                                @elseif ($projet->status === 'closed')
-                                    <a href="" class="btn btn-success"><i class="fas fa-list text-white"></i> Consulter la liste des projets</a>
-                                @endif
-                            </div>
-                    {{-- --------------- Si c'est un client --------------- --}}
-                        @elseif (!empty(Auth::user()) && Auth::user()->role === 'client')
-                            <div class="card card-show mb-3">
-                                <a href="{{ route('projet.create') }}" class="btn btn-success">Déposez un Projet Gratuitement</a>
-                            </div>
-                        @endif
-
-                    @endauth
-                @endif
-            </div>
+                        <div class="card card-show mb-3">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal"> Contacter le client</a>
+                        </div>
+                    </div>
+                </div>
+            @endguest
         </div>
 
 
 
-         <div class="text-center">
-        {{-- --------------- Si il n'y a aucune offre pour ce projet --------------- --}}
-            @if($offers->count() === 0)
-                @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
-                    <h3>Il n'y a pas encore d'offre pour votre projet</h3>
-                @else
-                <h3>Il n'y a pas encore d'offre pour ce projet, soyez le premier !</h3>
-                    @if(!empty(Auth::user()) &&  Auth::user()->role === 'freelance')
-                        <a href="{{ route('subscribe') }}" class="btn btn-success"> Voir les abonnements </a>
+{{-- -------------------------- Section Listing offres ----------------------------------------------- --}}
+
+
+        <div class="text-center">
+{{-- -------------------------------------------------------------------------------------------------------------------------- --}}
+{{-- ------------------------------------------------ AUTH ------------------------------------------------------------- --}}
+{{-- -------------------------------------------------------------------------------------------------------------------------- --}}
+            @auth
+                {{-- -------------- Si Auth est le PROPRIETAIRE de l'offre ------------ --}}
+                @if ( Auth::user()->id === $projet->user->id)
+                    @if($offers->count() === 0)
+                        <h3>Il n'y a aucune offre pour votre projet</h3>
+                    @elseif($offers->count() === 1)
+                        <h3>Il n'y a qu'une offre pour votre projet</h3>
+                    @elseif($offers->count() > 1)
+                        <h3>Il n'y a {{ $offers->count() }} offres pour votre projet</h3>
                     @endif
-                    {{-- --------- Si le Freelance est abonné ---------- --}}
-                    @if(!empty(Auth::user()) && Auth::user()->role === 'freelance')
-                        @if(Auth::user()->subscribed('abonnement'))
-                            <a href="{{ route('subscribe') }}" class="btn btn-success"> Voir les abonnements </a>
+                @else
+                {{-- -------------- Si Auth est le PAS LE PROPRIETAIRE de l'offre ------------ --}}
+                    {{-- ----- Si c'est un FREELANCE ---- --}}
+                    @if(Auth::user()->role === 'freelance')
+                    {{-- ----- Si le freelance est ABONNE---- --}}
+                        {{-- ----- Si il a déjà fait une offre---- --}}
+                        @if($already_make_a_bid)
+                            @if(Auth::user()->subscribed('abonnement'))
+                                @if($offers->count() === 0)
+                                    <h3>Il n'y a aucune offre pour ce projet, soyez le premier !</h3>
+                                    <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success"> Modifier mon offre </a>
+                                @elseif($offers->count() === 1)
+                                    <h3>Il n'y a qu'une offre pour ce projet, profitez-en !</h3>
+                                    <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success"> Modifier mon offre </a>
+                                @elseif($offers->count() > 1)
+                                    <h3>Il y a {{ $offers->count() }} offres pour ce projet.</h3>
+                                    <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success"> Modifier mon offre </a>
+                                @endif
+                            {{-- ----- Si le freelance n'est PAS ABONNE ---- --}}
+                            @elseif(Auth::user()->subscribed('abonnement'))
+                                @if($offers->count() === 0)
+                                    <h3>Il n'y a aucune offre pour ce projet, soyez le premier !</h3>
+                                    <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success"> Modifier mon offre </a>
+                                @elseif($offers->count() === 1)
+                                    <h3>Il n'y a qu'une offre pour ce projet, profitez-en !</h3>
+                                    <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success"> Modifier mon offre </a>
+                                @elseif($offers->count() > 1)
+                                    <h3>Il y a {{ $offers->count() }} offres pour ce projet.</h3>
+                                    <a href="{{route('offers.edit', $freelance_offer)}}" class="btn btn-success"> Modifier mon offre </a>
+                                @endif
+                            @endif
+                        {{-- ----- Si il n'a pas fait d'offre ---- --}}
+                        @else
+                            @if(Auth::user()->subscribed('abonnement'))
+                                @if($offers->count() === 0)
+                                    <h3>Il n'y a aucune offre pour ce projet, soyez le premier !</h3>
+                                    <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Faire une offre </a>
+                                @elseif($offers->count() === 1)
+                                    <h3>Il n'y a qu'une offre pour ce projet, profitez-en !</h3>
+                                    <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Faire une offre </a>
+                                @elseif($offers->count() > 1)
+                                    <h3>Il y a {{ $offers->count() }} offres pour ce projet.</h3>
+                                    <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Faire une offre </a>
+                                @endif
+                            {{-- ----- Si le freelance n'est PAS ABONNE ---- --}}
+                            @elseif(Auth::user()->subscribed('abonnement'))
+                                @if($offers->count() === 0)
+                                    <h3>Il n'y a aucune offre pour ce projet, soyez le premier !</h3>
+                                    <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Voir les abonnements </a>
+                                @elseif($offers->count() === 1)
+                                    <h3>Il n'y a qu'une offre pour ce projet, profitez-en !</h3>
+                                    <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Voir les abonnements </a>
+                                @elseif($offers->count() > 1)
+                                    <h3>Il y a {{ $offers->count() }} offres pour ce projet.</h3>
+                                    <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Voir les abonnements </a>
+                                @endif
+                            @endif
+
+                        @endif
+                    {{-- ----- Si c'est un CLIENT ---- --}}
+                    @elseif(Auth::user()->role === 'client')
+                        @if($offers->count() === 0)
+                            <h3>Il n'y a aucune offre pour ce projet. Publiez la votre.</h3>
+                            <a href="{{ route('projet.create') }}" class="btn btn-success"> Publiez un projet </a>
+                        @elseif($offers->count() === 1)
+                            <h3>Il n'y a qu'une offre pour ce projet. Publiez la votre.</h3>
+                            <a href="{{ route('projet.create') }}" class="btn btn-success"> Publiez un projet </a>
+                        @elseif($offers->count() > 1)
+                            <h3>Il y a {{ $offers->count() }} offres pour ce projet. Publiez la votre.</h3>
+                            <a href="{{ route('projet.create') }}" class="btn btn-success"> Publiez un projet </a>
                         @endif
                     @endif
-                    @if(!empty(Auth::user()) &&  Auth::user()->role === 'client')
-                        <a href="{{ route('projet.create') }}" class="btn btn-success">Déposez un Projet Gratuitement</a>
-                    @endif
-                    @if(!empty(Auth::user()) &&  Auth::user()->role !== 'client' &&  Auth::user()->role !== 'freelance')
-                        <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
-                    @endif
-
                 @endif
-        {{-- --------------- Si il y a des offres pour ce projet --------------- --}}
-            @elseif($offers->count() === 1)
-                @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
-                    <h3>Seulement une seule offre pour votre projet</h3>
-                @else
-                    <h3>Il n'y a qu'une seule offre pour ce projet</h3>
-                @endif
-            @elseif($offers->count() > 1)
-                @if ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
-                    <h3>Il y {{ $offers->count() }} offres pour votre projet</h3>
-                @else
-                    <h3>Il y {{ $offers->count() }} offres pour ce projet</h3>
-                @endif
-            @endif
+            @endauth
+      {{-- -------------------------------------------------------------------------------------------------------------------------- --}}
+{{-- ------------------------------------------------ GUEST ------------------------------------------------------------- --}}
+{{-- -------------------------------------------------------------------------------------------------------------------------- --}}
             @guest
-                <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
+                @if($offers->count() === 0)
+                    <h3>Il n'y a aucune offre pour ce projet, soyez le premier !</h3>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
+                @elseif($offers->count() === 1)
+                    <h3>Il n'y a qu'une offre pour ce projet, profitez-en !</h3>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
+                @elseif($offers->count() > 1)
+                    <h3>Il y a {{ $offers->count() }} offres pour ce projet.</h3>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
+                @endif
             @endguest
 
         </div>
 
-
-
 {{-- ------------------------------------------------ Offres ----------------------------------------------- --}}
         @foreach ($offers as $offer)
-            <div class="card mb-3">
-                <div class="card-body">
+            <div class="card my-3">
+                <div class="card-body card-offer">
                     <em class="list-project-time ">Offre postée {{Carbon\Carbon::parse($offer->created_at)->diffForHumans()}}</em>
                     <div class="row align-items-center mt-2">
                         <div class= "col-md-7 col-sm-12">
@@ -189,8 +301,19 @@
                                     @endauth
                                 </div>
                                 <div class="col-md-6 col-sm-6">
-                                    <p>{{$offer->user->lastname}}</p>
-                                    {{$offer->user->firstname}}
+                                <a href="{{ route('profil', $offer->user->id)}}">
+                                    <h4 class="mb-0">{{$offer->user->firstname}} {{$offer->user->lastname}}</h4>
+                                    @if($offer->user->titre)
+                                        <p class="mb-1"><em>{{ $offer->user->titre }}</em></p>
+                                    @endif
+                                    @if($offer->user->town)
+                                        {{ $offer->user->town }}
+                                    @endif
+                                    @if($offer->user->departement)
+                                        ({{ ($offer->user->departement) }})
+                                    @endif
+
+                                    </a>
                                 </div>
                             </div>
                         </div>
