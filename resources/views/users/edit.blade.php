@@ -86,13 +86,13 @@
                                 <!-- ---------------- Présentation ------------------ -->
                                 <div class="form-group">
                                     <label for="presentation">Votre présentation</label>
-                                    <textarea class="form-control" id="presentation" name="presentation" rows="8">{{old('presentation', $user->description)}}</textarea>
+                                    <textarea class="form-control" id="presentation" name="presentation" rows="8">{{old('presentation', $user->presentation)}}</textarea>
                                 </div>
                             @endif
                     <!-- ---------------- Si l'utilsateur est Client ------------------ -->
                             <div class="form-group">
                                 <label for="form-address">Adresse</label>
-                                <input type="search" class="form-control @error('address') is-invalid @enderror" id="form-address"
+                                <input type="search" value="{{old('address', $user->address)}}" class="form-control @error('address') is-invalid @enderror" id="form-address"
                                 name="address" placeholder="Veuillez saisir votre adresse" />
                                 @error('address')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -101,21 +101,21 @@
                             <div class="row">
                                 <div class="form-group col-sm-12 col-md-4">
                                     <label for="form-city">Ville</label>
-                                    <input type="text" name="town" class="form-control @error('town') is-invalid @enderror" id="form-city">
+                                    <input type="text" name="town" value="{{old('town', $user->town)}}" class="form-control @error('town') is-invalid @enderror" id="form-city">
                                     @error('town')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group col-sm-12 col-md-4">
                                     <label for="form-zip">Code Postal</label>
-                                    <input type="text" class="form-control @error('cp') is-invalid @enderror" name="cp" id="form-zip">
+                                    <input type="text" value="{{old('cp', $user->cp)}}" class="form-control @error('cp') is-invalid @enderror" name="cp" id="form-zip">
                                     @error('cp')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group col-sm-12 col-md-4">
                                     <label for="departement">Département</label>
-                                    <input type="text" class="form-control @error('departement') is-invalid @enderror" name="departement" id="departement">
+                                    <input type="text" value="{{old('departement', $user->departement)}}" class="form-control @error('departement') is-invalid @enderror" name="departement" id="departement">
                                     @error('departement')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

@@ -20,6 +20,6 @@ class Departement extends Model
 
     public function standbyprojects()
         {
-        return $this->hasMany(Standbyproject::class, 'departement_id');
+        return $this->hasMany(Standbyproject::class);
         }
 }

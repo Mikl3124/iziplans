@@ -40,7 +40,7 @@
                 @auth
                     @if(Auth::user()->role === "freelance" && Auth::user()->updated_profil === 0)
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    N'oubliez pas de <a href="{{ route('profil-edit', Auth::user()) }}" class="updateProfilAlertLink"><u>compléter votre profil</u></a> pour recevoir les nouvelles offres par email !
+                    N'oubliez pas de <a href="{{ route('profil-edit', Auth::user()) }}" class="updateProfilAlertLink"><u>compléter votre profil</u></a> pour être averti des nouvelles missions par email !
                       </div>
                     @endif
 

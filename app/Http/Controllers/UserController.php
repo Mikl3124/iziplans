@@ -10,6 +10,7 @@ use Stripe\Customer;
 use App\model\Category;
 use App\Model\Competence;
 use App\Model\Departement;
+use App\Model\Information;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
@@ -155,7 +156,9 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+
         $user = Auth::user();
+        //Mise à jour du profil
         DB::table('category_user')->where('user_id', $user->id)->delete();
         DB::table('departement_user')->where('user_id', $user->id)->delete();
         $user->categories()->attach($request->categories);
@@ -164,8 +167,12 @@ class UserController extends Controller
         $user->lastname = $request['lastname'];
         $user->alert_categories = $request['alert_categories'];
         $user->alert_departements = $request['alert_departements'];
-        $user->description = $request['presentation'];
+        $user->presentation = $request['presentation'];
         $user->titre = $request['titre'];
+        $user->address = $request['address'];
+        $user->town = $request['town'];
+        $user->cp = $request->cp;
+        $user->departement = $request->departement;
 
         // Mise à jour de updated_profil
         if($user->categories->count() >= 1 || $user->departements->count() >= 1){

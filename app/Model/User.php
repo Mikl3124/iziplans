@@ -7,6 +7,7 @@ use App\Model\Thread;
 use App\model\Category;
 use App\model\Competence;
 use App\Model\Departement;
+use App\Model\Information;
 use Laravel\Cashier\Billable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -22,19 +23,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'id',
-        'role',
-        'lastname',
-        'firstname',
-        'secret',
-        'cgv',
-        'last_login_at',
-        'last_login_ip',
-    ];
+    protected $guarded = [];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -79,6 +69,11 @@ class User extends Authenticatable
     public function departements()
     {
         return $this->belongsToMany(Departement::class);
+    }
+
+    public function informations()
+    {
+        return $this->hasMany(Information::class);
     }
 
 }
