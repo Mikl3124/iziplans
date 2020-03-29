@@ -29,4 +29,14 @@ class HomeController extends Controller
 
         return view('welcome', compact('projets_first', 'projets_seconds'));
     }
+
+    public function cgv()
+    {
+        return view('cgv');
+    }
+
+    public function politique()
+    {
+        return view('politique-de-confidentialite');
+    }
 }

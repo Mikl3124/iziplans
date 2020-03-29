@@ -3,7 +3,11 @@
 @section('content')
 <div class="container-fluid bg-primary">
     <div class="container py-4">
-        <h1 class="text-left pt-5 text-white">{{ ucfirst($user->firstname) }} {{ ucfirst($user->lastname) }}</h1>
+        @if($user->pseudo)
+            <h1 class="text-left pt-5 text-white">{{ ucfirst($user->pseudo) }}</h1>
+        @else
+            <h1 class="text-left pt-5 text-white">{{ ucfirst($user->firstname) }} {{ ucfirst($user->lastname) }}</h1>
+        @endif
         <div class="d-flex justify-content-start mb-5 ">
         <p>{{ ucfirst($user->titre) }}</p>
         </div>

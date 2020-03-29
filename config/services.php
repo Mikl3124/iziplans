@@ -55,4 +55,10 @@ return [
         'redirect' => env('LINKEDIN_REDIRECT'),
     ],
 
+    'ses' => [
+        'key' => env('SES_KEY'),
+        'secret' => env('SES_KEY_SECRET'),
+        'region' => env('SES_REGION'),
+    ],
+
 ];

@@ -21,14 +21,24 @@
                                     {{-- ------------- Si le contenu du message est vide (fichier à télécharger seulement) ---------------- --}}
                                     @if ($message->content === null)
                                         @isset($message->file_message)
-                                            <p class="mb-0"><strong>{{ $message->from->id === $user->id ? 'Moi' : $message->from->firstname}}</strong> <br></p>
+                                            @if($message->from->pseudo)
+                                                <p class="mb-0"><strong>{{ $message->from->id === $user->id ? 'Moi' : $message->from->pseudo}}</strong> <br></p>
+                                            @else
+                                                <p class="mb-0"><strong>{{ $message->from->id === $user->id ? 'Moi' : $message->from->firstname}}</strong> <br></p>
+                                            @endif
+
                                             <p class="{{ $message->from->id === $user->id ? 'my_message' : 'his_message'}}">
                                                 <a href="{{ route('messagerie.download', $message)}}"><i class="fas fa-download"></i> {{ $message->file_message }}</a>
                                             </p>
                                         @endisset
                                     {{-- ------------- Si le contenu du message n'est pas vide ---------------- --}}
                                     @else
-                                        <p class="mb-0"><strong>{{ $message->from->id === $user->id ? 'Moi' : $message->from->firstname}}</strong> <br></p>
+                                        @if($message->from->pseudo)
+                                            <p class="mb-0"><strong>{{ $message->from->id === $user->id ? 'Moi' : $message->from->pseudo}}</strong> <br></p>
+                                        @else
+                                            <p class="mb-0"><strong>{{ $message->from->id === $user->id ? 'Moi' : $message->from->firstname}}</strong> <br></p>
+                                        @endif
+
                                         <p class="{{ $message->from->id === $user->id ? 'my_message' : 'his_message'}}">{!! nl2br(e($message->content)) !!}</p>
                                         @isset($message->file_message)
                                             @if ($message->content === null)

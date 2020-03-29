@@ -302,7 +302,12 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                 <a href="{{ route('profil', $offer->user->id)}}">
-                                    <h4 class="mb-0">{{$offer->user->firstname}} {{$offer->user->lastname}}</h4>
+                                    @if($offer->user->pseudo)
+                                        <h4 class="mb-0">{{ $offer->user->pseudo }}</h4>
+                                    @else
+                                        <h4 class="mb-0">{{ $offer->user->firstname }} {{$offer->user->lastname}}</h4>
+                                    @endif
+
                                     @if($offer->user->titre)
                                         <p class="mb-1"><em>{{ $offer->user->titre }}</em></p>
                                     @endif

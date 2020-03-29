@@ -99,5 +99,7 @@ Route::get('/messagerie-download/{message}', 'ConversationController@download')-
 Route::post('/messagerie/{topic}', 'ConversationController@store')->name('messagerie.store')->middleware(CheckSubscribe::class);
 Route::get('showFromNotifications/{topic}/{notification}', 'ConversationController@showFromNotifications')->name('topics.showFromNotifications');
 
+//Divers
 
-
+Route::get('/mentions-legales', 'HomeController@cgv')->name('cgv');
+Route::get('/politique-de-confidentialite', 'HomeController@politique')->name('politique');

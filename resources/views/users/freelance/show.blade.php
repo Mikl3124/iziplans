@@ -10,7 +10,12 @@
 
             </div>
             <div class="col-md-8 col-sm-12 my-3 text-center">
-                <h2 class="my-auto">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h2>
+                @if(Auth::user()->pseudo)
+                    <h2 class="my-auto">{{ Auth::user()->pseudo }}</h2>
+                @else
+                    <h2 class="my-auto">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h2>
+                @endif
+                
             <p><em>Membre depuis le {{Carbon\Carbon::parse($user->created_at)->isoFormat('LL')}}</em></p>
             </div>
             <div class="col-md-2 col-sm-12 my-3 text-center">

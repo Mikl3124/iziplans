@@ -162,6 +162,7 @@ class UserController extends Controller
         $user->departements()->attach($request->departements);
         $user->firstname = $request['firstname'];
         $user->lastname = $request['lastname'];
+        $user->pseudo = $request['pseudo'];
         $user->alert_categories = $request['alert_categories'];
         $user->alert_departements = $request['alert_departements'];
         $user->presentation = $request['presentation'];

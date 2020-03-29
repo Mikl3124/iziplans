@@ -121,6 +121,22 @@ h1 {
   line-height: 1.2em;
 }
 
+.footer-brand {
+  width: 60px;
+}
+
+.footer-link {
+  color: #4a4a4a;
+}
+
+.link-footer:hover {
+  color: #0072FF !important;
+}
+
+.page-footer {
+  height: 80px;
+}
+
 .icon-register {
   font-size: 10em;
   color: rgba(0, 114, 255, 0.5);
@@ -11833,6 +11849,6 @@ p {
 }
 
 main {
-  min-height: calc(100vh - 174px);
+  min-height: calc(100vh - 152px);
 }
 

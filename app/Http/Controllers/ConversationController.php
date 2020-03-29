@@ -39,6 +39,9 @@ class ConversationController extends Controller
 
         $topic = Topic::find($topic);
         $projet = Projet::find($projet);
+        if(auth()->user()->unreadNotifications){
+            auth()->user()->unreadNotifications->markAsRead();
+        }
 
         if($topic){
             $user = Auth::user();

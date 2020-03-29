@@ -72,11 +72,6 @@
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Authentication Links -->
-                        @auth
-                            @if(Auth::user()->subscribed('abonnement'))
-                                <p>Abonné</p>
-                            @endif
-                        @endauth
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">Connexion</a>
@@ -95,7 +90,11 @@
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img class="mr-3 rounded-circle navbar-avatar" src="{{ Auth::user()->avatar }}">
-                                    <span class="caret">{{ Auth::user()->firstname }}</span>
+                                    @if(Auth::user()->pseudo)
+                                        <span class="caret">{{ Auth::user()->pseudo }}</span>
+                                    @else
+                                        <span class="caret">{{ Auth::user()->firstname }}</span>
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -172,19 +171,25 @@
 
  <!--Footer-->
 
-    <footer class="page-footer text-center text-md-left">
-        <div>
-            <hr>
-            <!--Call to action-->
-            <div class="call-to-action text-center my-4">
-                <ul class="list-unstyled list-inline">
-                    <li class="list-inline-item">
-                    <h5>Register for free</h5>
-                    </li>
-                    <li class="list-inline-item"><a href="" class="btn btn-primary">Sign up!</a></li>
-                </ul>
+    <footer class="page-footer text-center text-md-left bg-dark mt-5">
+        <div class="container">
+            <div>
+                <!--Call to action-->
+                <div class="row justify-content-between">
+                        <div class="col-md-4 mt-2" >
+                            <a href="{{ url('/') }}">
+                                <img class="footer-brand" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/Favicon-iziplans.png" alt="logo-iziplans">
+                            </a>
+                        </div>
+                        <div class="col-md-4 mt-2 my-auto text-right bg-dark">
+                        <small class=""><a href="{{ route('cgv')}}" class="link-footer text-white">CGV</a></small>
+                            <small class="text-white"> | </small>
+                        <small><a href="{{ route('politique')}}" class="link-footer text-white">Politique de confidentialité</a></small>
+                        </div>
+                </div>
             </div>
         </div>
+
 
         <!--/.Call to action-->
     </footer>

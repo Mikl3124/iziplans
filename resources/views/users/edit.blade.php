@@ -7,7 +7,7 @@
         <div class="card mt-3">
             <div class="card-body">
                 <div class="text-center">
-                    <h3>MODIFICATION DU PROFIL</h3>
+                    <h3 class="mb-3">MODIFICATION DU PROFIL</h3>
                     @error('avatar')
                     <div class="alert alert-danger alert-dismissible fade show text-center mb-2" role="alert">
                         {{ $message }}
@@ -40,12 +40,20 @@
                                     <input type="text" class="form-control" name="lastname" value="{{old('lastname', $user->lastname)}}">
                                 </div>
                             </div>
+
                     <!-- ---------------- Si l'utilsateur est Freelance ------------------ -->
                             @if(Auth::user()->role === 'freelance')
-                                <!-- ---------------- Titre professionnel ------------------ -->
-                                <div class="form-group">
-                                    <label for="titre">Titre professionnel</label>
-                                    <input type="text" class="form-control" name="titre" value="{{old('titre', $user->titre)}}">
+                                <div class="form-row">
+                                <!-- ---------------- Pseudo ------------------ -->
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        <label for="titre">Nom d'affichage (Pseudo)</label>
+                                        <input type="text" class="form-control" name="pseudo" value="{{old('pseudo', $user->pseudo)}}">
+                                    </div>
+                                <!-- ---------------- Titre professionnel ------------------ -->  
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        <label for="titre">Titre professionnel</label>
+                                        <input type="text" class="form-control" name="titre" value="{{old('titre', $user->titre)}}">
+                                    </div>
                                 </div>
                                 <!-- ---------------- Departements ------------------ -->
                                 <div class="form-group ">
