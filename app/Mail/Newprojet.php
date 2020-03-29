@@ -35,7 +35,7 @@ class Newprojet extends Mailable
      */
     public function build()
     {
-         return $this->from('monsite@chezmoi.com')
+         return $this->from('mickael@iziplans.com')
             ->view('emails.new-projet');
     }
 }
