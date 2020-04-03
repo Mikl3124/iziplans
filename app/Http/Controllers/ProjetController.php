@@ -48,9 +48,10 @@ class ProjetController extends Controller
     public function list()
     {
 
-        $projets = Projet::where('user_id', Auth::user()->id)->get();
+        $projets_client = Projet::where('user_id', Auth::user()->id)->get();
+        $offres_freelance = Offer::where('user_id', Auth::user()->id)->get();
 
-         return view('projets.list', compact('projets'));
+         return view('projets.list', compact('projets_client', 'offres_freelance'));
     }
 
 

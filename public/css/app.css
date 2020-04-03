@@ -419,16 +419,16 @@ h1 {
   border-radius: 4px;
   font-weight: 400;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 30px;
+  left: 20px;
   font-size: 16px;
   color: #fff;
   text-align: center;
 }
 
 .flashy--success {
-  background-color: #38c1719f;
-  color: #fff;
+  background-color: #04E762;
+  color: #4a4a4a;
 }
 
 .flashy--warning {
@@ -454,7 +454,7 @@ h1 {
 }
 
 .flashy--error {
-  background: #d0221c93;
+  background: #e3342f;
   color: #fff;
 }
 
@@ -11850,5 +11850,9 @@ p {
 
 main {
   min-height: calc(100vh - 152px);
+}
+
+.btn-success {
+  color: #4a4a4a !important;
 }
 
