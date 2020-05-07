@@ -21,16 +21,20 @@
             </td>
         </tr>
         <tr>
-          <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Bonne Nouvelle!</td>
+          <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Bonjour {{ $user->firstname }}</td>
         </tr>
         <tr>
-            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Une nouvelle personne s'est inscrite sur iziplans</td>
+            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Un nouveau projet a été posté, celui-ci est en relation avec vos lieux</td>
         </tr>
         <tr>
-            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">" {{ $user->firstname }} {{ $user->lastname }}"</td>
+            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">" {{ $projet->departement->name }} "</td>
         </tr>
         <tr>
-            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">{{ $user->role }} / {{ $user->email}}</td>
+            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;"></td>
+        </tr>
+
+        <tr style="text-align:center">
+            <td width="100%"><a href="http://127.0.0.1:8000/projet/{{$projet->id}}" style="padding:15px;width:150px;text-align:center;border-radius:3px;color:white;font-weight: bold;text-decoration:none;background-color:#00a8ff;font-size:20px;">Accéder au projet</a></td>
         </tr>
     </table>
 </body>

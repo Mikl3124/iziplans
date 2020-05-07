@@ -12,8 +12,10 @@ use App\Model\Category;
 use App\Model\Competence;
 use App\Model\Departement;
 use Illuminate\Http\Request;
+use App\Mail\NewProjetPosted;
 use App\Model\Standbyproject;
 use MercurySeries\Flashy\Flashy;
+use App\Mail\NewprojetDepartement;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -144,15 +146,19 @@ class ProjetController extends Controller
                                 $departement = Departement::find($departement_id);
 
                                 // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
+
                                 $freelances_categories = User::where('alert_categories', 1)
                                                                 ->where('role', 'freelance')
                                                                 ->whereHas('categories', function ($query) use ($categories) {
                                                                     $query->whereIn('category_id', $categories);
                                                                 })->get();
+                                //Mail à l'Admin
+                                Mail::to(env("MAIL_ADMIN"))->queue(new NewProjetPosted($user, $projet));
 
                                 // On envoie un email aux freelancer concernés par les compétences
                                 foreach($freelances_categories as $freelance_category){
-                                    Mail::to($freelance_category->email)->queue(new Newprojet($projet));
+                                    $user = $freelance_category;
+                                    Mail::to($freelance_category->email)->queue(new Newprojet($projet, $user));
                                 }
 
                                 // On sélectionne les users concernés par au moins un des départements et qui ont choisis d'être informés
@@ -162,11 +168,10 @@ class ProjetController extends Controller
                                                                     $query->where('departement_id', $departement->id);
                                                                 })->get();
 
-
-
                                 // On envoie un email aux freelancer concernés par le lieux
                                 foreach($freelances_departements as $freelance_departement){
-                                Mail::to($freelance_departement->email)->queue(new Newprojet($projet));
+                                  $user = $freelance_departement;
+                                Mail::to($freelance_departement->email)->queue(new NewprojetDepartement($projet, $user));
                                 // On vide la session
                                 Session::forget('filled_form');
                             }

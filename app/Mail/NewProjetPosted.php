@@ -7,9 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Newprojet extends Mailable
+class NewProjetPosted extends Mailable
 {
-    use Queueable, SerializesModels;
+use Queueable, SerializesModels;
 
     /**
      * Elements du projet
@@ -38,7 +38,7 @@ class Newprojet extends Mailable
     {
       $user = $this->user;
          return $this->from('mickael@iziplans.com')
-            ->subject("Bonjour {$user->firstname}, un nouveau projet pour vous sur iziplans")
-            ->view('emails.new-projet');
+            ->subject("Nouveau projet sur iziplans")
+            ->view('emails.new-projet-admin');
     }
 }

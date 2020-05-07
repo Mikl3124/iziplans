@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Model\User;
+use App\Mail\NewSubscription;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -70,7 +72,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        return User::create([
+        $user = User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
@@ -78,5 +80,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'cgv' => true,
         ]);
+        Mail::to(env("MAIL_ADMIN"))->queue(new NewSubscription($user));
+        return $user;
     }
 }

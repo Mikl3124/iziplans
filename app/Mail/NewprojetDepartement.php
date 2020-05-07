@@ -2,12 +2,13 @@
 
 namespace App\Mail;
 
+use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Newprojet extends Mailable
+class NewprojetDepartement extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -34,11 +35,11 @@ class Newprojet extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(Request $request)
     {
       $user = $this->user;
          return $this->from('mickael@iziplans.com')
-            ->subject("Bonjour {$user->firstname}, un nouveau projet pour vous sur iziplans")
-            ->view('emails.new-projet');
+                    ->subject("Bonjour {$user->firstname}, un nouveau projet pour vous sur iziplans")
+                    ->view('emails.new-projet-departement');
     }
 }
