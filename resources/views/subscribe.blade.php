@@ -305,6 +305,7 @@
                         <!-- Stripe Elements Placeholder -->
                         <div id="card-element-annuel" class="form-control my-2"></div>
                         <div id="card-errors-annuel"  class="text-danger" role="alert"></div>
+                        <div class='form-group cvc required'>
                     </div>
                     <div class=text-center>
                         <img class="secure-payment" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/icon-paiement.png" alt="iziplans paiement sécurisé">
@@ -515,7 +516,6 @@
     }
     });
 </script>
-
 
 @endsection
 

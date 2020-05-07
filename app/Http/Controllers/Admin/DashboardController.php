@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\User;
+use App\Model\Offer;
+use App\Model\Budget;
 use App\Model\Projet;
 use App\Model\Category;
+use App\Model\Departement;
 use Illuminate\Http\Request;
+use MercurySeries\Flashy\Flashy;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,6 +47,22 @@ class DashboardController extends Controller
 
     }
 
+    public function offerbyuser(Request $request, $id)
+    {
+        $user_id = $id;
+        $user = User::find($id);
+        $offers = Offer::where('user_id', $user_id)->get();
+        return view('admin.offer-register')
+                    ->with('offers', $offers)
+                    ->with('user', $user);
+    }
+
+    public function projetShow(Request $request, $id)
+    {
+        $projet = Projet::find($id);
+            return view('admin.projet-show')
+                        ->with('projet', $projet);
+    }
 
 
     public function registeredit(Request $request, $id)
@@ -51,11 +72,15 @@ class DashboardController extends Controller
     }
 
     public function projetedit(Request $request, $id)
-    {
+    {   
+        $departements = Departement::all();
         $categories = Category::all();
+        $budgets = Budget::all();
         $projet = Projet::findOrFail($id);
         return view('admin.projet-edit')
                 ->with('projet', $projet)
+                ->with('budgets', $budgets)
+                ->with('departements', $departements)
                 ->with('categories', $categories);
     }
 
@@ -90,20 +115,56 @@ class DashboardController extends Controller
     {
 
         $projet = Projet::find($id);
-        $projet->title = $request->input('title');
-        $projet->description = $request->input('description');
-        $projet->budget = $request->input('budget');
-        $projet->status = $request->input('status');
-        $projet->update();
+
+        $user = $projet->user;
+            if(Auth::check()){
+
+                $this->validate($request, [
+                    'categories' => 'bail|required',
+                    'title' => 'bail|required|string|max:255',
+                    'file-projet' => 'sometimes|max:5000',
+                    'description' => 'bail|required',
+                    'budget' => 'bail|required',
+                    'departement' => 'bail|required'
+                    ]);
+
+                        $projet->user_id = $user->id;
+                        $projet->title = $request->title;
+                        $projet->description = $request->description;
+                        $projet->status = 'open';
+                        $projet->departement_id = $request->departement;
 
 
-        // if ($projet->save()){
-        // $cat_to_delete = Category::where('projet_id', $request->input('id'))->delete();
+                        if ($files = $request->file('file_projet')) {
+                            $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
 
-        // $tool->categories()->attach($request->categories);
-        // };
+                            //get filename without extension
+                            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
 
-        return redirect('projet-register')->with('success', 'Le projet a été mise à jour');
+                            //get file extension
+                            $extension = $request->file('file_projet')->getClientOriginalExtension();
+
+                            $filenametostore = $filename.'_'.time().'.'.$extension;
+
+                            //Upload File
+                            Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore);
+
+                            //Store $filenametostore in the database
+                            $projet->file_projet = $filenametostore;
+                        }
+
+                        $projet->budget_id = $request->budget;
+
+
+                        if ($projet->save()){
+                            DB::table('category_projet')->where('projet_id', $projet->id)->delete();
+                            $projet->categories()->attach($request->categories);
+                        };
+            Flashy::success('Votre projet a été modifié avec succès !');
+            return redirect('projet-register');
+        }
+
+        return redirect('projet-register');
     }
 
     public function data()

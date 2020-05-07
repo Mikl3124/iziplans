@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-Edition des utilisateurs | RYT
-@endsection
-
 @section('content')
 
 <div class="container">
@@ -12,7 +8,7 @@ Edition des utilisateurs | RYT
             <div class="card">
                 <div class="card-header">
                     <h3 class ="text-center">Edition des projets</h3>
-                    <h4>Projet publié par {{ $projet->user->firstname }} {{ $projet->user->lastname }}</h4>
+                    <h4>Projet publié par <a href="/user-edit/{{ $projet->user->id }}"> {{ $projet->user->firstname }} {{ $projet->user->lastname }}</a></h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -29,21 +25,34 @@ Edition des utilisateurs | RYT
                                 <label>Description</label>
                                 <input type="text" name="description" value="{{ $projet->description }}" class="form-control">
                             </div>
+                            {{-- ------------------- Budget --------------------- --}}
                             <div class="form-group">
-                                <label>Budget</label>
-                                <input type="number" name="budget" value="{{ $projet->budget }}" class="form-control">
+                            <label for="budget-projet">Selectionnez votre budget</label>
+                                <select class="form-control @error('budget') is-invalid @enderror" id="budget-projet" value = "{{ old('budget') }}"  name="budget">
+                                    @foreach ($budgets as $budget)
+                                        <option value="{{ $budget->id}}" {{ ( $projet->budget->id == $budget->id ? "selected":"") }}>{{ $budget->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-
+                            {{-- ------------------- Departement --------------------- --}}
+                            <div class="form-group">
+                                <label for="departements">Selectionnez le departement</label>
+                                <select class="form-control" id="departement-projet" value="{{ old('departement')}}" name="departement">
+                                    @foreach ($departements as $departement)
+                                    <option value="{{ $departement->id}}" {{ ( $projet->departement->id == $departement->id ? "selected":"") }}>{{ $departement->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            {{-- ------------------- Catégories --------------------- --}}
                             <div class="form-group">
                                 <label for="categories-projet">Selectionnez vos catégories</label>
                                 <select class="form-control js-select @error('categories') is-invalid @enderror" id="categories-projet" value="{{ json_encode(old('categories')) }}" multiple="multiple" name="categories[]">
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ in_array($category->id, old('categories') ?: []) ? 'selected' : '' }}>{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}"
+                                        {{ in_array($category->id, $projet->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                    {{ $category->name }}</option>
                                 @endforeach
                                 </select>
-                                @error('categories')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
                             </div>
                             {{-- ------------------- Status --------------------- --}}
                             <div class="form-group">

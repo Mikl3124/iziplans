@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
-
 @section('content')
-
-{{-- --------- Menu du Dashboard-------- --}}
 
 <div class="row">
   <div class="col-md-12">
@@ -18,7 +15,7 @@
             <a class="nav-link" href="/user-register">Gestion des Utilisateurs <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/projet-register">Gestions des Projets</a>
+            <a class="nav-link" href="/offer-register">Gestions des offres</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Gestion annexe</a>
@@ -33,7 +30,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title text-center"> Gestion des projets</h4>
+                <h4 class="card-title text-center"> Offres réalisées par {{ $user->firstname }} {{ $user->lastname }}</h4>
                 @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -44,42 +41,30 @@
                 <div class="table-responsive">
                   <table class="table">
                     <thead class="">
-                      <th>Titre</th>
-                      <th>Description</th>
+                      <th>Projet</th>
                       <th>Budget</th>
                       <th>Client</th>
                       <th>Le</th>
-                      <th>Offres</th>
-                      <th>Status</th>
                       <th>Editer</th>
                       <th>Supprimer</th>
 
 
                     </thead>
                     <tbody>
-                        @foreach ($projets as $projet)
+                        @foreach ($offers as $offer)
                       <tr>
-                        <td> {{ $projet->title }}</td>
-                        <td> {{ $projet->description }}</td>
-                        <td> {{ $projet->budget->name }} /jour</td>
-                        <td> {{ $projet->user->firstname }} {{ $projet->user->lastname }}  </td>
-                        <td>{{ date('d/m/Y H:i:s', strtotime($projet->created_at)) }}</td> 
-                        <td> <a href="/projet-show/{{ $projet->id }}">{{ $projet->offers->count() }}</td></a>
+                        <td>{{ $offer->projet->title }}</td>
+                        <td> {{ $offer->offer_price }} €/jour</td>
+                        <td> <a href="/user-edit/{{ $offer->projet->user->id }}"> {{ $offer->projet->user->firstname }} {{ $offer->projet->user->lastname }}  </a></td>
+                        <td>{{ date('d/m/Y H:i:s', strtotime($offer->created_at)) }}</td>
 
                         <td>
-                          @if($projet->status === 'pending')
-                              <i class="far fa-clock icon-admin text-warning "></i>
-                          @else
-                              <i class="far fa-check-circle icon-admin text-success"></i>
-                          @endif
-                        </td>
+                            <a href="/offer-edit/{{ $offer->id }}" class="btn btn-success">Editer</a>
                         <td>
-                            <a href="/projet-edit/{{ $projet->id }}" class="btn btn-success">Editer</a>
-                        <td>
-                            <form action="/projet-delete/{{ $projet->id }}" method="post">
+                            <form action={{ route('offers.delete', $offer->id) }} method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                            <input type="hidden" name="id" value=" {{ $projet->id }}">
+                            <input type="hidden" name="id" value=" {{ $offer->id }}">
                             <button type="submit" class="btn btn-danger">Supprimer</button>
                             </form>
                           </td>
@@ -94,7 +79,5 @@
           </div>
 
 </div>
-@endsection
 
-@section('script')
 @endsection

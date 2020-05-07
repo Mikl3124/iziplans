@@ -1,11 +1,5 @@
 @extends('layouts.app')
 
-
-@section('title')
-  Enregistrement des rôles | RYT
-@endsection
-
-
 @section('content')
 
 {{-- --------- Menu du Dashboard-------- --}}
@@ -65,10 +59,18 @@
                       <tr>                        
                         <td> {{ $user->lastname }}</td>
                         <td> {{ $user->firstname }}</td>
-                        <td> {{ $user->email }}</td>
+                        <td> 
+                          <div>{{ $user->email }}</div>
+                          <div>
+                            @if ($user->subscription('abonnement'))
+                              " {{ ($user->subscription('abonnement')->stripe_status) }} "
+                            @endif
+                          </div>                        
+                        </td>
                         <td> {{ $user->role }}                  </td>
                         <td class="text-center">
-                          <a class="nav-link" href="/projet-by-user/{{ $user->id }}">Voir</a>
+                          <a class="nav-link" href="/projet-by-user/{{ $user->id }}">{{ $user->projets->count() }} projet(s) 
+                          <a class="nav-link" href="/offer-by-user/{{ $user->id }}">{{ $user->offers->count() }} offre(s)
                         </td>                                               
                         <td>
                           <a href="/user-edit/{{ $user->id }}" class="btn btn-success">Editer</a>

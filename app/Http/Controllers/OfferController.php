@@ -218,7 +218,7 @@ class OfferController extends Controller
     public function destroy($id)
     {
         $offer = Offer::find($id);
-        if(Auth::user()->id === $offer->user_id){
+        if(Auth::user()->id === $offer->user_id || Auth::user()->role === 'admin'){
             $offer->delete();
             Flashy::error('Votre offre a bien été supprimée');
             return redirect()->route('home');

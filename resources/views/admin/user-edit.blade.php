@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('title')
-Edition des utilisateurs
-@endsection
-
 @section('content')
 
 <div class="container">
