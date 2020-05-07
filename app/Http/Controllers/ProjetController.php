@@ -171,9 +171,9 @@ class ProjetController extends Controller
                                 // On envoie un email aux freelancer concernés par le lieux
                                 foreach($freelances_departements as $freelance_departement){
                                   $user = $freelance_departement;
-                                Mail::to($freelance_departement->email)->queue(new NewprojetDepartement($projet, $user));
-                                // On vide la session
-                                Session::forget('filled_form');
+                                  Mail::to($freelance_departement->email)->queue(new NewprojetDepartement($projet, $user));
+                                  // On vide la session
+                                  Session::forget('filled_form');
                             }
 
                         Flashy::success('Votre mission a été postée avec succès !');
