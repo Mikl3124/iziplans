@@ -65,7 +65,7 @@
                                     <a data-toggle="modal" data-target="#closeModal" class="btn btn-danger text-white"><i class="fas fa-exclamation-triangle text-white"></i> Fermer mon projet </a>
                                 {{-- --------------- Si le projet est FERME --------------- --}}
                                 @elseif ($projet->status === 'closed')
-                                    <a href="{{ route('projet.open', $projet) }}" class="btn btn-success text-white"><i class="fas fa-lock-open text-white"></i> Publier à nouveau le projet</a>
+                                    <a href="{{ route('projet.open', $projet) }}" class="btn btn-success text-white"><i class="fas fa-lock-open"></i> Publier à nouveau le projet</a>
                                 @endif
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                                     <div class="col-md-4 my-2 col-sm-12 mt-n5">
                                         <div class="card card-show mb-3">
                                             <div class="card card-show bg-dark mb-3 text-center">
-                                                <p class="text-white">Publiez le votre projet, et recevez des offres GRATUITEMENT</p>
+                                                <p class="text-white">Publiez le votre, et recevez des offres GRATUITEMENT</p>
                                                 <a href="{{ route('projet.create') }}" class="btn btn-success"> Publier mon projet </a>
                                             </div>
                                         </div>

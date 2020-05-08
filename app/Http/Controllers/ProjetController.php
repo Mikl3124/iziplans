@@ -110,7 +110,7 @@ class ProjetController extends Controller
                     $projet->user_id = $user->id;
                     $projet->title = $request->title;
                     $projet->description = $request->description;
-                    $projet->status = 'open';
+                    $projet->status = 'pending';
                     $projet->departement_id = $request->departement;
 
                     if ($files = $request->file('file_projet')) {
