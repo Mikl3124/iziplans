@@ -17,7 +17,7 @@
                     
                     {{-- -------------- Abonnement Annulé --------------- --}}
                     @if (Auth::user()->subscription('abonnement')->cancelled())
-                <p><i class="fas fa-redo"></i> Renouvellement automatique: Désactivé</p>
+                        <p><i class="fas fa-redo"></i> Renouvellement automatique: Désactivé</p>
                         <p><i class="far fa-calendar-alt"></i> Vous pouvez répondre aux offres jusqu'au : {{ $date_end }}</p>
                     @elseif( (Auth::user()->subscription('abonnement')->active()))
                         <p><i class="fas fa-redo"></i> Renouvellement automatique: Activé</p>

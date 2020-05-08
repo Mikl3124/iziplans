@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="text-center my-5">
-        <h2 >Bienvenue sur <a href="{{route('home')}}"><img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" id="logo-iziplans" alt="logo-iziplans"></a></h2>
+        <h2 >Bienvenue sur <a href="{{ route('home') }}"><img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" id="logo-iziplans" alt="logo-iziplans"></a></h2>
     </div>
     <div class="card-block">
         <div class="text-center">
@@ -11,10 +11,10 @@
             <div class="row justify-content-center">
                 {{-- ---------------- Social connection ---------------- --}}
                 <div class="col-md-12 col-sm-12 col-lg-4 my-1">
-                    <a href="{{route('social-login.redirect', 'google')}}" class="signing-button google"><img class="img_google" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/google.svg" alt=""> Continuer avec Google</a>
+                    <a href="{{ route('social-login.redirect', 'google') }}" class="signing-button google"><img class="img_google" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/google.svg" alt=""> Continuer avec Google</a>
                 </div>
                 <div class="col-md-12 col-sm-12 col-lg-4 my-1">
-                    <a href="{{route('social-login.redirect', 'facebook')}}" class="signing-button facebook"><i class="fab fa-facebook-f"></i> Continuer avec Facebook</a>
+                    <a href="{{ route('social-login.redirect', 'facebook') }}" class="signing-button facebook"><i class="fab fa-facebook-f"></i> Continuer avec Facebook</a>
                 </div>
             </div>
             <div class="row">
