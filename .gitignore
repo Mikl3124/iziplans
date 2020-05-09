@@ -3,7 +3,8 @@
 /public/storage
 /storage/*.key
 /public/app/public
-/vendor!/mercuryseries
+/vendor
+!/vendor/mercuryseries
 .env
 .env.backup
 .phpunit.result.cache
