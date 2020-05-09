@@ -16,6 +16,9 @@ class MailMatchCompetenceToFreelance implements ShouldQueue
 
     protected $user;
     protected $projet;
+
+    // The maximum attempts of this job
+
     /**
      * Create a new job instance.
      *
