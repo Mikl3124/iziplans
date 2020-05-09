@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
+use App\Jobs\MailMatchCompetenceToFreelance;
 
 class ProjetController extends Controller
 
@@ -158,7 +159,7 @@ class ProjetController extends Controller
                                 // On envoie un email aux freelancer concernés par les compétences
                                 foreach($freelances_categories as $freelance_category){
                                     $user = $freelance_category;
-                                    Mail::to($freelance_category->email)->queue(new Newprojet($projet, $user));
+                                    $this->dispatch(new MailMatchCompetenceToFreelance($user, $projet));
                                 }
 
                                 // On sélectionne les users concernés par au moins un des départements et qui ont choisis d'être informés
