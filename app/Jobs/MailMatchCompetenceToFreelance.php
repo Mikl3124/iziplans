@@ -16,6 +16,7 @@ class MailMatchCompetenceToFreelance implements ShouldQueue
 
     protected $user;
     protected $projet;
+    dd('hello coco1');
     /**
      * Create a new job instance.
      *
@@ -36,7 +37,6 @@ class MailMatchCompetenceToFreelance implements ShouldQueue
     {
         $user = $this->user;
         $projet = $this->projet;
-        dd('hello coco');
         Mail::to($user->email)->queue(new Newprojet($projet, $user));
     }
 }
