@@ -66,6 +66,8 @@
                                 {{-- --------------- Si le projet est FERME --------------- --}}
                                 @elseif ($projet->status === 'closed')
                                     <a href="{{ route('projet.open', $projet) }}" class="btn btn-success text-white"><i class="fas fa-lock-open"></i> Publier à nouveau le projet</a>
+                                @elseif ($projet->status === 'pending')
+                                    <p class="text-white text-center">"En cours de validation"</p>
                                 @endif
                             </div>
                         </div>
