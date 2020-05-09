@@ -296,7 +296,10 @@
                                 <div class="col-md-2 col-sm-6">
                                     @auth
                                         @if (Auth::user()->avatar === NULL)
-                                            <img id="blah" class="mr-3 rounded card-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
+                                            <div class="item">
+                                                <span class="notify-badge">NEW</span>
+                                                <img id="blah" class="mr-3 rounded card-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
+                                            </div>
                                         @else
                                             <img id="blah" class="mr-3 rounded card-avatar" src="{{ Storage::url('/users/medium/'. $offer->user->avatar) }}">
                                         @endif
