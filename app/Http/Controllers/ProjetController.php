@@ -159,7 +159,7 @@ class ProjetController extends Controller
                                 // On envoie un email aux freelancer concernés par les compétences
                                 foreach($freelances_categories as $freelance_category){
                                     $user = $freelance_category;
-                                     //$this->dispatch(new MailMatchCompetenceToFreelance($user, $projet));
+                                     $this->dispatch(new MailMatchCompetenceToFreelance($user, $projet));
                                 }
 
                                 // On sélectionne les users concernés par au moins un des départements et qui ont choisis d'être informés
