@@ -4,7 +4,6 @@
 /storage/*.key
 /public/app/public
 /vendor
-!/vendor/mercuryseries
 .env
 .env.backup
 .phpunit.result.cache
