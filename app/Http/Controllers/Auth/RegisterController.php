@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Model\User;
+use App\Jobs\MailNewUser;
 use App\Mail\NewSubscription;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -80,7 +81,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'cgv' => true,
         ]);
-        Mail::to(env("MAIL_ADMIN"))->queue(new NewSubscription($user));
+        $this->dispatch(new MailNewUser($user));
         return $user;
     }
 }
