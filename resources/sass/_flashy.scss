@@ -1,19 +1,18 @@
 .flashy {
-    font-family: Nunito, sans-serif;
+    font-family: Arial, sans-serif;
     padding: 11px 30px;
     border-radius: 4px;
     font-weight: 400;
     position: fixed;
-    top: 20px;
-    left: 20px;
+    bottom: 20px;
+    right: 20px;
     font-size: 16px;
     color: #fff;
-    z-index: 99;
 }
 
 .flashy--success {
-    background-color: #04E762 !important;
-    color: #4a4a4a !important;
+    background-color: red !important;
+    color: #fff;
 }
 
 .flashy--warning {
@@ -39,7 +38,7 @@
 }
 
 .flashy--error {
-    background: #e3342f;
+    background: #d14130;
     color: #fff;
 }
 
@@ -71,14 +70,4 @@
 
 .flashy .flashy__body {
     color: inherit;
-}
-
-@media only screen and (max-width:1050px) {
-    .flashy {
-        text-align: center;
-        right: 0;
-        left: 50%;
-        width: 300px;
-        margin-left: -150px;
-    }
 }
