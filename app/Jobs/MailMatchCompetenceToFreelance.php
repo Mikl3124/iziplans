@@ -16,7 +16,6 @@ class MailMatchCompetenceToFreelance implements ShouldQueue
 
     protected $user;
     protected $projet;
-    dd('hello coco1');
     /**
      * Create a new job instance.
      *
