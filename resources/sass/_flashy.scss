@@ -1,17 +1,18 @@
 .flashy {
-    font-family: Arial, sans-serif;
+    font-family: Nunito, sans-serif;
     padding: 11px 30px;
     border-radius: 4px;
     font-weight: 400;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    width: 100%;
+    top: 20px;
+    left: 20px;
     font-size: 16px;
     color: #fff;
 }
 
 .flashy--success {
-    background-color: red !important;
+    background-color: $green !important;
     color: #fff;
 }
 
@@ -38,7 +39,7 @@
 }
 
 .flashy--error {
-    background: #d14130;
+    background: $red;
     color: #fff;
 }
 
