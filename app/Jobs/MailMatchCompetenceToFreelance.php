@@ -37,8 +37,8 @@ class MailMatchCompetenceToFreelance implements ShouldQueue
      */
     public function handle()
     {
-        $user = $this->user;
-        $projet = $this->projet;
-        Mail::to($user->email)->queue(new Newprojet($projet, $user));
+      $user = $this->user;
+      $projet = $this->projet;
+      Mail::to($user->email)->queue(new Newprojet($projet, $user));
     }
 }
