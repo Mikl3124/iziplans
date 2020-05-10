@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
 use App\Jobs\MailMatchCompetenceToFreelance;
+use App\Jobs\MailMatchDepartementToFreelance;
 
 class ProjetController extends Controller
 
