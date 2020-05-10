@@ -21,7 +21,7 @@ class MailMatchDepartementToFreelance implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user, $projet)
     {
         $this->user = $user;
         $this->projet = $projet;
