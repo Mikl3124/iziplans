@@ -74,7 +74,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
-                        <span class="data-card-date ml-2">{{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                        <span class="data-card-date ml-2">Posté il y a {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
                     </div>
                     <div class="row d-flex ml-1 justify-content-start">
                         @if ($projet->status === "open")
@@ -82,7 +82,7 @@
                         @elseif ($projet->status === "closed")
                             <span class="data-card ml-1"><i class="fas fa-circle text-secondary"></i> Fermé |</span>
                         @endif
-                        <span class="data-card ml-1"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}} |</span>
+                        <span class="data-card  ml-1"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}} |</span>
                         <span class="data-card ml-1"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} |</span>
                         @if($projet->offers->count() == 0)
                             <span class="data-card ml-1"><i class="fas fa-gavel"></i> Aucune offre |</span>
@@ -131,12 +131,12 @@
 
     {{-- ----------- 3 Projets Suivants ---------- --}}
         @foreach ($projets_seconds as $projet)
-       <a href="{{ route('projet.show', $projet) }}">
+      <a href="{{ route('projet.show', $projet) }}">
             <div class="card card-project-home mb-3">
                 <div class="card-body">
                     <div class="d-flex">
                         <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
-                        <span class="data-card-date ml-2">{{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                        <span class="data-card-date ml-2">Posté il y a {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
                     </div>
                     <div class="row d-flex ml-1 justify-content-start">
                         @if ($projet->status === "open")
@@ -144,7 +144,7 @@
                         @elseif ($projet->status === "closed")
                             <span class="data-card ml-1"><i class="fas fa-circle text-secondary"></i> Fermé |</span>
                         @endif
-                        <span class="data-card ml-1"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}} |</span>
+                        <span class="data-card  ml-1"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}} |</span>
                         <span class="data-card ml-1"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} |</span>
                         @if($projet->offers->count() == 0)
                             <span class="data-card ml-1"><i class="fas fa-gavel"></i> Aucune offre |</span>

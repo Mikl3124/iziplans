@@ -305,13 +305,12 @@
                         <div class= "col-md-7 col-sm-12">
                             <div class="row">
                                 <div class="col-md-2 col-sm-6">
-                                    @auth
-                                        @if (Auth::user()->avatar === NULL)
-                                            <img id="blah" class="mr-3 rounded card-avatar" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
-                                        @else
-                                            <img id="blah" class="mr-3 rounded card-avatar" src="{{ Storage::url('/users/medium/'. $offer->user->avatar) }}">
+                                    <div class="item">
+                                        @if ($offer->user->updated_profil === 1)
+                                            <span class="notify-badge"><img class="verified-user" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/verified.png" alt="utilsateur vérifié"></span>
                                         @endif
-                                    @endauth
+                                        <img class="card-avatar" src="{{ $offer->user->avatar }}" alt="freelance avatar">
+                                    </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                 <a href="{{ route('profil', $offer->user->id)}}">

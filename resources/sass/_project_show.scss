@@ -19,8 +19,28 @@
 .card-avatar{
     width: 80px;
     height: 80px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
 }
 
 .card-offer{
     padding: 0.75rem !important;
+}
+
+.item {
+    position:relative;
+    display:inline-block;
+}
+.notify-badge{
+    position: absolute;
+    right:-20px;
+    top:-20px;
+    text-align: center;
+    color:white;
+    padding:5px 10px;
+    font-size:20px;
+}
+
+.verified-user{
+    height:20px;
 }
