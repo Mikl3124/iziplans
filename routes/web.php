@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth','admin']], function () {
     Route::get('/offer-by-user/{id}', 'Admin\DashboardController@offerbyuser');
     Route::get('/projet-show/{id}', 'Admin\DashboardController@projetShow');
     Route::get('/connect-as/{id}', 'Admin\DashboardController@connect_as')->name('connect_as');
+    Route::post('/projet-validate/', 'ProjetController@validateProjet')->name('projet.validate');
 });
 
 //Offers

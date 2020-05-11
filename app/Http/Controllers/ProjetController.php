@@ -363,4 +363,49 @@ class ProjetController extends Controller
         }
         return redirect()->back();
     }
+
+    public function validateProjet(Request $request)
+    {
+        
+        $projet= Projet::find($request->projet_id);
+            $projet->status = "open";
+            if ($projet->save()){
+                $categories = $projet->categories;
+                $departement_id = $projet->departement;
+
+                $departement = Departement::find($departement_id)->first();
+
+                // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
+
+                $freelances_categories = User::where('alert_categories', 1)
+                                                ->where('role', 'freelance')
+                                                ->whereHas('categories', function ($query) use ($categories) {
+                                                    $query->whereIn('category_id', $categories);
+                                                })->get();
+                
+                // On envoie un email aux freelancer concernés par les compétences
+                foreach($freelances_categories as $freelance_category){
+                    $user = $freelance_category;
+                        $this->dispatch(new MailMatchCompetenceToFreelance($user, $projet));
+                }
+                
+                
+                // On sélectionne les users concernés par au moins un des départements et qui ont choisis d'être informés
+                $freelances_departements = User::where('role', 'freelance')
+                                                ->where('alert_departements', 1)
+                                                ->whereHas('departements',function($query) use ($departement) {
+                                                    $query->where('departement_id', $departement->id);
+                                                })->get();
+                
+                // On envoie un email aux freelancer concernés par le lieux
+                foreach($freelances_departements as $freelance_departement){
+                    $user = $freelance_departement;
+                    $this->dispatch(new MailMatchDepartementToFreelance($user, $projet));
+            }
+            Flashy::success('Le projet a été validé');
+                return redirect()->back();
+            }
+        Flashy::error('Un problème est survenu');
+        return redirect()->back();
+    }
 }

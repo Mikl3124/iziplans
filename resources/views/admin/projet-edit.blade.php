@@ -72,6 +72,11 @@
                                 <a href="/post-register" type="submit" class="btn btn-danger">Annuler la modification</a>
                             </div>
                             </form>
+                            <form  action="{{ route('projet.validate') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="projet_id" value= {{$projet->id}}>
+                                <button type="submit" class="btn btn-primary">Valider le projet</button>
+                            </form>
                         </div>
                     </div>
 
