@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
+use App\Mail\ConfirmMessageToAuthor;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -36,6 +37,6 @@ class MailConfirmMessageToAuthor implements ShouldQueue
     {
       $author = $this->author;
       $projet = $this->projet;
-      Mail::to($author->email)->queue(new MailConfirmMessageToAuthor($projet, $author));
+      Mail::to($author->email)->queue(new ConfirmMessageToAuthor($projet, $author));
     }
 }

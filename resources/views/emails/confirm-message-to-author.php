@@ -21,7 +21,7 @@
             </td>
         </tr>
         <tr>
-          <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Bonjour {{ $user->firstname }}</td>
+          <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Bonjour {{ $author->firstname }}</td>
         </tr>
         <tr>
             <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Nous avons bien reçu votre projet, nos équipes vont le valider dans peu de temps</td>
