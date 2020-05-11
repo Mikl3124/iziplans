@@ -24,10 +24,13 @@
           <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Bonjour {{ $user->firstname }}</td>
         </tr>
         <tr>
-            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Un nouveau projet a été posté, celui-ci est en relation avec vos lieux</td>
+            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Nous avons bien reçu votre projet, nos équipes vont le valider dans peu de temps</td>
         </tr>
         <tr>
-            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">" {{ $projet->departement->name }} "</td>
+            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">{{ $projet->title }}</td>
+        </tr>
+        <tr>
+            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">{{ $projet->description }}</td>
         </tr>
         <tr>
             <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;"></td>

@@ -17,6 +17,7 @@ use App\Model\Standbyproject;
 use MercurySeries\Flashy\Flashy;
 use App\Mail\NewprojetDepartement;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\MailNewProjetForAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -112,7 +113,7 @@ class ProjetController extends Controller
                     $projet->user_id = $user->id;
                     $projet->title = $request->title;
                     $projet->description = $request->description;
-                    $projet->status = 'open';
+                    $projet->status = 'pending';
                     $projet->departement_id = $request->departement;
 
                     if ($files = $request->file('file_projet')) {
@@ -155,7 +156,12 @@ class ProjetController extends Controller
                                                                     $query->whereIn('category_id', $categories);
                                                                 })->get();
                                 //Mail à l'Admin
-                                Mail::to(env("MAIL_ADMIN"))->queue(new NewProjetPosted($user, $projet));
+                                                                
+                                $this->dispatch(new MailNewProjetForAdmin($user, $projet));
+
+                                // On envoie un email de confirmation à l'user
+                                $author=Auth::user();
+                                $this->dispatch(new MailConfirmMessageToAuthor($author, $projet));
 
                                 // On envoie un email aux freelancer concernés par les compétences
                                 foreach($freelances_categories as $freelance_category){

@@ -60,7 +60,7 @@
                                     <option value="pending"  {{ old('status', $projet->status) == 'pending' ? 'selected' : '' }}>
                                         En attente
                                     </option>
-                                    <option value="publish" {{ old('status', $projet->status) == 'publish' ? 'selected' : '' }}>
+                                    <option value="open" {{ old('status', $projet->status) == 'open' ? 'selected' : '' }}>
                                         Publié
                                     </option>
 

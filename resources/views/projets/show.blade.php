@@ -41,6 +41,17 @@
                                 <td scope="row" class="td-show">Budget</td>
                                 <th scope="col">{{$projet->budget->name}}</td>
                             </tr>
+                            <tr>
+                                <td scope="row" class="td-show">Auteur</td>
+                                {{-- ----- Si le User est  abonné---- --}}
+                                @if(Auth::user() && Auth::user()->subscribed('abonnement'))
+                                    <th scope="col">{{$projet->user->lastname}}</td>
+                                {{-- ----- Si le User n'est pas abonnée ---- --}}
+                                @else
+                                    <th scope="col">#{{$projet->user->id}}</td>
+                                @endif
+                                
+                            </tr>
                         </tbody>
                     </table>
                 </div>

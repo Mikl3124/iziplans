@@ -118,7 +118,7 @@ class DashboardController extends Controller
 
         $user = $projet->user;
             if(Auth::check()){
-
+                dd($request);
                 $this->validate($request, [
                     'categories' => 'bail|required',
                     'title' => 'bail|required|string|max:255',
@@ -131,7 +131,7 @@ class DashboardController extends Controller
                         $projet->user_id = $user->id;
                         $projet->title = $request->title;
                         $projet->description = $request->description;
-                        $projet->status = 'open';
+                        $projet->status = $request->status;
                         $projet->departement_id = $request->departement;
 
 
