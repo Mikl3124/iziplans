@@ -2,9 +2,11 @@
 .flashy--success {
     background-color: $green !important;
     color: #fff;
+    z-index: 9999;
 }
 
 .flashy--error {
     background: $red;
     color: #fff;
+    z-index: 9999;
 }

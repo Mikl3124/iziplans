@@ -417,11 +417,13 @@ h1 {
 .flashy--success {
   background-color: #04E762 !important;
   color: #fff;
+  z-index: 9999;
 }
 
 .flashy--error {
   background: #e3342f;
   color: #fff;
+  z-index: 9999;
 }
 
 .alert-dismissible {
@@ -881,11 +883,13 @@ body {
 .flashy--success {
   background-color: #04E762 !important;
   color: #fff;
+  z-index: 9999;
 }
 
 .flashy--error {
   background: #e3342f;
   color: #fff;
+  z-index: 9999;
 }
 
 /*!

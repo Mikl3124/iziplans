@@ -24,14 +24,15 @@
           <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Bonjour {{ $author->firstname }}</td>
         </tr>
         <tr>
-            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Nous avons bien reçu votre projet, nos équipes vont le valider dans peu de temps</td>
+            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Votre projet a été validé par notre équipe, vous allez recevoir des offres dans très peu de temps.</td>
         </tr>
         <tr>
-            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">{{ $projet->title }}</td>
+            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;text-decoration: underline;">Votre projet:</td>
         </tr>
         <tr>
-            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">{{ $projet->description }}</td>
+            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">" {{ $projet->title }}</td>
         </tr>
+        
         <tr>
             <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;"></td>
         </tr>

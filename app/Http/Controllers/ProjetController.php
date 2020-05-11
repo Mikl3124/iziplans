@@ -26,6 +26,7 @@ use App\Jobs\MailConfirmMessageToAuthor;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
+use App\Jobs\MailConfirmValidationToAuthor;
 use App\Jobs\MailMatchCompetenceToFreelance;
 use App\Jobs\MailMatchDepartementToFreelance;
 
@@ -163,7 +164,7 @@ class ProjetController extends Controller
                                 // On envoie un email de confirmation à l'user
                                 $author = Auth::user();
                                 $this->dispatch(new MailConfirmMessageToAuthor($author, $projet));
-
+/* 
                                 // On envoie un email aux freelancer concernés par les compétences
                                 foreach($freelances_categories as $freelance_category){
                                     $user = $freelance_category;
@@ -180,12 +181,13 @@ class ProjetController extends Controller
                                 // On envoie un email aux freelancer concernés par le lieux
                                 foreach($freelances_departements as $freelance_departement){
                                   $user = $freelance_departement;
-                                  $this->dispatch(new MailMatchDepartementToFreelance($user, $projet));
+                                  $this->dispatch(new MailMatchDepartementToFreelance($user, $projet)); 
+
                                   // On vide la session
                                   Session::forget('filled_form');
-                            }
+                            } */
 
-                        Flashy::success('Votre mission a été postée avec succès !');
+                        Flashy::success('Votre mission a été enregistrée avec succès');
                         return redirect()->route('home');
                     }
 
@@ -366,14 +368,20 @@ class ProjetController extends Controller
 
     public function validateProjet(Request $request)
     {
-        
-        $projet= Projet::find($request->projet_id);
+        $projet = Projet::find($request->projet_id);
+        if($projet->status === 'pending'){
+             $projet= Projet::find($request->projet_id);
             $projet->status = "open";
             if ($projet->save()){
                 $categories = $projet->categories;
                 $departement_id = $projet->departement;
 
                 $departement = Departement::find($departement_id)->first();
+
+                // On envoie un email aux freelancer concernés par les compétences
+                $author = User::find($projet->user_id);
+
+                $this->dispatch(new MailConfirmValidationToAuthor($author, $projet));
 
                 // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
 
@@ -396,7 +404,7 @@ class ProjetController extends Controller
                                                 ->whereHas('departements',function($query) use ($departement) {
                                                     $query->where('departement_id', $departement->id);
                                                 })->get();
-                
+
                 // On envoie un email aux freelancer concernés par le lieux
                 foreach($freelances_departements as $freelance_departement){
                     $user = $freelance_departement;
@@ -405,6 +413,18 @@ class ProjetController extends Controller
             Flashy::success('Le projet a été validé');
                 return redirect()->back();
             }
+
+        }
+        if($projet->status === 'open'){
+            $projet= Projet::find($request->projet_id);
+            $projet->status = "pending";
+            if ($projet->save()){
+               
+            }
+            Flashy::success('Le projet a été mis en pause');
+                return redirect()->back();
+        }      
+       
         Flashy::error('Un problème est survenu');
         return redirect()->back();
     }
