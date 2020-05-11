@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Jobs\MailConfirmMessageToAuthor;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Validator;
