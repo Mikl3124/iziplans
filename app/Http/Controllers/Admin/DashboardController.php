@@ -16,62 +16,58 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function registered()
+    public function usersList()
     {
         $projets = Projet::all();
-        $users = User::all();
-        $usersinc = User::all()->sortBy('lastname');
-        $usersdesc = User::all()->sortBy('lastname');
-        return view('admin.user-register')
+        $users = User::where('id', '!=', auth()->id())->get();
+
+        return view('admin.users-list')
                 ->with('users', $users)
-                ->with('usersinc', $usersinc)
-                ->with('usersdesc', $usersdesc)
                 ->with('projets', $projets);
     }
 
 
-    public function posted()
+    public function projetsList()
     {
-
         $projets = Projet::all();
-        return view('admin.projet-register')
+        return view('admin.projets-list')
                 ->with('projets', $projets);
     }
 
-    public function projetbyuser(Request $request, $id)
-    {
-        $user_id = $id;
-        $projets = Projet::where('user_id', $user_id)->get();
-        return view('admin.projet-register')
-                    ->with('projets', $projets);
-
-    }
-
-    public function offerbyuser(Request $request, $id)
+    public function projetsByUser(Request $request, $id)
     {
         $user_id = $id;
         $user = User::find($id);
+        $projets = Projet::where('user_id', $user_id)->get();
+        return view('admin.projets-by-user')
+                    ->with('projets', $projets)
+                    ->with('user', $user);
+    }
+
+    public function offersByUser(Request $request, $id)
+    {   
+        $user_id = $id;
+        $user = User::find($id);
         $offers = Offer::where('user_id', $user_id)->get();
-        return view('admin.offer-register')
+        return view('admin.offers-by-user')
                     ->with('offers', $offers)
                     ->with('user', $user);
     }
 
-    public function projetShow(Request $request, $id)
-    {
-        $projet = Projet::find($id);
-            return view('admin.projet-show')
-                        ->with('projet', $projet);
+    public function offerEdit(Request $request, $id)
+    {   
+        $offer = Offer::find($id);
+        return view('admin.offer-edit')
+                    ->with('offer');
     }
 
-
-    public function registeredit(Request $request, $id)
+    public function userEdit(Request $request, $id)
     {
-        $users = User::findOrFail($id);
-        return view('admin.user-edit')->with('users', $users);
+        $user = User::findOrFail($id);
+        return view('admin.user-edit')->with('user', $user);
     }
 
-    public function projetedit(Request $request, $id)
+    public function projetEdit(Request $request, $id)
     {   
         $departements = Departement::all();
         $categories = Category::all();
@@ -84,87 +80,116 @@ class DashboardController extends Controller
                 ->with('categories', $categories);
     }
 
-    public function registerupdate(Request $request, $id)
+    public function userUpdate(Request $request, $id)
     {
-        $users = User::find($id);
-        $users->firstname = $request->input('firstname');
-        $users->lastname = $request->input('lastname');
-        $users->email = $request->input('email');
-        $users->update();
+        $user = User::find($id);
+        $user->firstname = $request->input('firstname');
+        $user->lastname = $request->input('lastname');
+        $user->email = $request->input('email');
+        $user->role = $request->input('role');
+        
+        if($user->update()){
+            Flashy::success("L'utilisateur a été modifié avec succès !");
+            return redirect( route('admin.user.edit', $user->id));
+        } else {
+            Flashy::error('Une erreur est survenue !');
+            return redirect( route('admin.user.edit', $user->id));
+        }
 
-        return redirect('user-register')->with('success', 'L\'utilisateur a été mis à jour');
     }
 
-    public function registerdelete($id)
+    public function userDelete($id)
     {
         $users = User::findOrFail($id);
-        $users->delete();
+        if($users->delete()){
+            $projets = Projet::where('user_id', $id)->get();
+            $offers = Offer::where('user_id', $id)->get();
 
-        return redirect('user-register')->with('success', 'L\'utilisateur a été supprimé.');
+            foreach($projets as $projet){
+                $projet->delete();
+            }
+            foreach($offers as $offer){
+                $offer->delete();
+            }
+            Flashy::success("L'utilisateur a été supprimé avec succès");
+            return redirect( route('admin.users.list') );
+        } else{
+            Flashy::error("L'utilisateur n'a pas été supprimé'");
+            return redirect( route('admin.users.list') );
+        }
+
+        
     }
 
-    public function projetdelete($id)
+    public function projetDelete($id)
     {
         $projets = Projet::findOrFail($id);
-        $projets->delete();
-
-        return redirect('projet-register')->with('success', 'Le projet a été supprimée.');
+        if ($projets->delete()){
+            Flashy::success('Projet supprimé avec succès');
+            return redirect( route('admin.projets.list') );
+        } else{
+            Flashy::error("Le projet n'a pas été supprimé");
+            return redirect( route('admin.projets.list') );
+        }
+        
     }
 
-     public function projetupdate(Request $request, $id)
+     public function projetUpdate(Request $request, $id)
     {
 
         $projet = Projet::find($id);
-
         $user = $projet->user;
-            if(Auth::check()){
-                dd($request);
-                $this->validate($request, [
-                    'categories' => 'bail|required',
-                    'title' => 'bail|required|string|max:255',
-                    'file-projet' => 'sometimes|max:5000',
-                    'description' => 'bail|required',
-                    'budget' => 'bail|required',
-                    'departement' => 'bail|required'
-                    ]);
+            $this->validate($request, [
+                'categories' => 'bail|required',
+                'title' => 'bail|required|string|max:255',
+                'file-projet' => 'sometimes|max:5000',
+                'description' => 'bail|required',
+                'budget' => 'bail|required',
+                'departement' => 'bail|required'
+                ]);
 
-                        $projet->user_id = $user->id;
-                        $projet->title = $request->title;
-                        $projet->description = $request->description;
-                        $projet->status = $request->status;
-                        $projet->departement_id = $request->departement;
+                $projet->user_id = $user->id;
+                $projet->title = $request->title;
+                $projet->description = $request->description;
+                $projet->status = $request->status;
+                $projet->departement_id = $request->departement;
+                if($request->entry_date){
+                    $projet->created_at = $request->entry_date;
+                }
+        
+
+                if ($files = $request->file('file_projet')) {
+                    $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
+
+                    //get filename without extension
+                    $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+                    //get file extension
+                    $extension = $request->file('file_projet')->getClientOriginalExtension();
+
+                    $filenametostore = $filename.'_'.time().'.'.$extension;
+
+                    //Upload File
+                    Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore);
+
+                    //Store $filenametostore in the database
+                    $projet->file_projet = $filenametostore;
+                }
+
+                $projet->budget_id = $request->budget;
 
 
-                        if ($files = $request->file('file_projet')) {
-                            $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
+                if ($projet->save()){
+                    DB::table('category_projet')->where('projet_id', $projet->id)->delete();
+                    $projet->categories()->attach($request->categories);
 
-                            //get filename without extension
-                            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+                    Flashy::success('Votre projet a été modifié avec succès !');
+                    return redirect( route('admin.projets.list') );
+                } else {
+                    Flashy::error('Le projet n\'a pas été modifié');
+                    return redirect( route('admin.projets.list') );
+                }
 
-                            //get file extension
-                            $extension = $request->file('file_projet')->getClientOriginalExtension();
-
-                            $filenametostore = $filename.'_'.time().'.'.$extension;
-
-                            //Upload File
-                            Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore);
-
-                            //Store $filenametostore in the database
-                            $projet->file_projet = $filenametostore;
-                        }
-
-                        $projet->budget_id = $request->budget;
-
-
-                        if ($projet->save()){
-                            DB::table('category_projet')->where('projet_id', $projet->id)->delete();
-                            $projet->categories()->attach($request->categories);
-                        };
-            Flashy::success('Votre projet a été modifié avec succès !');
-            return redirect('projet-register');
-        }
-
-        return redirect('projet-register');
     }
 
     public function data()

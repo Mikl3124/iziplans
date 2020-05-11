@@ -142,9 +142,9 @@
                                             <p class="mb-0">Vous êtes Admin</p>
                                         </div>
                                         <hr>
-                                        <a class="dropdown-item" href="{{ route('admin_dashboard') }}">Dashboard</a>
-                                        <a class="dropdown-item" href="{{ route('admin_users') }}">Utilisateurs</a>
-                                        <a class="dropdown-item" href="{{ route('admin_projets') }}">Projets</a>
+                                        <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                        <a class="dropdown-item" href="{{ route('admin.users.list') }}">Utilisateurs</a>
+                                        <a class="dropdown-item" href="{{ route('admin.projets.list') }}">Projets</a>
                                     @endif
                                     <hr>
                                         <a class="dropdown-item text-danger" href="{{ route('logout') }}"

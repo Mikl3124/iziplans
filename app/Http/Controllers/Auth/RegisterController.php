@@ -80,6 +80,7 @@ class RegisterController extends Controller
             'role' => $data['role'],
             'password' => Hash::make($data['password']),
             'cgv' => true,
+            'number_of_connections' => 0
         ]);
         $this->dispatch(new MailNewUser($user));
         return $user;

@@ -54,20 +54,20 @@ Route::get('/projet-list/', 'ProjetController@list')->name('projet.list');
 
 // Administrateur
 Route::group(['middleware' => ['auth','admin']], function () {
-    Route::get('/dashboard', 'Admin\DashboardController@data')->name('admin_dashboard');;
-    Route::get('/user-register', 'Admin\DashboardController@registered')->name('admin_users');;
-    Route::get('/projet-register', 'Admin\DashboardController@posted')->name('admin_projets');
-    Route::get('/user-edit/{id}', 'Admin\DashboardController@registeredit');
-    Route::put('/user-register-update/{id}', 'Admin\DashboardController@registerupdate');
-    Route::get('/projet-edit/{id}', 'Admin\DashboardController@projetedit');
-    Route::put('/projet-register-update/{id}', 'Admin\DashboardController@projetupdate');
-    Route::delete('/user-delete/{id}', 'Admin\DashboardController@registerdelete' );
-    Route::delete('/projet-delete/{id}', 'Admin\DashboardController@projetdelete');
-    Route::get('/projet-by-user/{id}', 'Admin\DashboardController@projetbyuser');
-    Route::get('/offer-by-user/{id}', 'Admin\DashboardController@offerbyuser');
-    Route::get('/projet-show/{id}', 'Admin\DashboardController@projetShow');
-    Route::get('/connect-as/{id}', 'Admin\DashboardController@connect_as')->name('connect_as');
-    Route::post('/projet-validate/', 'ProjetController@validateProjet')->name('projet.validate');
+    Route::get('/dashboard', 'Admin\DashboardController@data')->name('admin.dashboard');;
+    Route::get('/users-list', 'Admin\DashboardController@usersList')->name('admin.users.list');;
+    Route::get('/projets-list', 'Admin\DashboardController@projetsList')->name('admin.projets.list');
+    Route::get('/user-edit/{id}', 'Admin\DashboardController@userEdit')->name('admin.user.edit');
+    Route::put('/user-update/{id}', 'Admin\DashboardController@userUpdate')->name('admin.user.update');
+    Route::get('/projet-edit/{id}', 'Admin\DashboardController@projetEdit')->name('admin.projet.edit');
+    Route::get('/offer-edit/{id}', 'Admin\DashboardController@offerEdit')->name('admin.offer.edit');
+    Route::put('/projet-update/{id}', 'Admin\DashboardController@projetUpdate')->name('admin.projet.update');
+    Route::delete('/user-delete/{id}', 'Admin\DashboardController@userdelete')->name('admin.user.delete');
+    Route::delete('/projet-delete/{id}', 'Admin\DashboardController@projetDelete')->name('admin.projet.delete');
+    Route::get('/projets-by-user/{id}', 'Admin\DashboardController@projetsByUser')->name('admin.projets.by.user');;
+    Route::get('/offers-by-user/{id}', 'Admin\DashboardController@offersByUser')->name('admin.offers.by.user');
+    Route::get('/connect-as/{id}', 'Admin\DashboardController@connect_as')->name('admin.connect_as');
+    Route::post('/projet-validate/', 'ProjetController@validateProjet')->name('admin.projet.validate');
 });
 
 //Offers

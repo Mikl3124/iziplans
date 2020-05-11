@@ -237,7 +237,7 @@ class ProjetController extends Controller
 
 
 
-
+        views($projet)->record();
         return view('projets.show', compact('projet', 'topic', 'contents', 'offers', 'departement', 'has_make_an_offer', 'freelance_offer', 'already_make_a_bid'));
     }
 

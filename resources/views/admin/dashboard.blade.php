@@ -1,40 +1,8 @@
 @extends('layouts.app')
 
-
-
-@section('title')
-    Dashboard | Iziplans
-@endsection
-
-
-
 @section('content')
 
-{{-- --------- Menu du Dashboard-------- --}}
-
-<div class="row">
-  <div class="col-md-12">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="dashboard">Tableau De Bord</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="user-register">Gestion des Utilisateurs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="projet-register">Gestions des Projets</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Donneés annexes</a>
-          </li>          
-        </ul>
-      </div>
-    </nav>
-  </div>
-</div>
+@include('admin.header-admin')
 
 <div class="row justify-content-center">
   <div class="col-md-6">

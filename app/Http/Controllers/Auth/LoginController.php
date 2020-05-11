@@ -104,6 +104,7 @@ class LoginController extends Controller
             $newUser->email_verified_at = Carbon::now();
             $newUser->avatar = $avatar;
             $newUser->role = $role;
+            $newUser->number_of_connections = 0;
             $newUser->provider = $provider;
             $newUser->password = Hash::make('5yr20mffdsPa$$wOrd');
             $newUser->cgv = true;
@@ -118,4 +119,13 @@ class LoginController extends Controller
         // $user->token;
     }
 
-}
+    //On récupère la date de la dernière connection de l'utilsateur et on ajoute 1 au nombre de connections
+    function authenticated(Request $request, $user)
+    {
+        $user->update([
+            'last_login_at' => Carbon::now()->toDateTimeString(),
+            'number_of_connections' => $user->number_of_connections + 1,
+        ]);
+    }
+
+    }

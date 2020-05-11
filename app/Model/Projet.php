@@ -11,10 +11,13 @@ use App\model\Category;
 use App\model\Competence;
 use App\Model\Departement;
 use Illuminate\Database\Eloquent\Model;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 
-class Projet extends Model
+class Projet extends Model implements Viewable
 {
         protected $guarded =[];
+        use InteractsWithViews;
 
     public function user()
     {

@@ -74,19 +74,20 @@
 
                 <div class="card-body ">
                     <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
-                    <div class="row">
+                    <div class="row d-flex justify-content-between">
                         @if ($projet->status === "open")
-                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                            <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
                         @elseif ($projet->status === "closed")
-                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</span>
+                            <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</span>
                         @endif
-                        <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}}</span>
-                        <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} </span>
+                        <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}}</span>
+                        <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} </span>
                         @if($projet->offers->count() == 0)
-                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-gavel"></i> Aucune offre </span>
+                            <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-gavel"></i> Aucune offre </span>
                         @else
-                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() === 1 ? 'Offre' : 'Offres'}} </span>
+                            <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() === 1 ? 'Offre' : 'Offres'}} </span>
                         @endif
+                            <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-eye"></i> {{ views($projet)->unique()->count() }} vues</span>
                     </div>
                     <hr>
 
