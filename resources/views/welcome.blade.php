@@ -71,13 +71,16 @@
         @foreach ($projets_first as $projet)
         <a href="{{ route('projet.show', $projet) }}">
             <div class="card card-project-home mb-3">
-                <div class="card-body ">
+                <div class="card-body">
+                    <div class="d-flex">
                         <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
-                    <div class="row d-flex justify-content-start">
+                        <span class="data-card-date ml-2">{{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                    </div>
+                    <div class="row d-flex ml-1 justify-content-start">
                         @if ($projet->status === "open")
-                            <span class="data-card ml-3"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}} |</span>
+                            <span class="data-card ml-1"><i class="fas fa-circle text-success"></i> Ouvert |</span>
                         @elseif ($projet->status === "closed")
-                            <span class="data-card ml-3"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}} |</span>
+                            <span class="data-card ml-1"><i class="fas fa-circle text-secondary"></i> Fermé |</span>
                         @endif
                         <span class="data-card ml-1"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}} |</span>
                         <span class="data-card ml-1"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} |</span>
@@ -128,15 +131,18 @@
 
     {{-- ----------- 3 Projets Suivants ---------- --}}
         @foreach ($projets_seconds as $projet)
-                <a href="{{ route('projet.show', $projet) }}">
+       <a href="{{ route('projet.show', $projet) }}">
             <div class="card card-project-home mb-3">
-                <div class="card-body ">
+                <div class="card-body">
+                    <div class="d-flex">
                         <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
-                    <div class="row d-flex justify-content-start">
+                        <span class="data-card-date ml-2">{{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                    </div>
+                    <div class="row d-flex ml-1 justify-content-start">
                         @if ($projet->status === "open")
-                            <span class="data-card ml-3"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}} |</span>
+                            <span class="data-card ml-1"><i class="fas fa-circle text-success"></i> Ouvert |</span>
                         @elseif ($projet->status === "closed")
-                            <span class="data-card ml-3"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}} |</span>
+                            <span class="data-card ml-1"><i class="fas fa-circle text-secondary"></i> Fermé |</span>
                         @endif
                         <span class="data-card ml-1"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}} |</span>
                         <span class="data-card ml-1"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} |</span>
