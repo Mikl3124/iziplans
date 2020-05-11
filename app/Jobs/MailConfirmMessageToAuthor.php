@@ -37,6 +37,7 @@ class MailConfirmMessageToAuthor implements ShouldQueue
     {
       $author = $this->author;
       $projet = $this->projet;
+      
       Mail::to($author->email)->queue(new ConfirmMessageToAuthor($projet, $author));
     }
 }

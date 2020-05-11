@@ -161,7 +161,7 @@ class ProjetController extends Controller
                                 $this->dispatch(new MailNewProjetForAdmin($user, $projet));
 
                                 // On envoie un email de confirmation à l'user
-                                $author=Auth::user();
+                                $author = Auth::user();
                                 $this->dispatch(new MailConfirmMessageToAuthor($author, $projet));
 
                                 // On envoie un email aux freelancer concernés par les compétences
