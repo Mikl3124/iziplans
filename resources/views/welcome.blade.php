@@ -71,26 +71,24 @@
         @foreach ($projets_first as $projet)
         <a href="{{ route('projet.show', $projet) }}">
             <div class="card card-project-home mb-3">
-
                 <div class="card-body ">
-                    <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
-                    <div class="row d-flex justify-content-between">
+                        <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
+                    <div class="row d-flex justify-content-start">
                         @if ($projet->status === "open")
-                            <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                            <span class="data-card ml-3"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}} |</span>
                         @elseif ($projet->status === "closed")
-                            <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</span>
+                            <span class="data-card ml-3"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}} |</span>
                         @endif
-                        <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}}</span>
-                        <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} </span>
+                        <span class="data-card ml-1"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}} |</span>
+                        <span class="data-card ml-1"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} |</span>
                         @if($projet->offers->count() == 0)
-                            <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-gavel"></i> Aucune offre </span>
+                            <span class="data-card ml-1"><i class="fas fa-gavel"></i> Aucune offre |</span>
                         @else
-                            <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() === 1 ? 'Offre' : 'Offres'}} </span>
+                            <span class="data-card ml-1"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() === 1 ? 'Offre' : 'Offres'}} |</span>
                         @endif
-                            <span class="col-12 col-sm-6 col-md-2"><i class="fas fa-eye"></i> {{ views($projet)->unique()->count() }} vues</span>
+                            <span class="data-card ml-1"><i class="fas fa-eye"></i> {{ views($projet)->unique()->count() }} {{views($projet)->unique()->count() === 1 ? 'Vue' : 'Vues'}}</span>
                     </div>
                     <hr>
-
                     <p class="card-text">{{ ucfirst(Str::words($projet->description, 45, '...')) }}</p>
 
                     @foreach($projet->categories as $category)
@@ -130,28 +128,27 @@
 
     {{-- ----------- 3 Projets Suivants ---------- --}}
         @foreach ($projets_seconds as $projet)
-        <a href="{{ route('projet.show', $projet) }}">
+                <a href="{{ route('projet.show', $projet) }}">
             <div class="card card-project-home mb-3">
-
                 <div class="card-body ">
-                    <h2 class="list-project-title">{{$projet->title}}</h2>
-                    <div class="row">
+                        <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
+                    <div class="row d-flex justify-content-start">
                         @if ($projet->status === "open")
-                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                            <span class="data-card ml-3"><i class="fas fa-circle text-success"></i> Ouvert {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}} |</span>
                         @elseif ($projet->status === "closed")
-                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}}</span>
+                            <span class="data-card ml-3"><i class="fas fa-circle text-secondary"></i> Fermé le {{Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL')}} |</span>
                         @endif
-                        <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}}</span>
-                        <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} </span>
+                        <span class="data-card ml-1"><i class="fas fa-map-marker-alt"></i> {{$projet->departement->name}} |</span>
+                        <span class="data-card ml-1"><i class="fas fa-euro-sign"></i> {{ $projet->budget->name }} |</span>
                         @if($projet->offers->count() == 0)
-                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-gavel"></i> Aucune offre </span>
+                            <span class="data-card ml-1"><i class="fas fa-gavel"></i> Aucune offre |</span>
                         @else
-                            <span class="col-12 col-sm-6 col-md-3"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() === 1 ? 'Offre' : 'Offres'}} </span>
+                            <span class="data-card ml-1"><i class="fas fa-gavel"></i> {{ $projet->offers->count()}} {{ $projet->offers->count() === 1 ? 'Offre' : 'Offres'}} |</span>
                         @endif
+                            <span class="data-card ml-1"><i class="fas fa-eye"></i> {{ views($projet)->unique()->count() }} {{views($projet)->unique()->count() === 1 ? 'Vue' : 'Vues'}}</span>
                     </div>
                     <hr>
-
-                    <p class="card-text">{{ Str::words($projet->description, 45, '...') }}</p>
+                    <p class="card-text">{{ ucfirst(Str::words($projet->description, 45, '...')) }}</p>
 
                     @foreach($projet->categories as $category)
                         <span class="categories">{{ $category->name }} </span>

@@ -11,7 +11,7 @@
                 <p class= "subtitle-project"><span class="fas fa-circle text-secondary"></span> Fermé le {{ Carbon\Carbon::parse($projet->updated_at)->isoFormat('LL') }}</p>
             @endif
             <p class="subtitle-project mx-3"><span><i class="subtitle-project fas fa-gavel"></i></span> {{$offers->count()}} {{ $projet->offers->count() <= 1 ? 'Offre' : 'Offres'}}</p>
-
+            <p class="subtitle-project mx-3"><i class="subtitle-project fas fa-eye"></i> {{ views($projet)->unique()->count() }} {{views($projet)->unique()->count() === 1 ? 'Vue' : 'Vues'}}</span></p>
         </div>
     </div>
 </div>
