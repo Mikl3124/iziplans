@@ -66,7 +66,8 @@
 <script src='https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js'></script>
 <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWlrbDMxMjQiLCJhIjoiY2p5azFtbHQwMDkzZjNlb3J2MHQzcG9pdyJ9.kpmULW-SrFK4XiFFqEmITg';
+  var mapboxAccessKey = '{{ env('MAPBOX_ACCESS_TOKEN') }}';
+    mapboxgl.accessToken = mapboxAccessKey ;
     var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
     mapboxClient.geocoding.forwardGeocode({
         query: "{{$user->address}} {{$user->town}} {{$user->cp}}",

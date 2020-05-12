@@ -158,34 +158,12 @@ class ProjetController extends Controller
                                                                     $query->whereIn('category_id', $categories);
                                                                 })->get();
                                 //Mail à l'Admin
-                                                                
+
                                 $this->dispatch(new MailNewProjetForAdmin($user, $projet));
 
                                 // On envoie un email de confirmation à l'user
                                 $author = Auth::user();
                                 $this->dispatch(new MailConfirmMessageToAuthor($author, $projet));
-/* 
-                                // On envoie un email aux freelancer concernés par les compétences
-                                foreach($freelances_categories as $freelance_category){
-                                    $user = $freelance_category;
-                                     $this->dispatch(new MailMatchCompetenceToFreelance($user, $projet));
-                                }
-
-                                // On sélectionne les users concernés par au moins un des départements et qui ont choisis d'être informés
-                                $freelances_departements = User::where('role', 'freelance')
-                                                                ->where('alert_departements', 1)
-                                                                ->whereHas('departements',function($query) use ($departement) {
-                                                                    $query->where('departement_id', $departement->id);
-                                                                })->get();
-
-                                // On envoie un email aux freelancer concernés par le lieux
-                                foreach($freelances_departements as $freelance_departement){
-                                  $user = $freelance_departement;
-                                  $this->dispatch(new MailMatchDepartementToFreelance($user, $projet)); 
-
-                                  // On vide la session
-                                  Session::forget('filled_form');
-                            } */
 
                         Flashy::success('Votre mission a été enregistrée avec succès');
                         return redirect()->route('home');
@@ -390,14 +368,14 @@ class ProjetController extends Controller
                                                 ->whereHas('categories', function ($query) use ($categories) {
                                                     $query->whereIn('category_id', $categories);
                                                 })->get();
-                
+
                 // On envoie un email aux freelancer concernés par les compétences
                 foreach($freelances_categories as $freelance_category){
                     $user = $freelance_category;
                         $this->dispatch(new MailMatchCompetenceToFreelance($user, $projet));
                 }
-                
-                
+
+
                 // On sélectionne les users concernés par au moins un des départements et qui ont choisis d'être informés
                 $freelances_departements = User::where('role', 'freelance')
                                                 ->where('alert_departements', 1)
@@ -419,12 +397,12 @@ class ProjetController extends Controller
             $projet= Projet::find($request->projet_id);
             $projet->status = "pending";
             if ($projet->save()){
-               
+
             }
             Flashy::success('Le projet a été mis en pause');
                 return redirect()->back();
-        }      
-       
+        }
+
         Flashy::error('Un problème est survenu');
         return redirect()->back();
     }
