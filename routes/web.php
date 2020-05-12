@@ -85,6 +85,7 @@ Route::get('/profil/{id}', 'UserController@show')->name('profil');
 Route::get('/abonnement/{id}', 'UserController@subscription')->name('subscription');
 Route::get('/profil/edit/{id}', 'UserController@edit')->name('profil-edit');
 Route::post('/profil/edit/{id}', 'UserController@update')->name('profil-update');
+Route::post('/profil/password/{id}', 'UserController@changePassword')->name('change.password');
 Route::get('change-profil', 'UserController@changeRole')->name('changeRole');
 
 //Upload avatar

@@ -17,8 +17,14 @@
         <div class="row d-flex justify-content-between">
             <div class="col-md-4 my-2 col-sm-12 mt-n5">
                 <div class="card card-show">
-                    <div class="card card-show bg-dark mb-3">
-                        <img class="rounded profil-avatar my-auto mx-auto" src={{ $user->avatar }}>
+                    <div class="card card-show mb-3">
+                      <div class="item">
+                          @if ($user->updated_profil === 1)
+                              <span class="notify-badge-show"><img class="verified-user" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/verified.png" alt="utilsateur vérifié"></span>
+                          @endif
+                            <img class="profil-avatar img-fluid w-100" src={{ $user->avatar }} alt="freelance avatar">
+                      </div>
+
                     </div>
                 </div>
             </div>
@@ -34,17 +40,56 @@
                             <a href="{{ route('register_client', Auth::user()) }}" class="btn btn-success">Demander un devis</a>
                         @endif
                     </div>
+                </div>
 
-                </div>
-                
-                <div class="mb-4">
+                    <h3>PRÉSENTATATION</h3>
+                    @if($user->presentation)
+                      <p>{!! nl2br(e($user->presentation)) !!}</p>
+                    @else
+                      <p>Aucune présentation renseignée</p>
+                    @endif
+                    <h3>COMPÉTENCES</h3>
+                    @if($user->categories && $user->categories->count() > 0)
+                      @foreach($user->categories as $categorie)
+                      <p>{{ $categorie->name }}</p>
+                      @endforeach
+                    @else
+                      <p>Aucune catégorie sélectionnée</p>
+                    @endif
+                    <h3>LOCALISATION</h3>
+                    <div id='map' style='width: 100%; height: 400px;'></div>
 
-                </div>
-                <div>
-                    <p>{!! nl2br(e($user->presentation)) !!}</p></p>
-                </div>
             </div >
-           
+
+
+<!-- ------------- Script Localisation ---------------------- -->
+<script src='https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js'></script>
+<script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWlrbDMxMjQiLCJhIjoiY2p5azFtbHQwMDkzZjNlb3J2MHQzcG9pdyJ9.kpmULW-SrFK4XiFFqEmITg';
+    var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+    mapboxClient.geocoding.forwardGeocode({
+        query: "{{$user->address}} {{$user->town}} {{$user->cp}}",
+        autocomplete: false,
+        limit: 1
+    })
+        .send()
+        .then(function (response) {
+            if (response && response.body && response.body.features && response.body.features.length) {
+                var feature = response.body.features[0];
+                var map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                    center: feature.center,
+                    zoom: 5
+                });
+                new mapboxgl.Marker()
+                    .setLngLat(feature.center)
+                    .addTo(map);
+            }
+        });
+</script>
+
 
 
 @endsection

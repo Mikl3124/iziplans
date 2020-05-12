@@ -49,7 +49,7 @@
                                         <label for="titre">Nom d'affichage (Pseudo)</label>
                                         <input type="text" class="form-control" name="pseudo" value="{{old('pseudo', $user->pseudo)}}">
                                     </div>
-                                <!-- ---------------- Titre professionnel ------------------ -->  
+                                <!-- ---------------- Titre professionnel ------------------ -->
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label for="titre">Titre professionnel</label>
                                         <input type="text" class="form-control" name="titre" value="{{old('titre', $user->titre)}}">
@@ -147,35 +147,43 @@
         </div>
         <div class="card mt-3">
             <div class="card-body">
-                <form action="/modification-mot-de-passe" method="post">
+                <form action="{{ route('change.password', Auth::user()) }}" method="post" id="identicalForm" >
                     @csrf
                     <div class="text-center mb-3">
                         <h3>CHANGEMENT DE MOT DE PASSE</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                            <label for="show_hide_password_1">Nouveau mot de passe</label>
-                            <div class="input-group" id="show_hide_password_1">
-                                <input class="form-control" type="password">
-                                <div class="input-group-append">
-                                <span class="input-group-text"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <label for="show_hide_password_2">Confirmer le nouveau mot de passe</label>
-                            <div class="input-group" id="show_hide_password_2">
-                                <input class="form-control" type="password">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
-                                </div>
-                        </div>
-
-                        </div>
+                    <div class="form-row">
+                      <div class="col-md-6 col-sm-12 mb-4">
+                          <div class="input-group" id="show_hide_password_1">
+                              <input id="password" placeholder="Mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                              <div class="input-group-append">
+                                  <span class="input-group-text"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                              </div>
+                              @error('password')
+                                  <span class="invalid-feedback text-danger" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                      </div>
+                      <div class="col-md-6 col-sm-12 mb-4">
+                          <div class="input-group" id="show_hide_password_2">
+                              <input id="password-confirm" placeholder="Confirmer le mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
+                              <div class="input-group-append">
+                                  <span class="input-group-text"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                              </div>
+                              @error('password')
+                                  <span class="invalid-feedback text-danger" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                      </div>
                     </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-success mt-3"></i>Modifier</button>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -204,6 +212,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 <script>
@@ -249,14 +259,15 @@
       type: 'address'
     });
     placesAutocomplete.on('change', function resultSelected(e) {
-        let coordonnees = e.suggestion;
+        let coordonnees = e.suggestion.latlng;
+
         document.querySelector('#departement').value = e.suggestion.county || '';
         document.querySelector('#form-city').value = e.suggestion.city || '';
         document.querySelector('#form-zip').value = e.suggestion.postcode || '';
-        console.log(coordonnees);
     });
   })();
 </script>
+
 
 <script>
 
@@ -288,6 +299,7 @@ $(document).ready(function() {
 });
 
 </script>
+
 
 
 @endsection

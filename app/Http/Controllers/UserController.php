@@ -15,9 +15,11 @@ use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use NSpehler\LaravelInsee\Facades\Insee;
 
 class UserController extends Controller
 {
@@ -188,22 +190,50 @@ class UserController extends Controller
 
     public function changeRole()
     {
-        $user = Auth::user();
-        if(Auth::user()->role === 'client'){
-            $user->role = 'freelance';
-                $user->save();
-                Flashy::success("Vous avez basculé sur l'interface FREELANCE");
-                return redirect()->back();
-        }
+      $user = Auth::user();
+      if(Auth::user()->role === 'client'){
+          $user->role = 'freelance';
+              $user->save();
+              Flashy::success("Vous avez basculé sur l'interface FREELANCE");
+              return redirect()->back();
+      }
 
-        if(Auth::user()->role === 'freelance'){
-            $user->role = 'client';
-            $user->save();
+      if(Auth::user()->role === 'freelance'){
+          $user->role = 'client';
+          $user->save();
             Flashy::success("Vous avez basculé sur l'interface CLIENT");
             return redirect()->back();
-        }
-
+      }
     }
 
+      public function changePassword(Request $request)
+    {
+      $user = Auth::user();
+      $value = $request->all();
 
-}
+        $rules = [
+            'password' => ['confirmed'],
+        ];
+
+        $validator = Validator::make($value, $rules,[
+            'password.confirmed' => 'Les mots de passes ne sont pas identiques',
+
+          ]);
+
+          if($validator->fails()){
+            Flashy::error("Les mots de passe ne sont pas identiques");
+            return Redirect::back()
+              ->withErrors($validator)
+              ->withInput();
+          } else{
+            $user->password = Hash::make($request['password']);
+            $user->save();
+            Flashy::success("Mot de passe modifié");
+            return Redirect::back();
+          }
+    }
+  }
+
+
+
+
