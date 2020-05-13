@@ -149,7 +149,7 @@ class ConversationController extends Controller
 
                         //Upload File
 
-                        Storage::putFileAs('documents', $request->file('file_message'), $filenametostore, );
+                        Storage::putFileAs('documents', $request->file('file_message'), $filenametostore );
 
                         //Store $filenametostore in the database
 

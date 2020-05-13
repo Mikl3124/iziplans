@@ -5,7 +5,7 @@
    {{-- ----------- Banner ---------- --}}
 <div class="banner" style="background-image:url(https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-banner.jpg)">
     <div class="container">
-        <div class="display-4 text-center text-white">VOS PLANS FACILEMENT</div>
+        <div class="display-4 text-center text-white">VOS PLANS FACILEMENTO</div>
         <blockquote class="blockquote text-center">
             {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
             @guest

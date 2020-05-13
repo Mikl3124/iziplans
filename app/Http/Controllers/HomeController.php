@@ -24,8 +24,8 @@ class HomeController extends Controller
      public function list()
     {
 
-        $projets_first = Projet::where("status", "=", "open")->orderBy('created_at', 'desc')->take(3)->get();
-        $projets_seconds = Projet::where("status", "=", "open")->orderBy('created_at', 'desc')->skip(3)->take(3)->get();
+        $projets_first = Projet::where("status", "=", "open")->orwhere("status", "=", "closed")->orderBy('created_at', 'desc')->take(3)->get();
+        $projets_seconds = Projet::where("status", "=", "open")->orwhere("status", "=", "closed")->orderBy('created_at', 'desc')->skip(3)->take(3)->get();
 
         return view('welcome', compact('projets_first', 'projets_seconds'));
     }

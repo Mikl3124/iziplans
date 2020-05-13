@@ -34,10 +34,8 @@
                         <p><em>Membre depuis le {{Carbon\Carbon::parse($user->created_at)->isoFormat('LL')}}</em></p>
                     </div>
                     <div class="col-md-6 col-sm-12 text-center">
-                        @if ( !empty(Auth::user()) && Auth::user()->id === Auth::user()->id)
+                        @if ( !empty(Auth::user()) && Auth::user()->id === $user->id)
                             <a href="{{ route('profil-edit', Auth::user()) }}" class="btn btn-success">Modifier mon profil</a>
-                        @else
-                            <a href="{{ route('register_client', Auth::user()) }}" class="btn btn-success">Demander un devis</a>
                         @endif
                     </div>
                 </div>

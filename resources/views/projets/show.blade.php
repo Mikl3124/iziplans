@@ -45,10 +45,10 @@
                                 <td scope="row" class="td-show">Auteur</td>
                                 {{-- ----- Si le User est  abonné---- --}}
                                 @if(Auth::user() && Auth::user()->subscribed('abonnement'))
-                                    <th scope="col">{{$projet->user->lastname}}</td>
+                                <th scope="col"><a href="{{ route('profil', $projet->user)}}">{{ $projet->user->firstname }} {{ $projet->user->lastname }}</a></td>
                                 {{-- ----- Si le User n'est pas abonnée ---- --}}
                                 @else
-                                    <th scope="col">#{{$projet->user->id}}</td>
+                                <th scope="col"><span><small><em>(visible pour les abonnés)</em></small></span></td>
                                 @endif
                                 
                             </tr>
@@ -112,12 +112,15 @@
                                     <div class="col-md-4 my-2 col-sm-12 mt-n5">
                                         <div class="card card-show mb-3">
                                             <div class="card card-show bg-dark mb-3">
-                                                <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
+                                                
+</p>
                                                 {{-- ----- Si le freelance est abonné ---- --}}
                                                 @if(Auth::user()->subscribed('abonnement'))
+                                                    <p class="text-white">Le projet est ouvert, et donc encore d'actualité. Il n'est pas trop tard pour proposer vos services.</p>
                                                     <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Faire une offre </a>
                                                 {{-- ----- Si le freelance n'est pas abonné ---- --}}
                                                 @else
+                                                    <p class="text-white">Abonnez-vous pour répondre aux projets, discuter avec le client, et envoyer vos offres.
                                                     <a href="{{ route('offers.create', $projet) }}" class="btn btn-success"> Voir les abonnements </a>
                                                 @endif
                                             </div>
@@ -174,7 +177,7 @@
                 <div class="col-md-4 my-2 col-sm-12 mt-n5">
                     <div class="card card-show mb-3">
                         <div class="card card-show bg-dark mb-3">
-                            <p class="text-white">Le client n'a pas encore choisi son prestataire. Dépêchez-vous, il est encore temps de proposer votre devis.</p>
+                            <p class="text-white">Le projet est ouvert, et donc encore d'actualité. Il n'est pas trop tard pour proposer vos services.</p>
                             <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
                         </div>
                         <div class="card card-show mb-3">
@@ -324,10 +327,10 @@
                                         <p class="mb-1"><em>{{ $offer->user->titre }}</em></p>
                                     @endif
                                     @if($offer->user->town)
-                                        {{ $offer->user->town }}
+                                        <small>{{ $offer->user->town }}</small>
                                     @endif
                                     @if($offer->user->departement)
-                                        ({{ ($offer->user->departement) }})
+                                        <small>({{ ($offer->user->departement) }})</small>
                                     @endif
 
                                     </a>

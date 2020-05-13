@@ -50,6 +50,7 @@ class UserController extends Controller
 
     public function show($id)
     {
+
         $user = User::find($id);
         $avatar = $user->avatar;
 
@@ -154,9 +155,28 @@ class UserController extends Controller
     }
 
     public function update(Request $request)
-    {
-
+    {   
         $user = Auth::user();
+
+        $value = $request->all();
+
+        $rules = [
+            'email' => 'required|email',
+            'firstname' => 'required|min:3',
+            'lastname' => 'required|min:3',
+        ];
+
+        $validator = Validator::make($value, $rules,[
+            
+          ]);
+
+        if($validator->fails()){
+        Flashy::error("Il y a une erreur dans le formulaire");
+            return Redirect::back()
+              ->withErrors($validator)
+              ->withInput();
+        }
+        
         //Mise à jour du profil
         DB::table('category_user')->where('user_id', $user->id)->delete();
         DB::table('departement_user')->where('user_id', $user->id)->delete();
@@ -168,6 +188,7 @@ class UserController extends Controller
         $user->alert_categories = $request['alert_categories'];
         $user->alert_departements = $request['alert_departements'];
         $user->presentation = $request['presentation'];
+        $user->phone = $request['phone'];
         $user->titre = $request['titre'];
         $user->address = $request['address'];
         $user->town = $request['town'];

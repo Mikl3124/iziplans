@@ -32,12 +32,22 @@
                                 <!-- ---------------- Prénom ------------------ -->
                                 <div class="form-group col-md-6 col-sm-12 ">
                                     <label for="firstname">Prénom<span class="text-danger"> *</span></label>
-                                    <input type="text" class="form-control" name="firstname" value="{{old('firstname', $user->firstname)}}">
+                                    <input type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{old('firstname', $user->firstname)}}">
+                                    @error('firstname')
+                                        <div>
+                                            <small  class="text-danger">{{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
                                 <!-- ---------------- Nom------------------ -->
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="lastname">Nom<span class="text-danger"> *</span></label>
-                                    <input type="text" class="form-control" name="lastname" value="{{old('lastname', $user->lastname)}}">
+                                    <input type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{old('lastname', $user->lastname)}}">
+                                    @error('lastname')
+                                        <div>
+                                            <small  class="text-danger">{{ $message }}</small>
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -125,16 +135,28 @@
                                     <label for="departement">Département</label>
                                     <input type="text" value="{{old('departement', $user->departement)}}" class="form-control @error('departement') is-invalid @enderror" name="departement" id="departement">
                                     @error('departement')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group col-sm-12 col-md-12">
                                     <label for="email">Adresse de messagerie<span class="text-danger"> *</span></label>
                                     <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{old('lastname', $user->email)}}">
                                     @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback text-danger">
+                                            {{ $message }}
+                                        </div>
                                     @enderror
                                 </div>
+                                <div class="form-group col-sm-12 col-md-12">
+                                    <label for="phone">Numéro de téléphone</label>
+                                    <input type="number" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{old('phone', $user->phone)}}"">
+                                    @error('phone')
+                                        <div class="invalid-feedback text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                
                             </div>
                             <div class="text-right">
                                 <a href="{{ route('profil', Auth::user()) }}" class="btn btn-secondary mt-3"><i class="fas fa-times text-light"></i> Annuler</a>
@@ -157,12 +179,12 @@
                           <div class="input-group" id="show_hide_password_1">
                               <input id="password" placeholder="Mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                               <div class="input-group-append">
-                                  <span class="input-group-text"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                                  <span class="input-group-text"><a href=""><i class="fa fa-eye-slash @error('password') text-danger @enderror" aria-hidden="true"></i></a></span>
                               </div>
                               @error('password')
-                                  <span class="invalid-feedback text-danger" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                  </span>
+                                  <div class="invalid-feedback text-danger">
+                                      {{ $message }}
+                                  </div>
                               @enderror
                           </div>
                       </div>
@@ -170,13 +192,8 @@
                           <div class="input-group" id="show_hide_password_2">
                               <input id="password-confirm" placeholder="Confirmer le mot de passe" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
                               <div class="input-group-append">
-                                  <span class="input-group-text"><a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                                  <span class="input-group-text"><a href=""><i class="fa fa-eye-slash @error('password') text-danger @enderror" aria-hidden="true"></i></a></span>
                               </div>
-                              @error('password')
-                                  <span class="invalid-feedback text-danger" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                  </span>
-                              @enderror
                           </div>
                       </div>
                     </div>
