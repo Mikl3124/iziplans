@@ -97,8 +97,8 @@
     </div>
 
 <script>
-    var messageBody = document.querySelector('#messagesBox');
-    messagesBox.scrollTop = messagesBox.scrollHeight - messagesBox.clientHeight;
+    var messageBody = document.querySelector('#messageBody');
+    messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
 </script>
 
 @endsection
