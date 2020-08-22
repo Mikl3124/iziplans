@@ -24,7 +24,7 @@
             <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Un nouveau projet a été posté</td>
         </tr>
         <tr style="text-align:center">
-            <td width="100%"><a href="https://preprod.iziplans/projet/{{$projet->id}}" style="padding:15px;width:150px;text-align:center;border-radius:3px;color:white;font-weight: bold;text-decoration:none;background-color:#0072ff;font-size:20px;">Voir le projet</a></td>
+            <td width="100%"><a href="https://iziplans/projet/{{$projet->id}}" style="padding:15px;width:150px;text-align:center;border-radius:3px;color:white;font-weight: bold;text-decoration:none;background-color:#0072ff;font-size:20px;">Voir le projet</a></td>
         </tr>
     </table>
 </body>
