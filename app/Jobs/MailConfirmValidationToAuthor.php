@@ -12,6 +12,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class MailConfirmValidationToAuthor implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    
     protected $author;
     protected $projet;
 

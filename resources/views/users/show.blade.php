@@ -61,8 +61,7 @@
 
 
 <!-- ------------- Script Localisation ---------------------- -->
-<script src='https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js'></script>
-<script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+
 <script>
   var mapboxAccessKey = '{{ env('MAPBOX_ACCESS_TOKEN') }}';
     mapboxgl.accessToken = mapboxAccessKey ;
