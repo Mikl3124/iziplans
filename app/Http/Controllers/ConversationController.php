@@ -8,13 +8,14 @@ use App\Model\User;
 use App\Model\Topic;
 use App\Model\Projet;
 use App\Model\Message;
+use App\Jobs\MailNewMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\NewMessagePosted;
-use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Notifications\DatabaseNotification;
 
 class ConversationController extends Controller
 {
@@ -159,11 +160,12 @@ class ConversationController extends Controller
 
         $message->save();
 
-
-
         // Notification
         $message_to = User::find($request->to_id);
         $message_to->notify(new NewMessagePosted($topic, auth()->user()));
+
+        $this->dispatch(new MailNewMessage($message_to, $projet));
+
 
         return redirect()->route('messagerie.show', ['projet' => $projet, 'topic' =>$topic]);
     }
