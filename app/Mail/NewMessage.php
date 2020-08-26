@@ -36,9 +36,10 @@ class NewMessage extends Mailable
      */
     public function build()
     {
+
       $user = $this->user;
         return $this->from('mickael@iziplans.com')
           ->subject("Bonjour {$user->firstname}, vous avez reçu un nouveau message")
-          ->view('emails.new-projet');
+          ->view('emails.new-message');
     }
 }

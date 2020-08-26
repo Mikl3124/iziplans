@@ -26,7 +26,6 @@ class MailNewMessage implements ShouldQueue
     {
         $this->user = $user;
         $this->projet = $projet;
-
     }
 
     /**
