@@ -24,6 +24,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
+    <!-- Favicon -->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://iziplans.s3.eu-west-3.amazonaws.com/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://iziplans.s3.eu-west-3.amazonaws.com/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://iziplans.s3.eu-west-3.amazonaws.com/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="https://iziplans.s3.eu-west-3.amazonaws.com/images/favicons/site.webmanifest">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
