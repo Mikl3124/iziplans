@@ -34,7 +34,7 @@
         </tr>
 
         <tr style="text-align:center">
-            <td width="100%"><a href="https://iziplans.com/" style="padding:15px;width:150px;text-align:center;border-radius:3px;color:white;font-weight: bold;text-decoration:none;background-color:#0072ff;font-size:20px;">Lire le message</a></td>
+            <td width="100%"><a href="https://iziplans.com/" style="padding:15px;width:150px;text-align:center;border-radius:10px;color:white;font-weight: bold;text-decoration:none;background-color:#0072ff;font-size:20px;">Lire le message</a></td>
         </tr>
     </table>
 </body>
