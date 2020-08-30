@@ -72,6 +72,10 @@ class LoginController extends Controller
 
         if($existingUser) {
                 auth()->login($existingUser);
+                $existingUser->update([
+                    'last_login_at' => Carbon::now()->toDateTimeString(),
+                    'number_of_connections' => $existingUser->number_of_connections + 1,
+        ]);
                 return redirect($this->redirectPath());
             }
 
