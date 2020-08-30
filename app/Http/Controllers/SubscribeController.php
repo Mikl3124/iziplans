@@ -42,9 +42,9 @@ class SubscribeController extends Controller
 
         request()->validate([
             'plan' => ['required', Rule::in([
-                                            'iziplans_monthly',
-                                            'iziplans_trimester',
-                                            'iziplans_yearly',
+                                            'price_1HLnPWC1QIYXU5hhGMqIx1AZ',
+                                            'price_1HLnOwC1QIYXU5hh2r9IsgCS',
+                                            'price_1HLnPkC1QIYXU5hhQfpujV4V',
                                             ])],
         ]);
         $plan = request()->plan;

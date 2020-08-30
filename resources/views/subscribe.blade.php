@@ -44,7 +44,7 @@
                                     <div class="generic_price_tag clearfix">
                                         <span class="price mb-2">
                                             <span class="sign">€</span>
-                                            <span class="currency">17</span>
+                                            <span class="currency">24</span>
                                             <span class="cent">.90</span>
                                             <span class="month">/mois</span>
                                         </span>
@@ -58,6 +58,7 @@
                                 <!--FEATURE LIST START-->
                                 <div class="generic_feature_list">
                                     <ul>
+                                        <li>Idéal pour faire un essai</li>
                                         <li>Réponses illimitées aux projets</li>
                                         <li>Alerte E-mail "Nouveaux projets"</li>
                                         <li>Messagerie privée</li>
@@ -104,7 +105,7 @@
                                     <div class="generic_price_tag clearfix">
                                         <span class="price mb-2">
                                             <span class="sign">€</span>
-                                            <span class="currency">47</span>
+                                            <span class="currency">63</span>
                                             <span class="cent">.90</span>
                                             <span class="month">/trimestre</span>
                                         </span>
@@ -163,8 +164,8 @@
                                     <div class="generic_price_tag clearfix">
                                         <span class="price mb-2">
                                             <span class="sign">€</span>
-                                            <span class="currency">179</span>
-                                            <span class="cent">.90</span>
+                                            <span class="currency">249</span>
+                                            <span class="cent">.00</span>
                                             <span class="month">/an</span>
                                         </span>
                                     </div>
@@ -227,7 +228,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">MENSUEL à 17.90€ / mois</h5>
+            <h5 class="modal-title">MENSUEL à 24.90€ / mois</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -237,7 +238,7 @@
             <form action="/subscribe" method="POST" id="payment-form">
                 @csrf
                 <div>
-                    <input type="hidden" name="plan" value="iziplans_monthly">
+                    <input type="hidden" name="plan" value="price_1HLnPWC1QIYXU5hhGMqIx1AZ">
                         <!-- Stripe Elements Placeholder -->
                         <div id="card-element" class="form-control my-2"></div>
                         <div id="card-errors"  class="text-danger" role="alert"></div>
@@ -259,7 +260,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">TRIMESTRIEL à 47.90€ / trimestre</h5>
+          <h5 class="modal-title">TRIMESTRIEL à 63.90€ / trimestre</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -268,7 +269,7 @@
             <form action="/subscribe" method="POST" id="payment-form-trimestre">
                 @csrf
                 <div>
-                    <input type="hidden" name="plan" value="iziplans_trimester">
+                    <input type="hidden" name="plan" value="price_1HLnOwC1QIYXU5hh2r9IsgCS">
                         <!-- Stripe Elements Placeholder -->
                         <div id="card-element-trimestre" class="form-control my-2"></div>
                         <div id="card-errors-trimestre"  class="text-danger" role="alert"></div>
@@ -292,7 +293,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">ANNUEL à 179.90€ / an</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">ANNUEL à 249.00€ / an</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -301,7 +302,7 @@
             <form action="/subscribe" method="POST" id="payment-form-annuel">
                 @csrf
                 <div>
-                    <input type="hidden" name="plan" value="iziplans_yearly">
+                    <input type="hidden" name="plan" value="price_1HLnPkC1QIYXU5hhQfpujV4V">
                         <!-- Stripe Elements Placeholder -->
                         <div id="card-element-annuel" class="form-control my-2"></div>
                         <div id="card-errors-annuel"  class="text-danger" role="alert"></div>
@@ -455,7 +456,7 @@
 </script>
 
 <script>
-    // Trimestriel
+    // Annuel
     window.addEventListener('load', function(){
         const cardButton = document.getElementById('card-button-annuel');
         const stripe = Stripe('{{ env('STRIPE_KEY') }}');

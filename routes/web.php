@@ -32,6 +32,7 @@ Route::get('social-login/{provider}/callback/', 'Auth\LoginController@handleProv
 
 //Stripe
 Route::post('/subscribe', 'SubscribeController@subscribe');
+Route::get('/abonnement/{id}', 'UserController@subscription')->name('subscription');
 Route::get('subscribe', 'SubscribeController@payment')->name('subscribe');
 Route::post('/unsubscribe', 'SubscribeController@destroy');
 Route::post('/resume', 'SubscribeController@resume')->name('resume-subscription');
@@ -83,7 +84,6 @@ Route::delete('/offers/{id}', 'OfferController@destroy')->name('offers.delete')-
 
 //Profil
 Route::get('/profil/{id}', 'UserController@show')->name('profil');
-Route::get('/abonnement/{id}', 'UserController@subscription')->name('subscription');
 Route::get('/profil/edit/{id}', 'UserController@edit')->name('profil-edit');
 Route::post('/profil/edit/{id}', 'UserController@update')->name('profil-update');
 Route::post('/profil/password/{id}', 'UserController@changePassword')->name('change.password');
