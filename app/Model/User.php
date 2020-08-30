@@ -9,6 +9,7 @@ use App\model\Competence;
 use App\Model\Departement;
 use App\Model\Information;
 use Laravel\Cashier\Billable;
+use App\Notifications\PasswordReset;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
