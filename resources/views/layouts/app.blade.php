@@ -11,24 +11,24 @@
 
     <!-- Meta Descriptions-->
     <meta name="description" content="Trouvez le professionnel idéal pour votre projet">
-    <meta name="image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png">
+    <meta name="image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png">
     <!-- Schema.org for Google -->
     <meta itemprop="name" content="Vos plans facilement">
     <meta itemprop="description" content="Trouvez le professionnel idéal pour votre projet">
-    <meta itemprop="image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png">
+    <meta itemprop="image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png">
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
     <meta name="og:title" content="Vos plans facilement">
     <meta name="og:description" content="Trouvez le professionnel idéal pour votre projet">
-    <meta name="og:image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png">
+    <meta name="og:image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png">
     <meta name="og:url" content="https://iziplans.com">
     <meta name="og:site_name" content="iziplans">
     <meta name="og:locale" content="fr_FR">
     <meta name="og:type" content="website">
-
-    <meta property="og:title" content="My Shared Article Title" />
-    <meta property="og:description" content="Description of shared article" />
+    <!-- Meta for Linkedin -->
+    <meta property="og:title" content="Trouvez le professionnel idéal pour votre projet" />
+    <meta property="og:description" content=""/>
     <meta property="og:url" content="https://iziplans.com" />
-    <meta property="og:image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" />
+    <meta property="og:image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png" />
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
