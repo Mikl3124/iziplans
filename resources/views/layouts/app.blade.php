@@ -8,16 +8,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'iziplans') }}</title>
-        @include('meta::manager', [
-            'title'         => 'VOS PLANS FACILEMENT',
-            'description'   => 'Trouvez le professionnel idéal pour votre projet',
-            'image'         => 'https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png',
-        ])
 
-        <meta property='og:title' content='Title of the article'/>
-        <meta property='og:image' content='//media.example.com/ 1234567.jpg'/>
-        <meta property='og:description' content='Description that will show in the preview'/>
-        <meta property='og:url' content='//www.example.com/URL of the article'/>
+    <!-- Meta Descriptions-->
+
+    <meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="When Great Minds Don’t Think Alike" />
+    <meta property="og:description"        content="How much does culture influence creative thinking?" />
+    <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
