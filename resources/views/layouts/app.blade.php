@@ -9,9 +9,9 @@
 
     <title>{{ config('app.name', 'iziplans') }}</title>
         @include('meta::manager', [
-            'title'         => 'My Example Title',
-            'description'   => 'This is my example description',
-            'image'         => '"https://iziplans.s3.eu-west-3.amazonaws.com/images/favicons/favicon-32x32.png"',
+            'title'         => 'VOS PLANS FACILEMENT',
+            'description'   => 'Trouvez le professionnel idéal pour votre projet',
+            'image'         => 'https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png',
         ])
 
     <!-- Scripts -->
