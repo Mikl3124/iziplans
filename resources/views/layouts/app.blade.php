@@ -25,6 +25,11 @@
     <meta name="og:locale" content="fr_FR">
     <meta name="og:type" content="website">
 
+    <meta property="og:title" content="My Shared Article Title" />
+    <meta property="og:description" content="Description of shared article" />
+    <meta property="og:url" content="https://iziplans.com" />
+    <meta property="og:image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" />
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="{{ asset('js/app.js') }}" ></script>
