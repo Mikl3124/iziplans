@@ -10,12 +10,20 @@
     <title>{{ config('app.name', 'iziplans') }}</title>
 
     <!-- Meta Descriptions-->
-
-    <meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
-    <meta property="og:type"               content="article" />
-    <meta property="og:title"              content="When Great Minds Don’t Think Alike" />
-    <meta property="og:description"        content="How much does culture influence creative thinking?" />
-    <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+    <meta name="description" content="Trouvez le professionnel idéal pour votre projet">
+    <meta name="image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png">
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="Vos plans facilement">
+    <meta itemprop="description" content="Trouvez le professionnel idéal pour votre projet">
+    <meta itemprop="image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png">
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="Vos plans facilement">
+    <meta name="og:description" content="Trouvez le professionnel idéal pour votre projet">
+    <meta name="og:image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png">
+    <meta name="og:url" content="https://iziplans.com">
+    <meta name="og:site_name" content="iziplans">
+    <meta name="og:locale" content="fr_FR">
+    <meta name="og:type" content="website">
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
