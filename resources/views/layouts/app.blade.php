@@ -14,6 +14,11 @@
             'image'         => 'https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png',
         ])
 
+        <meta property='og:title' content='Title of the article'/>
+        <meta property='og:image' content='//media.example.com/ 1234567.jpg'/>
+        <meta property='og:description' content='Description that will show in the preview'/>
+        <meta property='og:url' content='//www.example.com/URL of the article'/>
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="{{ asset('js/app.js') }}" ></script>

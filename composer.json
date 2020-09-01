@@ -12,7 +12,6 @@
         "aws/aws-sdk-php": "^3.133",
         "aws/aws-sdk-php-laravel": "^3.5",
         "cyrildewit/eloquent-viewable": "^5.2",
-        "davmixcool/laravel-meta-manager": "^1.2",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/cashier": "^10.5",
