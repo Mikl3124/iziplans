@@ -33,6 +33,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @include('meta::manager', [
+    'title'         => 'My Example Title',
+    'description'   => 'This is my example description',
+    'image'         => '"https://iziplans.s3.eu-west-3.amazonaws.com/images/favicons/favicon-32x32.png"',
+])
+
 </head>
 <body>
     <div id="app">
