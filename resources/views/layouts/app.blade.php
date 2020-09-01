@@ -8,6 +8,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'iziplans') }}</title>
+        @include('meta::manager', [
+            'title'         => 'My Example Title',
+            'description'   => 'This is my example description',
+            'image'         => '"https://iziplans.s3.eu-west-3.amazonaws.com/images/favicons/favicon-32x32.png"',
+        ])
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
@@ -33,12 +38,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    @include('meta::manager', [
-    'title'         => 'My Example Title',
-    'description'   => 'This is my example description',
-    'image'         => '"https://iziplans.s3.eu-west-3.amazonaws.com/images/favicons/favicon-32x32.png"',
-])
 
 </head>
 <body>
