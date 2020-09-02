@@ -58,6 +58,13 @@
                                 </div>
                             </div>
 
+                            <div id="captcha" class="input-field col s12 center">
+                                <div class="g-recaptcha" data-sitekey="6LdRssYZAAAAAPM11tmEZSi421m5v3cZ28QoNy6P"></div>
+                                <div id="error" class="left red-text text-darken-2" style="display: none">
+                                    Veuillez cliquer sur le Captcha, merci.
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -78,6 +85,7 @@
                         </form>
                     </div>
                 </div>
+
                 <div class="text-center mt-3">
                         <p>Pas encore membre ?  <a href="{{route('register_choice')}}">Cliquez-ici</a> pour vous inscrire</p>
                     <div>
