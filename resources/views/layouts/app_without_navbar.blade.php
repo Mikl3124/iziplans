@@ -15,9 +15,6 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 
-        <!-- ReCaptcha  -->
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-
     <!-- Favicon -->
 
     <link rel="apple-touch-icon" sizes="180x180" href="https://iziplans.s3.eu-west-3.amazonaws.com/images/favicons/apple-touch-icon.png">
