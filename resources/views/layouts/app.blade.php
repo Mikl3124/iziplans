@@ -197,6 +197,7 @@
             @yield('content')
         </main>
     </div>
+@include('cookieConsent::index')
 @include('flashy::message')
 
  <!--Footer-->
