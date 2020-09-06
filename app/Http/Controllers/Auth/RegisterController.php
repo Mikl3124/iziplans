@@ -58,6 +58,8 @@ class RegisterController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'my_name'   => 'honeypot',
+            'my_time'   => 'required|honeytime:5',
             'role' =>  ["required" , "max:255", "regex:(client|freelance)"],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'cgv' => ['required'],
