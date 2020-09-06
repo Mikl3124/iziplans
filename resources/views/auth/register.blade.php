@@ -25,6 +25,7 @@
         </div>
         <form method="POST" action="{{ route('register', $role) }}">
             @csrf
+            @honeypot
             <input type="hidden" name="role" value="{{ $role }}">
             <div class="row justify-content-center">
                 <div class="col-md-8">
