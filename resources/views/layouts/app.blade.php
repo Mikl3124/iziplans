@@ -9,6 +9,27 @@
 
     <title>{{ config('app.name', 'iziplans') }}</title>
 
+    <!-- Meta Descriptions-->
+    <meta name="description" content="Trouvez le professionnel idéal pour votre projet">
+    <meta name="image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png">
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="Vos plans facilement">
+    <meta itemprop="description" content="Trouvez le professionnel idéal pour votre projet">
+    <meta itemprop="image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png">
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="Vos plans facilement">
+    <meta name="og:description" content="Trouvez le professionnel idéal pour votre projet">
+    <meta name="og:image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png">
+    <meta name="og:url" content="https://iziplans.com">
+    <meta name="og:site_name" content="iziplans">
+    <meta name="og:locale" content="fr_FR">
+    <meta name="og:type" content="website">
+    <!-- Meta for Linkedin -->
+    <meta property="og:title" content="Trouvez le professionnel idéal pour votre projet" />
+    <meta property="og:description" content=""/>
+    <meta property="og:url" content="https://iziplans.com" />
+    <meta property="og:image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png" />
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="{{ asset('js/app.js') }}" ></script>
@@ -17,7 +38,6 @@
     <!-- Mapbox  -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
-
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -33,6 +53,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -175,6 +196,7 @@
             @yield('content')
         </main>
     </div>
+@include('cookieConsent::index')
 @include('flashy::message')
 
  <!--Footer-->

@@ -78,6 +78,7 @@
                         </form>
                     </div>
                 </div>
+
                 <div class="text-center mt-3">
                         <p>Pas encore membre ?  <a href="{{route('register_choice')}}">Cliquez-ici</a> pour vous inscrire</p>
                     <div>
