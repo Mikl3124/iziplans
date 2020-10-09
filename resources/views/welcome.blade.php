@@ -159,12 +159,13 @@
                     @foreach($projet->categories as $category)
                         <span class="categories">{{ $category->name }} </span>
                     @endforeach
-
                 </div>
             </div>
         </a>
         @endforeach
-    </ul>
+        <div class="text-center">
+          <a class="btn btn-primary btn-lg mt-3" href="{{ route('projet.index') }}">Voir toutes les missions</a>
+        </div>
     {{-- ----------- Comment ça marche ? ---------- --}}
 <div class="text-center mt-5">
     <h1 class="text-center mb-5">Comment ça marche?</h1>

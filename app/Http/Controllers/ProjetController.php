@@ -47,9 +47,9 @@ class ProjetController extends Controller
     public function index()
     {
 
-         $projets = Projet::all();
+        $projets = Projet::where("status", "=", "open")->orwhere("status", "=", "closed")->orderBy('created_at', 'desc')->paginate(6);
 
-         return view('projets.index', compact('projets'));
+        return view('projets.index', compact('projets'));
     }
 
     public function list()
@@ -60,7 +60,6 @@ class ProjetController extends Controller
 
          return view('projets.list', compact('projets_client', 'offres_freelance'));
     }
-
 
 
     /**

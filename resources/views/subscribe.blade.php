@@ -233,7 +233,6 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
         <div class="modal-body">
             <form action="/subscribe" method="POST" id="payment-form">
                 @csrf
