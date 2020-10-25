@@ -157,7 +157,7 @@
                                         </a>
                                         <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-user"></i> Mon compte</a>
                                         <h6 class="text-center bg-secondary text-white p-2">PROJETS</h6>
-                                        <a class="dropdown-item" href="{{ route('projet.index') }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>
+                                        <a class="dropdown-item" href="{{ route('myprojets') }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>
                                     {{-- ------------------------ Si l'utilisateur est un freelance ----------------------- --}}
                                     @elseif(Auth::user()->role === 'freelance')
                                         {{-- <div class="text-center">

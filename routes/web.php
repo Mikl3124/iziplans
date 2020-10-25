@@ -51,6 +51,7 @@ Route::get('/projet/download/{id}', 'ProjetController@download')->name('download
 Route::get('/projet-open/{id}', 'ProjetController@open')->name('projet.open');
 Route::post('/projet-close/', 'ProjetController@close')->name('projet.close');
 Route::get('/projet-list/', 'ProjetController@list')->name('projet.list');
+Route::get('/myprojet-list/', 'ProjetController@myprojets')->name('myprojets');
 
 
 

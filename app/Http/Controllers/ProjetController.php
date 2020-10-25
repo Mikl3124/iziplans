@@ -52,6 +52,14 @@ class ProjetController extends Controller
         return view('projets.index', compact('projets'));
     }
 
+    public function myprojets()
+    {
+
+        $projets = Projet::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(6);
+
+        return view('projets.index', compact('projets'));
+    }
+
     public function list()
     {
 
