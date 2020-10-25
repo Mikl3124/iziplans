@@ -141,10 +141,10 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     {{-- ------------------------ Si l'utilisateur est un client ----------------------- --}}
                                     @if(Auth::user()->role === 'client')
-                                    <div class="text-center">
+                                    {{-- <div class="text-center">
                                         <p class="mb-0">Vous êtes Client</p>
                                         <a href="{{ route('changeRole') }}"><small>(Basculer vers l'interface FREELANCE)</small></a>
-                                    </div>
+                                    </div> --}}
                                         <div class="text-center">
                                             <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.create')}}">Déposer un projet</a>
                                         </div>
@@ -160,10 +160,10 @@
                                         <a class="dropdown-item" href="{{ route('projet.index') }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>
                                     {{-- ------------------------ Si l'utilisateur est un freelance ----------------------- --}}
                                     @elseif(Auth::user()->role === 'freelance')
-                                        <div class="text-center">
+                                        {{-- <div class="text-center">
                                             <p class="mb-0">Vous êtes Freelance</p>
                                         <a href="{{ route('changeRole') }}"><small>(Basculer vers l'interface CLIENT)</small></a>
-                                        </div>
+                                        </div> --}}
                                         <div class="text-center">
                                             <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.index')}}">Voir les missions</a>
                                         </div>
