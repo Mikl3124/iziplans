@@ -13,15 +13,15 @@
                         <div class="col-2 text-center align-self-center">
                             @if(Auth::user()->role === 'freelance')
                                 @if ($topic->to->avatar === NULL)
-                                    <img class="avatar_message" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
+                                    <img class="avatar_message" src="{{ $topic->to->avatar }}">
                                 @else
-                                    <img class="avatar_message" src="{{ Storage::url('users/small/'. $topic->to->avatar) }}">
+                                    <img class="avatar_message" src="{{ $topic->to->avatar }}">
                                 @endif
                             @elseif(Auth::user()->role === 'client')
                                 @if (Auth::user()->avatar === NULL)
-                                    <img class="avatar_message" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/avatar.png">
+                                    <img class="avatar_message" src="{{ $topic->from->avatar }}">
                                 @else
-                                    <img class="avatar_message" src="{{ Storage::url('users/small/'. Auth::user()->avatar ) }}">
+                                    <img class="avatar_message" src="{{ $topic->from->avatar }}">
                                 @endif
                             @endif
                         </div>
