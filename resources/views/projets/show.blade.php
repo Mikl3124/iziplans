@@ -50,7 +50,7 @@
                                 @else
                                 <th scope="col"><span><small><em>(visible pour les abonnés)</em></small></span></td>
                                 @endif
-                                
+
                             </tr>
                         </tbody>
                     </table>
@@ -112,7 +112,7 @@
                                     <div class="col-md-4 my-2 col-sm-12 mt-n5">
                                         <div class="card card-show mb-3">
                                             <div class="card card-show bg-dark mb-3">
-                                                
+
 </p>
                                                 {{-- ----- Si le freelance est abonné ---- --}}
                                                 @if(Auth::user()->subscribed('abonnement'))
@@ -344,19 +344,18 @@
 
                                     <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_price}} € TTC</p>
                                     <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_days}} jours</p>
-                                    <a class= "col-md-6 col-sm-12 btn btn-secondary" href="{{route('offers.edit', $freelance_offer)}}">Modifier mon offre</a>
+                                    <a class= "col-md-5 col-sm-12 btn btn-secondary" href="{{route('offers.edit', $freelance_offer)}}">Modifier mon offre</a>
                             {{-- --------- Si l'User est le Client qui a posté l'offre ----------- --}}
                                 @elseif ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
                                     <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_price}} € TTC</p>
                                     <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_days}} jours</p>
-                                    <a class= "col-md-6 col-sm-12 btn btn-secondary" href="{{ route('offers.show', $offer->id) }}">Consulter</a>
+                                    <a class= "col-md-5 col-sm-12 btn btn-secondary" href="{{ route('offers.show', $offer->id) }}">Consulter</a>
                                 @else
                                     <p class= "col-md-12 text-center"><em><i class="fas fa-lock"></i> Seul le client peut voir cette offre <i class="fas fa-lock"></i></em></p>
                                 @endif
                             </div>
                         </div>
-                    </div>
-                </div>
+                      </div>
             </div>
         @endforeach
     </div>
