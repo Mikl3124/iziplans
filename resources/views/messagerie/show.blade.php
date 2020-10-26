@@ -8,7 +8,7 @@
                     @if(auth::user()->role === 'client' && auth::user()->id === $topic->to_id)
                         Conversation avec {{$topic->from->firstname}}
                     @elseif(auth::user()->role === 'freelance')
-                        Conversation avec {{$projet->user->firstname}}
+                        Conversation avec Coco
                     @endif
 
                 </div>
