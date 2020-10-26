@@ -37,7 +37,7 @@ class ConfirmValidationToAuthor extends Mailable
     public function build()
     {
       $author = $this->author;
-         return $this->from('mickael@iziplans.com')
+         return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
             ->subject("Votre projet a été validé")
             ->view('emails.confirm-validation-to-author');
     }

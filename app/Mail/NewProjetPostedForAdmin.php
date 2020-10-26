@@ -37,7 +37,7 @@ use Queueable, SerializesModels;
     public function build()
     {
       $user = $this->user;
-         return $this->from('mickael@iziplans.com')
+         return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
             ->subject("Nouveau projet sur iziplans")
             ->view('emails.new-projet-admin');
     }
