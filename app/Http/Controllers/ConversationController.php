@@ -134,7 +134,7 @@ class ConversationController extends Controller
 
         if ($files = $request->file('file_message')) {
 
-                    $filenamewithextension = $request->file('file_message')->getClientOriginalName();
+            $filenamewithextension = $request->file('file_message')->getClientOriginalName();
 
             //get filename without extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
