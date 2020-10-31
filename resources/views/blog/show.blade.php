@@ -25,7 +25,7 @@
           <hr>
 
           <!-- Post Content -->
-          <p class="lead">{{$article->full_text}}</p>
+          {!! $article->full_text !!}
 
           <hr>
 
