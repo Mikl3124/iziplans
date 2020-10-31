@@ -302,60 +302,62 @@
 {{-- ------------------------------------------------ Offres ----------------------------------------------- --}}
         @foreach ($offers as $offer)
             <div class="card my-3">
-                <div class="card-body card-offer mb-3">
-                    <em class="list-project-time ">Offre postée {{Carbon\Carbon::parse($offer->created_at)->diffForHumans()}}</em>
-                    <div class="row align-items-center mt-2">
-                        <div class= "col-md-7 col-sm-12">
-                            <div class="row">
-                                <div class="col-md-2 col-sm-6">
-                                    <div class="item">
-                                        @if ($offer->user->updated_profil === 1)
-                                            <span class="notify-badge"><img class="verified-user" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/verified.png" alt="utilsateur vérifié"></span>
-                                        @endif
-                                        <img class="card-avatar" src="{{ $offer->user->avatar }}" alt="freelance avatar">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6">
-                                <a href="{{ route('profil', $offer->user->id)}}">
-                                    @if($offer->user->pseudo)
-                                        <h4 class="mb-0">{{ $offer->user->pseudo }}</h4>
-                                    @else
-                                        <h4 class="mb-0">{{ $offer->user->firstname }} {{$offer->user->lastname}}</h4>
-                                    @endif
+              <div class="card-body card-offer mb-2">
+                  <em class="list-project-time ">Offre postée {{Carbon\Carbon::parse($offer->created_at)->diffForHumans()}}</em>
+                  <div class="row align-items-center mt-2">
+                      <div class= "col-md-7 col-sm-12">
+                          <div class="row">
+                              <div class="col-md-2 col-sm-6">
+                                  <div class="item">
+                                      @if ($offer->user->updated_profil === 1)
+                                          <span class="notify-badge"><img class="verified-user" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/verified.png" alt="utilsateur vérifié"></span>
+                                      @endif
+                                      <img class="card-avatar" src="{{ $offer->user->avatar }}" alt="freelance avatar">
+                                  </div>
+                              </div>
+                              <div class="col-md-6 col-sm-6">
+                              <a href="{{ route('profil', $offer->user->id)}}">
+                                  @if($offer->user->pseudo)
+                                      <h4 class="mb-0">{{ $offer->user->pseudo }}</h4>
+                                  @else
+                                      <h4 class="mb-0">{{ $offer->user->firstname }} {{$offer->user->lastname}}</h4>
+                                  @endif
 
-                                    @if($offer->user->titre)
-                                        <p class="mb-1"><em>{{ $offer->user->titre }}</em></p>
-                                    @endif
-                                    @if($offer->user->town)
-                                        <small>{{ $offer->user->town }}</small>
-                                    @endif
-                                    @if($offer->user->departement)
-                                        <small>({{ ($offer->user->departement) }})</small>
-                                    @endif
+                                  @if($offer->user->titre)
+                                      <p class="mb-1"><em>{{ $offer->user->titre }}</em></p>
+                                  @endif
+                                  @if($offer->user->town)
+                                      <small>{{ $offer->user->town }}</small>
+                                  @endif
+                                  @if($offer->user->departement)
+                                      <small>({{ ($offer->user->departement) }})</small>
+                                  @endif
 
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5 col-sm-12">
-                            <div class="row">
-                            {{-- --------- Si l'User est le Freelance qui a fait l'offre ----------- --}}
-                                @if (!empty(Auth::user()) && Auth::user()->id === $offer->user->id)
-
-                                    <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_price}} € TTC</p>
-                                    <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_days}} jours</p>
-                                    <a class= "col-md-5 col-sm-12 btn btn-secondary" href="{{route('offers.edit', $freelance_offer)}}">Modifier mon offre</a>
-                            {{-- --------- Si l'User est le Client qui a posté l'offre ----------- --}}
-                                @elseif ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
-                                    <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_price}} € TTC</p>
-                                    <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_days}} jours</p>
-                                    <a class= "col-md-5 col-sm-12 btn btn-secondary" href="{{ route('offers.show', $offer->id) }}">Consulter</a>
-                                @else
-                                    <p class= "col-md-12 text-center"><em><i class="fas fa-lock"></i> Seul le client peut voir cette offre <i class="fas fa-lock"></i></em></p>
-                                @endif
-                            </div>
-                        </div>
+                                  </a>
+                              </div>
+                          </div>
                       </div>
+                      <div class="col-md-5 col-sm-12">
+                          <div class="row">
+                          {{-- --------- Si l'User est le Freelance qui a fait l'offre ----------- --}}
+                              @if (!empty(Auth::user()) && Auth::user()->id === $offer->user->id)
+
+                                  <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_price}} € TTC</p>
+                                  <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_days}} jours</p>
+                                  <a class= "col-md-5 col-sm-12 btn btn-secondary" href="{{route('offers.edit', $freelance_offer)}}">Modifier mon offre</a>
+                          {{-- --------- Si l'User est le Client qui a posté l'offre ----------- --}}
+                              @elseif ( !empty(Auth::user()) && Auth::user()->id === $projet->user->id)
+                                  <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_price}} € TTC</p>
+                                  <p class= "col-md-3 col-sm-6 text-center mb-0 pt-1">{{$offer->offer_days}} jours</p>
+                                  <a class= "col-md-5 col-sm-12 btn btn-secondary" href="{{ route('offers.show', $offer->id) }}">Consulter</a>
+                              @else
+                                  <p class= "col-md-12 text-center"><em><i class="fas fa-lock"></i> Seul le client peut voir cette offre <i class="fas fa-lock"></i></em></p>
+                              @endif
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         @endforeach
     </div>
