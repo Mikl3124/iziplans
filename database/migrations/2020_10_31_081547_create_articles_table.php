@@ -19,7 +19,6 @@ class CreateArticlesTable extends Migration
             $table->unsignedBigInteger('user_id')->index()->references('id')->on('users')->onDelete('cascade')->nullable();
             $table->text('intro_text');
             $table->text('full_text');
-            $table->string('filename')->nullable();
             $table->timestamps();
         });
     }
