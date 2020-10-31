@@ -11,25 +11,22 @@ class ArticlesCategoriesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('articles_categorie')->insert([
+        DB::table('blogcategories')->insert([
           [
             'id' => 1,
                     'title' => 'Catégorie 1',
-                    'description' => 'blablabla',
                     'created_at' => new DateTime,
                     'updated_at' => new DateTime
           ],
           [
             'id' => 2,
                     'title' => 'Catégorie 2',
-                    'description' => 'blablabla',
                     'created_at' => new DateTime,
                     'updated_at' => new DateTime
           ],
           [
              'id' => 3,
                     'title' => 'Catégorie 3',
-                    'description' => 'blablabla',
                     'created_at' => new DateTime,
                     'updated_at' => new DateTime
             ]

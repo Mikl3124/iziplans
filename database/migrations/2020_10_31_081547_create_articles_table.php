@@ -15,12 +15,12 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('title', 128);
+            $table->string('title', 128)->nullable();
+            $table->string('categorie', 128);
             $table->unsignedBigInteger('user_id')->index()->references('id')->on('users')->onDelete('cascade')->nullable();
-            $table->unsignedBigInteger('categorie_id')->index()->references('id')->on('categorie')->onDelete('cascade');
             $table->text('intro_text');
             $table->text('full_text');
-            $table->enum('allow_comment', array('no', 'yes'))->default('yes');
+            $table->string('filename')->nullable();
             $table->timestamps();
         });
     }
