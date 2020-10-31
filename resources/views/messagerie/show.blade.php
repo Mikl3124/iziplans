@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
     <div class="container">
         <div class="mt-4">
             <div class="card" >
@@ -8,7 +10,7 @@
                     @if(auth::user()->role === 'client' && auth::user()->id === $topic->to_id)
                         Conversation avec {{$topic->from->firstname}}
                     @elseif(auth::user()->role === 'freelance')
-                        Conversation avec {{$projet->user->firstname}}
+                        Conversation avec {{ $topic->to->firstname }}
                     @endif
 
                 </div>
@@ -70,7 +72,7 @@
                         @if(auth::user()->role === 'client')
                             <input type="hidden" value="{{ $topic->from->id }}" name="to_id">
                         @else
-                            <input type="hidden" value="{{ $projet->user->id }}" name="to_id">
+                            <input type="hidden" value="{{ $topic->to->id }}" name="to_id">
                         @endif
 
                         <input type="hidden" value="{{ $topic->id ?? 0 }}" name="topic_id">

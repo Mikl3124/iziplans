@@ -8,6 +8,7 @@ use App\Model\Offer;
 use App\Model\Topic;
 use App\Model\Projet;
 use App\Model\Message;
+use App\Jobs\MailNewMessage;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
@@ -45,10 +46,12 @@ class OfferController extends Controller
     {
 
         $projet = Projet::find($id);
+        $message_to = $projet->user;
+
         $topic = Topic::where('projet_id', $projet->id)
                         ->where('from_id', Auth::user()->id)
                         ->first();
-
+        $this->dispatch(new MailNewMessage($message_to, $projet));
         if($topic === null){
             $topic = 0;
         }
@@ -133,15 +136,17 @@ class OfferController extends Controller
             $extension = $request->file('filename')->getClientOriginalExtension();
 
             //filename to store
-            $path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
-            $filenametostore = $path.'/'.$filename.'_'.time().'.'.$extension;
+            //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
 
-            //Upload File to s3
+            $filenametostore = $filename.'_'.time().'.'.$extension;
 
-            Storage::put($filenametostore, $request->file('filename'), 'public');
+
+            //Upload File
+
+            Storage::putFileAs('documents', $request->file('filename'), $filenametostore );
 
             //Store $filenametostore in the database
-            $offer->filename = $filenametostore;
+
             $message->file_message = $filenametostore;
         }
         $offer->save();

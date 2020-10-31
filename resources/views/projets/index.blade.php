@@ -35,5 +35,9 @@
         </div>
     </a>
     @endforeach
+
+    {{ $projets->links('vendor.pagination.bootstrap-4') }}
+
+
   </div>
 @endsection

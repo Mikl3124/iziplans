@@ -134,7 +134,7 @@ class ConversationController extends Controller
 
         if ($files = $request->file('file_message')) {
 
-                    $filenamewithextension = $request->file('file_message')->getClientOriginalName();
+            $filenamewithextension = $request->file('file_message')->getClientOriginalName();
 
             //get filename without extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
@@ -163,7 +163,6 @@ class ConversationController extends Controller
         // Notification
         $message_to = User::find($request->to_id);
         $message_to->notify(new NewMessagePosted($topic, auth()->user()));
-
         $this->dispatch(new MailNewMessage($message_to, $projet));
 
 

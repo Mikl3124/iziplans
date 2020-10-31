@@ -35,9 +35,6 @@
     <script src="{{ asset('js/app.js') }}" ></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
-    <!-- Mapbox  -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -53,6 +50,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146702848-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-146702848-2');
+    </script>
+
+    <!-- Mapbox  -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+
 
 </head>
 <body>
@@ -129,10 +141,10 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     {{-- ------------------------ Si l'utilisateur est un client ----------------------- --}}
                                     @if(Auth::user()->role === 'client')
-                                    <div class="text-center">
+                                    {{-- <div class="text-center">
                                         <p class="mb-0">Vous êtes Client</p>
                                         <a href="{{ route('changeRole') }}"><small>(Basculer vers l'interface FREELANCE)</small></a>
-                                    </div>
+                                    </div> --}}
                                         <div class="text-center">
                                             <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.create')}}">Déposer un projet</a>
                                         </div>
@@ -145,13 +157,13 @@
                                         </a>
                                         <a class="dropdown-item" href="{{ route('profil', Auth::user()) }}"><i class="fas fa-user"></i> Mon compte</a>
                                         <h6 class="text-center bg-secondary text-white p-2">PROJETS</h6>
-                                        <a class="dropdown-item" href="{{ route('projet.index') }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>
+                                        <a class="dropdown-item" href="{{ route('myprojets') }}"><i class="fas fa-suitcase"></i> Gérer mes projets</a>
                                     {{-- ------------------------ Si l'utilisateur est un freelance ----------------------- --}}
                                     @elseif(Auth::user()->role === 'freelance')
-                                        <div class="text-center">
+                                        {{-- <div class="text-center">
                                             <p class="mb-0">Vous êtes Freelance</p>
                                         <a href="{{ route('changeRole') }}"><small>(Basculer vers l'interface CLIENT)</small></a>
-                                        </div>
+                                        </div> --}}
                                         <div class="text-center">
                                             <a class="btn btn-success btn-lg btn-menu mt-3" href="{{route('projet.index')}}">Voir les missions</a>
                                         </div>
@@ -209,6 +221,11 @@
                         <div class="col-md-4 mt-2" >
                             <a href="{{ url('/') }}">
                                 <img class="footer-brand" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/Favicon-iziplans.png" alt="logo-iziplans">
+                            </a>
+                        </div>
+                        <div class="my-auto">
+                            <a class="text-white" href="{{ route('blog.index') }}">
+                                 LE BLOG <i class="ml-1 fas fa-rss text-white "></i>
                             </a>
                         </div>
                         <div class="col-md-4 mt-2 my-auto text-right bg-dark">
