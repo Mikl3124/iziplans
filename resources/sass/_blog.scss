@@ -1,5 +1,10 @@
 .cropped1 {
-    width: 700px;
-    height: 300px;
-    object-fit: cover;
+    width: 150px; /* width of container */
+    height: 150px; /* height of container */
+    overflow: hidden;
+    border: 5px solid black;
+}
+
+.cropped img {
+    margin: -10px 0px 0px -180px;
 }
