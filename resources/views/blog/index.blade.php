@@ -9,7 +9,7 @@
   @foreach($articles as $article)
     <div class="row">
       <div class="col-md-7">
-        <img class="cropped1 mb-3 mb-md-0" src="https://iziplans.s3.eu-west-3.amazonaws.com/documents/{{ $article->filename }}" alt="{{ $article->title }}">
+        <img class="cropped mb-3 mb-md-0" src="https://iziplans.s3.eu-west-3.amazonaws.com/documents/{{ $article->filename }}" alt="{{ $article->title }}">
       </div>
       <div class="col-md-5">
         <h3>{{$article->title}}</h3>
