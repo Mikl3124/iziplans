@@ -90,7 +90,7 @@ class BlogController extends Controller
           $article->intro_text = $request->description;
           $article->full_text = $request->article;
           if ($files = $request->file('file')) {
-                        $filenamewithextension = $request->file('file')->getClientOriginalName();
+            $filenamewithextension = $request->file('file')->getClientOriginalName();
 
             //get filename without extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
@@ -127,7 +127,6 @@ class BlogController extends Controller
     {
         $new_title= str_replace('-', ' ', $slug);
         $article = Article::where("title", $new_title)->first();
-
 
         return view('blog.show', compact('article'));
     }

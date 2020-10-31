@@ -1,7 +1,9 @@
 .cropped{
-   width:300px; /*container-width*/
+   width:300px;
+   height:100px; /*container-width*/
    overflow:hidden; /*hide bounds of image */
    margin:0;   /*reset margin of cropped tag*/
+   object-fit: none;
 }
 .cropped img{
    display:block; /*remove inline-block spaces*/
