@@ -105,7 +105,11 @@ Route::get('/messagerie-download/{message}', 'ConversationController@download')-
 Route::post('/messagerie/{topic}', 'ConversationController@store')->name('messagerie.store')->middleware(CheckSubscribe::class);
 Route::get('showFromNotifications/{topic}/{notification}', 'ConversationController@showFromNotifications')->name('topics.showFromNotifications');
 
-//Divers
 
+//BLOG
+Route::get('/blog/', 'BlogController@index')->name('blog.index');
+Route::get('/blog/{id}', 'BlogController@show')->name('article.show');
+
+//Divers
 Route::get('/mentions-legales', 'HomeController@cgv')->name('cgv');
 Route::get('/politique-de-confidentialite', 'HomeController@politique')->name('politique');

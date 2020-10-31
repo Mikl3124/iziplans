@@ -4,6 +4,7 @@ namespace App\Model;
 use App\Model\Offer;
 use App\Model\Projet;
 use App\Model\Thread;
+use App\Model\Article;
 use App\model\Category;
 use App\model\Competence;
 use App\Model\Departement;
@@ -54,6 +55,10 @@ class User extends Authenticatable
         public function offers()
     {
         return $this->hasMany(Offer::class);
+    }
+       public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 
     public function getAvatar()
