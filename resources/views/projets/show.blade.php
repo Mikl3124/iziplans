@@ -302,7 +302,7 @@
 {{-- ------------------------------------------------ Offres ----------------------------------------------- --}}
         @foreach ($offers as $offer)
             <div class="card my-3">
-                <div class="card-body card-offer">
+                <div class="card-body card-offer mb-3">
                     <em class="list-project-time ">Offre postée {{Carbon\Carbon::parse($offer->created_at)->diffForHumans()}}</em>
                     <div class="row align-items-center mt-2">
                         <div class= "col-md-7 col-sm-12">
