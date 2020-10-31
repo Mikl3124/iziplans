@@ -19,6 +19,33 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function dashboard()
+    {
+      return view('blog.dashboard');
+    }
+
+    public function categories()
+    {
+      $categories = Blogcategorie::all();
+      return view('blog.categories', compact('categories'));
+    }
+
+    public function storeCategories(Request $request)
+    {
+      $input = $request->all();
+
+      $this->validate($request, [
+                'title' => 'required|string|max:255',
+                ]);
+          $categorie = new Blogcategorie;
+          $categorie->title = $request->title;
+          $categorie->save();
+
+      return redirect()->back();
+    }
+
+
+
     public function index()
     {
       $articles = Article::paginate(3);

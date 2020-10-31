@@ -71,7 +71,12 @@ Route::group(['middleware' => ['auth','admin']], function () {
     Route::get('/offers-by-user/{id}', 'Admin\DashboardController@offersByUser')->name('admin.offers.by.user');
     Route::get('/connect-as/{id}', 'Admin\DashboardController@connect_as')->name('admin.connect_as');
     Route::post('/projet-validate/', 'ProjetController@validateProjet')->name('admin.projet.validate');
+    //Blog
     Route::get('/blog/create', 'BlogController@create')->name('admin.article.create');
+    Route::get('/blog/dashboard', 'BlogController@dashboard')->name('admin.article.blog');
+    Route::get('/blog/categories', 'BlogController@categories')->name('admin.blog.category');
+    Route::post('/categorie-create/', 'BlogController@storeCategories')->name('categorie.store');
+
 });
 
 //Offers
@@ -110,7 +115,6 @@ Route::get('showFromNotifications/{topic}/{notification}', 'ConversationControll
 //BLOG
 Route::get('/blog/', 'BlogController@index')->name('blog.index');
 Route::get('/blog/{id}', 'BlogController@show')->name('article.show');
-Route::post('/article-create/', 'BlogController@store')->name('article.store');
 
 //Divers
 Route::get('/mentions-legales', 'HomeController@cgv')->name('cgv');
