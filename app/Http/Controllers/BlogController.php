@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Model\Blogcategorie;
 use Illuminate\Http\Request;
 use App\Model\Categoriesarticle;
+use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -110,6 +111,9 @@ class BlogController extends Controller
                 $article->filename = $filenametostore;
             }
             $article->save();
+            Flashy::success('Votre article a été posté avec succès');
+
+            return view('/home');
 
     }
 
