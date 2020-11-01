@@ -14,7 +14,7 @@
                 <a class="nav-link" href={{ route('admin.projets.list') }}>Projets</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Gestion annexe</a>
+                <a class="nav-link" href={{ route('admin.article.blog') }}>BLOG</a>
             </li>
             </ul>
         </div>

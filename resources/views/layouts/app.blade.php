@@ -213,32 +213,26 @@
 
  <!--Footer-->
 
-    <footer class="page-footer text-center text-md-left bg-dark mt-5">
-        <div class="container">
-            <div>
-                <!--Call to action-->
-                <div class="row justify-content-between">
-                        <div class="col-md-4 mt-2" >
-                            <a href="{{ url('/') }}">
-                                <img class="footer-brand" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/Favicon-iziplans.png" alt="logo-iziplans">
-                            </a>
-                        </div>
-                        <div class="my-auto">
-                            <a class="text-white" href="{{ route('blog.index') }}">
-                                 LE BLOG <i class="ml-1 fas fa-rss text-white "></i>
-                            </a>
-                        </div>
-                        <div class="col-md-4 mt-2 my-auto text-right bg-dark">
-                        <small class=""><a href="{{ route('cgv')}}" class="link-footer text-white">CGV</a></small>
-                            <small class="text-white"> | </small>
-                        <small><a href="{{ route('politique')}}" class="link-footer text-white">Politique de confidentialité</a></small>
-                        </div>
-                </div>
-            </div>
+    <footer class="page-footer text-md-left bg-dark mt-5">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-md-4 col-sm-12 my-auto pt-2 text-center" >
+              <a href="{{ url('/') }}">
+                  <img class="footer-brand" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/Favicon-iziplans.png" alt="logo-iziplans">
+              </a>
+          </div>
+          <div class="col-md-4 col-sm-12 bg-dark my-auto text-center">
+              <a class="text-white" href="{{ route('blog.index') }}">
+                    LE BLOG <i class="ml-1 fas fa-rss text-white "></i>
+              </a>
+          </div>
+          <div class="col-md-4 col-sm-12 bg-dark my-auto text-center">
+            <small class=""><a href="{{ route('cgv')}}" class="link-footer text-white">CGV</a></small>
+                <small class="text-white"> | </small>
+            <small><a href="{{ route('politique')}}" class="link-footer text-white">Politique de confidentialité</a></small>
+          </div>
         </div>
-
-
-        <!--/.Call to action-->
+      </div>
     </footer>
     <!--/.Footer-->
     {{-- Tidio --}}

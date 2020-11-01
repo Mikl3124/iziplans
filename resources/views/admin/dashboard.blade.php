@@ -4,6 +4,7 @@
 
 @include('admin.header-admin')
 
+
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="card">
@@ -14,34 +15,34 @@
       <table class="table">
         <tbody>
 
-          <tr>      
+          <tr>
             <th class="">Date de la dernière inscription</th>
-            @foreach ( $lastuser as $last)          
+            @foreach ( $lastuser as $last)
             <td>{{ date('d/m/Y H:i:s', strtotime($last->created_at)) }}</td>
             @endforeach
           </tr>
 
           <tr>
-            <th class=""><strong>Nombre total d'utilisateurs</strong></th>          
+            <th class=""><strong>Nombre total d'utilisateurs</strong></th>
             <td class="text-left"><strong>{{ $users->count() }}</strong></td>
           </tr>
 
           <tr>
-            <th class="">Nombre total d'administrateurs</th>          
+            <th class="">Nombre total d'administrateurs</th>
             <td class="text-left">{{ $users->where('role', 'admin')->count()}}</td>
-          </tr> 
+          </tr>
 
           <tr>
-            <th class="">Nombre total de freelances</th>          
+            <th class="">Nombre total de freelances</th>
             <td>{{ $users->where('role', 'freelance')->count()}}</td>
-          </tr> 
+          </tr>
 
           <tr>
-            <th class="">Nombre total de clients</th>          
+            <th class="">Nombre total de clients</th>
             <td>{{ $users->where('role', 'client')->count()}}</td>
-          </tr>                        
+          </tr>
         </tbody>
-      </table>  
+      </table>
     </div>
   </div>
   <div class="col-md-6">
@@ -53,20 +54,20 @@
       <table class="table">
         <tbody>
 
-          <tr>      
+          <tr>
             <th class="">Date du dernier projet</th>
-            @foreach ( $lastprojet as $last)          
+            @foreach ( $lastprojet as $last)
             <td>{{ date('d/m/Y H:i:s', strtotime($last->created_at)) }}</td>
             @endforeach
           </tr>
 
           <tr>
-            <th class="">Nombre total de projets</th>          
+            <th class="">Nombre total de projets</th>
             <td><strong>{{ $projets->count()}}</strong></td>
-          </tr>       
-                             
+          </tr>
+
         </tbody>
-      </table>  
+      </table>
     </div>
   </div>
 
