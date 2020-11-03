@@ -14,7 +14,7 @@
       <div class="col-md-9">
         <h3>{{$article->title}}</h3>
         <p>{{ $article->intro_text}}</p>
-        <a class="btn btn-primary" href="{{ route('article.show', Str::slug($article->title)) }}">Voir l'article</a>
+        <a class="btn btn-primary" href="{{ route('article.show', Str::slug($article->url)) }}">Voir l'article</a>
       </div>
     </div>
       <hr>

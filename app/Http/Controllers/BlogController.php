@@ -49,7 +49,10 @@ class BlogController extends Controller
 
     public function index()
     {
-      $articles = Article::paginate(3);
+      $articles = DB::table('articles')
+                ->latest()
+                ->paginate(5);
+
 
       return view('blog.index', compact('articles'));
     }
@@ -86,6 +89,7 @@ class BlogController extends Controller
           $article = new Article;
           $article->user_id = $user->id;
           $article->title = $request->title;
+          $article->url = str_slug($request->title);
           $article->categorie = $request->categorie;
           $article->intro_text = $request->description;
           $article->full_text = $request->article;
@@ -113,7 +117,7 @@ class BlogController extends Controller
             $article->save();
             Flashy::success('Votre article a été posté avec succès');
 
-            return view('/home');
+            return redirect()->route('blog.index');
 
     }
 
@@ -123,10 +127,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($url)
     {
-        $new_title= str_replace('-', ' ', $slug);
-        $article = Article::where("title", $new_title)->first();
+        $article = Article::where("url", $url)->first();
 
         return view('blog.show', compact('article'));
     }
@@ -160,8 +163,10 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($url)
     {
-        //
+        $article = Article::where("url", $url)->first()->delete();
+        Flashy::success('Votre article a été supprimé avec succès');
+        return redirect()->route('blog.index');
     }
 }
