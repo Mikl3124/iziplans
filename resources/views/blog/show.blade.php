@@ -1,6 +1,10 @@
   @extends('layouts.app')
-  @section('description', 'Hello coco')
+  @section('title', "https://iziplans.s3.eu-west-3.amazonaws.com/documents/{{$article->filename}}")
+  @section('image', $article->intro_text)
+  @section('meta_description', $article->intro_text)
   @section('content')
+
+
     <!-- Page Content -->
     <div class="container">
 

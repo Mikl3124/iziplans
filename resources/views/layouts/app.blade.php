@@ -7,29 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'iziplans') }}</title>
-
     <!-- Meta Descriptions-->
-    <meta name="description" content="@yield('description')">
-    <meta name="image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png">
-    <!-- Schema.org for Google -->
-    <meta itemprop="name" content="Vos plans facilement">
-
-    <meta itemprop="description" content="@yield('description')">
-    <meta itemprop="image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png">
-    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-    <meta name="og:title" content="Vos plans facilement">
-    <meta name="og:description" content="@yield('description')">
-    <meta name="og:image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png">
-    <meta name="og:url" content="https://iziplans.com">
-    <meta name="og:site_name" content="iziplans">
-    <meta name="og:locale" content="fr_FR">
-    <meta name="og:type" content="website">
-    <!-- Meta for Linkedin -->
-    <meta property="og:title" content="@yield('description')">
-    <meta property="og:description" content=""/>
-    <meta property="og:url" content="https://iziplans.com" />
-    <meta property="og:image" content="https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png" />
+    <title>@yield('title','iziplans')</title>
+    <meta name="keywords" content="@yield('meta_keywords','freelance, dessinateur, projeteur')">
+    <meta name="description" content="@yield('meta_description','Trouvez le professionnel idéal pour votre projet')">
+    <meta name="image" content="@yield('image', "https://iziplans.s3.eu-west-3.amazonaws.com/images/meta_logo.png")">
+    <link rel="canonical" href="{{url()->current()}}"/>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
