@@ -35,12 +35,13 @@
               <p class="card-text">Trouvez le professionnel idéal pour votre projet.</p>
               <div class="text-center">
                 <a class="btn btn-primary" href="http://">Vous avez besoin de plans?</a>
-                @if (Auth::user()->role === 'admin')
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-                    Supprimer
-                  </button>
-                  <a class="btn btn-secondary" href="http://">Modifier</a>
-                @endif
+                  @if (Auth::check() && Auth::user()->role === 'admin')
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                      Supprimer
+                    </button>
+                    <a class="btn btn-secondary" href="http://">Modifier</a>
+                  @endif
+
               </div>
 
             </div>
