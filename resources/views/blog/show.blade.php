@@ -1,5 +1,5 @@
   @extends('layouts.app')
-
+  @section('description', 'Hello coco')
   @section('content')
     <!-- Page Content -->
     <div class="container">
@@ -25,21 +25,18 @@
 
         </div>
         <div class="col-md-3 col-sm-12">
-          <div class="card mt-4">
+          <div class="card mt-5 sticky-top">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <img class="card-img-top" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" alt="iziplans">
+              <p class="card-text">Trouvez le professionnel idéal pour votre projet.</p>
               <div class="text-center">
+                <a class="btn btn-primary" href="http://">Vous avez besoin de plans?</a>
                 @if (Auth::user()->role === 'admin')
                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
                     Supprimer
                   </button>
                   <a class="btn btn-secondary" href="http://">Modifier</a>
-                @else
-                  <a class="btn btn-success" href="http://">Besoin de plans?</a>
                 @endif
-
               </div>
 
             </div>
