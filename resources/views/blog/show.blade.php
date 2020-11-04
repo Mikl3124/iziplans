@@ -34,7 +34,7 @@
               <img class="card-img-top" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" alt="iziplans">
               <p class="card-text">Trouvez le professionnel idéal pour votre projet.</p>
               <div class="text-center">
-                <a class="btn btn-primary" href="http://">Vous avez besoin de plans?</a>
+                <a class="btn btn-primary" href="https://iziplans.com">Vous avez besoin de plans?</a>
                   @if (Auth::check() && Auth::user()->role === 'admin')
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
                       Supprimer
