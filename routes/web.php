@@ -40,8 +40,8 @@ Route::post('/cancel', 'SubscribeController@cancel')->name('cancel-subscription'
 Route::post('/stripe', 'StripeWebhooksController');
 Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
     return $request->user()->downloadInvoice($invoiceId, [
-        'vendor' => 'Your Company',
-        'product' => 'Your Product',
+        'vendor' => 'iziplans',
+        'product' => 'Abonnement',
     ]);
 });
 
