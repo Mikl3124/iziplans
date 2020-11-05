@@ -25,7 +25,7 @@
 
     <!-- ---------------- Titre de l'article ------------------ -->
       <div class="form-group">
-        <label for="title">Titre de votre mission </label>
+        <label for="title">Titre de l'article</label>
       <input type="text" id="title"class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" name="title">
         @error('title')
           <div class="invalid-feedback">{{ $message }}</div>
@@ -37,6 +37,15 @@
         <label for="description">Meta Description</label>
         <input type="text" id="description"class="form-control @error('description') is-invalid @enderror" value="{{ old('description') }}" name="description">
         @error('description')
+          <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+      </div>
+
+          <!-- ---------------- Key Words ------------------ -->
+      <div class="form-group">
+        <label for="keywords">Mots clés</label>
+        <input type="text" id="keywords"class="form-control @error('keywords') is-invalid @enderror" value="{{ old('keywords') }}" name="keywords">
+        @error('keywords')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
       </div>

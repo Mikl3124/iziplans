@@ -82,6 +82,7 @@ class BlogController extends Controller
                 'categorie' => 'bail|required',
                 'title' => 'bail|required|string|max:255',
                 'description' => 'bail|required|string',
+                'keywords' => 'bail|required|string',
                 'article' => 'bail|required|string',
                 'file' => 'sometimes|max:5000',
                 ]);
@@ -90,6 +91,7 @@ class BlogController extends Controller
           $article->user_id = $user->id;
           $article->title = $request->title;
           $article->url = str_slug($request->title);
+          $article->keywords = $request->keywords;
           $article->categorie = $request->categorie;
           $article->intro_text = $request->description;
           $article->full_text = $request->article;

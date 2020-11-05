@@ -1,7 +1,9 @@
   @extends('layouts.app')
   @section('image', "https://iziplans.s3.eu-west-3.amazonaws.com/documents/{{$article->filename}}")
   @section('title', $article->title)
+  @section('title', $article->meta_keywords)
   @section('meta_description', $article->intro_text)
+
   @section('content')
 
 
@@ -11,7 +13,7 @@
       <div class="row">
         <!-- Post Content Column -->
         <div class="col-md-9 col-sm-12">
-          <h1 class="mt-4">{{ $article->title }}</h1>
+          <h1 class="mt-4 text-primary">{{ $article->title }}</h1>
           <i>
             par {{ $article->user->firstname }} le {{ Carbon\Carbon::parse($article->created_at)->isoFormat('LL') }}
           </i>
