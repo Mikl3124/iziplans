@@ -32,7 +32,7 @@ class NewSubscription extends Mailable
     public function build()
     {
         return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
-                    ->subject('Nouvel abonnement')
+                    ->subject('Bienvenue sur iziplans')
                     ->view('emails.new-subscription');
     }
 }
