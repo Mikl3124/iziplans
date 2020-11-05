@@ -21,13 +21,10 @@
             </td>
         </tr>
         <tr>
-          <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Bonne Nouvelle!</td>
+          <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Bienvenue! $user->firstname</td>
         </tr>
         <tr>
-            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Une nouvelle personne s'est inscrite sur iziplans</td>
-        </tr>
-        <tr>
-            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">" {{ $user->firstname }} {{ $user->lastname }}"</td>
+            <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Vous êtes maintenant inscrit sur iziplans :)</td>
         </tr>
         <tr>
             <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">{{ $user->role }} / {{ $user->email}}</td>
