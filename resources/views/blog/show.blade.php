@@ -1,7 +1,7 @@
   @extends('layouts.app')
   @section('image', "https://iziplans.s3.eu-west-3.amazonaws.com/documents/{{$article->filename}}")
   @section('title', $article->title)
-  @section('title', $article->meta_keywords)
+  @section('keywords', $article->meta_keywords)
   @section('meta_description', $article->intro_text)
 
   @section('content')
