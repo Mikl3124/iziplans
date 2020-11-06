@@ -70,7 +70,9 @@
         @enderror
       </div>
 
-    <img class="img-thumbnail mb-3 mb-md-0" src="https://iziplans.s3.eu-west-3.amazonaws.com/documents/{{ $article->filename }}" alt="{{ $article->title }}">
+    <!-- ---------------- Image show------------------ -->
+    <img class="img-fluid img-thumbnail mb-3 mb-md-0" src="https://iziplans.s3.eu-west-3.amazonaws.com/documents/{{ $article->filename }}" alt="{{ $article->title }}">
+
     <!-- ---------------- Upload ------------------ -->
       <div class="form-group">
         <label for="file">Joindre un fichier</label>
