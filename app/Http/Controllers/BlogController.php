@@ -134,6 +134,8 @@ class BlogController extends Controller
     {
         $article = Article::where("url", $url)->first();
 
+        views($article)->record();
+
         return view('blog.show', compact('article'));
     }
 

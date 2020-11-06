@@ -13,10 +13,12 @@
       <div class="row">
         <!-- Post Content Column -->
         <div class="col-md-9 col-sm-12">
-          <h1 class="mt-4 text-primary">{{ $article->title }}</h1>
-          <i>
-            par {{ $article->user->firstname }} le {{ Carbon\Carbon::parse($article->created_at)->isoFormat('LL') }}
-          </i>
+          <h4><span class="mt-4 badge badge-secondary">{{ $article->categorie }}</span></h4>
+          <h1 class="text-primary">{{ $article->title }}</h1>
+            <div class="d-flex justify-content-start">
+              <p><i class="ml-2 text-primary far fa-calendar"></i> {{ Carbon\Carbon::parse($article->created_at)->isoFormat('LL') }}</p>
+              <p><i class="ml-2 text-primary fas fa-eye"></i> {{ views($article)->unique()->count() }} {{views($article)->unique()->count() === 1 ? 'Vue' : 'Vues'}}</span></p>
+            </div>
           <hr>
 
           <!-- Preview Image -->
