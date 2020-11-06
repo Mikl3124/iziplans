@@ -78,6 +78,8 @@ Route::group(['middleware' => ['auth','admin']], function () {
     Route::post('/categorie-create/', 'BlogController@storeCategories')->name('categorie.store');
     Route::post('/article/store', 'BlogController@store')->name('article.store');
     Route::get('/article/delete/{id}', 'BlogController@destroy')->name('article.delete');
+    Route::get('/article/edit/{id}', 'BlogController@edit')->name('article.edit');
+    Route::post('/article/update/{id}', 'BlogController@update')->name('article.update');
 
 });
 

@@ -117,6 +117,7 @@ class BlogController extends Controller
                 $article->filename = $filenametostore;
             }
             $article->save();
+
             Flashy::success('Votre article a été posté avec succès');
 
             return redirect()->route('blog.index');
@@ -142,9 +143,11 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($url)
     {
-        //
+        $article = Article::where("url", $url)->first();
+        $categories = Blogcategorie::all();
+        return view('blog.edit', compact('article', 'categories'));
     }
 
     /**
@@ -156,7 +159,51 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $article = Article::find($id);
+      $input = $request->all();
+
+      $this->validate($request, [
+                'categorie' => 'bail|required',
+                'title' => 'bail|required|string|max:255',
+                'description' => 'bail|required|string',
+                'keywords' => 'bail|required|string',
+                'article' => 'bail|required|string',
+                'file' => 'sometimes|max:5000',
+                ]);
+      $user = Auth::user();
+          $article->user_id = $user->id;
+          $article->title = $request->title;
+          $article->url = str_slug($request->title);
+          $article->keywords = $request->keywords;
+          $article->categorie = $request->categorie;
+          $article->intro_text = $request->description;
+          $article->full_text = $request->article;
+          if ($files = $request->file('file')) {
+            $filenamewithextension = $request->file('file')->getClientOriginalName();
+
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+            //get file extension
+            $extension = $request->file('file')->getClientOriginalExtension();
+
+            //filename to store
+            //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
+
+            $filenametostore = $filename.'_'.time().'.'.$extension;
+
+                //Upload File
+
+                Storage::putFileAs('documents', $request->file('file'), $filenametostore );
+
+                //Store $filenametostore in the database
+                $article->filename = $filenametostore;
+            }
+            $article->save();
+
+            Flashy::success('Votre article a été posté avec succès');
+
+            return redirect()->route('blog.index');
     }
 
     /**

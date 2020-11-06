@@ -21,7 +21,7 @@
             </td>
         </tr>
         <tr>
-          <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Bienvenue! $user->firstname</td>
+          <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Bienvenue! {{ $user->firstname }}</td>
         </tr>
         <tr>
             <td width="100%" style="font-size:22px;display: block;margin-bottom:30px;">Vous êtes maintenant inscrit sur iziplans :)</td>
