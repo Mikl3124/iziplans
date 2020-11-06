@@ -28,7 +28,13 @@
           {!! $article->full_text !!}
 
           <hr>
-
+        <div id="social-links">
+          <ul class="d-flex justify-content-start">
+            <li class="mx-2"><a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://iziplans.com/blog/{{ $article->url }}&amp;title={{ $article->title }}&amp;summary={{ $article->intro_text }}" class="social-button"><i style="color:#0e76a8;" class="fa-3x fab fa-linkedin"></i></a></li>
+            <li class="mx-2"><a href="https://www.facebook.com/sharer/sharer.php?u=https://iziplans.com/blog/{{ $article->url }}" class="social-button"><i style="color:#3b5998;" class="fa-3x fab fa-facebook-square"></i></a></li>
+            <li class="mx-2"><a href="https://twitter.com/intent/tweet?text={{ $article->intro_text }}&amp;url=https://iziplans.com/blog/{{$article->url}}" class="social-button "><i style="color:#00acee;" class="fa-3x fab fa-twitter-square"></i></a></li>
+          </ul>
+        </div>
         </div>
         <div class="col-md-3 col-sm-12">
           <div class="card mt-5 sticky-top">
@@ -48,13 +54,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div id="social-links">
-        <ul class="d-flex justify-content-start">
-          <li class="mx-2"><a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://iziplans.com/blog/{{ $article->url }}&amp;title={{ $article->title }}&amp;summary={{ $article->intro_text }}" class="social-button"><i style="color:#0e76a8;" class="fa-3x fab fa-linkedin"></i></a></li>
-          <li class="mx-2"><a href="https://www.facebook.com/sharer/sharer.php?u=https://iziplans.com/blog/{{ $article->url }}" class="social-button"><i style="color:#3b5998;" class="fa-3x fab fa-facebook-square"></i></a></li>
-          <li class="mx-2"><a href="https://twitter.com/intent/tweet?text={{ $article->intro_text }}&amp;url=https://iziplans.com/blog/{{$article->url}}" class="social-button "><i style="color:#00acee;" class="fa-3x fab fa-twitter-square"></i></a></li>
-        </ul>
       </div>
 
     </div>
