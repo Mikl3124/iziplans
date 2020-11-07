@@ -8,6 +8,7 @@ use App\Model\Offer;
 use App\Model\Topic;
 use App\Model\Projet;
 use App\Model\Message;
+use App\Mail\NewMessage;
 use App\Jobs\MailNewMessage;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
