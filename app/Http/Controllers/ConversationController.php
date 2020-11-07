@@ -165,7 +165,7 @@ class ConversationController extends Controller
         // Notification
         $message_to = User::find($request->to_id);
         $message_to->notify(new NewMessagePosted($topic, auth()->user()));
-        Mail::to($$message_to->email)
+        Mail::to($message_to->email)
           ->send(new NewMessage($projet, $message_to));
         // $this->dispatch(new MailNewMessage($message_to, $projet));
 
