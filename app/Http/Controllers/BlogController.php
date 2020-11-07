@@ -125,8 +125,8 @@ class BlogController extends Controller
      */
     public function show($slug)
     {
-        $new_title= str_replace('-', ' ', $slug);
-        $article = Article::where("title", $new_title)->first();
+        $article = Article::where("title", $slug)->first();
+        dd($slug, $article);
 
         return view('blog.show', compact('article'));
     }

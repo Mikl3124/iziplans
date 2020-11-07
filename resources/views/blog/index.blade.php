@@ -14,7 +14,12 @@
       <div class="col-md-9">
         <h3>{{$article->title}}</h3>
         <p>{{ $article->intro_text}}</p>
-        <a class="btn btn-primary" href="{{ route('article.show', Str::slug($article->title)) }}">Voir l'article</a>
+        <a class="btn btn-primary" href="{{ route('article.show', ($article->title)) }}">Voir l'article</a>
+        @if(Auth::user()->role === 'admin')
+          <a class="btn btn-secondary" href="{{ route('article.show', ($article->title)) }}">Modifier</a>
+          <a class="btn btn-danger" href="{{ route('article.show', ($article->title)) }}">Supprimer</a>
+
+        @endif
       </div>
     </div>
       <hr>
