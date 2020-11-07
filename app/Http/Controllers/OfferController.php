@@ -14,6 +14,7 @@ use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Notifications\NewMessagePosted;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
