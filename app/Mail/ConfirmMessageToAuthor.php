@@ -37,6 +37,7 @@ class ConfirmMessageToAuthor extends Mailable
     public function build()
     {
       $author = $this->author;
+
          return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
             ->subject("Nous avons reçu votre projet")
             ->view('emails.confirm-message-to-author');
