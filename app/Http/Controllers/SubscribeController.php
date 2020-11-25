@@ -73,7 +73,7 @@ class SubscribeController extends Controller
         $user = Auth::user();
         $subscription = $user->subscription('abonnement')->orderBy('created_at', 'desc')->first();
         dd($subscription);
-        if ($subscription->cancel()){
+        if ($subscription->cancelNow()){
           Flashy::success('Votre abonnement a été suspendu avec succès');
           return redirect()->back();
         };
