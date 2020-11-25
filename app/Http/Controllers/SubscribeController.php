@@ -72,11 +72,13 @@ class SubscribeController extends Controller
     {
         $user = Auth::user();
         $subscription = $user->subscription('abonnement')->orderBy('created_at', 'desc')->first();
-        $subscription->cancel();
-
-
-        Flashy::error('Votre abonnement a été suspendu avec succès');
+        if ($subscription->cancel()){
+          Flashy::success('Votre abonnement a été suspendu avec succès');
+          return redirect()->back();
+        };
+        Flashy::error('Une erreur est survenue, veuillez nous contacter');
         return redirect()->back();
+
     }
 
     public function resume()
