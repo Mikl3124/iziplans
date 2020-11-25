@@ -40,8 +40,8 @@ Route::post('/cancel', 'SubscribeController@cancel')->name('cancel-subscription'
 Route::post('/stripe', 'StripeWebhooksController');
 Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
     return $request->user()->downloadInvoice($invoiceId, [
-        'vendor' => 'Your Company',
-        'product' => 'Your Product',
+        'vendor' => 'iziplans',
+        'product' => 'Abonnement',
     ]);
 });
 
@@ -77,6 +77,9 @@ Route::group(['middleware' => ['auth','admin']], function () {
     Route::get('/blog/categories', 'BlogController@categories')->name('admin.blog.category');
     Route::post('/categorie-create/', 'BlogController@storeCategories')->name('categorie.store');
     Route::post('/article/store', 'BlogController@store')->name('article.store');
+    Route::get('/article/delete/{id}', 'BlogController@destroy')->name('article.delete');
+    Route::get('/article/edit/{id}', 'BlogController@edit')->name('article.edit');
+    Route::post('/article/update/{id}', 'BlogController@update')->name('article.update');
 
 });
 

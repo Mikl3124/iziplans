@@ -8,12 +8,14 @@ use App\Model\Offer;
 use App\Model\Topic;
 use App\Model\Projet;
 use App\Model\Message;
+use App\Mail\NewMessage;
 use App\Jobs\MailNewMessage;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Notifications\NewMessagePosted;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -46,12 +48,15 @@ class OfferController extends Controller
     {
 
         $projet = Projet::find($id);
-        $message_to = $projet->user;
+        $user = $projet->user;
 
         $topic = Topic::where('projet_id', $projet->id)
                         ->where('from_id', Auth::user()->id)
                         ->first();
-        $this->dispatch(new MailNewMessage($message_to, $projet));
+
+        Mail::to($user->email)
+          ->send(new NewMessage($projet, $user));
+        // $this->dispatch(new MailNewMessage($message_to, $projet));
         if($topic === null){
             $topic = 0;
         }

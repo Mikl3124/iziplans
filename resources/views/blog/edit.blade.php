@@ -20,13 +20,13 @@
   </script>
 <div class="container">
   <div class="mt-3">
-    <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('article.update', $article->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
     <!-- ---------------- Titre de l'article ------------------ -->
       <div class="form-group">
         <label for="title">Titre de l'article</label>
-      <input type="text" id="title"class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" name="title">
+      <input type="text" id="title"class="form-control @error('title') is-invalid @enderror" value="{{ $article->title }}" name="title">
         @error('title')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -35,7 +35,7 @@
     <!-- ---------------- Meta description ------------------ -->
       <div class="form-group">
         <label for="description">Meta Description</label>
-        <input type="text" id="description"class="form-control @error('description') is-invalid @enderror" value="{{ old('description') }}" name="description">
+        <input type="text" id="description"class="form-control @error('description') is-invalid @enderror" value="{{ $article->intro_text }}" name="description">
         @error('description')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -44,7 +44,7 @@
           <!-- ---------------- Key Words ------------------ -->
       <div class="form-group">
         <label for="keywords">Mots clés</label>
-        <input type="text" id="keywords"class="form-control @error('keywords') is-invalid @enderror" value="{{ old('keywords') }}" name="keywords">
+        <input type="text" id="keywords"class="form-control @error('keywords') is-invalid @enderror" value="{{ $article->keywords }}" name="keywords">
         @error('keywords')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -64,15 +64,18 @@
     <!-- ---------------- Article ------------------ -->
 
       <div class="form-group">
-        <textarea class="form-control @error('article') is-invalid @enderror" id="article" rows="5"  name="article">{{ old('article') }}</textarea>
+        <textarea class="form-control @error('article') is-invalid @enderror" id="article" rows="5"  name="article">{{ $article->full_text }}</textarea>
         @error('article')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
       </div>
 
+    <!-- ---------------- Image show------------------ -->
+    <img class="img-fluid img-thumbnail mb-3 mb-md-0" src="https://iziplans.s3.eu-west-3.amazonaws.com/documents/{{ $article->filename }}" alt="{{ $article->title }}">
+
     <!-- ---------------- Upload ------------------ -->
       <div class="form-group">
-        <label for="file">Joindre un fichier (optionnel)</label>
+        <label for="file">Joindre un fichier</label>
         <input type="file" class="form-control-file @error('file') is-invalid @enderror" id="file" value="{{ old('file') }}" name="file">
         @error('file')
           <div class="invalid-feedback">{{ $message }}</div>

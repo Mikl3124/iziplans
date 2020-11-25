@@ -917,6 +917,29 @@ body {
   z-index: 9999;
 }
 
+.cropped {
+  width: 300px;
+  height: 100px;
+  /*container-width*/
+  overflow: hidden;
+  /*hide bounds of image */
+  margin: 0;
+  /*reset margin of cropped tag*/
+  -o-object-fit: none;
+     object-fit: none;
+}
+
+.cropped img {
+  display: block;
+  /*remove inline-block spaces*/
+  width: 100%;
+  /*make image streatch*/
+}
+
+.sticky-top {
+  top: 50px !important;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

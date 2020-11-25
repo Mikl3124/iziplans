@@ -18,8 +18,11 @@ use MercurySeries\Flashy\Flashy;
 use App\Mail\NewprojetDepartement;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\MailNewProjetForAdmin;
+use App\Mail\ConfirmMessageToAuthor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\NewProjetPostedForAdmin;
+use App\Mail\ConfirmValidationToAuthor;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Jobs\MailConfirmMessageToAuthor;
@@ -165,12 +168,16 @@ class ProjetController extends Controller
                                                                     $query->whereIn('category_id', $categories);
                                                                 })->get();
                                 //Mail à l'Admin
+                                Mail::to(env("MAIL_ADMIN"))
+                                      ->send(new NewProjetPostedForAdmin($user, $projet));
 
-                                $this->dispatch(new MailNewProjetForAdmin($user, $projet));
+                                // $this->dispatch(new MailNewProjetForAdmin($user, $projet));
 
                                 // On envoie un email de confirmation à l'user
                                 $author = Auth::user();
-                                $this->dispatch(new MailConfirmMessageToAuthor($author, $projet));
+                                 Mail::to($author->email)
+                                      ->send(new ConfirmMessageToAuthor($projet, $author));
+                                // $this->dispatch(new MailConfirmMessageToAuthor($author, $projet));
 
                         Flashy::success('Votre mission a été enregistrée avec succès');
                         return redirect()->route('home');
@@ -365,8 +372,9 @@ class ProjetController extends Controller
 
                 // On envoie un email aux freelancer concernés par les compétences
                 $author = User::find($projet->user_id);
-
-                $this->dispatch(new MailConfirmValidationToAuthor($author, $projet));
+                Mail::to($author->email)
+                          ->send(new ConfirmValidationToAuthor($projet, $author));
+                // $this->dispatch(new MailConfirmValidationToAuthor($author, $projet));
 
                 // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
 
@@ -379,7 +387,9 @@ class ProjetController extends Controller
                 // On envoie un email aux freelancer concernés par les compétences
                 foreach($freelances_categories as $freelance_category){
                     $user = $freelance_category;
-                        $this->dispatch(new MailMatchCompetenceToFreelance($user, $projet));
+                      Mail::to($user->email)
+                          ->send(new Newprojet($projet, $user));
+                        // $this->dispatch(new MailMatchCompetenceToFreelance($user, $projet));
                 }
 
 
@@ -393,7 +403,9 @@ class ProjetController extends Controller
                 // On envoie un email aux freelancer concernés par le lieux
                 foreach($freelances_departements as $freelance_departement){
                     $user = $freelance_departement;
-                    $this->dispatch(new MailMatchDepartementToFreelance($user, $projet));
+                    Mail::to($user->email)
+                          ->send(new Newprojet($projet, $user));
+                    // $this->dispatch(new MailMatchDepartementToFreelance($user, $projet));
             }
             Flashy::success('Le projet a été validé');
                 return redirect()->back();
