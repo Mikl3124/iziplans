@@ -73,6 +73,8 @@ class SubscribeController extends Controller
         $user = Auth::user();
         if ($user->subscription('abonnement')->cancel()){
           Flashy::success('Votre abonnement a été suspendu avec succès');
+           Mail::to(env("MAIL_ADMIN"))
+              ->send(new DestroySubscription($user));
           return redirect()->back();
         };
         Flashy::error('Une erreur est survenue, veuillez nous contacter');

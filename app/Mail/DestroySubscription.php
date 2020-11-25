@@ -31,7 +31,9 @@ class DestroySubscription extends Mailable
      */
     public function build()
     {
-        return $this->subject('Résiliation abonnement')
-            ->view('emails.destroy-subscription');
+      return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
+                    ->subject('Résiliation abonnement')
+                    ->view('emails.destroy-subscription');
+
     }
 }
