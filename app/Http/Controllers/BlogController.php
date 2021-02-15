@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Model\Article;
 use Illuminate\Support\Str;
 use App\Model\Blogcategorie;
@@ -11,7 +9,6 @@ use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
 
 class BlogController extends Controller
 {
@@ -24,39 +21,29 @@ class BlogController extends Controller
     {
       return view('blog.dashboard');
     }
-
     public function categories()
     {
       $categories = Blogcategorie::all();
       return view('blog.categories', compact('categories'));
     }
-
     public function storeCategories(Request $request)
     {
       $input = $request->all();
-
       $this->validate($request, [
                 'title' => 'required|string|max:255',
                 ]);
           $categorie = new Blogcategorie;
           $categorie->title = $request->title;
           $categorie->save();
-
       return redirect()->back();
     }
-
-
-
     public function index()
     {
       $articles = DB::table('articles')
                 ->latest()
                 ->paginate(5);
-
-
       return view('blog.index', compact('articles'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -67,7 +54,6 @@ class BlogController extends Controller
         $categories = Blogcategorie::all();
         return view('blog.create', compact('categories'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -77,7 +63,6 @@ class BlogController extends Controller
     public function store(Request $request)
     {
       $input = $request->all();
-
       $this->validate($request, [
                 'categorie' => 'bail|required',
                 'title' => 'bail|required|string|max:255',
@@ -97,33 +82,22 @@ class BlogController extends Controller
           $article->full_text = $request->article;
           if ($files = $request->file('file')) {
             $filenamewithextension = $request->file('file')->getClientOriginalName();
-
             //get filename without extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-
             //get file extension
             $extension = $request->file('file')->getClientOriginalExtension();
-
             //filename to store
             //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
-
             $filenametostore = $filename.'_'.time().'.'.$extension;
-
                 //Upload File
-
                 Storage::putFileAs('documents', $request->file('file'), $filenametostore );
-
                 //Store $filenametostore in the database
                 $article->filename = $filenametostore;
             }
             $article->save();
-
             Flashy::success('Votre article a été posté avec succès');
-
             return redirect()->route('blog.index');
-
     }
-
     /**
      * Display the specified resource.
      *
@@ -133,12 +107,9 @@ class BlogController extends Controller
     public function show($url)
     {
         $article = Article::where("url", $url)->first();
-
         views($article)->record();
-
         return view('blog.show', compact('article'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -151,7 +122,6 @@ class BlogController extends Controller
         $categories = Blogcategorie::all();
         return view('blog.edit', compact('article', 'categories'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -163,7 +133,6 @@ class BlogController extends Controller
     {
       $article = Article::find($id);
       $input = $request->all();
-
       $this->validate($request, [
                 'categorie' => 'bail|required',
                 'title' => 'bail|required|string|max:255',
@@ -182,32 +151,22 @@ class BlogController extends Controller
           $article->full_text = $request->article;
           if ($files = $request->file('file')) {
             $filenamewithextension = $request->file('file')->getClientOriginalName();
-
             //get filename without extension
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-
             //get file extension
             $extension = $request->file('file')->getClientOriginalExtension();
-
             //filename to store
             //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
-
             $filenametostore = $filename.'_'.time().'.'.$extension;
-
                 //Upload File
-
                 Storage::putFileAs('documents', $request->file('file'), $filenametostore );
-
                 //Store $filenametostore in the database
                 $article->filename = $filenametostore;
             }
             $article->save();
-
             Flashy::success('Votre article a été posté avec succès');
-
             return redirect()->route('blog.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *

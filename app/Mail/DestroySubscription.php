@@ -32,7 +32,10 @@ class DestroySubscription extends Mailable
     public function build()
     {
       $user = $this->user;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4f8b2517a44878c398daf138ae5b38468411e9e6
       return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
                     ->subject('Résiliation abonnement')
                     ->view('emails.destroy-subscription');
