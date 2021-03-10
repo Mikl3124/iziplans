@@ -150,7 +150,7 @@ class ProjetController extends Controller
 
     $projet->budget_id = $request->budget;
     $projet->save();
-    // $projet->categories()->attach($request->categories);
+    $projet->categories()->attach($request->categories);
 
     if (Auth::check()) {
       $categories = $request->categories;

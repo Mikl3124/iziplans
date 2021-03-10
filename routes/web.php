@@ -38,12 +38,12 @@ Route::post('/unsubscribe', 'SubscribeController@destroy');
 Route::post('/resume', 'SubscribeController@resume')->name('resume-subscription');
 Route::post('/cancel', 'SubscribeController@cancel')->name('cancel-subscription');
 Route::post('/stripe', 'StripeWebhooksController');
-Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
-    return $request->user()->downloadInvoice($invoiceId, [
-        'vendor' => 'iziplans',
-        'product' => 'Abonnement',
-    ]);
-});
+// Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
+//   return $request->user()->downloadInvoice($invoiceId, [
+//     'vendor' => 'iziplans',
+//     'product' => 'Abonnement',
+//   ]);
+// });
 
 //Projet
 Route::resource('projet', 'ProjetController');
@@ -56,31 +56,30 @@ Route::get('/myprojet-list/', 'ProjetController@myprojets')->name('myprojets');
 
 
 // Administrateur
-Route::group(['middleware' => ['auth','admin']], function () {
-    Route::get('/dashboard', 'Admin\DashboardController@data')->name('admin.dashboard');;
-    Route::get('/users-list', 'Admin\DashboardController@usersList')->name('admin.users.list');;
-    Route::get('/projets-list', 'Admin\DashboardController@projetsList')->name('admin.projets.list');
-    Route::get('/user-edit/{id}', 'Admin\DashboardController@userEdit')->name('admin.user.edit');
-    Route::put('/user-update/{id}', 'Admin\DashboardController@userUpdate')->name('admin.user.update');
-    Route::get('/projet-edit/{id}', 'Admin\DashboardController@projetEdit')->name('admin.projet.edit');
-    Route::get('/offer-edit/{id}', 'Admin\DashboardController@offerEdit')->name('admin.offer.edit');
-    Route::put('/projet-update/{id}', 'Admin\DashboardController@projetUpdate')->name('admin.projet.update');
-    Route::delete('/user-delete/{id}', 'Admin\DashboardController@userdelete')->name('admin.user.delete');
-    Route::delete('/projet-delete/{id}', 'Admin\DashboardController@projetDelete')->name('admin.projet.delete');
-    Route::get('/projets-by-user/{id}', 'Admin\DashboardController@projetsByUser')->name('admin.projets.by.user');;
-    Route::get('/offers-by-user/{id}', 'Admin\DashboardController@offersByUser')->name('admin.offers.by.user');
-    Route::get('/connect-as/{id}', 'Admin\DashboardController@connect_as')->name('admin.connect_as');
-    Route::post('/projet-validate/', 'ProjetController@validateProjet')->name('admin.projet.validate');
-    //Blog
-    Route::get('/blog/create', 'BlogController@create')->name('admin.article.create');
-    Route::get('/blog/dashboard', 'BlogController@dashboard')->name('admin.article.blog');
-    Route::get('/blog/categories', 'BlogController@categories')->name('admin.blog.category');
-    Route::post('/categorie-create/', 'BlogController@storeCategories')->name('categorie.store');
-    Route::post('/article/store', 'BlogController@store')->name('article.store');
-    Route::get('/article/delete/{id}', 'BlogController@destroy')->name('article.delete');
-    Route::get('/article/edit/{id}', 'BlogController@edit')->name('article.edit');
-    Route::post('/article/update/{id}', 'BlogController@update')->name('article.update');
-
+Route::group(['middleware' => ['auth', 'admin']], function () {
+  Route::get('/dashboard', 'Admin\DashboardController@data')->name('admin.dashboard');;
+  Route::get('/users-list', 'Admin\DashboardController@usersList')->name('admin.users.list');;
+  Route::get('/projets-list', 'Admin\DashboardController@projetsList')->name('admin.projets.list');
+  Route::get('/user-edit/{id}', 'Admin\DashboardController@userEdit')->name('admin.user.edit');
+  Route::put('/user-update/{id}', 'Admin\DashboardController@userUpdate')->name('admin.user.update');
+  Route::get('/projet-edit/{id}', 'Admin\DashboardController@projetEdit')->name('admin.projet.edit');
+  Route::get('/offer-edit/{id}', 'Admin\DashboardController@offerEdit')->name('admin.offer.edit');
+  Route::put('/projet-update/{id}', 'Admin\DashboardController@projetUpdate')->name('admin.projet.update');
+  Route::delete('/user-delete/{id}', 'Admin\DashboardController@userdelete')->name('admin.user.delete');
+  Route::delete('/projet-delete/{id}', 'Admin\DashboardController@projetDelete')->name('admin.projet.delete');
+  Route::get('/projets-by-user/{id}', 'Admin\DashboardController@projetsByUser')->name('admin.projets.by.user');;
+  Route::get('/offers-by-user/{id}', 'Admin\DashboardController@offersByUser')->name('admin.offers.by.user');
+  Route::get('/connect-as/{id}', 'Admin\DashboardController@connect_as')->name('admin.connect_as');
+  Route::post('/projet-validate/', 'ProjetController@validateProjet')->name('admin.projet.validate');
+  //Blog
+  Route::get('/blog/create', 'BlogController@create')->name('admin.article.create');
+  Route::get('/blog/dashboard', 'BlogController@dashboard')->name('admin.article.blog');
+  Route::get('/blog/categories', 'BlogController@categories')->name('admin.blog.category');
+  Route::post('/categorie-create/', 'BlogController@storeCategories')->name('categorie.store');
+  Route::post('/article/store', 'BlogController@store')->name('article.store');
+  Route::get('/article/delete/{id}', 'BlogController@destroy')->name('article.delete');
+  Route::get('/article/edit/{id}', 'BlogController@edit')->name('article.edit');
+  Route::post('/article/update/{id}', 'BlogController@update')->name('article.update');
 });
 
 //Offers
