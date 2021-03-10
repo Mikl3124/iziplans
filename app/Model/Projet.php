@@ -24,7 +24,7 @@ class Projet extends Model implements Viewable
 
   public function categories()
   {
-    return $this->belongsToMany(Category::class);
+    return $this->belongsTo(Category::class);
   }
 
   public function departement()
