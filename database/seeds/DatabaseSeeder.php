@@ -4,18 +4,18 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $this->call(CategoriesTableSeeder::class);
-        $this->call(DepartementsTableSeeder::class);
-        $this->call(BudgetsTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(ArticleTableSeeder ::class);
-        $this->call(ArticlesCategoriesSeeder ::class);
-    }
+  /**
+   * Seed the application's database.
+   *
+   * @return void
+   */
+  public function run()
+  {
+    $this->call(CategoriesTableSeeder::class);
+    $this->call(DepartementsTableSeeder::class);
+    $this->call(BudgetsTableSeeder::class);
+    // $this->call(UsersTableSeeder::class);
+    $this->call(ArticleTableSeeder::class);
+    $this->call(ArticlesCategoriesSeeder::class);
+  }
 }
