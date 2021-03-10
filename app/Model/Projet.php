@@ -6,7 +6,7 @@ use App\Model\User;
 use App\Model\Offer;
 use App\Model\Budget;
 use App\Model\Message;
-use App\model\Category;
+use App\Model\Category;
 use App\Model\Departement;
 use Illuminate\Database\Eloquent\Model;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
