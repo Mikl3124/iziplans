@@ -167,7 +167,7 @@ class ProjetController extends Controller
         })->get();
       //Mail à l'Admin
       dd(env("MAIL_ADMIN"), $user, $projet);
-      Mail::to(env("MAIL_ADMIN"))
+      Mail::to("mickael@iziplans.com")
         ->send(new NewProjetPostedForAdmin($user, $projet));
 
       // $this->dispatch(new MailNewProjetForAdmin($user, $projet));
