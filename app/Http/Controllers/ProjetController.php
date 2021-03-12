@@ -166,7 +166,7 @@ class ProjetController extends Controller
           $query->whereIn('category_id', $categories);
         })->get();
       //Mail à l'Admin
-      Mail::to("mickael.delpech@gmail.com")
+      Mail::to(env("MAIL_ADMIN"))
         ->send(new NewProjetPostedForAdmin($user, $projet));
 
       // $this->dispatch(new MailNewProjetForAdmin($user, $projet));
