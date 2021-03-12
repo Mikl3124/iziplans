@@ -33,9 +33,9 @@
               <tr>
                 <td> {{ $projet->title }}</td>
                 <td> {{ $projet->description }}</td>
-                <td> {{ $projet->budget->name }} /jour</td>
+                <td> {{ $projet->budget->name }}</td>
                 <td> {{ $projet->user->firstname }} {{ $projet->user->lastname }}  </td>
-                <td>{{ date('d/m/Y', strtotime($projet->created_at)) }}</td> 
+                <td>{{ date('d/m/Y', strtotime($projet->created_at)) }}</td>
                 <td> <a href="#">{{ $projet->offers->count() }}</td></a>
 
                 <td>
@@ -52,9 +52,9 @@
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
                       <input type="hidden" name="id" value=" {{ $projet->id }}">
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Etes vous sûr de vouloir supprimer ce projet?');">Supprimer</button>     
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Etes vous sûr de vouloir supprimer ce projet?');">Supprimer</button>
                   </form>
-                    
+
                   </td>
               </tr>
                 @endforeach
