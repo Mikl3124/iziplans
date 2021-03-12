@@ -56,9 +56,9 @@ return [
   ],
 
   'ses' => [
-    'key' => 'AKIAZGDBBHRTPRMBWU75',
-    'secret' => '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',
-    'region' => 'eu-west-3',
+    'key' => env('SES_KEY'),
+    'secret' => env('SES_KEY_SECRET'),
+    'region' => env('SES_REGION'),
   ],
 
 ];
