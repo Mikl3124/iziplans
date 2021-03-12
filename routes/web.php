@@ -37,12 +37,12 @@ Route::post('/unsubscribe', 'SubscribeController@destroy');
 Route::post('/resume', 'SubscribeController@resume')->name('resume-subscription');
 Route::post('/cancel', 'SubscribeController@cancel')->name('cancel-subscription');
 Route::post('/stripe', 'StripeWebhooksController');
-Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
-  return $request->user()->downloadInvoice($invoiceId, [
-    'vendor' => 'iziplans',
-    'product' => 'Abonnement',
-  ]);
-});
+// Route::get('user/invoice/{invoice}', function (Request $request, $invoiceId) {
+//   return $request->user()->downloadInvoice($invoiceId, [
+//     'vendor' => 'iziplans',
+//     'product' => 'Abonnement',
+//   ]);
+// });
 
 //Projet
 Route::resource('projet', 'ProjetController');
