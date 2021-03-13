@@ -332,8 +332,8 @@
     //Mensuel
     window.addEventListener('load', function(){
         const cardButton = document.getElementById('card-button');
+        console.log('ma bite à ski');
         const stripe = Stripe('{{ env('STRIPE_KEY') }}');
-        console.log(stripe);
             const elements = stripe.elements();
             const clientSecret = cardButton.dataset.secret;
         const cardElement = elements.create('card',{
