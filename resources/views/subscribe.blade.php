@@ -10,6 +10,7 @@
                             <!--PRICE HEADING START-->
                             <div class="price-heading clearfix">
                                 <h1 class="mt-3">ABONNEMENTS</h1>
+                                <h1>{{ env('STRIPE_KEY') }}</h1>
                             </div>
                             <!--//PRICE HEADING END-->
                         </div>
