@@ -235,6 +235,7 @@
         </div>
         <div class="modal-body">
             <form action="/subscribe" method="POST" id="payment-form">
+              <input type="hidden" id="stripe_key" value="{{ env('STRIPE_KEY') }}"/>
                 @csrf
                 <div>
                     <input type="hidden" name="plan" value="price_1HLnPWC1QIYXU5hhGMqIx1AZ">
@@ -332,7 +333,8 @@
     //Mensuel
     window.addEventListener('load', function(){
         const cardButton = document.getElementById('card-button');
-        const stripe = Stripe('{{ env('STRIPE_KEY') }}');
+        const stripe = document.getElementById('stripe_key').value;
+        // const stripe = Stripe('{{ env('STRIPE_KEY') }}');
             const elements = stripe.elements();
             const clientSecret = cardButton.dataset.secret;
         const cardElement = elements.create('card',{
