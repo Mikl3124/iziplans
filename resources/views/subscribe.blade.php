@@ -10,7 +10,6 @@
                             <!--PRICE HEADING START-->
                             <div class="price-heading clearfix">
                                 <h1 class="mt-3">ABONNEMENTS</h1>
-                                <h1>{{ env('GOOGLE_CLIENT_ID') }}</h1>
                             </div>
                             <!--//PRICE HEADING END-->
                         </div>
@@ -333,8 +332,6 @@
     //Mensuel
     window.addEventListener('load', function(){
         const cardButton = document.getElementById('card-button');
-        console.log('test');
-        console.log('{{ env('STRIPE_KEY') }}');
         const stripe = Stripe('{{ env('STRIPE_KEY') }}');
             const elements = stripe.elements();
             const clientSecret = cardButton.dataset.secret;
