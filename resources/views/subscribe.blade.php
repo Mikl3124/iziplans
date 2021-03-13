@@ -332,6 +332,7 @@
     //Mensuel
     window.addEventListener('load', function(){
         const cardButton = document.getElementById('card-button');
+        console.log('test');
         console.log('{{ env('STRIPE_KEY') }}');
         const stripe = Stripe('{{ env('STRIPE_KEY') }}');
             const elements = stripe.elements();
