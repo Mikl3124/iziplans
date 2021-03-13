@@ -368,7 +368,7 @@ class ProjetController extends Controller
 
         $departement = Departement::find($departement_id)->first();
 
-        // On envoie un email aux freelancer concernés par les compétences
+        // On envoie un email au propriétaire du projet
         $author = User::find($projet->user_id);
         Mail::to($author->email)
           ->send(new ConfirmValidationToAuthor($projet, $author));
@@ -381,7 +381,6 @@ class ProjetController extends Controller
           ->whereHas('categories', function ($query) use ($categories) {
             $query->whereIn('category_id', $categories);
           })->get();
-
         // On envoie un email aux freelancer concernés par les compétences
         foreach ($freelances_categories as $freelance_category) {
           $user = $freelance_category;
