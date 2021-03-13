@@ -7,7 +7,7 @@ use Validator;
 use Carbon\Carbon;
 use App\Model\User;
 use Stripe\Customer;
-use App\model\Category;
+use App\Model\Category;
 use App\Model\Competence;
 use App\Model\Departement;
 use App\Model\Information;
