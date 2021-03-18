@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUrlToArticlesTable extends Migration
+class AddFilenameToArticlesTable extends Migration
 {
   /**
    * Run the migrations.
@@ -14,7 +14,7 @@ class AddUrlToArticlesTable extends Migration
   public function up()
   {
     Schema::table('articles', function (Blueprint $table) {
-      $table->string('url', 255);
+      $table->string('filename', 255);
     });
   }
 
@@ -26,7 +26,7 @@ class AddUrlToArticlesTable extends Migration
   public function down()
   {
     Schema::table('articles', function (Blueprint $table) {
-      $table->dropColumn('url');
+      $table->dropColumn('filename');
     });
   }
 }
