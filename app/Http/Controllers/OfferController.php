@@ -215,9 +215,91 @@ class OfferController extends Controller
         $offer = Offer::find($id);
 
         $user = Auth::user();
-        if ($user->id === $projet->user_id) {
+        if ($user->id === $offer->user_id) {
             if (Auth::check()) {
-                dd($offer);
+            
+        $values = $request->all();
+        $user = Auth::user();
+
+        $rules = [
+            'offer_price' => 'required|integer',
+            'offer_days' => 'required|integer',
+            'offer_message' => 'required',
+            'file' => 'mimes:pdf,xlx,csv,jpeg,png,jpg,doc,docx|max:4096'
+        ];
+
+        $validator = Validator::make($values, $rules, [
+            'offer_price.required' => 'Votre offre est obligatoire',
+            'offer_price.integer' => 'Votre offre doit être un nombre',
+            'offer_days.required' => 'Le nombre de jours est obligatoire',
+            'offer_days.integer' => 'La durée doit être un nombre',
+            'offer_message.required' => 'Un petit mot est obligatoire',
+            'file.mimes' => 'Seul les fichiers suivants sont admis: pdf,xlx,csv,jpeg,png,jpg,doc,docx',
+            'file.max' => 'La taille du fichier doit être de 4Mo maximum'
+
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $offer = new Offer;
+        $offer->projet_id = $request->projet_id;
+        $offer->user_id = $user->id;
+        $offer->offer_price = $request->offer_price;
+        $offer->offer_days = $request->offer_days;
+        $offer->offer_message = $request->offer_message;
+
+        if ($files = $request->file('filename')) {
+            $filenamewithextension = $request->file('filename')->getClientOriginalName();
+
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+            //get file extension
+            $extension = $request->file('filename')->getClientOriginalExtension();
+
+            //filename to store
+            //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
+
+            $filenametostore = $filename . '_' . time() . '.' . $extension;
+
+
+            //Upload File
+
+            Storage::putFileAs('documents', $request->file('filename'), $filenametostore);
+
+            //Store $filenametostore in the database
+
+            $message->file_message = $filenametostore;
+        }
+        $offer->save();
+
+        Flashy::success('Votre offre a bien été modifiée');
+        return redirect()->route('home');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $offer = Offer::find($id);
+        if (Auth::user()->id === $offer->user_id || Auth::user()->id === $offer->projet->user_id) {
+            return view('offers.show', compact('offer'));
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
             }
         }
     }
