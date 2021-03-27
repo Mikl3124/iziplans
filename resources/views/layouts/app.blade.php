@@ -77,16 +77,17 @@
                         <button class="btn btn-success dropdown-toggle notif_messages" type="button" data-toggle="dropdown">
                             @if (auth()->user()->unreadNotifications->count() === 1)
                                 <i class="far fa-bell text-white"></i> 1 message reçu
-                            @elseif (auth()->user()->unreadNotifications->count() > 1)
+                            @elseif (auth()->user()->unreadNotifications->count() > 0)
                                 <i class="far fa-bell text-white"></i> {{ auth()->user()->unreadNotifications->count()}} messages reçus
                             @endif
                         </button>
                 {{-- ---------- On liste les messages -------------- --}}
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             @foreach (auth()->user()->unreadNotifications as $notification)
                                 <a class="dropdown-item" href="{{ route('topics.showFromNotifications', ['topic' => $notification['data']['topicId'], 'notification' => $notification->id])}}">{{ $notification->data['firstname'] }} a posté un message</a>
                             @endforeach
                         </div>
+                    -->
                       </div>
                     @endunless
                 @endauth
