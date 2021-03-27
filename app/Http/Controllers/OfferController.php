@@ -212,7 +212,14 @@ class OfferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd('coco');
+        $offer = Offer::find($id);
+
+        $user = Auth::user();
+        if ($user->id === $projet->user_id) {
+            if (Auth::check()) {
+                dd($offer);
+            }
+        }
     }
 
     /**
