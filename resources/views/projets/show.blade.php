@@ -205,7 +205,7 @@
                     @elseif($offers->count() === 1)
                         <h3>Il n'y a qu'une offre pour votre projet</h3>
                     @elseif($offers->count() > 1)
-                        <h3>Il n'y a {{ $offers->count() }} offres pour votre projet</h3>
+                        <h3>Il y a {{ $offers->count() }} offres pour votre projet</h3>
                     @endif
                 @else
                 {{-- -------------- Si Auth est le PAS LE PROPRIETAIRE de l'offre ------------ --}}
