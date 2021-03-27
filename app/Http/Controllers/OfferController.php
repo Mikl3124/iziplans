@@ -11,15 +11,12 @@ use App\Mail\NewMessage;
 use App\Jobs\MailNewMessage;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\NewMessagePosted;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
-use Symfony\Component\Console\Input\Input;
 use Illuminate\Contracts\Validation\Validator;
 
 class OfferController extends Controller
