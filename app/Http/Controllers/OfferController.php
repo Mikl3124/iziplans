@@ -51,13 +51,13 @@ class OfferController extends Controller
         $user = $projet->user;
 
         $topic = Topic::where('projet_id', $projet->id)
-                        ->where('from_id', Auth::user()->id)
-                        ->first();
+            ->where('from_id', Auth::user()->id)
+            ->first();
 
         Mail::to($user->email)
-          ->send(new NewMessage($projet, $user));
+            ->send(new NewMessage($projet, $user));
         // $this->dispatch(new MailNewMessage($message_to, $projet));
-        if($topic === null){
+        if ($topic === null) {
             $topic = 0;
         }
 
@@ -75,9 +75,9 @@ class OfferController extends Controller
 
         $projet = Projet::find($request->projet_id);
         $offers = Offer::where('projet_id', $projet->id)
-                        ->where('user_id', Auth::user()->id)
-                        ->first();
-        if($offers){
+            ->where('user_id', Auth::user()->id)
+            ->first();
+        if ($offers) {
             Flashy::error('Vous avez déjà fait une offre pour ce projet...');
             return redirect()->back();
         }
@@ -92,7 +92,7 @@ class OfferController extends Controller
             'file' => 'mimes:pdf,xlx,csv,jpeg,png,jpg,doc,docx|max:4096'
         ];
 
-        $validator = Validator::make($values, $rules,[
+        $validator = Validator::make($values, $rules, [
             'offer_price.required' => 'Votre offre est obligatoire',
             'offer_price.integer' => 'Votre offre doit être un nombre',
             'offer_days.required' => 'Le nombre de jours est obligatoire',
@@ -101,35 +101,35 @@ class OfferController extends Controller
             'file.mimes' => 'Seul les fichiers suivants sont admis: pdf,xlx,csv,jpeg,png,jpg,doc,docx',
             'file.max' => 'La taille du fichier doit être de 4Mo maximum'
 
-          ]);
-        if($validator->fails()){
-        return Redirect::back()
-            ->withErrors($validator)
-            ->withInput();
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $topic = new Topic;
-                        $topic->title = $projet->title;
-                        $topic->from_id = Auth::user()->id;
-                        $topic->to_id = $projet->user_id;
-                        $topic->projet_id = $projet->id;
+        $topic->title = $projet->title;
+        $topic->from_id = Auth::user()->id;
+        $topic->to_id = $projet->user_id;
+        $topic->projet_id = $projet->id;
 
-            $topic->save();
+        $topic->save();
 
         $message = new Message;
-            $message->from_id = $user->id;
-            $message->to_id = $projet->user_id;
-            $message->content = $request->offer_message;
-            $message->projet_id = $projet->id;
-            $message->topic_id = $topic->id;
+        $message->from_id = $user->id;
+        $message->to_id = $projet->user_id;
+        $message->content = $request->offer_message;
+        $message->projet_id = $projet->id;
+        $message->topic_id = $topic->id;
 
 
         $offer = new Offer;
-                    $offer->projet_id = $request->projet_id;
-                    $offer->user_id = $user->id;
-                    $offer->offer_price = $request->offer_price;
-                    $offer->offer_days = $request->offer_days;
-                    $offer->offer_message = $request->offer_message;
+        $offer->projet_id = $request->projet_id;
+        $offer->user_id = $user->id;
+        $offer->offer_price = $request->offer_price;
+        $offer->offer_days = $request->offer_days;
+        $offer->offer_message = $request->offer_message;
 
         if ($files = $request->file('filename')) {
             $filenamewithextension = $request->file('filename')->getClientOriginalName();
@@ -143,12 +143,12 @@ class OfferController extends Controller
             //filename to store
             //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
 
-            $filenametostore = $filename.'_'.time().'.'.$extension;
+            $filenametostore = $filename . '_' . time() . '.' . $extension;
 
 
             //Upload File
 
-            Storage::putFileAs('documents', $request->file('filename'), $filenametostore );
+            Storage::putFileAs('documents', $request->file('filename'), $filenametostore);
 
             //Store $filenametostore in the database
 
@@ -161,9 +161,8 @@ class OfferController extends Controller
         $message_to = User::find($projet->user_id);
         $message_to->notify(new NewMessagePosted($topic, auth()->user()));
 
-    Flashy::success('Votre offre a bien été enregistrée');
-    return redirect()->route('home');
-
+        Flashy::success('Votre offre a bien été enregistrée');
+        return redirect()->route('home');
     }
 
     /**
@@ -175,8 +174,8 @@ class OfferController extends Controller
     public function show($id)
     {
         $offer = Offer::find($id);
-        if(Auth::user()->id === $offer->user_id || Auth::user()->id === $offer->projet->user_id ) {
-              return view('offers.show',compact('offer'));
+        if (Auth::user()->id === $offer->user_id || Auth::user()->id === $offer->projet->user_id) {
+            return view('offers.show', compact('offer'));
         }
         return redirect()->back();
     }
@@ -191,20 +190,17 @@ class OfferController extends Controller
     {
         $offer = Offer::find($id);
 
-        if($offer->user_id === Auth::user()->id){
+        if ($offer->user_id === Auth::user()->id) {
             $projet = Projet::find($offer->projet_id);
             $topic = Topic::where('projet_id', $projet->id)
-                        ->where('from_id', Auth::user()->id)
-                        ->first();
-            if($topic === null){
+                ->where('from_id', Auth::user()->id)
+                ->first();
+            if ($topic === null) {
                 $topic = 0;
             }
 
-            return view('offers.edit',compact('offer', 'projet', 'topic'));
+            return view('offers.edit', compact('offer', 'projet', 'topic'));
         }
-
-
-
     }
 
     /**
@@ -216,7 +212,96 @@ class OfferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd('coco');
+        $projet = Projet::find($request->projet_id);
+        $offers = Offer::where('projet_id', $projet->id)
+            ->where('user_id', Auth::user()->id)
+            ->first();
+        if ($offers) {
+            Flashy::error('Vous avez déjà fait une offre pour ce projet...');
+            return redirect()->back();
+        }
+
+        $values = $request->all();
+        $user = Auth::user();
+
+        $rules = [
+            'offer_price' => 'required|integer',
+            'offer_days' => 'required|integer',
+            'offer_message' => 'required',
+            'file' => 'mimes:pdf,xlx,csv,jpeg,png,jpg,doc,docx|max:4096'
+        ];
+
+        $validator = Validator::make($values, $rules, [
+            'offer_price.required' => 'Votre offre est obligatoire',
+            'offer_price.integer' => 'Votre offre doit être un nombre',
+            'offer_days.required' => 'Le nombre de jours est obligatoire',
+            'offer_days.integer' => 'La durée doit être un nombre',
+            'offer_message.required' => 'Un petit mot est obligatoire',
+            'file.mimes' => 'Seul les fichiers suivants sont admis: pdf,xlx,csv,jpeg,png,jpg,doc,docx',
+            'file.max' => 'La taille du fichier doit être de 4Mo maximum'
+
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $topic = new Topic;
+        $topic->title = $projet->title;
+        $topic->from_id = Auth::user()->id;
+        $topic->to_id = $projet->user_id;
+        $topic->projet_id = $projet->id;
+
+        $topic->save();
+
+        $message = new Message;
+        $message->from_id = $user->id;
+        $message->to_id = $projet->user_id;
+        $message->content = $request->offer_message;
+        $message->projet_id = $projet->id;
+        $message->topic_id = $topic->id;
+
+
+        $offer = new Offer;
+        $offer->projet_id = $request->projet_id;
+        $offer->user_id = $user->id;
+        $offer->offer_price = $request->offer_price;
+        $offer->offer_days = $request->offer_days;
+        $offer->offer_message = $request->offer_message;
+
+        if ($files = $request->file('filename')) {
+            $filenamewithextension = $request->file('filename')->getClientOriginalName();
+
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+            //get file extension
+            $extension = $request->file('filename')->getClientOriginalExtension();
+
+            //filename to store
+            //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
+
+            $filenametostore = $filename . '_' . time() . '.' . $extension;
+
+
+            //Upload File
+
+            Storage::putFileAs('documents', $request->file('filename'), $filenametostore);
+
+            //Store $filenametostore in the database
+
+            $message->file_message = $filenametostore;
+        }
+        $offer->save();
+        $message->save();
+
+        // Notification
+        $message_to = User::find($projet->user_id);
+        $message_to->notify(new NewMessagePosted($topic, auth()->user()));
+
+        Flashy::success('Votre offre a bien été enregistrée');
+        return redirect()->route('home');
     }
 
     /**
@@ -228,13 +313,11 @@ class OfferController extends Controller
     public function destroy($id)
     {
         $offer = Offer::find($id);
-        if(Auth::user()->id === $offer->user_id || Auth::user()->role === 'admin'){
+        if (Auth::user()->id === $offer->user_id || Auth::user()->role === 'admin') {
             $offer->delete();
             Flashy::error('Votre offre a bien été supprimée');
             return redirect()->route('home');
         }
         return redirect()->back();
     }
-
-
 }
