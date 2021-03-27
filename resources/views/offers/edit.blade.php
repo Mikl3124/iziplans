@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-pencil-alt text-white"></i> Enregistrer </button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-pencil-alt text-white"></i> Modifier </button>
                             <a data-toggle="modal" data-target="#deleteModal" class="btn btn-danger text-white"><i class="fas fa-exclamation-triangle text-white"></i> Supprimer mon offre </a>
 
                         </div>

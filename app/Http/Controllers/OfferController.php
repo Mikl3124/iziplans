@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
 use App\Model\User;
 use App\Model\Offer;
 use App\Model\Topic;
@@ -21,6 +20,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Input\Input;
+use Illuminate\Contracts\Validation\Validator;
 
 class OfferController extends Controller
 {
@@ -213,58 +213,64 @@ class OfferController extends Controller
     public function update(Request $request, $id)
     {
         $offer = Offer::find($id);
-        dd($offer);
 
         $user = Auth::user();
-        if ($user->id === $projet->user_id) {
+        if ($user->id === $offer->user_id) {
             if (Auth::check()) {
+                $rules = [
+                    'offer_price' => 'required|integer',
+                    'offer_days' => 'required|integer',
+                    'offer_message' => 'required',
+                    'file' => 'mimes:pdf,xlx,csv,jpeg,png,jpg,doc,docx|max:4096'
+                ];
 
-                $this->validate($request, [
-                    'categories' => 'bail|required',
-                    'title' => 'bail|required|string|max:255',
-                    'file-projet' => 'sometimes|max:5000',
-                    'description' => 'bail|required',
-                    'budget' => 'bail|required',
-                    'departement' => 'bail|required'
+                $validator = Validator::make($values, $rules, [
+                    'offer_price.required' => 'Votre offre est obligatoire',
+                    'offer_price.integer' => 'Votre offre doit être un nombre',
+                    'offer_days.required' => 'Le nombre de jours est obligatoire',
+                    'offer_days.integer' => 'La durée doit être un nombre',
+                    'offer_message.required' => 'Un petit mot est obligatoire',
+                    'file.mimes' => 'Seul les fichiers suivants sont admis: pdf,xlx,csv,jpeg,png,jpg,doc,docx',
+                    'file.max' => 'La taille du fichier doit être de 4Mo maximum'
+
                 ]);
+                if ($validator->fails()) {
+                    return Redirect::back()
+                        ->withErrors($validator)
+                        ->withInput();
+                }
 
-                $projet->user_id = $user->id;
-                $projet->title = $request->title;
-                $projet->description = $request->description;
-                $projet->status = 'open';
-                $projet->departement_id = $request->departement;
+                $offer->offer_price = $request->offer_price;
+                $offer->offer_days = $request->offer_days;
+                $offer->offer_message = $request->offer_message;
 
-
-                if ($files = $request->file('file_projet')) {
-                    $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
+                if ($files = $request->file('filename')) {
+                    $filenamewithextension = $request->file('filename')->getClientOriginalName();
 
                     //get filename without extension
                     $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
 
                     //get file extension
-                    $extension = $request->file('file_projet')->getClientOriginalExtension();
+                    $extension = $request->file('filename')->getClientOriginalExtension();
+
+                    //filename to store
+                    //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
 
                     $filenametostore = $filename . '_' . time() . '.' . $extension;
 
+
                     //Upload File
-                    Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore);
+
+                    Storage::putFileAs('documents', $request->file('filename'), $filenametostore);
 
                     //Store $filenametostore in the database
-                    $projet->file_projet = $filenametostore;
+
                 }
-
-                $projet->budget_id = $request->budget;
-
-
-                if ($projet->save()) {
-                    DB::table('category_projet')->where('projet_id', $projet->id)->delete();
-                    $projet->categories()->attach($request->categories);
-                };
+                $offer->save();
+                Flashy::success('Votre offre a été modifié avec succès !');
+                return redirect()->back();
             }
-            Flashy::success('Votre projet a été modifié avec succès !');
-            return redirect()->route('projet.show', $projet);
         }
-
         return redirect()->back();
     }
 
