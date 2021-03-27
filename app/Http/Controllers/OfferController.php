@@ -274,7 +274,7 @@ class OfferController extends Controller
                 $offer->save();
 
                 Flashy::success('Votre offre a bien été modifiée');
-                return redirect()->route('home');
+                return redirect()->back();
             }
         }
     }
