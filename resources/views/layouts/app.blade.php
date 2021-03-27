@@ -74,13 +74,14 @@
                 @auth
                     @unless (auth()->user()->unreadNotifications->isEmpty())
                     <div class="dropdown">
-                        <button class="btn btn-success dropdown-toggle notif_messages" type="button" data-toggle="dropdown">
+                        <a href="{{ route('messagerie.index', Auth::user()) }}" class="btn btn-success notif_messages" type="button">
                             @if (auth()->user()->unreadNotifications->count() === 1)
                                 <i class="far fa-bell text-white"></i> 1 message reçu
                             @elseif (auth()->user()->unreadNotifications->count() > 0)
                                 <i class="far fa-bell text-white"></i> {{ auth()->user()->unreadNotifications->count()}} messages reçus
                             @endif
-                        </button>
+                        </a>
+
                 {{-- ---------- On liste les messages -------------- --}}
                     <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             @foreach (auth()->user()->unreadNotifications as $notification)
