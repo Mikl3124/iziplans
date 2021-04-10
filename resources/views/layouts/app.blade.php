@@ -189,6 +189,9 @@
         </nav>
 
         <main>
+            <div class="mx-5">
+                @include('flash-message')
+            </div>
             @yield('content')
         </main>
     </div>

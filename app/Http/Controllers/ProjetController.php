@@ -168,8 +168,8 @@ class ProjetController extends Controller
       // On envoie un email de confirmation à l'user
       $author = Auth::user();
 
-      Mail::to($author->email)
-        ->send(new ConfirmMessageToAuthor($projet, $author));
+      //Mail::to($author->email)
+      //->send(new ConfirmMessageToAuthor($projet, $author));
 
       //Mail à l'Admin
       Mail::to(env("MAIL_ADMIN"))
@@ -179,8 +179,8 @@ class ProjetController extends Controller
 
 
 
-      Flashy::success('Votre mission a été enregistrée avec succès, notre équipe va la valider dans peu de temps');
-      return redirect()->route('home');
+      //Flashy::success('Votre mission a été enregistrée avec succès, notre équipe va la valider dans peu de temps');
+      return redirect()->route('home')->with('success', "Votre projet a bien été envoyé, nos équipes vont le valider très prochainement");
     }
 
     return view('auth.register', compact('role', 'projet'));
