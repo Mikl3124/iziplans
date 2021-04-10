@@ -12,34 +12,34 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class MailConfirmMessageToAuthor implements ShouldQueue
 {
-   use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-   
-    protected $author;
-    protected $projet;
+  use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    // The maximum attempts of this job
+  protected $author;
+  protected $projet;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct($author, $projet)
-    {
-        $this->author = $author;
-        $this->projet = $projet;
-    }
+  // The maximum attempts of this job
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle()
-    {
-      $author = $this->author;
-      $projet = $this->projet;
-      
-      Mail::to($author->email)->queue(new ConfirmMessageToAuthor($projet, $author));
-    }
+  /**
+   * Create a new job instance.
+   *
+   * @return void
+   */
+  public function __construct($author, $projet)
+  {
+    $this->author = $author;
+    $this->projet = $projet;
+  }
+
+  /**
+   * Execute the job.
+   *
+   * @return void
+   */
+  public function handle()
+  {
+    $author = $this->author;
+    $projet = $this->projet;
+    dd($author);
+    Mail::to($author->email)->queue(new ConfirmMessageToAuthor($projet, $author));
+  }
 }

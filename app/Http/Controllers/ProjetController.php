@@ -159,25 +159,27 @@ class ProjetController extends Controller
       $departement = Departement::find($departement_id);
 
       // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
-
       $freelances_categories = User::where('alert_categories', 1)
         ->where('role', 'freelance')
         ->whereHas('categories', function ($query) use ($categories) {
           $query->whereIn('category_id', $categories);
         })->get();
+
+      // On envoie un email de confirmation à l'user
+      $author = Auth::user();
+
+      Mail::to($author->email)
+        ->send(new ConfirmMessageToAuthor($projet, $author));
+
       //Mail à l'Admin
       Mail::to(env("MAIL_ADMIN"))
         ->send(new NewProjetPostedForAdmin($user, $projet));
 
       // $this->dispatch(new MailNewProjetForAdmin($user, $projet));
 
-      // On envoie un email de confirmation à l'user
-      $author = Auth::user();
-      Mail::to($author->email)
-        ->send(new ConfirmMessageToAuthor($projet, $author));
-      // $this->dispatch(new MailConfirmMessageToAuthor($author, $projet));
 
-      Flashy::success('Votre mission a été enregistrée avec succès');
+
+      Flashy::success('Votre mission a été enregistrée avec succès, notre équipe va la valider dans peu de temps');
       return redirect()->route('home');
     }
 
