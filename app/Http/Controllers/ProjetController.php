@@ -168,8 +168,8 @@ class ProjetController extends Controller
       // On envoie un email de confirmation à l'user
       $author = Auth::user();
 
-      //Mail::to($author->email)
-      //->send(new ConfirmMessageToAuthor($projet, $author));
+      Mail::to($author->email)
+        ->send(new ConfirmMessageToAuthor($projet, $author));
 
       //Mail à l'Admin
       Mail::to(env("MAIL_ADMIN"))

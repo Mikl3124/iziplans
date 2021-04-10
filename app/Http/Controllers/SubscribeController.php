@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Stripe\Stripe;
 use App\Subscription;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -25,13 +26,12 @@ class SubscribeController extends Controller
 
     public function payment()
     {
-        if (Auth::user()->role === 'freelance'){
+        if (Auth::user()->role === 'freelance') {
             $user = Auth::user();
             return view('subscribe', [
                 'intent' => $user->createSetupIntent()
             ]);
         }
-
         return redirect()->route('home');
     }
     public function subscribe(Request $request)
@@ -42,10 +42,10 @@ class SubscribeController extends Controller
 
         request()->validate([
             'plan' => ['required', Rule::in([
-                                            'price_1HLnPWC1QIYXU5hhGMqIx1AZ',
-                                            'price_1HLnOwC1QIYXU5hh2r9IsgCS',
-                                            'price_1HLnPkC1QIYXU5hhQfpujV4V',
-                                            ])],
+                'price_1HLnPWC1QIYXU5hhGMqIx1AZ',
+                'price_1HLnOwC1QIYXU5hh2r9IsgCS',
+                'price_1HLnPkC1QIYXU5hhQfpujV4V',
+            ])],
         ]);
         $plan = request()->plan;
         $user->createOrGetStripeCustomer();
@@ -63,34 +63,31 @@ class SubscribeController extends Controller
             Session::keep('backUrl');
         }
         return ($url = Session::get('backUrl'))
-        ? Redirect::to($url)
-        : Redirect::route('home');
-
+            ? Redirect::to($url)
+            : Redirect::route('home');
     }
 
     public function cancel()
     {
         $user = Auth::user();
-        if ($user->subscription('abonnement')->cancel()){
-          Flashy::success('Votre abonnement a été suspendu avec succès');
-           Mail::to(env("MAIL_ADMIN"))
-              ->send(new DestroySubscription($user));
-          return redirect()->back();
+        if ($user->subscription('abonnement')->cancel()) {
+            Flashy::success('Votre abonnement a été suspendu avec succès');
+            Mail::to(env("MAIL_ADMIN"))
+                ->send(new DestroySubscription($user));
+            return redirect()->back();
         };
         Flashy::error('Une erreur est survenue, veuillez nous contacter');
         return redirect()->back();
-
     }
 
     public function resume()
     {
         $user = Auth::user();
-        if ($user->subscription('abonnement')->resume()){
-          Flashy::success('Félicitations! Votre abonnement est à nouveau actif !');
-          return redirect()->back();
+        if ($user->subscription('abonnement')->resume()) {
+            Flashy::success('Félicitations! Votre abonnement est à nouveau actif !');
+            return redirect()->back();
         };
         Flashy::error('Une erreur est survenue, veuillez nous contacter');
         return redirect()->back();
-
     }
 }
