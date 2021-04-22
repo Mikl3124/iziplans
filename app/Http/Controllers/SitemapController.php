@@ -10,9 +10,9 @@ class SitemapController extends Controller
   public function index(Request $r)
   {
 
-    $posts = Article::orderBy('id', 'desc')->where('post_status', 'Publish')->get();
+    $articles = Article::orderBy('id', 'desc')->get();
 
-    return response()->view('sitemap', compact('posts'))
+    return response()->view('sitemap', compact('articles'))
       ->header('Content-Type', 'text/xml');
   }
 }
