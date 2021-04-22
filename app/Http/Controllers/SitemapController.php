@@ -11,7 +11,6 @@ class SitemapController extends Controller
   {
 
     $articles = Article::orderBy('id', 'desc')->get();
-
     return response()->view('sitemap', compact('articles'))
       ->header('Content-Type', 'text/xml');
   }
