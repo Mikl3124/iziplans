@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', 'HomeController@list')->name('home');
+Route::get('sitemap.xml', 'SitemapController@index');
 
 //Register
 Auth::routes();
