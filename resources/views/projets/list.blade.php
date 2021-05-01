@@ -38,16 +38,14 @@
         <div class="text-center bg-primary py-4 mb-5">
             <h1 class="text-white">MES OFFRES</h1>
         </div>
-        <div class="container">
-            @foreach ($offres_freelance as $offer)
-            <a href="{{ route('offers.edit', $offer) }}">
-                <div class="card card-project-home mb-3">
-                    <div class="card-body ">
-                        <h2 class="list-project-title">{{ $offer->projet->title }}</h2>
-                    <div>
-                </div>
-            </a>
-            @endforeach
+        <div class="container"> 
+            <ul class="list-group">
+                @foreach ($offres_freelance as $offer)
+                 <a href="{{ route('offers.edit', $offer) }}">
+                    <li class="list-group-item">{{ $offer->projet->title }}</li>
+                </a>
+                @endforeach
+            </ul>                
         </div>
     @endif
 @endsection
