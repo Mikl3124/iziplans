@@ -42,7 +42,7 @@
             <ul class="list-group">
                 @foreach ($offres_freelance as $offer)
                  <a href="{{ route('offers.edit', $offer) }}">
-                    <li class="list-group-item">{{ $offer->projet->title }}</li>
+                    <li class="list-group-item mb-2">{{ $offer->projet->title }}</li>
                 </a>
                 @endforeach
             </ul>                
