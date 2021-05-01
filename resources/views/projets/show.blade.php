@@ -125,9 +125,6 @@
                                                 @endif
                                             </div>
 
-                                            <div class="card card-show mb-3">
-                                                <a href="{{ route('messagerie.show', ['projet' => $projet->id, 'topic' =>$topic]) }}" class="btn btn-primary">Contacter le client</a>
-                                            </div>
                                         </div>
                                     </div>
                                 {{-- ----- Si c'est un CLIENT ---- --}}
