@@ -41,14 +41,16 @@
         <div class="container"> 
             <ul class="list-group">
                 @foreach ($offres_freelance as $offer)
-                <div class="d-flex justify-content-between">
-                    <p>{{Carbon\Carbon::parse($offer->created_at)->diffForHumans()}}</p>
-                    <a href="{{ route('offers.edit', $offer) }}">
-                        <b><li class="list-group-item mb-2">{{ $offer->projet->title }}</li></b>
-                    </a>
-                    <p>{{ $offer->offer_days}} jours</p>
-                    <p>{{ $offer->offer_price}} €</p>
-                </div>
+                <li class="list-group-item mb-2">
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ route('offers.edit', $offer) }}">
+                            <b>{{ $offer->projet->title }}</b>
+                        </a>
+                        <p>{{ $offer->offer_days}} jours</p>
+                        <p>{{ $offer->offer_price}} €</p>
+                        <p>{{Carbon\Carbon::parse($offer->created_at)->diffForHumans()}}</p>
+                    </div>
+                </li>
                 
                 @endforeach
             </ul>                
