@@ -47,9 +47,9 @@
                                 <h5 class="card-title">{{ $offer->projet->title }}</h5>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p>{{ $offer->offer_days}} jours</p>
-                                <p>{{ $offer->offer_price}} €</p>
-                                <p>{{Carbon\Carbon::parse($offer->created_at)->diffForHumans()}}</p>
+                                <p class="card-text">{{ $offer->offer_days}} jours</p>
+                                <p class="card-text">{{ $offer->offer_price}} €</p>
+                                <p class="card-text">{{Carbon\Carbon::parse($offer->created_at)->diffForHumans()}}</p>
                             </div>
                         </div>
                     </div>
