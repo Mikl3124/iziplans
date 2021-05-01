@@ -102,7 +102,7 @@
                                         @endif
                                     </div>
                                     <div class="card card-show mb-3">
-                                        <a href="{{ route('messagerie.show', ['projet' => $projet->id, 'topic' =>$topic]) }}" class="btn btn-primary">Contacter le client</a>
+                                        <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary"><i class="fas fa-pen text-white"></i> Contacter le client</a>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                                             </div>
 
                                             <div class="card card-show mb-3">
-                                                <a href="{{ route('messagerie.show', ['projet' => $projet->id, 'topic' =>$topic]) }}" class="btn btn-primary">Contacter le client</a>
+                                                <a href="{{route('messagerie.show', ['projet' => $projet, 'topic' =>$topic])}}" class="btn btn-primary"><i class="fas fa-pen text-white"></i> Contacter le client</a>
                                             </div>
                                         </div>
                                     </div>
@@ -181,7 +181,7 @@
                             <button class="btn btn-success" data-toggle="modal" data-target="#modal">Faire une offre</button>
                         </div>
                         <div class="card card-show mb-3">
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal"> Contacter le client</a>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal"><i class="fas fa-pen text-white"></i> Contacter le client</a>
                         </div>
                     </div>
                 </div>
