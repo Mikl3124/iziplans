@@ -41,11 +41,20 @@ class ConversationController extends Controller
 
 
         $topic = Topic::find($topic);
-        dd($topic);
         $projet = Projet::find($projet);
-        if(auth()->user()->unreadNotifications){
+        if (auth()->user()->unreadNotifications) {
             auth()->user()->unreadNotifications->markAsRead();
         }
+
+        if($topic === null){
+            $topic = new Topic;
+            $topic->title = $projet->title;
+            $topic->from_id = Auth::user()->id;
+            $topic->to_id = $projet->user_id;
+            $topic->projet_id = $projet->id;
+
+            $topic->save();
+        };
 
         if($topic){
             $user = Auth::user();
