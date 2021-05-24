@@ -28,6 +28,9 @@
                 <div class="col-md-6 col-sm-12 mt-5 text-center">
                     <a class="btn btn-primary btn-lg text-center" href="{{ route('register_freelance') }}">Devenir Freelance</a>
                 </div>
+                <div class="col-md-6 col-sm-12 mt-5 text-center">
+                    <a class="btn btn-primary btn-lg " href="{{ route('register_client') }}">Déposer un projet</a>
+                </div>
             </div>
         @endguest
         @auth
