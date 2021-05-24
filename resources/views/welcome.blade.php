@@ -30,6 +30,9 @@
                 </div>
                 <div class="col-md-6 col-sm-12 mt-5 text-center">
                     <a class="btn btn-primary btn-lg " href="{{ route('register_client') }}">Déposer un projet</a>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                        Launch demo modal
+                    </button>
                 </div>
             </div>
         @endguest
@@ -204,8 +207,150 @@
         </div>
     </div>
 </div>
-{{-- ----------- Comment ça marche ? ---------- --}}
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+
+      </div>
+      
+      <div class="modal-body">
+	  
+        <div class="modal-split">
+	<form id="regForm" action="{{ route('projet.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+    <!-- ---------------- Titre de la mission ------------------ -->
+      <div class="form-group select2-selection">
+        <label for="title-projet">Titre de votre mission </label>
+      <input type="text" id="title-projet"class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" name="title">
+        @error('title')
+          <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+      </div>
+		</div>
+		
+		<div class="modal-split">
+		2
+		</div>
+		
+		<div class="modal-split">
+		3
+		</div>	
+
+      </div>
+
+      <div class="modal-footer">
+ <!--Nothing Goes Here but is needed! -->
+      </div>
+    </div>
+  </div>
 </div>
 
+  <div class="alert alert-info">
+   EX: (These divs go in the modal-body) <br><code>&lt;div class=&quot;modal-split&quot;&gt; Page 1 content goes here &lt;/div&gt;<br>&lt;div class=&quot;modal-split&quot;&gt; Page 2 content goes here &lt;/div&gt;<br>&lt;div class=&quot;modal-split&quot;&gt; and so on  &lt;/div&gt;</code>
+  </div>
+
+
+ <script>
+  $(document).ready(function() {
+      $('.js-select').select2();
+  });
+  </script>
+
+  <script>
+      $(document).ready(function() {
+  prep_modal();
+});
+
+function prep_modal()
+{
+  $(".modal").each(function() {
+
+  var element = this;
+	var pages = $(this).find('.modal-split');
+
+  if (pages.length != 0)
+  {
+    	pages.hide();
+    	pages.eq(0).show();
+
+    	var b_button = document.createElement("button");
+                b_button.setAttribute("type","button");
+          			b_button.setAttribute("class","btn btn-primary");
+          			b_button.setAttribute("style","display: none;");
+          			b_button.innerHTML = "Back";
+
+    	var n_button = document.createElement("button");
+                n_button.setAttribute("type","button");
+          			n_button.setAttribute("class","btn btn-primary");
+          			n_button.innerHTML = "Next";
+
+    	$(this).find('.modal-footer').append(b_button).append(n_button);
+
+
+    	var page_track = 0;
+
+    	$(n_button).click(function() {
+        
+        this.blur();
+
+    		if(page_track == 0)
+    		{
+    			$(b_button).show();
+    		}
+
+    		if(page_track == pages.length-2)
+    		{
+    			$(n_button).text("Submit");
+    		}
+
+        if(page_track == pages.length-1)
+        {
+          $(element).find("form").submit();
+        }
+
+    		if(page_track < pages.length-1)
+    		{
+    			page_track++;
+
+    			pages.hide();
+    			pages.eq(page_track).show();
+    		}
+
+
+    	});
+
+    	$(b_button).click(function() {
+
+    		if(page_track == 1)
+    		{
+    			$(b_button).hide();
+    		}
+
+    		if(page_track == pages.length-1)
+    		{
+    			$(n_button).text("Next");
+    		}
+
+    		if(page_track > 0)
+    		{
+    			page_track--;
+
+    			pages.hide();
+    			pages.eq(page_track).show();
+    		}
+
+
+    	});
+
+  }
+
+  });
+}
+  </script>
 @endsection
 
