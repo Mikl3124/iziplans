@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Budget;
 use App\Model\Projet;
-use App\model\Category;
+use App\Model\Category;
 use App\Model\Departement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
