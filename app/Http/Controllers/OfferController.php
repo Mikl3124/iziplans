@@ -53,7 +53,6 @@ class OfferController extends Controller
         $topic = Topic::where('projet_id', $projet->id)
             ->where('from_id', Auth::user()->id)
             ->first();
-        dd($user);
         Mail::to($user->email)
             ->send(new NewMessage($projet, $user));
         // $this->dispatch(new MailNewMessage($message_to, $projet));

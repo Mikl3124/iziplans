@@ -40,5 +40,7 @@ class Newprojet extends Mailable
          return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
             ->subject("Bonjour {$user->firstname}, un nouveau projet pour vous sur iziplans")
             ->view('emails.new-projet');
+
+            
     }
 }
