@@ -14,7 +14,7 @@
     "butschster/meta-tags": "^1.8",
     "cyrildewit/eloquent-viewable": "^5.2",
     "fideloper/proxy": "^4.0",
-    "guzzlehttp/guzzle": "~6.0",
+    "guzzlehttp/guzzle": "^7.3",
     "intervention/image": "^2.5",
     "laravel/cashier": "^10.5",
     "laravel/framework": "^6.2",
