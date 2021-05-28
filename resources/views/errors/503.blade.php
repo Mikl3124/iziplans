@@ -6,7 +6,11 @@
         text-align: center; 
         padding: 150px; }
       h1 { 
-        font-size: 50px; }
+        font-size: 50px; 
+        color: #fff; }
+      h2 {
+        color: #fff;
+      }
       body { 
         font: 20px Helvetica, sans-serif; color: #fff; 
       }
