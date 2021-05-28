@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Middleware\CheckSubscribe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Middleware\CheckSubscribe;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,3 +123,9 @@ Route::get('/blog/{slug}', 'BlogController@show')->name('article.show');
 //Divers
 Route::get('/mentions-legales', 'HomeController@cgv')->name('cgv');
 Route::get('/politique-de-confidentialite', 'HomeController@politique')->name('politique');
+
+Route::get('send_test_email', function () {
+  Mail::raw('Sending emails with Mailgun and Laravel is easy!', function ($message) {
+    $message->to('mickael.delpech@gmail.com');
+  });
+});
