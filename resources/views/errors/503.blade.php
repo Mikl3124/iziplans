@@ -2,6 +2,7 @@
 <title>Site en maintenance</title>
 <style>
       body { 
+        background-color: #0072ff; 
         text-align: center; 
         padding: 150px; }
       h1 { 
@@ -20,7 +21,6 @@
         -moz-animation:spin 4s linear infinite;
         animation:spin 4s linear infinite;
         color: #fff;
-        background-color: #fff;
       }
       @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
       @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
