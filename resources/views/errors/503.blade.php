@@ -2,7 +2,6 @@
 <title>Site en maintenance</title>
 <style>
       body { 
-        background-color: #0072ff; 
         text-align: center; 
         padding: 150px; }
       h1 { 
@@ -30,6 +29,6 @@
 
   <body>
     <img id="img360" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/gear.png">
-    <h1>Désolé, le site est en maintenance...</h1>
+    <h1>Le site est actuellement en maintenance...</h1>
     <h2>Nous serons de retour très prochainement</h2>
   </body>
