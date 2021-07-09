@@ -237,7 +237,7 @@
             <form action="/subscribe" method="POST" id="payment-form">
                 @csrf
                 <div>
-                    <input type="hidden" name="plan" value="price_1HLnPWC1QIYXU5hhGMqIx1AZ">
+                    <input type="hidden" name="plan" value="price_1JBH7JC1QIYXU5hhuk6QAils">
                         <!-- Stripe Elements Placeholder -->
                         <div id="card-element" class="form-control my-2"></div>
                         <div id="card-errors"  class="text-danger" role="alert"></div>
