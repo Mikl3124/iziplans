@@ -138,7 +138,7 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group col-sm-12 col-md-12">
+                                {{-- <div class="form-group col-sm-12 col-md-12">
                                     <label for="email">Adresse de messagerie<span class="text-danger"> *</span></label>
                                     <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{old('lastname', $user->email)}}">
                                     @error('email')
@@ -146,7 +146,7 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="form-group col-sm-12 col-md-12">
                                     <label for="phone">Numéro de téléphone</label>
                                     <input type="number" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{old('phone', $user->phone)}}"">
@@ -156,7 +156,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                
+
                             </div>
                             <div class="text-right">
                                 <a href="{{ route('profil', Auth::user()) }}" class="btn btn-secondary mt-3"><i class="fas fa-times text-light"></i> Annuler</a>

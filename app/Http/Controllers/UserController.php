@@ -78,7 +78,7 @@ class UserController extends Controller
       if ($user->id === Auth::user()->id && Auth::user()->role === 'freelance') {
         if (Auth::user()->stripe_id) {
           $invoices = $user->invoices();
-          if ($user->asStripeCustomer()["subscriptions"]->data->isEmpty()) {
+          if (empty($user->asStripeCustomer()["subscriptions"]->data)) {
             return redirect()->route('subscribe');
           };
           $endOfPeriod = $user->asStripeCustomer()["subscriptions"]->data[0]["current_period_end"];
