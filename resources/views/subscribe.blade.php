@@ -44,7 +44,7 @@
                                     <div class="generic_price_tag clearfix">
                                         <span class="price mb-2">
                                             <span class="sign">€</span>
-                                            <span class="currency">24</span>
+                                            <span class="currency">29</span>
                                             <span class="cent">.90</span>
                                             <span class="month">/mois</span>
                                         </span>
@@ -228,7 +228,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">MENSUEL à 24.90€ / mois</h5>
+            <h5 class="modal-title">MENSUEL à 29.90€ / mois</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

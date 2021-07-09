@@ -42,7 +42,7 @@ class SubscribeController extends Controller
 
         request()->validate([
             'plan' => ['required', Rule::in([
-                'price_1HLnPWC1QIYXU5hhGMqIx1AZ',
+                'price_1JBH7JC1QIYXU5hhuk6QAils',
                 'price_1HLnOwC1QIYXU5hh2r9IsgCS',
                 'price_1HLnPkC1QIYXU5hhQfpujV4V',
             ])],
