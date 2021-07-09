@@ -78,7 +78,9 @@ class UserController extends Controller
       if ($user->id === Auth::user()->id && Auth::user()->role === 'freelance') {
         if (Auth::user()->stripe_id) {
           $invoices = $user->invoices();
-          dd($user->asStripeCustomer()["subscriptions"]);
+          if ($user->asStripeCustomer()["subscriptions"]->data[0] === null) {
+            return redirect()->route('subscribe');
+          };
           $endOfPeriod = $user->asStripeCustomer()["subscriptions"]->data[0]["current_period_end"];
           $originalDateEnd = Auth::user()->subscription('abonnement')->ends_at;
           $date_end = Carbon::parse($originalDateEnd)->isoFormat('LL');
