@@ -80,6 +80,7 @@ class UserController extends Controller
           $invoices = $user->invoices();
           $endOfPeriod = $user->asStripeCustomer()["subscriptions"]->data[0]["current_period_end"];
           $originalDateEnd = Auth::user()->subscription('abonnement')->ends_at;
+          dd($endOfPeriod);
           $date_end = Carbon::parse($originalDateEnd)->isoFormat('LL');
           $nextPayment = Carbon::parse($endOfPeriod)->isoFormat('LL');
           $subscription = Auth::user()->subscriptions()->first();
