@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid bg-primary">
     <div class="container py-4">
-        <h1 class="text-left pt-5 text-white">Conditions Générales de vente</h1>
+        <h1 class="text-left pt-5 text-white">Politique de confidentialité</h1>
     </div>
 </div>
     <div class="container">
@@ -35,7 +35,7 @@
 <p>En vertu de l&#8217;article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l&#8217;économie numérique, il est précisé aux utilisateurs du site internet&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;l&#8217;identité des différents intervenants dans le cadre de sa réalisation et de son suivi:</p>
 
 
-<p><strong>Propriétaire</strong>&nbsp;: Delpech Mickael<br /><strong>Responsable publication</strong>&nbsp;: Delpech Mickael – bonjour@iziplans.com<br />Le responsable publication est une personne physique ou une personne morale.<br /><strong>Webmaster</strong>&nbsp;: Delpech Mickael – bonjour@iziplans.com<br /><strong>Hébergeur</strong>&nbsp;: ovh – 2 rue Kellermann 59100 Roubaix 1007<br /><strong>Délégué à la protection des données</strong>&nbsp;: Delpech Mickael – bonjour@iziplans.com</p>
+<p><strong>Propriétaire</strong>&nbsp;: Archimbault Leo<br /><strong>Responsable publication</strong>&nbsp;: Archimbault Leo – bonjour@iziplans.com<br />Le responsable publication est une personne physique ou une personne morale.<br /><strong>Webmaster</strong>&nbsp;: Archimbault Leo – bonjour@iziplans.com<br /><strong>Hébergeur</strong>&nbsp;: ovh – 2 rue Kellermann 59100 Roubaix 1007<br /><strong>Délégué à la protection des données</strong>&nbsp;: Archimbault Leo – bonjour@iziplans.com</p>
 
 
 <p>Les mentions légales sont issues du modèle proposé par le&nbsp;<a href="https://fr.orson.io/1371/generateur-mentions-legales">générateur de mentions légales RGPD d&#8217;Orson.io</a></p>
@@ -104,7 +104,7 @@
 <h3>7.1 Responsables de la collecte des données personnelles</h3>
 
 
-<p>Pour les Données Personnelles collectées dans le cadre de la création du compte personnel de l’Utilisateur et de sa navigation sur le Site, le responsable du traitement des Données Personnelles est : Delpech Mickael.&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>est représenté par Mickael Delpech, son représentant légal</p>
+<p>Pour les Données Personnelles collectées dans le cadre de la création du compte personnel de l’Utilisateur et de sa navigation sur le Site, le responsable du traitement des Données Personnelles est : Archimbault Leo.&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>est représenté par Archimbault Leo, son représentant légal</p>
 
 
 <p>En tant que responsable du traitement des données qu’il collecte,&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;s’engage à respecter le cadre des dispositions légales en vigueur. Il lui appartient notamment au Client d’établir les finalités de ses traitements de données, de fournir à ses prospects et clients, à partir de la collecte de leurs consentements, une information complète sur le traitement de leurs données personnelles et de maintenir un registre des traitements conforme à la réalité. Chaque fois que&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;traite des Données Personnelles,&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>prend toutes les mesures raisonnables pour s’assurer de l’exactitude et de la pertinence des Données Personnelles au regard des finalités pour lesquelles&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;les traite.</p>
@@ -147,7 +147,7 @@
 <p>Dès que&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;a connaissance du décès d’un Utilisateur et à défaut d’instructions de sa part,&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;s’engage à détruire ses données, sauf si leur conservation s’avère nécessaire à des fins probatoires ou pour répondre à une obligation légale.</p>
 
 
-<p>Si l’Utilisateur souhaite savoir comment&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;utilise ses Données Personnelles, demander à les rectifier ou s’oppose à leur traitement, l’Utilisateur peut contacter&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;par écrit à l’adresse suivante :&nbsp; Delpech Mickael – DPO, Delpech Mickael&nbsp;<br />Le petit Beaufort 24400 Sourzac. &nbsp;</p>
+<p>Si l’Utilisateur souhaite savoir comment&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;utilise ses Données Personnelles, demander à les rectifier ou s’oppose à leur traitement, l’Utilisateur peut contacter&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;par écrit à l’adresse suivante :&nbsp; Archimbault Leo – DPO, Archimbault Leo&nbsp;<br />Le petit Beaufort 24400 Sourzac. &nbsp;</p>
 
 
 <p>Dans ce cas, l’Utilisateur doit indiquer les Données Personnelles qu’il souhaiterait que&nbsp;<a href="https://iziplans.com/">https://iziplans.com</a>&nbsp;corrige, mette à jour ou supprime, en s’identifiant précisément avec une copie d’une pièce d’identité (carte d’identité ou passeport).</p>
