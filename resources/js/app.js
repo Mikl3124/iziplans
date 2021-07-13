@@ -21,6 +21,15 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
+// Définition d'un nouveau composant appelé `button-counter`
+Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  template: '<button v-on:click="count++">Vous m\'avez cliqué {{ count }} fois.</button>'
+})
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -31,3 +40,6 @@ window.Popper = require('popper.js').default;
 window.$ = window.jQuery = require('jquery');
 require('bootstrap');
 
+const app = new Vue({
+  el: '#app',
+})

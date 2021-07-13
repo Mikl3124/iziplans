@@ -28,7 +28,7 @@ class HomeController extends Controller
         $categories = Category::all();
         $departements = Departement::all();
         $budgets = Budget::all();
-        
+
         $projets_first = Projet::where("status", "=", "open")->orwhere("status", "=", "closed")->orderBy('created_at', 'desc')->take(3)->get();
         $projets_seconds = Projet::where("status", "=", "open")->orwhere("status", "=", "closed")->orderBy('created_at', 'desc')->skip(3)->take(3)->get();
 
@@ -43,5 +43,10 @@ class HomeController extends Controller
     public function politique()
     {
         return view('politique-de-confidentialite');
+    }
+
+    public function vue()
+    {
+        return view('vue');
     }
 }

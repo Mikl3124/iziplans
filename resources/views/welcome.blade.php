@@ -245,7 +245,7 @@ function prep_modal()
     	var page_track = 0;
 
     	$(n_button).click(function() {
-        
+
         this.blur();
 
     		if(page_track == 0)
