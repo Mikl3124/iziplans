@@ -65,7 +65,7 @@
     {{-- ----------- Dernières Missions Proposées ---------- --}}
 
     <div class="text-center">
-        <h1 class="text-center mt-5 mb-5 last_missions">Les dernières missions proposées</h1>
+        <h1 class="text-center mt-5 mb-5 last_missions">Les dernières missions proposées.</h1>
     </div>
     {{-- ----------- 3 Derniers Projets ---------- --}}
         @foreach ($projets_first as $projet)
