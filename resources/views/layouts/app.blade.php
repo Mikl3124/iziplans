@@ -67,13 +67,11 @@
     src="https://www.facebook.com/tr?id=174986373076599&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Facebook Pixel Code -->
-
-
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container"> , 
+            <div class="container"> ,
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" id="logo-iziplans" alt="iziplans">
             </a>
