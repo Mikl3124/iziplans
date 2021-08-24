@@ -9,15 +9,10 @@ use App\Model\Budget;
 use App\Model\Projet;
 use App\Mail\Newprojet;
 use App\Model\Category;
-use App\Model\Competence;
 use App\Model\Departement;
 use Illuminate\Http\Request;
-use App\Mail\NewProjetPosted;
-use App\Model\Standbyproject;
 use MercurySeries\Flashy\Flashy;
-use App\Mail\NewprojetDepartement;
 use Illuminate\Support\Facades\DB;
-use App\Jobs\MailNewProjetForAdmin;
 use App\Mail\ConfirmMessageToAuthor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -25,13 +20,7 @@ use App\Mail\NewProjetPostedForAdmin;
 use App\Mail\ConfirmValidationToAuthor;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use App\Jobs\MailConfirmMessageToAuthor;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Validator;
-use App\Jobs\MailConfirmValidationToAuthor;
-use App\Jobs\MailMatchCompetenceToFreelance;
-use App\Jobs\MailMatchDepartementToFreelance;
+
 
 class ProjetController extends Controller
 
@@ -53,6 +42,22 @@ class ProjetController extends Controller
     $projets = Projet::where("status", "=", "open")->orwhere("status", "=", "closed")->orderBy('created_at', 'desc')->paginate(6);
 
     return view('projets.index', compact('projets'));
+  }
+
+  public function index2()
+  {
+
+    $projects = Projet::where("status", "=", "open")->orwhere("status", "=", "closed")->orderBy('created_at', 'desc')->paginate(3);
+    $categories = Category::all();
+    $departements = Departement::all();
+    $budgets = Budget::all();
+    return response()->json($projects);
+    return response()->json([
+      'projects'=> $projects,
+      'categories'=> $categories,
+      'departements' => $departements,
+      'budgets' => $budgets
+    ], 200);
   }
 
   public function myprojets()

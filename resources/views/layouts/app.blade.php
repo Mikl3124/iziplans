@@ -226,7 +226,7 @@
               </a>
           </div>
           <div class="col-md-4 col-sm-12 bg-dark my-auto text-center">
-              <a class="text-white" href="{{ route('blog.index') }}">
+              <a class="text-white" href="https://blog.iziplans.com/">
                     LE BLOG <i class="ml-1 fas fa-rss text-white "></i>
               </a>
           </div>

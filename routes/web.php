@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjetController;
 use Illuminate\Http\Request;
 
 use App\Http\Middleware\CheckSubscribe;
@@ -124,3 +125,6 @@ Route::get('/blog/{slug}', 'BlogController@show')->name('article.show');
 Route::get('/mentions-legales', 'HomeController@cgv')->name('cgv');
 Route::get('/politique-de-confidentialite', 'HomeController@politique')->name('politique');
 Route::get('/vue', 'HomeController@vue')->name('vue');
+
+//Vue
+Route::get('/projectsList', 'ProjetController@index2');

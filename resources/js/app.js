@@ -7,39 +7,30 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router'
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+Vue.use(VueRouter)
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component('pagination', require('laravel-vue-pagination'));
+Vue.component('add-project', require('./components/AddProjectComponent.vue').default);
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+import Home from './components/HomeComponent.vue';
+import Project from './components/ProjectComponent.vue';
 
-// Définition d'un nouveau composant appelé `button-counter`
-Vue.component('button-counter', {
-  data: function () {
-    return {
-      count: 0
-    }
+const routes = [
+  { path: '/home',
+    component: Home
   },
-  template: '<button v-on:click="count++">Vous m\'avez cliqué {{ count }} fois.</button>'
-})
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+  { path: '/missions',
+    component: Project
+  }
+]
 
-window.Popper = require('popper.js').default;
-window.$ = window.jQuery = require('jquery');
-require('bootstrap');
+const router = new VueRouter({
+  routes // short for `routes: routes`
+})
 
 const app = new Vue({
   el: '#app',
+  router: router
 })
