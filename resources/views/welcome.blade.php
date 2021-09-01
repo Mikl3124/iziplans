@@ -6,81 +6,123 @@
 <div class="banner" style="background-image:url(https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-banner.jpg)">
     <div class="container">
         <div class="display-4 text-center text-white">VOS PLANS FACILEMENT</div>
-        <blockquote class="blockquote text-center">
-            {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
+        <h3 class="text-center mb-5"><i class="text-white">"Trouvez un prestataire pour tous vos projets"</i></h3>
+            <!-- <blockquote class="blockquote text-center">
+                {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
+                @guest
+                    <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
+                @endguest
+                @auth
+                {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
+                    @if (Auth::user()->role === 'client')
+                    {{-- ----------- L'utilisateur est client ---------- --}}
+                        <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
+                    @elseif (Auth::user()->role === 'freelance')
+                        <p class="mb-0">Trouvez la mission qui vous correspond</p>
+                    @endif
+
+                @endauth
+            </blockquote>
             @guest
-                <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
+            {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 mt-5 text-center">
+                        <a class="btn btn-primary btn-lg text-center" href="{{ route('register_freelance') }}">Devenir Freelance</a>
+                    </div>
+                    <div class="col-md-6 col-sm-12 mt-5 text-center">
+                        <a class="btn btn-primary btn-lg " href="{{ route('register_client') }}">Déposer un projet</a>
+                    </div>
+                </div>
             @endguest
             @auth
-            {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
-                @if (Auth::user()->role === 'client')
+                <div class="row">
+            {{-- ----------- L'utilisateur est enregistré ---------- --}}
+                @if(Auth::user()->role === 'client')
                 {{-- ----------- L'utilisateur est client ---------- --}}
-                    <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
-                @elseif (Auth::user()->role === 'freelance')
-                    <p class="mb-0">Trouvez la mission qui vous correspond</p>
+                        <div class="col-md-6 col-sm-12 mt-5 text-center">
+                            <a class="btn btn-primary btn-lg text-center" href="{{route('projet.list')}}"></i> Gérer mes projets</a>
+                        </div>
+                        <div class="col-md-6 col-sm-12 mt-5 text-center">
+                            <a class="btn btn-success btn-lg " href="{{route('projet.create')}}"></i> Publier un projet</a>
+                        </div>
+
+                @elseif(Auth::user()->role === 'freelance')
+                {{-- ----------- L'utilisateur est freelance ---------- --}}
+                        <div class="col-md-6 col-sm-12 mt-5 text-center">
+                            <a class="btn btn-primary btn-lg text-center" href="{{route('projet.list')}}"></i> Gérer mes missions</a>
+                        </div>
+                        <div class="col-md-6 col-sm-12 mt-5 text-center">
+                            <a class="btn btn-success btn-lg " href="{{route('projet.index')}}"></i> Voir toutes les missions</a>
+                        </div>
                 @endif
-
-            @endauth
-        </blockquote>
-        @guest
-        {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
-            <div class="row">
-                <div class="col-md-6 col-sm-12 mt-5 text-center">
-                    <a class="btn btn-primary btn-lg text-center" href="{{ route('register_freelance') }}">Devenir Freelance</a>
-                </div>
-                <div class="col-md-6 col-sm-12 mt-5 text-center">
-                    <a class="btn btn-primary btn-lg " href="{{ route('register_client') }}">Déposer un projet</a>
-                </div>
             </div>
-        @endguest
-        @auth
-            <div class="row">
-        {{-- ----------- L'utilisateur est enregistré ---------- --}}
-            @if(Auth::user()->role === 'client')
-            {{-- ----------- L'utilisateur est client ---------- --}}
-                    <div class="col-md-6 col-sm-12 mt-5 text-center">
-                        <a class="btn btn-primary btn-lg text-center" href="{{route('projet.list')}}"></i> Gérer mes projets</a>
-                    </div>
-                    <div class="col-md-6 col-sm-12 mt-5 text-center">
-                        <a class="btn btn-success btn-lg " href="{{route('projet.create')}}"></i> Publier un projet</a>
-                    </div>
-
-            @elseif(Auth::user()->role === 'freelance')
-            {{-- ----------- L'utilisateur est freelance ---------- --}}
-                    <div class="col-md-6 col-sm-12 mt-5 text-center">
-                        <a class="btn btn-primary btn-lg text-center" href="{{route('projet.list')}}"></i> Gérer mes missions</a>
-                    </div>
-                    <div class="col-md-6 col-sm-12 mt-5 text-center">
-                        <a class="btn btn-success btn-lg " href="{{route('projet.index')}}"></i> Voir toutes les missions</a>
-                    </div>
-            @endif
-            </div>
-        @endauth
+        @endauth -->
+        <p class="text-white">Quel est votre besoin ?</p>
+       
+        <form class="form-inline">
+            <input class="form-control mr-sm-2 col-lg-6" id="exampleInputEmail1" type="search" placeholder="Ex: dessinateur, projeteur, architecte" aria-label="Search">
+            <a class="btn btn-primary my-2 my-sm-0" href="{{ route('register_client') }}">C'est parti !</a>
+        </form>
     </div>
 </div>
 
 {{-- ----------- Banner ---------- --}}
 <div class="container">
-  <div class="row mt-3">
-    <div class="col-md-4 col-sm-12 text-center">
-      <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
-      <div class="card-body">
-        <p class="card-text">Vous rédigez et publiez gratuitement votre projet sur iziplans</p>
-      </div>
+        {{-- ----------- Comment ça marche ? ---------- --}}
+    <div class="text-center mt-5">
+        <h2 class="text-left mb-5">Vous cherchez un prestataire ?<br>C’est simple, rapide et gratuit</h2>
+        <div class="row d-flex justify-content-around">
+            <div class="col-lg-3 col-sm-6">
+                <div >
+                    <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/paper-plane-1.png" class="card-img-iziplans" alt="demande de mission">
+                    <div class="card-body">
+                        <p class="card-text">Postez votre demande de mission gratuitement, pour obtenir vos offres</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div >
+                    <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/discuss-issue-1.png" class="card-img-iziplans" alt="propositions de devis">
+                    <div class="card-body">
+                        <p class="card-text">Recevez en moins de 24h, des propositions de prestataires qualifiés</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div >
+                    <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/choice-1.png" class="card-img-iziplans" alt="consultez les profils">
+                    <div class="card-body">
+                        <p class="card-text">Consultez librement les profils des prestataires et les avis pour faire votre choix</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div >
+                    <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/team-1.png" class="card-img-iziplans" alt="echangez discutez">
+                    <div class="card-body">
+                        <p class="card-text">Echangez, discutez et négociez sans intermédiaire, avec les prestataires de votre choix</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4 col-sm-12 text-center">
-      <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
-      <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
+</div>
+     <div class="text-center mt-3 bg-secondary">
+        <div class="container py-5">
+            <div class="row d-flex justify-content-around">
+                <div class="col-lg-6 col-sm-6">
+                    <h1 class="text-center text-white"><i class="text-white fas fa-question"></i></h1>
+                    <h3 class="text-center mb-3 text-white">iziplans c'est quoi ?</h3>
+                    <p class="text-left text-white">Iziplans est un outil en ligne vous permettant gratuitement d’être mis en relation, sans engagement, avec des prestataires de différents secteurs.<br>La plateforme s’adresse aussi bien aux particuliers qu’aux entreprises.</p>
+                <a class="btn btn-primary" href="">Comment ça marche ?</a>  
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <iframe width="500" height="281" src="https://www.youtube.com/embed/ntFDyOZd__I" title="iziplans" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4 col-sm-12 text-center">
-      <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
-      <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-  </div>
+<div class="container">
 
     {{-- ----------- Dernières Missions Proposées ---------- --}}
 
@@ -186,44 +228,6 @@
         <div class="text-center">
           <a class="btn btn-primary btn-lg mt-3" href="{{ route('projet.index') }}">Voir toutes les missions</a>
         </div>
-    {{-- ----------- Comment ça marche ? ---------- --}}
-<div class="text-center mt-5">
-    <h1 class="text-center mb-5">Comment ça marche?</h1>
-    <div class="row d-flex justify-content-around">
-        <div class="col-lg-3 col-sm-6">
-            <div >
-                <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/paper-plane-1.png" class="card-img-iziplans" alt="demande de mission">
-                <div class="card-body">
-                    <p class="card-text">Postez votre demande de mission gratuitement, pour obtenir vos offres</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <div >
-                <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/discuss-issue-1.png" class="card-img-iziplans" alt="propositions de devis">
-                <div class="card-body">
-                    <p class="card-text">Recevez en moins de 24h, des propositions de prestataires qualifiés</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <div >
-                <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/choice-1.png" class="card-img-iziplans" alt="consultez les profils">
-                <div class="card-body">
-                    <p class="card-text">Consultez librement les profils des prestataires et les avis pour faire votre choix</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <div >
-                <img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/team-1.png" class="card-img-iziplans" alt="echangez discutez">
-                <div class="card-body">
-                    <p class="card-text">Echangez, discutez et négociez sans intermédiaire, avec les prestataires de votre choix</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
   $(document).ready(function() {
