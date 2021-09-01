@@ -5,7 +5,7 @@
    {{-- ----------- Banner ---------- --}}
 <div class="banner" style="background-image:url(https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-banner.jpg)">
     <div class="container">
-        <div class="display-4 text-center text-white">VOS PLANS FACILEMENT</div>
+        <div class="display-4 text-center text-white">VOS PLANS FACILEMENT PREPROD</div>
         <blockquote class="blockquote text-center">
             {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
             @guest
@@ -61,6 +61,26 @@
 
 {{-- ----------- Banner ---------- --}}
 <div class="container">
+  <div class="row mt-3">
+    <div class="col-md-4 col-sm-12 text-center">
+      <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12 text-center">
+      <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12 text-center">
+      <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+  </div>
 
     {{-- ----------- Dernières Missions Proposées ---------- --}}
 
