@@ -33,8 +33,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146702848-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -42,6 +40,9 @@
 
       gtag('config', 'UA-146702848-2');
     </script>
+
+    <!-- empecher l'indexation des moteurs de recherche -->
+    <meta name="robots" content="noindex">
 
 </head>
 <body>

@@ -61,11 +61,31 @@
 
 {{-- ----------- Banner ---------- --}}
 <div class="container">
+  <div class="row mt-3">
+    <div class="col-md-4 col-sm-12 text-center">
+      <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text">Vous rédigez et publiez gratuitement votre projet sur iziplans</p>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12 text-center">
+      <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12 text-center">
+      <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+  </div>
 
     {{-- ----------- Dernières Missions Proposées ---------- --}}
 
     <div class="text-center">
-        <h1 class="text-center mt-5 mb-5 last_missions">Les dernières missions proposées.</h1>
+        <h1 class="text-center mt-5 mb-5 last_missions">Les dernières missions proposées</h1>
     </div>
     {{-- ----------- 3 Derniers Projets ---------- --}}
         @foreach ($projets_first as $projet)

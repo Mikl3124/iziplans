@@ -42,7 +42,8 @@ class BlogController extends Controller
       $articles = DB::table('articles')
                 ->latest()
                 ->paginate(5);
-      return view('blog.index', compact('articles'));
+      return redirect()->to('https://blog.iziplans.com');
+      //return view('blog.index', compact('articles'));
     }
     /**
      * Show the form for creating a new resource.
