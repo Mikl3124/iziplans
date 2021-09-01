@@ -5,7 +5,7 @@
    {{-- ----------- Banner ---------- --}}
 <div class="banner" style="background-image:url(https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-banner.jpg)">
     <div class="container">
-        <div class="display-4 text-center text-white">VOS PLANS FACILEMENT PREPROD</div>
+        <div class="display-4 text-center text-white">VOS PLANS FACILEMENT</div>
         <blockquote class="blockquote text-center">
             {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
             @guest
@@ -85,7 +85,7 @@
     {{-- ----------- Dernières Missions Proposées ---------- --}}
 
     <div class="text-center">
-        <h1 class="text-center mt-5 mb-5 last_missions">Les dernières missions proposées.</h1>
+        <h1 class="text-center mt-5 mb-5 last_missions">Les dernières missions proposées</h1>
     </div>
     {{-- ----------- 3 Derniers Projets ---------- --}}
         @foreach ($projets_first as $projet)

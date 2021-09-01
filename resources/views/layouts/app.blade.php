@@ -36,8 +36,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146702848-2"></script>
+
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -69,7 +68,9 @@
     <!-- End Facebook Pixel Code -->
 </head>
 <body>
-    <div id="app">
+  <div class="alert alert-danger" role="alert">
+    Attention site de pré-production
+  </div>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container"> ,
             <a class="navbar-brand" href="{{ url('/') }}">
