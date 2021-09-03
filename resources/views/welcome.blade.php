@@ -112,12 +112,12 @@
             <div class="row d-flex justify-content-around">
                 <div class="col-lg-6 col-sm-6">
                     <h1 class="text-center text-white"><i class="text-white fas fa-question"></i></h1>
-                    <h3 class="text-center mb-3 text-white">iziplans c'est quoi ?</h3>
+                    <h3 class="text-center mb-3 text-white">iziplans c'est quoi ?</h3>
                     <p class="text-left text-white">Iziplans est un outil en ligne vous permettant gratuitement d’être mis en relation, sans engagement, avec des prestataires de différents secteurs.<br>La plateforme s’adresse aussi bien aux particuliers qu’aux entreprises.</p>
-                <a class="btn btn-primary" href="">Comment ça marche ?</a>  
+                <a class="btn btn-primary mb-5" href="">Comment ça marche ?</a>  
                 </div>
                 <div class="col-lg-6 col-sm-6">
-                    <iframe width="500" height="281" src="https://www.youtube.com/embed/ntFDyOZd__I" title="iziplans" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    <iframe class="responsive-iframe"  width="100%" height="281" src="https://www.youtube.com/embed/ntFDyOZd__I" title="iziplans" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </div>
             </div>
         </div>
