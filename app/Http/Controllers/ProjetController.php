@@ -44,19 +44,17 @@ class ProjetController extends Controller
     return view('projets.index', compact('projets'));
   }
 
-  public function index2()
+  public function indexVue()
   {
 
     $projects = Projet::where("status", "=", "open")->orwhere("status", "=", "closed")->orderBy('created_at', 'desc')->paginate(3);
     $categories = Category::all();
     $departements = Departement::all();
     $budgets = Budget::all();
-    return response()->json($projects);
+
     return response()->json([
-      'projects'=> $projects,
-      'categories'=> $categories,
       'departements' => $departements,
-      'budgets' => $budgets
+      'categories' => $categories,
     ], 200);
   }
 
