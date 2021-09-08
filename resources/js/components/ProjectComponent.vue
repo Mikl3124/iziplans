@@ -1,7 +1,6 @@
 <template>
     <div class="container">
       <add-project></add-project>
-
       <ul class="list-group">
         <li class="list-group-item" v-for="departement in query.departements" :key="departement.id">
           <p>{{ departement.name }}</p>
@@ -21,7 +20,8 @@
 
       data() {
         return {
-          query: {}
+          query: {},
+          categories: {}
         }
       },
 

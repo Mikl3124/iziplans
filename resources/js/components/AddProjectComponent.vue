@@ -7,10 +7,14 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="col-md-12 col-sm-12">
-            <div class="form-group">
-              <label for="categories-projet">Selectionnez vos catégories</label>
+              <div class="form-group">
+                <label for="categories-projet">Selectionnez vos catégories</label>
+                <select v-model="categories">
+                <option v-bind:value="categorie" v-for="categorie in query.categories" :key="categorie.id">{{ categorie.name }}</option>
+              </select>
+              </div>
+
             </div>
-        </div>
           </div>
         </div>
       </div>
@@ -20,5 +24,30 @@
 <script>
     export default {
 
+      data() {
+        return {
+          query: {},
+          categories: {}
         }
+      },
+
+      created(){
+        axios
+          .get('http://iziplans.test/projectsList')
+          //.then(response => console.log(response.data))
+          .then(response =>this.query = response.data)
+          //.then(response =>this.departements = response.data.departements)
+          .catch(error => console.log(error))
+      },
+
+      methods: {
+
+		},
+
+
+      mounted() {
+
+        console.log('Component mounted.')
+      }
+    }
 </script>
