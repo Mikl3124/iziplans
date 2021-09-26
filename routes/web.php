@@ -128,3 +128,4 @@ Route::get('/vue', 'HomeController@vue')->name('vue');
 
 //Vue
 Route::get('/projectsList', 'ProjetController@index2');
+

@@ -51,7 +51,7 @@
                             <button type="submit" class="btn btn-success"></i>Réactiver l'abonnement</button>
                         </form>
                     @elseif ($subscription->stripe_status === 'active')
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ununscribeModal">
+                    <button type="button" class="btn btn-danger mb-5" data-toggle="modal" data-target="#ununscribeModal">
                         Me désabonner
                     </button>
                     @elseif (($subscription->stripe_status === null))

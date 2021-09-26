@@ -2,7 +2,7 @@
     <div class="container">
       <add-project></add-project>
       <ul class="list-group">
-        <li class="list-group-item" v-for="project in projects.data" :key="project.id">
+        <li class="list-group-item" v-for="(project)in projects.data" :key="project.id">
           <a href="#">{{ project.title }}</a>
           <p>{{ project.description }}</p>
         </li>

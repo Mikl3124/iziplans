@@ -7,7 +7,7 @@
     <div class="container">
         <div class="display-4 text-center text-white">VOS PLANS FACILEMENT</div>
         <h3 class="text-center mb-5"><i class="text-white">"Trouvez un prestataire pour tous vos projets"</i></h3>
-            <!-- <blockquote class="blockquote text-center">
+            <blockquote class="blockquote text-center">
                 {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
                 @guest
                     <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
@@ -56,13 +56,7 @@
                         </div>
                 @endif
             </div>
-        @endauth -->
-        <p class="text-white">Quel est votre besoin ?</p>
-       
-        <form class="form-inline">
-            <input class="form-control mr-sm-2 col-lg-6" id="exampleInputEmail1" type="search" placeholder="Ex: dessinateur, projeteur, architecte" aria-label="Search">
-            <a class="btn btn-primary my-2 my-sm-0" href="{{ route('register_client') }}">C'est parti !</a>
-        </form>
+        @endauth
     </div>
 </div>
 

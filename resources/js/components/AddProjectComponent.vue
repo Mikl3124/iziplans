@@ -9,6 +9,10 @@
             <div class="col-md-12 col-sm-12">
             <div class="form-group">
               <label for="categories-projet">Selectionnez vos catégories</label>
+              <li class="list-group-item" v-for="project in projects.data" :key="project.id">
+                <a href="#">{{ project.title }}</a>
+                <p>{{ project.description }}</p>
+              </li>
             </div>
         </div>
           </div>
@@ -20,5 +24,32 @@
 <script>
     export default {
 
+      data() {
+        return {
+          projects: {}
         }
+      },
+
+      created(){
+        axios
+          .get('http://iziplans.test/projectsList')
+          //.then(response => console.log(response.data))
+          .then(response => this.projects = response.data)
+          .catch(error => console.log(error))
+      },
+
+      methods: {
+        getResults(page = 1) {
+			    axios.get('http://iziplans.test/projectsList?page=' + page)
+				      .then(response => {
+					          this.projects = response.data;
+				});
+		}
+
+      },
+
+      mounted() {
+        console.log('Component mounted.')
+      }
+    }
 </script>
