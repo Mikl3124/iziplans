@@ -19,10 +19,12 @@ use App\Http\Middleware\CheckSubscribe;
 Route::get('/', 'HomeController@list')->name('home');
 Route::get('sitemap.xml', 'SitemapController@index');
 
+
 //Register
 Auth::routes();
 Route::get('/profil_choice', 'UserController@register_choice')->name('register_choice');
 Route::get('/register_client', 'UserController@register_client')->name('register_client');
+Route::get('/register_client_2', 'UserController@register_client_2')->name('register_client_2');
 Route::get('/register_freelance', 'UserController@register_freelance')->name('register_freelance');
 Route::get('/register/', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('/register/', 'Auth\RegisterController@register');
@@ -48,8 +50,6 @@ Route::post('/stripe', 'StripeWebhooksController');
 // });
 
 //Projet
-Route::get('/projet/create2/', 'ProjetController@create2')->name('projet.create2');
-Route::post('/projet/store2/', 'ProjetController@store2')->name('projet.store2');
 Route::resource('projet', 'ProjetController');
 Route::get('/projet/download/{id}', 'ProjetController@download')->name('downloadfile');
 Route::get('/projet-open/{id}', 'ProjetController@open')->name('projet.open');
@@ -126,4 +126,5 @@ Route::get('/blog/{slug}', 'BlogController@show')->name('article.show');
 //Divers
 Route::get('/mentions-legales', 'HomeController@cgv')->name('cgv');
 Route::get('/politique-de-confidentialite', 'HomeController@politique')->name('politique');
-Route::get('/vue', 'HomeController@vue')->name('vue');
+Route::get('/comment-ca-marche', 'HomeController@comment_ca_marche')->name('comment_ca_marche');
+

@@ -74,6 +74,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if (session('filled_form')) {
+            $user = User::create([
+                'firstname' => $data['firstname'],
+                'lastname' => $data['lastname'],
+                'email' => $data['email'],
+                'role' => $data['role'],
+                'password' => Hash::make($data['password']),
+                'cgv' => true,
+                'number_of_connections' => 0
+            ]);
+            $this->dispatch(new MailNewUser($user));
+
+            $values = Session::get('filled_form');
+
+
+            $projet = new Projet;
+            $projet->user_id = $user->id;
+            $projet->title = $values['title'];
+            $projet->description = $values['description'];
+            $projet->status = 'pending';
+            $projet->departement_id = $values['departement'];
+            $projet->budget_id = $values['budget'];
+            $projet->save();
+            $projet->categories()->attach($values['categories']);
+
+
+
+            //Flashy::success('Votre mission a été enregistrée avec succès, notre équipe va la valider dans peu de temps');
+            return redirect()->route('home')->with('success', "Votre projet a bien été envoyé, nos équipes vont le valider très prochainement");
+
+
+            return $user;
+        }
 
         $user = User::create([
             'firstname' => $data['firstname'],

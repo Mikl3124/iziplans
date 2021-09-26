@@ -45,8 +45,8 @@ class HomeController extends Controller
         return view('politique-de-confidentialite');
     }
 
-    public function vue()
+    public function comment_ca_marche()
     {
-        return view('vue');
+        return view('comment-ca-marche');
     }
 }

@@ -61,11 +61,6 @@
 </div>
 
 {{-- ----------- Banner ---------- --}}
-{{-- BEGIN TEST BTN --}}
-<div class="text-center mt-5">
-  <a class="btn btn-success" href="{{ route('projet.create2') }}">Créer 3</a>
-</div>
-{{-- END TEST BTN --}}
 <div class="container">
         {{-- ----------- Comment ça marche ? ---------- --}}
     <div class="text-center mt-5">
@@ -109,14 +104,16 @@
      <div class="text-center mt-3 bg-secondary">
         <div class="container py-5">
             <div class="row d-flex justify-content-around">
-                <div class="col-lg-6 col-sm-6">
+                <div class="col-lg-6 col-sm-12">
                     <h1 class="text-center text-white"><i class="text-white fas fa-question"></i></h1>
                     <h3 class="text-center mb-3 text-white">iziplans c'est quoi ?</h3>
                     <p class="text-left text-white">Iziplans est un outil en ligne vous permettant gratuitement d’être mis en relation, sans engagement, avec des prestataires de différents secteurs.<br>La plateforme s’adresse aussi bien aux particuliers qu’aux entreprises.</p>
-                <a class="btn btn-primary mb-5" href="">Comment ça marche ?</a>
+                <a class="btn btn-primary mb-5" href="{{ route('comment_ca_marche') }}">Comment ça marche ?</a>
                 </div>
-                <div class="col-lg-6 col-sm-6">
-                    <iframe class="responsive-iframe"  width="100%" height="281" src="https://www.youtube.com/embed/ntFDyOZd__I" title="iziplans" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                <div class="col-lg-6 col-sm-12 embed-responsive embed-responsive-16by9">
+                    <video width="320" height="240" controls>
+                        <source src="https://iziplans.s3.eu-west-3.amazonaws.com/Iziplans+Comment+%C3%A7a+marche.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>

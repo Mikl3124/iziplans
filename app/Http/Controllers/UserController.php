@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Session;
 use Carbon\Carbon;
 use App\Model\User;
 use Stripe\Customer;
@@ -16,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use NSpehler\LaravelInsee\Facades\Insee;
@@ -33,11 +33,21 @@ class UserController extends Controller
     return view('auth.register_choice');
   }
 
-  public function register_client()
+  public function register_client(Request $request)
   {
     $role = 'client';
     Session::put('role', $role);
     return view('auth.register', compact('role'));
+  }
+
+  public function register_client_2(Request $request)
+  {
+    $role = 'client';
+    Session::put('role', $role);
+    $data = $request->session()->all();
+    $register_status = $request->session()->pull('register');
+    
+    return view('auth.register2', compact('role', 'register_status'));
   }
 
   public function register_freelance()

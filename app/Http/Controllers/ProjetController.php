@@ -16,6 +16,7 @@ use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use App\Mail\ConfirmMessageToAuthor;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewProjetPostedForAdmin;
 use App\Mail\ConfirmValidationToAuthor;
@@ -28,7 +29,7 @@ class ProjetController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('auth')->only(['store', 'create']);
+    // $this->middleware('auth')->only(['store']);
   }
 
   /**
@@ -78,17 +79,6 @@ class ProjetController extends Controller
     return view('projets.create', compact('categories', 'departements', 'budgets'));
   }
 
-  public function create2()
-  {
-
-    $categories = Category::all();
-    $departements = Departement::all();
-    $budgets = Budget::all();
-
-
-    return view('projets.create2', compact('categories', 'departements', 'budgets'));
-  }
-
   /**
    * Store a newly created resource in storage.
    *
@@ -98,18 +88,6 @@ class ProjetController extends Controller
   public function store(Request $request)
   {
     $input = $request->all();
-    //On vérifie si l'utilisateur est connecté, si c'est le cas on joint l'user id.
-    if (Auth::check()) {
-      $user_id = Auth::user()->id;
-
-      $input['user_id'] = $user_id;
-    } else {
-      // Si l'utilisateur n'est pas connecté, on se dirige à la page register client.
-
-      Session::put('filled_form', $input);
-      return redirect()->route('register', 'client');
-    }
-
     $this->validate($request, [
       'categories' => 'bail|required',
       'title' => 'bail|required|string|max:255',
@@ -118,6 +96,20 @@ class ProjetController extends Controller
       'budget' => 'bail|required',
       'departement' => 'bail|required'
     ]);
+
+    //On vérifie si l'utilisateur est connecté, si c'est le cas on joint l'user id.
+    if (Auth::check()) {
+      $user_id = Auth::user()->id;
+
+      $input['user_id'] = $user_id;
+    } else {
+      // Si l'utilisateur n'est pas connecté, on se dirige à la page register client.
+      $request->session()->flush();
+      Session::put('filled_form', $input);
+
+      return redirect()->route('register_client_2');
+
+    }
 
     $user = Auth::user();
     $projet = new Projet;
@@ -178,7 +170,7 @@ class ProjetController extends Controller
 
       // $this->dispatch(new MailNewProjetForAdmin($user, $projet));
 
-
+      $request->session()->forget('filled_form');
 
       //Flashy::success('Votre mission a été enregistrée avec succès, notre équipe va la valider dans peu de temps');
       return redirect()->route('home')->with('success', "Votre projet a bien été envoyé, nos équipes vont le valider très prochainement");
@@ -187,95 +179,7 @@ class ProjetController extends Controller
     return view('auth.register', compact('role', 'projet'));
   }
 
-  public function store2(Request $request)
-  {
-    $user = User::create([
-      'firstname' => 'firstname',
-      'lastname' => 'lastname',
-      'email' => $request->email,
-      'role' => 'client',
-      'password' => 'iziplans',
-      'cgv' => true,
-      'number_of_connections' => 0
-  ]);
-    $user->save();
-
-  $this->dispatch(new MailNewUser($user));
-
-    $this->validate($request, [
-      'categories' => 'bail|required',
-      'title' => 'bail|required|string|max:255',
-      'file-projet' => 'sometimes|max:5000',
-      'description' => 'bail|required',
-      'budget' => 'bail|required',
-      'departement' => 'bail|required',
-      'email' => 'required|email',
-    ]);
-
-    $projet = new Projet;
-    $projet->user_id = $user->id;
-    $projet->title = $request->title;
-    $projet->description = $request->description;
-    $projet->status = 'pending';
-    $projet->departement_id = $request->departement;
-
-    if ($files = $request->file('file_projet')) {
-      $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
-
-      //get filename without extension
-      $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-
-      //get file extension
-      $extension = $request->file('file_projet')->getClientOriginalExtension();
-
-      //filename to store
-      //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
-
-      $filenametostore = $filename . '_' . time() . '.' . $extension;
-
-      //Upload File
-
-      Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore);
-
-      //Store $filenametostore in the database
-      $projet->file_projet = $filenametostore;
-    }
-
-    $projet->budget_id = $request->budget;
-    $projet->save();
-    $projet->categories()->attach($request->categories);
-
-      $categories = $request->categories;
-      $departement_id = $request->departement;
-
-      $departement = Departement::find($departement_id);
-
-      // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
-      $freelances_categories = User::where('alert_categories', 1)
-        ->where('role', 'freelance')
-        ->whereHas('categories', function ($query) use ($categories) {
-          $query->whereIn('category_id', $categories);
-        })->get();
-
-      // On envoie un email de confirmation à l'user
-      $author = $user;
-
-      Mail::to($user->email)
-        ->send(new ConfirmMessageToAuthor($projet, $author));
-
-      //Mail à l'Admin
-      Mail::to(env("MAIL_ADMIN"))
-        ->send(new NewProjetPostedForAdmin($user, $projet));
-
-      // $this->dispatch(new MailNewProjetForAdmin($user, $projet));
-
-
-
-      //Flashy::success('Votre mission a été enregistrée avec succès, notre équipe va la valider dans peu de temps');
-      return redirect()->route('home')->with('success', "Votre projet a bien été envoyé, nos équipes vont le valider très prochainement");
-  }
-
-
+ 
   /**
    * Display the specified resource.
    *
