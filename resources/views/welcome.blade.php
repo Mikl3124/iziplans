@@ -61,6 +61,11 @@
 </div>
 
 {{-- ----------- Banner ---------- --}}
+{{-- BEGIN TEST BTN --}}
+<div class="text-center mt-5">
+  <a class="btn btn-success" href="{{ route('projet.create2') }}">Créer 3</a>
+</div>
+{{-- END TEST BTN --}}
 <div class="container">
         {{-- ----------- Comment ça marche ? ---------- --}}
     <div class="text-center mt-5">
@@ -108,7 +113,7 @@
                     <h1 class="text-center text-white"><i class="text-white fas fa-question"></i></h1>
                     <h3 class="text-center mb-3 text-white">iziplans c'est quoi ?</h3>
                     <p class="text-left text-white">Iziplans est un outil en ligne vous permettant gratuitement d’être mis en relation, sans engagement, avec des prestataires de différents secteurs.<br>La plateforme s’adresse aussi bien aux particuliers qu’aux entreprises.</p>
-                <a class="btn btn-primary mb-5" href="">Comment ça marche ?</a>  
+                <a class="btn btn-primary mb-5" href="">Comment ça marche ?</a>
                 </div>
                 <div class="col-lg-6 col-sm-6">
                     <iframe class="responsive-iframe"  width="100%" height="281" src="https://www.youtube.com/embed/ntFDyOZd__I" title="iziplans" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
@@ -227,98 +232,7 @@
   $(document).ready(function() {
       $('.js-select').select2();
   });
-  </script>
+</script>
 
-  <script>
-      $(document).ready(function() {
-  prep_modal();
-});
-
-function prep_modal()
-{
-  $(".modal").each(function() {
-
-  var element = this;
-	var pages = $(this).find('.modal-split');
-
-  if (pages.length != 0)
-  {
-    	pages.hide();
-    	pages.eq(0).show();
-
-    	var b_button = document.createElement("button");
-                b_button.setAttribute("type","button");
-          			b_button.setAttribute("class","btn btn-primary");
-          			b_button.setAttribute("style","display: none;");
-          			b_button.innerHTML = "Back";
-
-    	var n_button = document.createElement("button");
-                n_button.setAttribute("type","button");
-          			n_button.setAttribute("class","btn btn-primary");
-          			n_button.innerHTML = "Next";
-
-    	$(this).find('.modal-footer').append(b_button).append(n_button);
-
-
-    	var page_track = 0;
-
-    	$(n_button).click(function() {
-
-        this.blur();
-
-    		if(page_track == 0)
-    		{
-    			$(b_button).show();
-    		}
-
-    		if(page_track == pages.length-2)
-    		{
-    			$(n_button).text("Submit");
-    		}
-
-        if(page_track == pages.length-1)
-        {
-          $(element).find("form").submit();
-        }
-
-    		if(page_track < pages.length-1)
-    		{
-    			page_track++;
-
-    			pages.hide();
-    			pages.eq(page_track).show();
-    		}
-
-
-    	});
-
-    	$(b_button).click(function() {
-
-    		if(page_track == 1)
-    		{
-    			$(b_button).hide();
-    		}
-
-    		if(page_track == pages.length-1)
-    		{
-    			$(n_button).text("Next");
-    		}
-
-    		if(page_track > 0)
-    		{
-    			page_track--;
-
-    			pages.hide();
-    			pages.eq(page_track).show();
-    		}
-
-
-    	});
-
-  }
-
-  });
-}
-  </script>
 @endsection
 

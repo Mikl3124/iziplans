@@ -9,6 +9,7 @@ use App\Model\Budget;
 use App\Model\Projet;
 use App\Mail\Newprojet;
 use App\Model\Category;
+use App\Jobs\MailNewUser;
 use App\Model\Departement;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
@@ -44,22 +45,6 @@ class ProjetController extends Controller
     return view('projets.index', compact('projets'));
   }
 
-  public function index2()
-  {
-
-    $projects = Projet::where("status", "=", "open")->orwhere("status", "=", "closed")->orderBy('created_at', 'desc')->paginate(3);
-    $categories = Category::all();
-    $departements = Departement::all();
-    $budgets = Budget::all();
-    return response()->json($projects);
-    return response()->json([
-      'projects'=> $projects,
-      'categories'=> $categories,
-      'departements' => $departements,
-      'budgets' => $budgets
-    ], 200);
-  }
-
   public function myprojets()
   {
 
@@ -91,6 +76,17 @@ class ProjetController extends Controller
 
 
     return view('projets.create', compact('categories', 'departements', 'budgets'));
+  }
+
+  public function create2()
+  {
+
+    $categories = Category::all();
+    $departements = Departement::all();
+    $budgets = Budget::all();
+
+
+    return view('projets.create2', compact('categories', 'departements', 'budgets'));
   }
 
   /**
@@ -190,6 +186,95 @@ class ProjetController extends Controller
 
     return view('auth.register', compact('role', 'projet'));
   }
+
+  public function store2(Request $request)
+  {
+    $user = User::create([
+      'firstname' => 'firstname',
+      'lastname' => 'lastname',
+      'email' => $request->email,
+      'role' => 'client',
+      'password' => 'iziplans',
+      'cgv' => true,
+      'number_of_connections' => 0
+  ]);
+    $user->save();
+
+  $this->dispatch(new MailNewUser($user));
+
+    $this->validate($request, [
+      'categories' => 'bail|required',
+      'title' => 'bail|required|string|max:255',
+      'file-projet' => 'sometimes|max:5000',
+      'description' => 'bail|required',
+      'budget' => 'bail|required',
+      'departement' => 'bail|required',
+      'email' => 'required|email',
+    ]);
+
+    $projet = new Projet;
+    $projet->user_id = $user->id;
+    $projet->title = $request->title;
+    $projet->description = $request->description;
+    $projet->status = 'pending';
+    $projet->departement_id = $request->departement;
+
+    if ($files = $request->file('file_projet')) {
+      $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
+
+      //get filename without extension
+      $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+      //get file extension
+      $extension = $request->file('file_projet')->getClientOriginalExtension();
+
+      //filename to store
+      //$path = 'documents/' . $user->lastname. '_' . $user->firstname . '_' . time();
+
+      $filenametostore = $filename . '_' . time() . '.' . $extension;
+
+      //Upload File
+
+      Storage::putFileAs('documents', $request->file('file_projet'), $filenametostore);
+
+      //Store $filenametostore in the database
+      $projet->file_projet = $filenametostore;
+    }
+
+    $projet->budget_id = $request->budget;
+    $projet->save();
+    $projet->categories()->attach($request->categories);
+
+      $categories = $request->categories;
+      $departement_id = $request->departement;
+
+      $departement = Departement::find($departement_id);
+
+      // On sélectionne les users concernés par au moins une des compétences et qui ont choisis d'être informés
+      $freelances_categories = User::where('alert_categories', 1)
+        ->where('role', 'freelance')
+        ->whereHas('categories', function ($query) use ($categories) {
+          $query->whereIn('category_id', $categories);
+        })->get();
+
+      // On envoie un email de confirmation à l'user
+      $author = $user;
+
+      Mail::to($user->email)
+        ->send(new ConfirmMessageToAuthor($projet, $author));
+
+      //Mail à l'Admin
+      Mail::to(env("MAIL_ADMIN"))
+        ->send(new NewProjetPostedForAdmin($user, $projet));
+
+      // $this->dispatch(new MailNewProjetForAdmin($user, $projet));
+
+
+
+      //Flashy::success('Votre mission a été enregistrée avec succès, notre équipe va la valider dans peu de temps');
+      return redirect()->route('home')->with('success', "Votre projet a bien été envoyé, nos équipes vont le valider très prochainement");
+  }
+
 
   /**
    * Display the specified resource.

@@ -1928,7 +1928,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      query: {},
+      categories: {}
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('http://iziplans.test/projectsList') //.then(response => console.log(response.data))
+    .then(function (response) {
+      return _this.query = response.data;
+    }) //.then(response =>this.departements = response.data.departements)
+    ["catch"](function (error) {
+      return console.log(error);
+    });
+  },
+  methods: {},
+  mounted: function mounted() {
+    console.log('Component mounted.');
+  }
+});
 
 /***/ }),
 
@@ -1977,10 +2002,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      projects: {}
+      query: {},
+      categories: {}
     };
   },
   created: function created() {
@@ -1988,21 +2018,13 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('http://iziplans.test/projectsList') //.then(response => console.log(response.data))
     .then(function (response) {
-      return _this.projects = response.data;
-    })["catch"](function (error) {
+      return _this.query = response.data;
+    }) //.then(response =>this.departements = response.data.departements)
+    ["catch"](function (error) {
       return console.log(error);
     });
   },
-  methods: {
-    getResults: function getResults() {
-      var _this2 = this;
-
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('http://iziplans.test/projectsList?page=' + page).then(function (response) {
-        _this2.projects = response.data;
-      });
-    }
-  },
+  methods: {},
   mounted: function mounted() {
     console.log('Component mounted.');
   }
@@ -38247,55 +38269,85 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary my-3",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": ".bd-example-modal-lg"
-          }
-        },
-        [_vm._v("Ajouter un projet")]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "modal fade bd-example-modal-lg",
-          attrs: {
-            tabindex: "-1",
-            role: "dialog",
-            "aria-labelledby": "myLargeModalLabel",
-            "aria-hidden": "true"
-          }
-        },
-        [
-          _c("div", { staticClass: "modal-dialog modal-lg" }, [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", { attrs: { for: "categories-projet" } }, [
-                    _vm._v("Selectionnez vos catégories")
-                  ])
-                ])
+  return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary my-3",
+        attrs: {
+          type: "button",
+          "data-toggle": "modal",
+          "data-target": ".bd-example-modal-lg"
+        }
+      },
+      [_vm._v("Ajouter un projet")]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade bd-example-modal-lg",
+        attrs: {
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "myLargeModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog modal-lg" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "col-md-12 col-sm-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "categories-projet" } }, [
+                  _vm._v("Selectionnez vos catégories")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.categories,
+                        expression: "categories"
+                      }
+                    ],
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.categories = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  _vm._l(_vm.query.categories, function(categorie) {
+                    return _c(
+                      "option",
+                      { key: categorie.id, domProps: { value: categorie } },
+                      [_vm._v(_vm._s(categorie.name))]
+                    )
+                  }),
+                  0
+                )
               ])
             ])
           ])
-        ]
-      )
-    ])
-  }
-]
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38359,21 +38411,28 @@ var render = function() {
       _c(
         "ul",
         { staticClass: "list-group" },
-        _vm._l(_vm.projects.data, function(project) {
-          return _c("li", { key: project.id, staticClass: "list-group-item" }, [
-            _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(project.title))]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(project.description))])
-          ])
+        _vm._l(_vm.query.departements, function(departement) {
+          return _c(
+            "li",
+            { key: departement.id, staticClass: "list-group-item" },
+            [_c("p", [_vm._v(_vm._s(departement.name))])]
+          )
         }),
         0
       ),
       _vm._v(" "),
-      _c("pagination", {
-        staticClass: "mt-5",
-        attrs: { data: _vm.projects },
-        on: { "pagination-change-page": _vm.getResults }
-      })
+      _c(
+        "ul",
+        { staticClass: "list-group my-5" },
+        _vm._l(_vm.query.categories, function(categorie) {
+          return _c(
+            "li",
+            { key: categorie.id, staticClass: "list-group-item" },
+            [_c("p", [_vm._v(_vm._s(categorie.name))])]
+          )
+        }),
+        0
+      )
     ],
     1
   )
@@ -53792,15 +53851,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*********************************************************!*\
   !*** ./resources/js/components/AddProjectComponent.vue ***!
   \*********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddProjectComponent_vue_vue_type_template_id_31753c0a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddProjectComponent.vue?vue&type=template&id=31753c0a& */ "./resources/js/components/AddProjectComponent.vue?vue&type=template&id=31753c0a&");
 /* harmony import */ var _AddProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddProjectComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/AddProjectComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AddProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AddProjectComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -53830,7 +53888,7 @@ component.options.__file = "resources/js/components/AddProjectComponent.vue"
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/AddProjectComponent.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -48,6 +48,8 @@ Route::post('/stripe', 'StripeWebhooksController');
 // });
 
 //Projet
+Route::get('/projet/create2/', 'ProjetController@create2')->name('projet.create2');
+Route::post('/projet/store2/', 'ProjetController@store2')->name('projet.store2');
 Route::resource('projet', 'ProjetController');
 Route::get('/projet/download/{id}', 'ProjetController@download')->name('downloadfile');
 Route::get('/projet-open/{id}', 'ProjetController@open')->name('projet.open');
@@ -125,7 +127,3 @@ Route::get('/blog/{slug}', 'BlogController@show')->name('article.show');
 Route::get('/mentions-legales', 'HomeController@cgv')->name('cgv');
 Route::get('/politique-de-confidentialite', 'HomeController@politique')->name('politique');
 Route::get('/vue', 'HomeController@vue')->name('vue');
-
-//Vue
-Route::get('/projectsList', 'ProjetController@index2');
-

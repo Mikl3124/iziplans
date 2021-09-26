@@ -13,6 +13,7 @@
     "aws/aws-sdk-php-laravel": "^3.5",
     "butschster/meta-tags": "^1.8",
     "cyrildewit/eloquent-viewable": "^5.2",
+    "doctrine/dbal": "^2.6",
     "fideloper/proxy": "^4.0",
     "guzzlehttp/guzzle": "^7.3",
     "intervention/image": "^2.5",
