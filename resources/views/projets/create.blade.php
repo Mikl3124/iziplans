@@ -67,14 +67,6 @@
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
       </div>
-    <!-- ---------------- Upload ------------------ -->
-      <div class="form-group">
-        <label for="file-projet">Joindre un fichier (optionnel)</label>
-        <input type="file" class="form-control-file @error('file_projet') is-invalid @enderror" id="file-projet" value="{{ old('file-projet') }}" name="file_projet">
-        @error('file_projet')
-          <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
-      </div>
     <!-- ---------------- Submit ------------------ -->
       <button type="submit" class="btn btn-primary">Envoyer</button>
     </form>

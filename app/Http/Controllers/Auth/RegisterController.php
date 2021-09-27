@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Model\User;
+use App\Model\Projet;
 use App\Jobs\MailNewUser;
 use App\Mail\NewSubscription;
 use Illuminate\Validation\Rule;
+use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -99,13 +103,14 @@ class RegisterController extends Controller
             $projet->save();
             $projet->categories()->attach($values['categories']);
 
-
-
-            //Flashy::success('Votre mission a été enregistrée avec succès, notre équipe va la valider dans peu de temps');
-            return redirect()->route('home')->with('success', "Votre projet a bien été envoyé, nos équipes vont le valider très prochainement");
-
+            Session::flash('success', '🎉 Merci ' . $data['firstname'] . ', votre projet a été enregistré avec succès, notre équipe va bientôt le valider.');
+            //Flashy::success('🎉 Merci ' . $data['firstname'] . ', votre projet a été enregistré avec succès, notre équipe va bientôt le valider.');
 
             return $user;
+
+
+
+
         }
 
         $user = User::create([
