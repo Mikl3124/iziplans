@@ -62,7 +62,7 @@ Route::get('/myprojet-list/', 'ProjetController@myprojets')->name('myprojets');
 // Administrateur
 Route::group(['middleware' => ['auth', 'admin']], function () {
   Route::get('/dashboard', 'Admin\DashboardController@data')->name('admin.dashboard');;
-  Route::get('/users-list', 'Admin\DashboardController@usersList')->name('admin.users.list');;
+  Route::get('/users-list', 'Admin\DashboardController@usersList')->name('admin.users.list');
   Route::get('/projets-list', 'Admin\DashboardController@projetsList')->name('admin.projets.list');
   Route::get('/user-edit/{id}', 'Admin\DashboardController@userEdit')->name('admin.user.edit');
   Route::put('/user-update/{id}', 'Admin\DashboardController@userUpdate')->name('admin.user.update');
@@ -73,9 +73,12 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
   Route::delete('/projet-delete/{id}', 'Admin\DashboardController@projetDelete')->name('admin.projet.delete');
   Route::get('/projets-by-user/{id}', 'Admin\DashboardController@projetsByUser')->name('admin.projets.by.user');;
   Route::get('/offers-by-user/{id}', 'Admin\DashboardController@offersByUser')->name('admin.offers.by.user');
-  Route::get('/connect-as/{id}', 'Admin\DashboardController@connect_as')->name('admin.connect_as');
   Route::post('/projet-validate/', 'ProjetController@validateProjet')->name('admin.projet.validate');
-  //Blog
+  Route::get('/parametres', 'Admin\DashboardController@parametres')->name('admin.parametres');
+    //Users
+    Route::get('/connect-as/{id}', 'Admin\AdminUserController@connect_as')->name('admin.connect_as');
+    Route::post('/departement-create/', 'Admin\AdminProjetController@departementCreate')->name('admin.departement.create');
+    //Blog
   Route::get('/blog/create', 'BlogController@create')->name('admin.article.create');
   Route::get('/blog/dashboard', 'BlogController@dashboard')->name('admin.article.blog');
   Route::get('/blog/categories', 'BlogController@categories')->name('admin.blog.category');

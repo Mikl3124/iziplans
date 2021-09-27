@@ -9,9 +9,6 @@
         <h3 class="text-center mb-5"><i class="text-white">"Trouvez un prestataire pour tous vos projets"</i></h3>
             <blockquote class="blockquote text-center">
                 {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
-                @guest
-                    <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
-                @endguest
                 @auth
                 {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
                     @if (Auth::user()->role === 'client')
@@ -167,7 +164,7 @@
                 @guest
                     <p class= "title-call-to-action">Besoins de plans ? Déposez une annonce gratuitement</p>
                     <p class= "text-call-to-action">Recevez vos premiers devis rapidement</p>
-                    <a class="btn btn-success btn-lg" href="{{ route('register_client') }}">Recevoir des devis</a>
+                    <a class="btn btn-success btn-lg" href="{{ route('projet.create') }}">Recevoir des devis</a>
                 @endguest
                 {{-- ----------- L'utilisateur est pas enregistré ---------- --}}
                 @auth

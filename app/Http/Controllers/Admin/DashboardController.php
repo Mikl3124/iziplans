@@ -13,6 +13,7 @@ use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -45,7 +46,7 @@ class DashboardController extends Controller
     }
 
     public function offersByUser(Request $request, $id)
-    {   
+    {
         $user_id = $id;
         $user = User::find($id);
         $offers = Offer::where('user_id', $user_id)->get();
@@ -55,7 +56,7 @@ class DashboardController extends Controller
     }
 
     public function offerEdit(Request $request, $id)
-    {   
+    {
         $offer = Offer::find($id);
         return view('admin.offer-edit')
                     ->with('offer');
@@ -68,7 +69,7 @@ class DashboardController extends Controller
     }
 
     public function projetEdit(Request $request, $id)
-    {   
+    {
         $departements = Departement::all();
         $categories = Category::all();
         $budgets = Budget::all();
@@ -87,7 +88,7 @@ class DashboardController extends Controller
         $user->lastname = $request->input('lastname');
         $user->email = $request->input('email');
         $user->role = $request->input('role');
-        
+
         if($user->update()){
             Flashy::success("L'utilisateur a été modifié avec succès !");
             return redirect( route('admin.user.edit', $user->id));
@@ -118,7 +119,7 @@ class DashboardController extends Controller
             return redirect( route('admin.users.list') );
         }
 
-        
+
     }
 
     public function projetDelete($id)
@@ -131,10 +132,10 @@ class DashboardController extends Controller
             Flashy::error("Le projet n'a pas été supprimé");
             return redirect( route('admin.projets.list') );
         }
-        
+
     }
 
-     public function projetUpdate(Request $request, $id)
+    public function projetUpdate(Request $request, $id)
     {
 
         $projet = Projet::find($id);
@@ -156,7 +157,7 @@ class DashboardController extends Controller
                 if($request->entry_date){
                     $projet->created_at = $request->entry_date;
                 }
-        
+
 
                 if ($files = $request->file('file_projet')) {
                     $filenamewithextension = $request->file('file_projet')->getClientOriginalName();
@@ -206,14 +207,17 @@ class DashboardController extends Controller
                 ->with('lastprojet', $lastprojet);
     }
 
-    public function connect_as($user)
+    public function parametres()
     {
-        if(Auth::user()->role === 'admin'){
-            Auth::loginUsingId($user, true);
-            return redirect()->back();
-        }
-        return redirect()->back();
+      $departements = Departement::all();
+      $categories = Category::orderBy('name', 'asc')->get();
+      $budgets = Budget::all();
 
+      return view('admin.parametres')
+      ->with('budgets', $budgets)
+      ->with('departements', $departements)
+      ->with('categories', $categories);
     }
+
 
 }

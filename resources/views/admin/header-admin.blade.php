@@ -16,6 +16,9 @@
             <li class="nav-item">
                 <a class="nav-link" href={{ route('admin.article.blog') }}>BLOG</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href={{ route('admin.parametres') }}>Paramètres</a>
+          </li>
             </ul>
         </div>
         </nav>
