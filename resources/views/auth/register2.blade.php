@@ -5,7 +5,7 @@
     <div class="text-center my-5">
         <h2 >Bienvenue sur <a href="{{ route('home') }}"><img src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" id="logo-iziplans" alt="iziplans"></a></h2>
     </div>
-        <h1>Veuillez vous inscrire pour valider votre annonce </h1>
+        <h1 class="text-center">Veuillez vous inscrire pour valider votre annonce </h1>
     <div class="card-block">
         <div class="text-center">
             <p class="mb-0">Créez un compte rapidement :</p>
