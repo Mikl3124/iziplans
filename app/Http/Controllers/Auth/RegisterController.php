@@ -118,7 +118,7 @@ class RegisterController extends Controller
             'cgv' => true,
             'number_of_connections' => 0
         ]);
-        $this->dispatch(new MailNewUser($user));
+        //$this->dispatch(new MailNewUser($user));
         return $user;
     }
 }
