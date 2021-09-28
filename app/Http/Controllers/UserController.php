@@ -46,7 +46,7 @@ class UserController extends Controller
     Session::put('role', $role);
     $data = $request->session()->all();
     $register_status = $request->session()->pull('register');
-    
+
     return view('auth.register2', compact('role', 'register_status'));
   }
 
@@ -170,9 +170,7 @@ class UserController extends Controller
     $user = Auth::user();
 
     $value = $request->all();
-
     $rules = [
-      'email' => 'required|email',
       'firstname' => 'required|min:3',
       'lastname' => 'required|min:3',
     ];
@@ -185,31 +183,34 @@ class UserController extends Controller
         ->withErrors($validator)
         ->withInput();
     }
+    if ($user->role === 'freelance'){
+          //Mise à jour du profil
+      DB::table('category_user')->where('user_id', $user->id)->delete();
+      DB::table('departement_user')->where('user_id', $user->id)->delete();
+      $user->categories()->attach($request->categories);
+      $user->departements()->attach($request->departements);
+      $user->alert_categories = $request['alert_categories'];
+      $user->alert_departements = $request['alert_departements'];
+      $user->presentation = $request['presentation'];
+      $user->titre = $request['titre'];
 
-    //Mise à jour du profil
-    DB::table('category_user')->where('user_id', $user->id)->delete();
-    DB::table('departement_user')->where('user_id', $user->id)->delete();
-    $user->categories()->attach($request->categories);
-    $user->departements()->attach($request->departements);
+
+      // Mise à jour de updated_profil
+      if ($user->categories->count() >= 1 || $user->departements->count() >= 1) {
+        $user->updated_profil = 1;
+      } else {
+        $user->updated_profil = 0;
+      }
+    }
+
     $user->firstname = $request['firstname'];
     $user->lastname = $request['lastname'];
     $user->pseudo = $request['pseudo'];
-    $user->alert_categories = $request['alert_categories'];
-    $user->alert_departements = $request['alert_departements'];
-    $user->presentation = $request['presentation'];
     $user->phone = $request['phone'];
-    $user->titre = $request['titre'];
     $user->address = $request['address'];
     $user->town = $request['town'];
     $user->cp = $request->cp;
     $user->departement = $request->departement;
-
-    // Mise à jour de updated_profil
-    if ($user->categories->count() >= 1 || $user->departements->count() >= 1) {
-      $user->updated_profil = 1;
-    } else {
-      $user->updated_profil = 0;
-    }
 
     $user->update();
 
