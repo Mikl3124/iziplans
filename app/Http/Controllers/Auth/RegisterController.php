@@ -107,10 +107,6 @@ class RegisterController extends Controller
             //Flashy::success('🎉 Merci ' . $data['firstname'] . ', votre projet a été enregistré avec succès, notre équipe va bientôt le valider.');
 
             return $user;
-
-
-
-
         }
 
         $user = User::create([
