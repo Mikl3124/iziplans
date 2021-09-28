@@ -123,7 +123,7 @@ class LoginController extends Controller
           $values = Session::get('filled_form');
 
           $projet = new Projet;
-          $projet->user_id = $user->id;
+          $projet->user_id = $newUser->id;
           $projet->title = $values['title'];
           $projet->description = $values['description'];
           $projet->status = 'pending';
