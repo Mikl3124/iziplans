@@ -118,7 +118,14 @@ class RegisterController extends Controller
             'cgv' => true,
             'number_of_connections' => 0
         ]);
-        //$this->dispatch(new MailNewUser($user));
+
+      Mail::to($user->email)
+        ->send(new NewSubscription ($user));
+
+      //Mail à l'Admin
+      Mail::to(env("MAIL_ADMIN"))
+      ->send(new NewSubscription ($user));
+
         return $user;
     }
 }
