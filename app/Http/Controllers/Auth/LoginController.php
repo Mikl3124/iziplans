@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Session;
 use Carbon\Carbon;
 use App\Model\User;
+use App\Model\Projet;
 use Illuminate\Http\Request;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -69,6 +70,72 @@ class LoginController extends Controller
         $user = Socialite::driver($provider)->stateless()->user();
 
         $existingUser = User::whereEmail($user->getEmail())->first();
+
+        // Si un projet est en session
+        if (session('filled_form')) {
+
+          $role = 'client';
+
+          if ( Session::get('role') ) {
+              $role = Session::get('role');
+              // Destroy role session here
+              Session::forget('role');
+          }
+          $avatar =  $user->getAvatar();
+
+
+          // On découpe le nom de l'user pour récupérer firstname / lastname
+          $name = trim($user->name);
+          $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
+          $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
+
+          if($user->email === null){
+              $email = $user->id. '@email.fr';
+          }else{
+              $email = $user->email;
+          }
+
+          if ($existingUser) {
+            $newUser = $existingUser;
+            $newUser->update([
+              'last_login_at' => Carbon::now()->toDateTimeString(),
+              'number_of_connections' => $existingUser->number_of_connections + 1,
+            ]);
+          }else {
+            $newUser = new User;
+          }
+
+          $newUser->firstname = $first_name;
+          $newUser->lastname = $last_name;
+          $newUser->email = $email;
+          $newUser->email_verified_at = Carbon::now();
+          $newUser->avatar = $avatar;
+          $newUser->role = $role;
+          $newUser->number_of_connections = 0;
+          $newUser->provider = $provider;
+          $newUser->password = Hash::make('5yr20mffdsPa$$wOrd');
+          $newUser->cgv = true;
+
+          $newUser->save();
+
+          auth()->login($newUser);
+
+          $values = Session::get('filled_form');
+
+          $projet = new Projet;
+          $projet->user_id = $user->id;
+          $projet->title = $values['title'];
+          $projet->description = $values['description'];
+          $projet->status = 'pending';
+          $projet->departement_id = $values['departement'];
+          $projet->budget_id = $values['budget'];
+          $projet->save();
+          $projet->categories()->attach($values['categories']);
+
+          Session::flash('success', '🎉 Merci ' . $newUser['firstname'] . ', votre projet a été enregistré avec succès, notre équipe va bientôt le valider.');
+          return redirect($this->redirectPath());
+
+        }
 
         if($existingUser) {
                 auth()->login($existingUser);
