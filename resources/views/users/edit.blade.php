@@ -149,7 +149,7 @@
                                 </div> --}}
                                 <div class="form-group col-sm-12 col-md-12">
                                     <label for="phone">Numéro de téléphone</label>
-                                    <input type="number" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{old('phone', $user->phone)}}"">
+                                    <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{old('phone', $user->phone)}}"">
                                     @error('phone')
                                         <div class="invalid-feedback text-danger">
                                             {{ $message }}
