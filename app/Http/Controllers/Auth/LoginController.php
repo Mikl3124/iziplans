@@ -202,6 +202,13 @@ class LoginController extends Controller
         auth()->login($newUser);
 
         Flashy::success('Bienvenue '. $newUser->firstname);
+
+        Mail::to($newUser->email)
+        ->send(new NewSubscription($newUser));
+
+        Mail::to(env("MAIL_ADMIN"))
+        ->send(new NewSubscription ($user));
+
         return redirect($this->redirectPath());
 
         // $user->token;
