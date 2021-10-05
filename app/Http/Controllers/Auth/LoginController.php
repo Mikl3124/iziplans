@@ -122,7 +122,7 @@ class LoginController extends Controller
           $newUser->save();
 
           Mail::to($user->email)
-          ->send(new NewSubscription($newUser-));
+          ->send(new NewSubscription($newUser));
 
           //Mail à l'Admin
           Mail::to(env("MAIL_ADMIN"))
