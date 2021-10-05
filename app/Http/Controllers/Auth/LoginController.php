@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Mail\NewSubscription;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Mail\ConfirmMessageToAuthor;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewProjetPostedForAdmin;
@@ -124,10 +125,6 @@ class LoginController extends Controller
           Mail::to($user->email)
           ->send(new NewSubscription($newUser));
 
-          //Mail à l'Admin
-          Mail::to(env("MAIL_ADMIN"))
-          ->send(new NewProjetPostedForAdmin($projet, $newUser-));
-
           auth()->login($newUser);
 
           $values = Session::get('filled_form');
@@ -143,7 +140,17 @@ class LoginController extends Controller
           $projet->categories()->attach($values['categories']);
 
           Session::flash('success', '🎉 Merci ' . $newUser['firstname'] . ', votre projet a été enregistré avec succès, notre équipe va bientôt le valider.');
+
+          Mail::to($user->email)
+          ->send(new ConfirmMessageToAuthor($projet, $user));
+
+          //Mail à l'Admin
+          Mail::to(env("MAIL_ADMIN"))
+          ->send(new NewProjetPostedForAdmin($projet, $newUser));
           return redirect($this->redirectPath());
+
+
+
 
         }
 
