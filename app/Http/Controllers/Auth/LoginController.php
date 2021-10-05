@@ -122,7 +122,7 @@ class LoginController extends Controller
 
           $newUser->save();
 
-          Mail::to($user->email)
+          Mail::to($newUser->email)
           ->send(new NewSubscription($newUser));
 
           auth()->login($newUser);
@@ -141,7 +141,7 @@ class LoginController extends Controller
 
           Session::flash('success', '🎉 Merci ' . $newUser['firstname'] . ', votre projet a été enregistré avec succès, notre équipe va bientôt le valider.');
 
-          Mail::to($user->email)
+          Mail::to($newUser->email)
           ->send(new ConfirmMessageToAuthor($projet, $newUser));
 
           //Mail à l'Admin
