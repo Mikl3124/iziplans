@@ -198,7 +198,7 @@ class LoginController extends Controller
             $newUser->cgv = true;
 
             $newUser->save();
-
+            dd($newUser);
         auth()->login($newUser);
 
         Flashy::success('Bienvenue '. $newUser->firstname);
