@@ -369,8 +369,11 @@
                                       <p>A très bientôt.</p>
                                       <br>
                                       <p>🚨 N'oubliez pas de compléter votre profil freelance, afin d'être alerté automatiquement dès qu'une mission répondant à vos attentes est postée 🚨</p>
+                                    </tr>
+                                    <tr>
                                       <a href="https://iziplans.com" class="btn btn-primary text-center">Commencer maintenant&nbsp;!</a>
                                     </tr>
+
                                   </tbody>
                                 </table>
                               </td>

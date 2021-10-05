@@ -367,7 +367,10 @@
                                       <p>Si vous avez des questions, nous sommes là! Mon équipe et moi-même répondrons toujours présents pour vous assister.</p>
                                       <br>
                                       <p>A très bientôt.</p>
+                                    </tr>
+                                    <tr>
                                       <a href="https://iziplans.com" class="btn btn-primary text-center">Commencer maintenant&nbsp;!</a>
+                                    </tr>
                                     </tr>
                                   </tbody>
                                 </table>

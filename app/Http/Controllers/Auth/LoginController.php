@@ -6,9 +6,12 @@ use Carbon\Carbon;
 use App\Model\User;
 use App\Model\Projet;
 use Illuminate\Http\Request;
+use App\Mail\NewSubscription;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewProjetPostedForAdmin;
 use Intervention\Image\Facades\Image;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
@@ -117,6 +120,13 @@ class LoginController extends Controller
           $newUser->cgv = true;
 
           $newUser->save();
+
+          Mail::to($user->email)
+          ->send(new NewSubscription($user));
+
+          //Mail à l'Admin
+          Mail::to(env("MAIL_ADMIN"))
+          ->send(new NewProjetPostedForAdmin($projet, $user));
 
           auth()->login($newUser);
 
