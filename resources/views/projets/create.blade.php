@@ -38,7 +38,7 @@
     <!-- ---------------- Description ------------------ -->
       <div class="form-group">
         <label for="description-projet">Décrivez les tâches que vous souhaitez confier :</label>
-        <textarea class="form-control @error('description') is-invalid @enderror" id="description-projet" rows="5"  name="description">{{ old('description') }}</textarea>
+        <textarea class="form-control @error('description') is-invalid @enderror" id="description-projet" rows="5" name="description">{{ old('description') }} </textarea>
         @error('description')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror

@@ -61,7 +61,7 @@
 <div class="container">
         {{-- ----------- Comment ça marche ? ---------- --}}
     <div class="text-center mt-5">
-        <h2 class="text-left mb-5">Vous cherchez un prestataire ?<br>C’est simple, rapide et gratuit</h2>
+        <h2 class="text-left mb-5">Vous cherchez un prestataire&nbsp;?<br>C’est simple, rapide et gratuit</h2>
         <div class="row d-flex justify-content-around">
             <div class="col-lg-3 col-sm-6">
                 <div >
@@ -103,7 +103,7 @@
             <div class="row d-flex justify-content-around">
                 <div class="col-lg-6 col-sm-12">
                     <h1 class="text-center text-white"><i class="text-white fas fa-question"></i></h1>
-                    <h3 class="text-center mb-3 text-white">iziplans c'est quoi ?</h3>
+                    <h3 class="text-center mb-3 text-white">iziplans c'est quoi&nbsp;?</h3>
                     <p class="text-left text-white">Iziplans est un outil en ligne vous permettant gratuitement d’être mis en relation, sans engagement, avec des prestataires de différents secteurs.<br>La plateforme s’adresse aussi bien aux particuliers qu’aux entreprises.</p>
                 <a class="btn btn-primary mb-5" href="{{ route('comment_ca_marche') }}">Comment ça marche ?</a>
                 </div>
@@ -129,7 +129,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
-                        <span class="data-card-date ml-2">Posté il y a {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                        <span class="data-card-date ml-2">Posté {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
                     </div>
                     <div class="row d-flex ml-1 justify-content-start">
                         @if ($projet->status === "open")
@@ -162,7 +162,7 @@
             <div class="card-body ">
                {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
                 @guest
-                    <p class= "title-call-to-action">Besoins de plans ? Déposez une annonce gratuitement</p>
+                    <p class= "title-call-to-action">Besoins de plans&nbsp;? Déposez une annonce gratuitement</p>
                     <p class= "text-call-to-action">Recevez vos premiers devis rapidement</p>
                     <a class="btn btn-success btn-lg" href="{{ route('projet.create') }}">Recevoir des devis</a>
                 @endguest
@@ -170,12 +170,12 @@
                 @auth
                     {{-- ----------- Si c'est un client ---------- --}}
                     @if (Auth::user()->role === 'client')
-                        <p class= "title-call-to-action">Besoins de plans ? Déposez une annonce gratuitement</p>
+                        <p class= "title-call-to-action">Besoins de plans&nbsp;? Déposez une annonce gratuitement</p>
                         <p class= "text-call-to-action">Recevez vos premiers devis rapidement</p>
                         <a class="btn btn-success btn-lg" href="{{ route('projet.create') }}">Recevoir des devis</a>
                     {{-- ----------- Si c'est un freelance ---------- --}}
                     @elseif (Auth::user()->role === 'freelance')
-                        <p class= "title-call-to-action">Vous recherchez une mission ?</p>
+                        <p class= "title-call-to-action">Vous recherchez une mission&nbsp;?</p>
                         <p class= "text-call-to-action">Consultez l'ensemble des offres disponibles</p>
                         <a class="btn btn-success btn-lg" href="{{ route('projet.index') }}">Voir les missions</a>
                     @endif
@@ -191,7 +191,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <h2 class="list-project-title">{{ ucfirst($projet->title )}}</h2>
-                        <span class="data-card-date ml-2">Posté il y a {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
+                        <span class="data-card-date ml-2">Posté {{Carbon\Carbon::parse($projet->created_at)->diffForHumans()}}</span>
                     </div>
                     <div class="row d-flex ml-1 justify-content-start">
                         @if ($projet->status === "open")
