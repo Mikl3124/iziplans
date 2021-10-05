@@ -355,7 +355,7 @@
                       <td>
                         <p>Bonjour {{ $user->firstname }}&nbsp;!</p>
 
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                           <tbody>
                             <tr>
                               <td align="left">
@@ -366,7 +366,7 @@
                                       <p><u>Voici le récapitulatif de celui-ci:</u></p>
                                       <p>Titre: {{ $projet->title }}</p>
                                       <p>Description: {{ $projet->description }}</p>
-                                      <p>Budget: {{ $projet->budget->name }}</p>      
+                                      <p>Budget: {{ $projet->budget->name }}</p>
                                       <br>
                                       <p>A très bientôt.</p>
                                       <a href="https://iziplans.com" class="btn btn-primary text-center">Rendez-vous sur iziplans</a>
