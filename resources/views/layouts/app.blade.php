@@ -66,6 +66,17 @@
     src="https://www.facebook.com/tr?id=174986373076599&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Facebook Pixel Code -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146702848-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-146702848-2');
+    </script>
+    <!-- End Google Analytics -->
 </head>
 <body>
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
