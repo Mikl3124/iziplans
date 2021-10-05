@@ -164,17 +164,18 @@
         .btn a {
           background-color: #ffffff;
           border: solid 1px #0072FF;
-          border-radius: 5px;
           box-sizing: border-box;
           color: #0072FF;
           cursor: pointer;
           display: inline-block;
-          font-size: 14px;
-          font-weight: bold;
           margin: 0;
           padding: 12px 25px;
           text-decoration: none;
-          text-transform: capitalize;
+          padding: .25rem .5rem;
+          font-size: .875rem;
+          line-height: 1.5;
+          border-radius: .2rem;
+          text-align: center;
       }
 
       .btn-primary table td {
@@ -352,8 +353,7 @@
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p>Bienvenue {{ $user->firstname }} !</p>
-                        <p>Vous êtes maintenant inscrit sur iziplans :)</p>
+                        <p>👋 Bienvenue {{ $user->firstname }}&nbsp;!</p>
 
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                           <tbody>
@@ -362,7 +362,12 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
                                     <tr>
-                                      <p>....</p>
+                                      <p>Moi c'est Mickael, le fondateur d'iziplans</p>
+                                      <p>Je suis heureux de vous accueillir dans la communauté d'iziplans, et de vous aider à trouver des freelances pour répondre à vos demandes.</p>
+                                      <p>Si vous avez des questions, nous sommes là! Mon équipe et moi-même répondrons toujours présents pour vous assister.</p>
+                                      <br>
+                                      <p>A très bientôt.</p>
+                                      <a href="https://iziplans.com" class="btn btn-primary text-center">Commencer maintenant&nbsp;!</a>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -370,9 +375,7 @@
                             </tr>
                           </tbody>
                         </table>
-                        <p>A très bientôt.</p>
-                      </td>
-                    </tr>
+
                   </table>
                 </td>
               </tr>

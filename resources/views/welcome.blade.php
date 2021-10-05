@@ -8,18 +8,6 @@
         <div class="display-4 text-center text-white">VOS PLANS FACILEMENT</div>
         <h3 class="text-center mb-5"><i class="text-white">"Trouvez un prestataire pour tous vos projets"</i></h3>
             <blockquote class="blockquote text-center">
-                {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
-                @auth
-                {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
-                    @if (Auth::user()->role === 'client')
-                    {{-- ----------- L'utilisateur est client ---------- --}}
-                        <p class="mb-0">Trouvez le professionnel idéal pour votre projet</p>
-                    @elseif (Auth::user()->role === 'freelance')
-                        <p class="mb-0">Trouvez la mission qui vous correspond</p>
-                    @endif
-
-                @endauth
-            </blockquote>
             @guest
             {{-- ----------- L'utilisateur n'est pas enregistré ---------- --}}
                 <div class="row">

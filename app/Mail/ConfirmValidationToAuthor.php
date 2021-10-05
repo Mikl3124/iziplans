@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ConfirmValidationToAuthor extends Mailable
+class ConfirmValidationTouser extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,17 +16,17 @@ class ConfirmValidationToAuthor extends Mailable
      * @var array
      */
     public $projet;
-    public $author;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($projet, $author)
+    public function __construct($projet, $user)
     {
         $this->projet = $projet;
-        $this->author = $author;
+        $this->user = $user;
     }
 
     /**
@@ -36,7 +36,7 @@ class ConfirmValidationToAuthor extends Mailable
      */
     public function build()
     {
-      $author = $this->author;
+      $user = $this->user;
          return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
             ->subject("Votre projet a été validé")
             ->view('emails.confirm-validation-to-author');

@@ -9,9 +9,11 @@ use App\Mail\NewSubscription;
 use Illuminate\Validation\Rule;
 use MercurySeries\Flashy\Flashy;
 use App\Http\Controllers\Controller;
+use App\Mail\ConfirmMessageToAuthor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\NewProjetPostedForAdmin;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -88,7 +90,6 @@ class RegisterController extends Controller
                 'cgv' => true,
                 'number_of_connections' => 0
             ]);
-            $this->dispatch(new MailNewUser($user));
 
             $values = Session::get('filled_form');
 
@@ -105,6 +106,16 @@ class RegisterController extends Controller
 
             Session::flash('success', '🎉 Merci ' . $data['firstname'] . ', votre projet a été enregistré avec succès, notre équipe va bientôt le valider.');
             //Flashy::success('🎉 Merci ' . $data['firstname'] . ', votre projet a été enregistré avec succès, notre équipe va bientôt le valider.');
+
+            Mail::to($user->email)
+            ->send(new NewSubscription($user));
+            
+            Mail::to($user->email)
+            ->send(new ConfirmMessageToAuthor($projet, $user));
+            
+            //Mail à l'Admin
+            Mail::to(env("MAIL_ADMIN"))
+            ->send(new NewProjetPostedForAdmin($projet, $user));
 
             return $user;
         }

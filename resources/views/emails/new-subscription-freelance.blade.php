@@ -353,7 +353,7 @@
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p>Bonjour {{ $user->firstname }}&nbsp;!</p>
+                        <p>👋 Bienvenue {{ $user->firstname }}&nbsp;!</p>
 
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                           <tbody>
@@ -362,14 +362,14 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
                                     <tr>
-                                      <p>Nous avons bien reçu votre projet, nos équipes vont le valider dans peu de temps, et vous tiendrons informé.</p>
-                                      <p><u>Voici le récapitulatif de celui-ci:</u></p>
-                                      <p>Titre: {{ $projet->title }}</p>
-                                      <p>Description: {{ $projet->description }}</p>
-                                      <p>Budget: {{ $projet->budget->name }}</p>      
+                                      <p>Moi c'est Mickael, le fondateur d'iziplans</p>
+                                      <p>Je suis heureux de vous accueillir dans la communauté d'iziplans, et de vous aider à trouver des missions qui vous correspondent.</p>
+                                      <p>Si vous avez des questions, nous sommes là! Mon équipe et moi-même répondrons toujours présents pour vous assister.</p>
                                       <br>
                                       <p>A très bientôt.</p>
-                                      <a href="https://iziplans.com" class="btn btn-primary text-center">Rendez-vous sur iziplans</a>
+                                      <br>
+                                      <p>🚨 N'oubliez pas de compléter votre profil freelance, afin d'être alerté automatiquement dès qu'une mission répondant à vos attentes est postée 🚨</p>
+                                      <a href="https://iziplans.com" class="btn btn-primary text-center">Commencer maintenant&nbsp;!</a>
                                     </tr>
                                   </tbody>
                                 </table>

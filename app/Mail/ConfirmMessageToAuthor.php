@@ -16,17 +16,17 @@ class ConfirmMessageToAuthor extends Mailable
      * @var array
      */
     public $projet;
-    public $author;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($projet, $author)
+    public function __construct($projet, $user)
     {
         $this->projet = $projet;
-        $this->author = $author;
+        $this->user = $user;
     }
 
     /**
@@ -36,7 +36,7 @@ class ConfirmMessageToAuthor extends Mailable
      */
     public function build()
     {
-        $author = $this->author;
+        $user = $this->user;
 
         return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
             ->subject("Nous avons reçu votre projet")
