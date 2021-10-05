@@ -142,7 +142,7 @@ class LoginController extends Controller
           Session::flash('success', '🎉 Merci ' . $newUser['firstname'] . ', votre projet a été enregistré avec succès, notre équipe va bientôt le valider.');
 
           Mail::to($user->email)
-          ->send(new ConfirmMessageToAuthor($projet, $user));
+          ->send(new ConfirmMessageToAuthor($projet, $newUser));
 
           //Mail à l'Admin
           Mail::to(env("MAIL_ADMIN"))
