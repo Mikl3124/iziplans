@@ -22,6 +22,7 @@ class NewSubscription extends Mailable
     public function __construct($user)
     {
         $this->user = $user;
+        dd($user);
     }
 
     /**
@@ -36,11 +37,11 @@ class NewSubscription extends Mailable
             return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
                 ->subject('Bienvenue sur iziplans')
                 ->view('emails.new-subscription-freelance');
-        } else{
+        } else {
             return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
                 ->subject('Bienvenue sur iziplans')
                 ->view('emails.new-subscription-client');
         }
-       
+
     }
 }
