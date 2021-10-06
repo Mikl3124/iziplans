@@ -30,7 +30,7 @@
 
     <tr>
       <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
-          Merci pour ton inscription {{ $user->firstname }} et bienvenue !
+          Merci pour ton inscription {{ $user->firstname }}, et bienvenue !
       </td>
     </tr>
     <tr>
