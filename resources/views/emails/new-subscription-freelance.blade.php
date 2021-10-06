@@ -1,408 +1,117 @@
-<!doctype html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Un nouveau projet a été posté</title>
-    <style>
-      /* -------------------------------------
-          GLOBAL RESETS
-      ------------------------------------- */
+<div marginwidth="0" marginheight="0" width="100%" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 0px; width: 100%; height: 100%; line-height: 100%; background-color: rgb(240, 240, 240); color: rgb(0, 0, 0);" bgcolor="#F0F0F0" text="#000000"><div class="adM">
 
-      /*All the styling goes here*/
 
-      img {
-        border: none;
-        -ms-interpolation-mode: bicubic;
-        max-width: 100%;
-      }
 
-      body {
-        background-color: #f6f6f6;
-        font-family: sans-serif;
-        -webkit-font-smoothing: antialiased;
-        font-size: 14px;
-        line-height: 1.4;
-        margin: 0;
-        padding: 0;
-        -ms-text-size-adjust: 100%;
-        -webkit-text-size-adjust: 100%;
-      }
+</div><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 0px; width: 100%;"><tbody><tr><td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 0px;" bgcolor="#F0F0F0">
 
-      table {
-        border-collapse: separate;
-        mso-table-lspace: 0pt;
-        mso-table-rspace: 0pt;
-        width: 100%; }
-        table td {
-          font-family: sans-serif;
-          font-size: 14px;
-          vertical-align: top;
-      }
 
-      /* -------------------------------------
-          BODY & CONTAINER
-      ------------------------------------- */
 
-      .body {
-        background-color: #f6f6f6;
-        width: 100%;
-      }
+<table border="0" cellpadding="0" cellspacing="0" align="center" width="560" style="border-collapse: collapse; border-spacing: 0px; padding: 0px; width: inherit; max-width: 560px;">
 
-      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
-      .container {
-        display: block;
-        margin: 0 auto !important;
-        /* makes it centered */
-        max-width: 580px;
-        padding: 10px;
-        width: 580px;
-      }
+	<tbody><tr>
+		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 20px 6.25%; width: 87.5%;">
 
-      /* This should also be a block element, so that it will fill 100% of the .container */
-      .content {
-        box-sizing: border-box;
-        display: block;
-        margin: 0 auto;
-        max-width: 580px;
-        padding: 10px;
-      }
 
-      /* -------------------------------------
-          HEADER, FOOTER, MAIN
-      ------------------------------------- */
-      .main {
-        background: #ffffff;
-        border-radius: 3px;
-        width: 100%;
-      }
+			<a style="text-decoration: none;" href="https://app.yalink.fr/" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://app.yalink.fr/&amp;source=gmail&amp;ust=1633635461935000&amp;usg=AFQjCNF2OTVvZ2QBdFTSx7HM_IWo0quQrg" data-mt-detrack-inspected="true"><img border="0" vspace="0" hspace="0" width="0" height="0" alt="Logo" title="Logo" style="color: rgb(0, 0, 0); font-size: 10px; margin: 0px; padding: 0px; outline: none; text-decoration: none; border: none; display: block;" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a>
 
-      .wrapper {
-        box-sizing: border-box;
-        padding: 20px;
-      }
+		</td>
+	</tr>
 
-      .content-block {
-        padding-bottom: 10px;
-        padding-top: 10px;
-      }
 
-      .footer {
-        clear: both;
-        margin-top: 10px;
-        text-align: center;
-        width: 100%;
-      }
-        .footer td,
-        .footer p,
-        .footer span,
-        .footer a {
-          color: #999999;
-          font-size: 12px;
-          text-align: center;
-      }
+</tbody></table>
 
-      /* -------------------------------------
-          TYPOGRAPHY
-      ------------------------------------- */
-      h1,
-      h2,
-      h3,
-      h4 {
-        color: #000000;
-        font-family: sans-serif;
-        font-weight: 400;
-        line-height: 1.4;
-        margin: 0;
-        margin-bottom: 30px;
-      }
 
-      h1 {
-        font-size: 35px;
-        font-weight: 300;
-        text-align: center;
-        text-transform: capitalize;
-      }
 
-      p,
-      ul,
-      ol {
-        font-family: sans-serif;
-        font-size: 14px;
-        font-weight: normal;
-        margin: 0;
-        margin-bottom: 15px;
-      }
-        p li,
-        ul li,
-        ol li {
-          list-style-position: inside;
-          margin-left: 5px;
-      }
+<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF" width="560" style="border-collapse: collapse; border-spacing: 0px; padding: 0px; width: inherit; max-width: 560px;" class="m_2742717873502113645container">
 
-      a {
-        color: #0072FF;
-        text-decoration: underline;
-      }
 
-      /* -------------------------------------
-          BUTTONS
-      ------------------------------------- */
-      .btn {
-        box-sizing: border-box;
-        width: 100%; }
-        .btn > tbody > tr > td {
-          padding-bottom: 15px; }
-        .btn table {
-          width: auto;
-      }
-        .btn table td {
-          background-color: #ffffff;
-          border-radius: 5px;
-          text-align: center;
-      }
-        .btn a {
-          background-color: #ffffff;
-          border: solid 1px #0072FF;
-          box-sizing: border-box;
-          color: #0072FF;
-          cursor: pointer;
-          display: inline-block;
-          margin: 0;
-          padding: 12px 25px;
-          text-decoration: none;
-          padding: .25rem .5rem;
-          font-size: .875rem;
-          line-height: 1.5;
-          border-radius: .2rem;
-          text-align: center;
-      }
 
-      .btn-primary table td {
-        background-color: #0072FF;
-      }
+	<tbody><tr>
+		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 24px; font-weight: bold; line-height: 130%; color: rgb(0, 0, 0); font-family: sans-serif;">
+				Bienvenue chez Yalink ! <img data-emoji="🔥" class="an1" alt="🔥" aria-label="🔥" src="https://fonts.gstatic.com/s/e/notoemoji/13.1.1/1f525/72.png" loading="lazy">
+		</td>
+	</tr>
 
-      .btn-primary a {
-        background-color: #0072FF;
-        border-color: #0072FF;
-        color: #ffffff;
-      }
 
-      /* -------------------------------------
-          OTHER STYLES THAT MIGHT BE USEFUL
-      ------------------------------------- */
-      .last {
-        margin-bottom: 0;
-      }
 
-      .first {
-        margin-top: 0;
-      }
+	<tr>
+		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
+				Merci pour ton inscription et bienvenue !
+		</td>
+	</tr>
+	<tr>
+		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
+				Pour pouvoir accéder et profiter pleinement de l’expérience Yalink il te suffit de
+		</td>
+	</tr>
 
-      .align-center {
-        text-align: center;
-      }
 
-      .align-right {
-        text-align: right;
-      }
 
-      .align-left {
-        text-align: left;
-      }
 
-      .clear {
-        clear: both;
-      }
 
-      .mt0 {
-        margin-top: 0;
-      }
+	<tr>
+		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 5px; width: 87.5%;"><a href="https://app.yalink.fr/freelance/register?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MzM3MDU1MDgsImlhdCI6MTYzMzUzMjcwOCwic3ViIjo0NjUsImFjdGlvbiI6ImVtYWlsX3ZlcmlmaWNhdGlvbiJ9.8uktk172nOjse5uOXMaxCqeYnvDr85TSLMIrHNTj7_o" style="text-decoration: underline;" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://app.yalink.fr/freelance/register?token%3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MzM3MDU1MDgsImlhdCI6MTYzMzUzMjcwOCwic3ViIjo0NjUsImFjdGlvbiI6ImVtYWlsX3ZlcmlmaWNhdGlvbiJ9.8uktk172nOjse5uOXMaxCqeYnvDr85TSLMIrHNTj7_o&amp;source=gmail&amp;ust=1633635461935000&amp;usg=AFQjCNHg2LPolmd6wzsXId7xiOObPEsEZQ" data-mt-detrack-inspected="true">
+				<table border="0" cellpadding="0" cellspacing="0" align="center" style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0px; padding: 0px;"><tbody><tr><td align="center" valign="middle" style="padding: 12px 24px; margin: 0px; text-decoration: underline; border-collapse: collapse; border-spacing: 0px; border-radius: 4px;" bgcolor="#F8C708"><a style="text-decoration: underline; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;" href="https://app.yalink.fr/freelance/register?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MzM3MDU1MDgsImlhdCI6MTYzMzUzMjcwOCwic3ViIjo0NjUsImFjdGlvbiI6ImVtYWlsX3ZlcmlmaWNhdGlvbiJ9.8uktk172nOjse5uOXMaxCqeYnvDr85TSLMIrHNTj7_o" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://app.yalink.fr/freelance/register?token%3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MzM3MDU1MDgsImlhdCI6MTYzMzUzMjcwOCwic3ViIjo0NjUsImFjdGlvbiI6ImVtYWlsX3ZlcmlmaWNhdGlvbiJ9.8uktk172nOjse5uOXMaxCqeYnvDr85TSLMIrHNTj7_o&amp;source=gmail&amp;ust=1633635461935000&amp;usg=AFQjCNHg2LPolmd6wzsXId7xiOObPEsEZQ" data-mt-detrack-inspected="true">
+						Vérifier ton email
+					</a>
+			</td></tr></tbody></table></a>
+		</td>
+	</tr>
 
-      .mb0 {
-        margin-bottom: 0;
-      }
 
-      .preheader {
-        color: transparent;
-        display: none;
-        height: 0;
-        max-height: 0;
-        max-width: 0;
-        opacity: 0;
-        overflow: hidden;
-        mso-hide: all;
-        visibility: hidden;
-        width: 0;
-      }
 
-      .powered-by a {
-        text-decoration: none;
-      }
+	<tr>
+		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%; color: rgb(0, 0, 0); font-family: sans-serif;">
+				<b>Pense à compléter ton profil Yalink pour recevoir plus de missions.</b>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%; color: rgb(0, 0, 0); font-family: sans-serif;">
+				Bon voyage dans le monde du freelancing et à très vite.
+		</td>
+	</tr>
 
-      hr {
-        border: 0;
-        border-bottom: 1px solid #f6f6f6;
-        margin: 20px 0;
-      }
 
-      /* -------------------------------------
-          RESPONSIVE AND MOBILE FRIENDLY STYLES
-      ------------------------------------- */
-      @media only screen and (max-width: 620px) {
-        table[class=body] h1 {
-          font-size: 28px !important;
-          margin-bottom: 10px !important;
-        }
-        table[class=body] p,
-        table[class=body] ul,
-        table[class=body] ol,
-        table[class=body] td,
-        table[class=body] span,
-        table[class=body] a {
-          font-size: 16px !important;
-        }
-        table[class=body] .wrapper,
-        table[class=body] .article {
-          padding: 10px !important;
-        }
-        table[class=body] .content {
-          padding: 0 !important;
-        }
-        table[class=body] .container {
-          padding: 0 !important;
-          width: 100% !important;
-        }
-        table[class=body] .main {
-          border-left-width: 0 !important;
-          border-radius: 0 !important;
-          border-right-width: 0 !important;
-        }
-        table[class=body] .btn table {
-          width: 100% !important;
-        }
-        table[class=body] .btn a {
-          width: 100% !important;
-        }
-        table[class=body] .img-responsive {
-          height: auto !important;
-          max-width: 100% !important;
-          width: auto !important;
-        }
-      }
 
-      /* -------------------------------------
-          PRESERVE THESE STYLES IN THE HEAD
-      ------------------------------------- */
-      @media all {
-        .ExternalClass {
-          width: 100%;
-        }
-        .ExternalClass,
-        .ExternalClass p,
-        .ExternalClass span,
-        .ExternalClass font,
-        .ExternalClass td,
-        .ExternalClass div {
-          line-height: 100%;
-        }
-        .apple-link a {
-          color: inherit !important;
-          font-family: inherit !important;
-          font-size: inherit !important;
-          font-weight: inherit !important;
-          line-height: inherit !important;
-          text-decoration: none !important;
-        }
-        #MessageViewBody a {
-          color: inherit;
-          text-decoration: none;
-          font-size: inherit;
-          font-family: inherit;
-          font-weight: inherit;
-          line-height: inherit;
-        }
-        .btn-primary table td:hover {
-          background-color: #34495e !important;
-        }
-        .btn-primary a:hover {
-          background-color: #34495e !important;
-          border-color: #34495e !important;
-        }
-      }
+	<tr>
+		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%;"><hr color="#E0E0E0" align="center" width="100%" size="1" noshade="" style="margin: 0px; padding: 0px;">
+		</td>
+	</tr>
 
-    </style>
-  </head>
-  <body class="">
-    <span class="preheader">Bienvenue sur iziplans</span>
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
-      <tr>
-        <td>&nbsp;</td>
-        <td class="container">
-          <div class="content">
-            <!-- START CENTERED WHITE CONTAINER -->
-            <table role="presentation" class="main">
-              <tr style="text-align:center">
-                <td width="100%">
-                    <img style="height:50px" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" alt="logo iziplans">
-                </td>
-            </tr>
-              <!-- START MAIN CONTENT AREA -->
-              <tr>
-                <td class="wrapper">
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                    <tr>
-                      <td>
-                        <p>👋 Bienvenue {{ $user->firstname }}&nbsp;!</p>
 
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                          <tbody>
-                            <tr>
-                              <td align="left">
-                                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                                  <tbody>
-                                    <tr>
-                                      <p>Moi c'est Mickael, le fondateur d'iziplans</p>
-                                      <p>Je suis heureux de vous accueillir dans la communauté d'iziplans, et de vous aider à trouver des missions freelances.</p>
-                                      <p>Si vous avez des questions, nous sommes là! Mon équipe et moi-même répondrons toujours présents pour vous assister.</p>
-                                      <br>
-                                      <p>A très bientôt.</p>
-                                    </tr>
-                                    <tr>
-                                      <a href="https://iziplans.com" class="btn btn-primary text-center">Commencer maintenant&nbsp;!</a>
-                                    </tr>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
 
-                  </table>
-                </td>
-              </tr>
+	<tr>
+		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 20px 6.25% 25px; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%; color: rgb(0, 0, 0); font-family: sans-serif;">
+				Une&nbsp;question? <a href="mailto:support@yalink.fr" style="color: rgb(18, 125, 179); font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 160%;" target="_blank" data-mt-detrack-inspected="true">support@yalink.fr</a>
+		</td>
+	</tr>
 
-            <!-- END MAIN CONTENT AREA -->
-            </table>
-            <!-- END CENTERED WHITE CONTAINER -->
 
-            <!-- START FOOTER -->
-            <div class="footer">
-              <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td class="content-block powered-by">
-                    iziplans, vos plans facilement
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <!-- END FOOTER -->
+</tbody></table>
 
-          </div>
-        </td>
-        <td>&nbsp;</td>
-      </tr>
-    </table>
-  </body>
-</html>
+
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" width="560" style="border-collapse: collapse; border-spacing: 0px; padding: 0px; width: inherit; max-width: 560px;">
+
+
+
+	<tbody><tr>
+		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%;"><table width="256" border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse; border-spacing: 0px; padding: 0px;">
+			<tbody><tr>
+
+
+				<td align="center" valign="middle" style="margin: 0px; padding: 0px 10px; border-collapse: collapse; border-spacing: 0px;"><a href="https://www.linkedin.com/company/yalinkommunity/" style="text-decoration: none;" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.linkedin.com/company/yalinkommunity/&amp;source=gmail&amp;ust=1633635461935000&amp;usg=AFQjCNGw6AyO9Cm8U7Cos60-BCw3cKI9xw" data-mt-detrack-inspected="true"><img border="0" vspace="0" hspace="0" style="padding: 0px; margin: 0px; outline: none; text-decoration: none; border: none; display: inline-block; color: rgb(0, 0, 0);" alt="F" title="Linkedin" width="0" height="0" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a></td>
+
+			</tr>
+			</tbody></table>
+		</td>
+	</tr>
+
+
+
+</tbody></table>
+
+
+</td></tr></tbody></table><div class="yj6qo"></div><div class="adL">
+
+</div></div>
