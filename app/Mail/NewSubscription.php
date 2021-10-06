@@ -21,7 +21,9 @@ class NewSubscription extends Mailable
      */
     public function __construct($user)
     {
-        $this->user = $user;
+      dd($user);
+      $this->user = $user;
+      dd($user, $this->user);
     }
 
     /**

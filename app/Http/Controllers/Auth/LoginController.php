@@ -198,8 +198,6 @@ class LoginController extends Controller
 
         Flashy::success('Bienvenue '. $newUser->firstname);
 
-        dd($newUser);
-
         Mail::to($newUser->email)
         ->send(new NewSubscription($newUser));
 
