@@ -148,10 +148,6 @@ class LoginController extends Controller
           Mail::to(env("MAIL_ADMIN"))
           ->send(new NewProjetPostedForAdmin($projet, $newUser));
           return redirect($this->redirectPath());
-
-
-
-
         }
 
         if($existingUser) {
@@ -201,6 +197,8 @@ class LoginController extends Controller
         auth()->login($newUser);
 
         Flashy::success('Bienvenue '. $newUser->firstname);
+
+        dd($newUser);
 
         Mail::to($newUser->email)
         ->send(new NewSubscription($newUser));
