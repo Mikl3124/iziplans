@@ -194,6 +194,7 @@ class LoginController extends Controller
             $newUser->cgv = true;
 
             $newUser->save();
+
         auth()->login($newUser);
 
         Flashy::success('Bienvenue '. $newUser->firstname);
@@ -202,7 +203,7 @@ class LoginController extends Controller
         ->send(new NewSubscription($newUser));
 
         Mail::to(env("MAIL_ADMIN"))
-        ->send(new NewSubscription ($user));
+        ->send(new NewSubscription ($newUser));
 
         return redirect($this->redirectPath());
 
