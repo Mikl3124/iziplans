@@ -29,18 +29,11 @@ class NewSubscription extends Mailable
      *
      * @return $this
      */
-    public function build($provider)
+    public function build()
     {
-      $user = Socialite::driver($provider)->stateless()->user();
-        if ($user->role === 'freelance'){
-            return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
-                ->subject('Bienvenue sur iziplans')
-                ->view('emails.new-subscription-freelance');
-        } else {
-            return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
-                ->subject('Bienvenue sur iziplans')
-                ->view('emails.new-subscription-client');
-        }
+      return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
+          ->subject('Bienvenue sur iziplans')
+          ->view('emails.new-subscription');
 
     }
 }
