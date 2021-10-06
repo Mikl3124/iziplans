@@ -11,8 +11,7 @@
 	<tbody><tr>
 		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 20px 6.25%; width: 87.5%;">
 
-
-			<a style="text-decoration: none;" href="https://app.yalink.fr/" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://app.yalink.fr/&amp;source=gmail&amp;ust=1633635461935000&amp;usg=AFQjCNF2OTVvZ2QBdFTSx7HM_IWo0quQrg" data-mt-detrack-inspected="true"><img border="0" vspace="0" hspace="0" width="0" height="0" alt="Logo" title="Logo" style="color: rgb(0, 0, 0); font-size: 10px; margin: 0px; padding: 0px; outline: none; text-decoration: none; border: none; display: block;" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></a>
+      <a style="text-decoration: none;" href="https://iziplans.com"><img border="0" vspace="0" hspace="0" width="0" height="0" alt="Logo" title="Logo" style="color: rgb(0, 0, 0); font-size: 10px; margin: 0px; padding: 0px; outline: none; text-decoration: none; border: none; display: block;" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" alt="logo iziplans"></a>
 
 		</td>
 	</tr>
@@ -28,7 +27,7 @@
 
 	<tbody><tr>
 		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 24px; font-weight: bold; line-height: 130%; color: rgb(0, 0, 0); font-family: sans-serif;">
-				Bienvenue chez Yalink ! <img data-emoji="🔥" class="an1" alt="🔥" aria-label="🔥" src="https://fonts.gstatic.com/s/e/notoemoji/13.1.1/1f525/72.png" loading="lazy">
+				Bienvenue sur iziplans! 👋
 		</td>
 	</tr>
 
@@ -52,7 +51,7 @@
 	<tr>
 		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 5px; width: 87.5%;"><a href="https://app.yalink.fr/freelance/register?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MzM3MDU1MDgsImlhdCI6MTYzMzUzMjcwOCwic3ViIjo0NjUsImFjdGlvbiI6ImVtYWlsX3ZlcmlmaWNhdGlvbiJ9.8uktk172nOjse5uOXMaxCqeYnvDr85TSLMIrHNTj7_o" style="text-decoration: underline;" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://app.yalink.fr/freelance/register?token%3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MzM3MDU1MDgsImlhdCI6MTYzMzUzMjcwOCwic3ViIjo0NjUsImFjdGlvbiI6ImVtYWlsX3ZlcmlmaWNhdGlvbiJ9.8uktk172nOjse5uOXMaxCqeYnvDr85TSLMIrHNTj7_o&amp;source=gmail&amp;ust=1633635461935000&amp;usg=AFQjCNHg2LPolmd6wzsXId7xiOObPEsEZQ" data-mt-detrack-inspected="true">
 				<table border="0" cellpadding="0" cellspacing="0" align="center" style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0px; padding: 0px;"><tbody><tr><td align="center" valign="middle" style="padding: 12px 24px; margin: 0px; text-decoration: underline; border-collapse: collapse; border-spacing: 0px; border-radius: 4px;" bgcolor="#F8C708"><a style="text-decoration: underline; color: rgb(255, 255, 255); font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;" href="https://app.yalink.fr/freelance/register?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MzM3MDU1MDgsImlhdCI6MTYzMzUzMjcwOCwic3ViIjo0NjUsImFjdGlvbiI6ImVtYWlsX3ZlcmlmaWNhdGlvbiJ9.8uktk172nOjse5uOXMaxCqeYnvDr85TSLMIrHNTj7_o" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://app.yalink.fr/freelance/register?token%3DeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MzM3MDU1MDgsImlhdCI6MTYzMzUzMjcwOCwic3ViIjo0NjUsImFjdGlvbiI6ImVtYWlsX3ZlcmlmaWNhdGlvbiJ9.8uktk172nOjse5uOXMaxCqeYnvDr85TSLMIrHNTj7_o&amp;source=gmail&amp;ust=1633635461935000&amp;usg=AFQjCNHg2LPolmd6wzsXId7xiOObPEsEZQ" data-mt-detrack-inspected="true">
-						Vérifier ton email
+						Aller sur iziplans
 					</a>
 			</td></tr></tbody></table></a>
 		</td>
