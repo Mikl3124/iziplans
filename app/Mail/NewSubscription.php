@@ -6,7 +6,6 @@ use App\Model\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Laravel\Socialite\Facades\Socialite;
 
 class NewSubscription extends Mailable
 {
@@ -32,9 +31,16 @@ class NewSubscription extends Mailable
     public function build()
     {
       $user = $this->user;
-      return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
-          ->subject('Bienvenue sur iziplans')
-          ->view('emails.new-subscription');
+      if ($user->role === 'freelance'){
+        return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
+        ->subject('Bienvenue sur iziplans')
+        ->view('emails.new-subscription-freelance');
+      }else {
+        return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
+        ->subject('Bienvenue sur iziplans')
+        ->view('emails.new-subscription-client');
+      }
+
 
     }
 }
