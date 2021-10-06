@@ -31,8 +31,7 @@ class NewSubscription extends Mailable
     public function build()
     {
 
-        dd($this->user['role']);
-        if ($this->user->role === 'freelance'){
+        if ($this->user['role'] === 'freelance'){
             return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
                 ->subject('Bienvenue sur iziplans')
                 ->view('emails.new-subscription-freelance');
