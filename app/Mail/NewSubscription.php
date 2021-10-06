@@ -2,11 +2,10 @@
 
 namespace App\Mail;
 
+use App\Model\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Mail\NewSubscription;
 
 class NewSubscription extends Mailable
 {
@@ -31,7 +30,7 @@ class NewSubscription extends Mailable
      */
     public function build()
     {
-        $user = $this->user;
+        $user = User::find($this->user);
         if ($user->role === 'freelance'){
             return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
                 ->subject('Bienvenue sur iziplans')
