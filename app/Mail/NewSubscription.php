@@ -31,7 +31,7 @@ class NewSubscription extends Mailable
      */
     public function build()
     {
-      $this->user;
+      $user = $this->user;
       return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
           ->subject('Bienvenue sur iziplans')
           ->view('emails.new-subscription');
