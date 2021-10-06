@@ -21,7 +21,6 @@ class NewSubscription extends Mailable
     public function __construct($user)
     {
         $this->user = $user;
-        dd($user);
     }
 
     /**
@@ -29,9 +28,10 @@ class NewSubscription extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build($user)
     {
-        if ($this->user->role === 'freelance'){
+      dd($user->role);
+        if ($user->role === 'freelance'){
             return $this->from('mickael@iziplans.com', 'Mickael d\'iziplans')
                 ->subject('Bienvenue sur iziplans')
                 ->view('emails.new-subscription-freelance');
