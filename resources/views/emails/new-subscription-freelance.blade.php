@@ -5,7 +5,7 @@
   <table border="0" cellpadding="0" cellspacing="0" align="center" width="560" style="border-collapse: collapse; border-spacing: 0px; padding: 0px; width: inherit; max-width: 560px;">
 
     <tbody>
-      <tr style="text-align:center;margin-top:50px">
+      <tr style="text-align:center;padding-top:50px">
         <td width="100%">
             <img style="height:50px" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" alt="logo iziplans">
         </td>
@@ -17,7 +17,7 @@
 
   <table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF" width="560" style="border-collapse: collapse; border-spacing: 0px; padding: 0px; width: inherit; max-width: 560px;">
     <tbody><tr>
-      <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin-bottom: 50px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 24px; font-weight: bold; line-height: 130%; color: rgb(0, 0, 0); font-family: sans-serif;">
+      <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; padding-bottom: 50px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 24px; font-weight: bold; line-height: 130%; color: rgb(0, 0, 0); font-family: sans-serif;">
           Bienvenue sur iziplans, {{ $user->firstname }}! 👋
       </td>
     </tr>
