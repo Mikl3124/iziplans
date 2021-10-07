@@ -13,11 +13,6 @@
 
   <table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF" width="560" style="border-collapse: collapse; border-spacing: 0px; padding: 0px; width: inherit; max-width: 560px;">
     <tbody>
-    <tr style="text-align:center">
-      <td width="100%">
-          <img style="height:50px" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" alt="logo iziplans">
-      </td>
-    </tr>
     <tr>
       <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 24px; font-weight: bold; line-height: 130%; color: rgb(0, 0, 0); font-family: sans-serif;">
           Bienvenue sur iziplans, {{ $user->firstname }}! 👋
@@ -46,6 +41,11 @@
     <tr>
       <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
         A bientôt, sur <a href="https://iziplans.com">iziplans</a>
+      </td>
+    </tr>
+    <tr style="text-align:center">
+      <td width="100%">
+          <img style="height:50px" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" alt="logo iziplans">
       </td>
     </tr>
     <tr>
