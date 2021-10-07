@@ -19,7 +19,7 @@
       </td>
     </tr>
     <tr>
-      <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
+      <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 30px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
         Moi c'est Mickael, le fondateur d'iziplans.
       </td>
     </tr>
@@ -40,7 +40,7 @@
     </tr>
     <table border="0" cellpadding="0" cellspacing="0" align="center" style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0px; padding: 0px;">
       <tbody>
-        <tr>
+        <tr style="padding: 30px;">
           <td align="center" valign="middle" style="padding: 12px 24px; margin: 0px; text-decoration: underline; border-collapse: collapse; border-spacing: 0px; border-radius: 4px;" bgcolor="#0072FF">
             <a style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;" href="https://iziplans.com" target="_blank">
               Compléter mon profil
