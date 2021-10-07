@@ -29,21 +29,23 @@
 
 
     <tr>
-      <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
+      <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
           Merci pour ton inscription {{ $user->firstname }}, et bienvenue !
       </td>
     </tr>
     <tr>
       <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
         Moi c'est Mickael, le fondateur d'iziplans.
-        <br>
+      </td>
+      <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
         Je suis heureux de t'accueillir dans la communauté iziplans, et de pouvoir t'aider à trouver des missions freelance .
-        <br>
+      </td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
         Si tu as des questions, nous sommes là! Mon équipe et moi-même répondrons toujours présents pour t'assister.
       </td>
     </tr>
-
-
     <tr>
       <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%; color: rgb(0, 0, 0); font-family: sans-serif;">
           <b>Pense à compléter ton profil, pour recevoir plus d'offres de missions.</b>
@@ -51,7 +53,6 @@
     </tr>
     <tr>
       <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%; color: rgb(0, 0, 0); font-family: sans-serif;">
-          A très bientôt.
       </td>
     </tr>
 
