@@ -36,11 +36,9 @@
     <tr>
       <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
         Moi c'est Mickael, le fondateur d'iziplans.
-      </td>
-      <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
+        <br>
         Je suis heureux de t'accueillir dans la communauté iziplans, et de pouvoir t'aider à trouver des missions freelance .
-      </td>
-      <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
+        <br>
         Si tu as des questions, nous sommes là! Mon équipe et moi-même répondrons toujours présents pour t'assister.
       </td>
     </tr>
