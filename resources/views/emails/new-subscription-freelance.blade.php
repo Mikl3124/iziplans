@@ -10,11 +10,6 @@
             <img style="height:50px" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" alt="logo iziplans">
         </td>
     </tr>
-    <tr style="text-align:center">
-      <td width="100%">
-          <img style="height:50px" src="https://iziplans.s3.eu-west-3.amazonaws.com/images/iziplans-logo.png" alt="logo iziplans">
-      </td>
-    </tr>
 
   </tbody></table>
 
@@ -23,15 +18,7 @@
   <table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF" width="560" style="border-collapse: collapse; border-spacing: 0px; padding: 0px; width: inherit; max-width: 560px;">
     <tbody><tr>
       <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 24px; font-weight: bold; line-height: 130%; color: rgb(0, 0, 0); font-family: sans-serif;">
-          Bienvenue sur iziplans 👋 !
-      </td>
-    </tr>
-
-
-
-    <tr>
-      <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
-          Merci pour ton inscription {{ $user->firstname }}, et bienvenue !
+          Bienvenue sur iziplans, {{ $user->firstname }}! 👋
       </td>
     </tr>
     <tr>
@@ -41,7 +28,7 @@
     </tr>
     <tr>
       <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
-        Je suis heureux de t'accueillir dans la communauté iziplans, et de pouvoir t'aider à trouver des missions freelance .
+        Je suis heureux de t'accueillir dans la communauté iziplans, afin de pouvoir t'aider à trouver des missions freelance .
       </td>
     </tr>
     <tr>
@@ -55,12 +42,10 @@
       </td>
     </tr>
     <tr>
-      <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%; color: rgb(0, 0, 0); font-family: sans-serif;">
+      <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 5px 6.25% 3px; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%; color: rgb(0, 0, 0); font-family: sans-serif;">
+        A bientôt, sur <a href="https://iziplans.com">iziplans</a>
       </td>
     </tr>
-
-
-
     <tr>
       <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0px; margin: 0px; padding: 25px 6.25% 0px; width: 87.5%;"><hr color="#E0E0E0" align="center" width="100%" size="1" noshade="" style="margin: 0px; padding: 0px;">
       </td>
