@@ -201,7 +201,7 @@ class LoginController extends Controller
 
         Mail::to($newUser->email)
         ->send(new NewSubscription($newUser));
-        dd('stop');
+
         Mail::to(env("MAIL_ADMIN"))
         ->send(new NewSubscription ($newUser));
 
