@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ secure_asset('js/app.js') }}" ></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 
@@ -31,7 +31,7 @@
 
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 
     <script>
       window.dataLayer = window.dataLayer || [];
