@@ -33,22 +33,22 @@
 	</tr>
 
 	<tr>
-		<td align="center" valign="top" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0;padding-bottom:3px;padding-left:6.25%;padding-right:6.25%;width:87.5%;font-size:18px;font-weight:300;line-height:150%;padding-top:5px;color:#000000;font-family:sans-serif">
+		<td align="left" valign="top" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0;padding-bottom:3px;padding-left:6.25%;padding-right:6.25%;width:87.5%;font-size:18px;font-weight:300;line-height:150%;padding-top:5px;color:#000000;font-family:sans-serif">
       Moi c'est Mickael, le fondateur d'iziplans
 		</td>
 	</tr>
   <tr>
-		<td align="center" valign="top" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0;padding-bottom:3px;padding-left:6.25%;padding-right:6.25%;width:87.5%;font-size:18px;font-weight:300;line-height:150%;padding-top:5px;color:#000000;font-family:sans-serif">
+		<td align="left" valign="top" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0;padding-bottom:3px;padding-left:6.25%;padding-right:6.25%;width:87.5%;font-size:18px;font-weight:300;line-height:150%;padding-top:5px;color:#000000;font-family:sans-serif">
       Je suis heureux de t'accueillir dans la communauté d'iziplans, pour t'aider à trouver des missions qui te correspondent.
 		</td>
 	</tr>
   <tr>
-		<td align="center" valign="top" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0;padding-bottom:3px;padding-left:6.25%;padding-right:6.25%;width:87.5%;font-size:18px;font-weight:300;line-height:150%;padding-top:5px;color:#000000;font-family:sans-serif">
+		<td align="left" valign="top" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0;padding-bottom:3px;padding-left:6.25%;padding-right:6.25%;width:87.5%;font-size:18px;font-weight:300;line-height:150%;padding-top:5px;color:#000000;font-family:sans-serif">
       Si tu as des questions, nous sommes là! Mon équipe et moi-même répondrons toujours présents pour t'assister.
 		</td>
 	</tr>
 	<tr>
-		<td align="center" valign="top" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0;padding-left:6.25%;padding-right:6.25%;width:87.5%;font-size:17px;font-weight:400;line-height:160%;padding-top:25px;color:#000000;font-family:sans-serif">
+		<td align="left" valign="top" style="border-collapse:collapse;border-spacing:0;margin:0;padding:0;padding-left:6.25%;padding-right:6.25%;width:87.5%;font-size:17px;font-weight:400;line-height:160%;padding-top:25px;color:#000000;font-family:sans-serif">
 				<b>"Pense à compléter ton profil freelance pour recevoir plus de missions."</b>
 		</td>
 	</tr>
@@ -60,8 +60,8 @@
           <tbody>
             <tr>
               <td align="center" valign="middle" style="padding:12px 24px;margin:0;border-collapse:collapse;border-spacing:0;border-radius:4px" bgcolor="#0072FF">
-                <a style="color:#ffffff;font-family:sans-serif;font-size:17px;font-weight:400;line-height:120%" href="https://iziplans.com/profil/edit/{{ $user->id }}">
-						      Compléter mon profil
+                <a style="color:#ffffff;font-family:sans-serif;font-size:17px;font-weight:400;line-height:120%" href="https://iziplans.com/projet/">
+						      Voir les missions
 					      </a>
 			        </td>
             </tr>
