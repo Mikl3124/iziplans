@@ -204,7 +204,7 @@ class LoginController extends Controller
         ->send(new NewSubscription($newUser));
         dd(env("MAIL_ADMIN"));
 
-        ///Mail à l'admin
+        ///Mail à l'administrateur
         Mail::to(env("MAIL_ADMIN"))
         ->send(new NewSubscription ($newUser));
 
