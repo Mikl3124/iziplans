@@ -202,8 +202,8 @@ class LoginController extends Controller
         Mail::to($newUser->email)
         ->send(new NewSubscription($newUser));
 
-        Mail::to(env("MAIL_ADMIN"))
-        ->send(new NewSubscription ($newUser));
+        // Mail::to(env("MAIL_ADMIN"))
+        // ->send(new NewSubscription ($newUser));
 
         return redirect($this->redirectPath());
 
