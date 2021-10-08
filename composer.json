@@ -9,7 +9,7 @@
   "license": "MIT",
   "require": {
     "php": "^7.4",
-    "aws/aws-sdk-php": "^3.133",
+    "aws/aws-sdk-php": "^3.198",
     "aws/aws-sdk-php-laravel": "^3.5",
     "butschster/meta-tags": "^1.8",
     "cyrildewit/eloquent-viewable": "^5.2",
