@@ -60,9 +60,7 @@
           <tbody>
             <tr>
               <td align="center" valign="middle" style="padding:12px 24px;margin:0;border-collapse:collapse;border-spacing:0;border-radius:4px" bgcolor="#0072FF">
-                <a style="color:#ffffff;font-family:sans-serif;font-size:17px;font-weight:400;line-height:120%" href="https://iziplans.com/projet/">
-						      Voir les missions
-					      </a>
+                <a style="color:#ffffff;font-family:sans-serif;font-size:17px;font-weight:400;line-height:120%" href="https://iziplans.com/projet/">Voir les missions</a>
 			        </td>
             </tr>
           </tbody>
